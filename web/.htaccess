@@ -1,0 +1,23 @@
+#DirectoryIndex index.html
+#AddDefaultCharset UTF-8
+#php_value error_reporting 7
+#php_flag register_globals Off
+#php_value magic_quotes_gpc 0
+#php_value session.use_trans_sid 0
+#php_value session.cookie_lifetime 0
+
+#Options -Indexes
+#ServerSignature Off
+
+#RewriteEngine On
+#Options FollowSymLinks
+
+#RewriteBase /
+
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^(.*)$ /#/$1 [L]
+RewriteEngine on
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAM#]E} !-d
+RewriteRule . index.php
