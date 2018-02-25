@@ -2,6 +2,7 @@
     "require": {
         "yiisoft/yii2": "*",
         "codeception/codeception": "*",
-        "fzaninotto/faker": "*"
+        "fzaninotto/faker": "*",
+        "yiisoft/yii2-gii": "*"
     }
 }

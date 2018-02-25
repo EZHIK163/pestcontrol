@@ -32,8 +32,9 @@ class m180223_194917_init_users_table extends Migration
         $this->createTable('users',
             [
                 'id'        => 'pk',
-                'username'  => 'string',
+                'username'  => 'string UNIQUE',
                 'password'  => 'string',
+                'auth_key'  => 'string UNIQUE'
             ]
         );
     }
