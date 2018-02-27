@@ -3,6 +3,7 @@ namespace app\controllers;
 
 use app\models\user\LoginForm;
 use app\models\user\UserRecord;
+use stdClass;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 
@@ -12,7 +13,23 @@ class SiteController extends Controller {
             $this->redirect('account/index');
         }
         $model = new LoginForm();
-        return $this->render('index', compact('model'));
+
+        $widget = new stdClass();
+        $widget->title = "Основное меню";
+        $widget->class_li = "item";
+        $widget->class_ul = "nav menu";
+        $widget->items = [
+            [
+                'url'   => 'http://pestcontrol.lesnoe-ozero.com/',
+                'name'  => 'Программа пестконтроля'
+            ],
+            [
+                'url'   => 'http://pestcontrol.lesnoe-ozero.com/kontakty',
+                'name'  => 'Контакты'
+            ]
+        ];
+
+        return $this->render('index', compact('model', 'widget'));
     }
 
     public function actionLogin() {

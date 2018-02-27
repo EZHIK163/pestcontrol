@@ -7483,3 +7483,12 @@ body.modal-open {
 #users-profile-custom label {
 	display: inline;
 }
+
+.authorization-indicator {
+	text-align: right;
+	min-height: 10px;
+}
+
+.authorization-indicator2 {
+	display: block;
+}

@@ -29,12 +29,14 @@ app\assets\ApplictionUiAssetBundle::register($this);
 
 
                     <div class="custom">
-                        <p><a href="http://www.lesnoe-ozero.com/" target="_blank" rel="tag"><img src="temp_files/logoSmall.png" alt=""></a></p></div>
+                        <p><a href="http://www.lesnoe-ozero.com/" target="_blank" rel="tag">
+                                <img src="<?= \Yii::$app->urlManager->createAbsoluteUrl(['/']) ?>logoSmall.png" alt=""></a></p></div>
 
                 </div>
             </div>
             <?= \app\components\AuthWidget::widget() ?>
         </header>
+        <?= \app\components\SliderWidget::widget() ?>
             <?= $content; ?>
     </div>
 </div>

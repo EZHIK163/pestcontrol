@@ -14,6 +14,9 @@ class m180225_133446_create_rbac_tables extends Migration
     {
         $sql = "CREATE SCHEMA auth";
         $this->execute($sql);
+
+        //./yii migrate --migrationPath=@yii/rbac/migrations
+
     }
 
     /**

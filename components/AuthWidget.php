@@ -13,12 +13,12 @@ class AuthWidget extends Widget {
             default:
         echo '<div class="authorization-indicator">';
             if (\Yii::$app->user->isGuest) {
-                echo Html::tag('span', 'guest');
-                echo Html::a('login', '/site/login');
+                echo Html::tag('span', 'guest', ['class'   => 'authorization-indicator2']);
+                echo Html::a('Войти', '/site/login');
             }
             else {
-                echo Html::tag('span', \Yii::$app->user->identity->username);
-                echo Html::a('logout', '/site/logout');
+                echo Html::tag('span', \Yii::$app->user->identity->username, ['class'   => 'authorization-indicator2']);
+                echo Html::a('Выход', '/site/logout');
             }
             echo '</div>';
         break;

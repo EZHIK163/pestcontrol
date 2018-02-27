@@ -1,8 +1,8 @@
-<?= \app\components\SliderWidget::widget() ?>
+<?php $this->title = "Главная"; ?>
 <div class="row-fluid">
             <div id="sidebar" class="span3">
                 <div class="sidebar-nav">
-                    <?= \app\components\WellMenuWidget::widget() ?>
+                    <?= \app\components\WellMenuWidget::widget(['data'  => $widget]) ?>
                     <?= \app\components\LoginWidget::widget(['model'    => $model]) ?>
                 </div>
             </div>
