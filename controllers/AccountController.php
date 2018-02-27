@@ -27,7 +27,7 @@ class AccountController extends Controller {
                 'rules' => [
                     [
                         'actions'   => ['index'],
-                        'roles'     => ['customer'],
+                        'roles'     => ['admin'],
                         'allow'     => true
                     ]
                 ]
