@@ -1,5 +1,6 @@
 <?php
 
+use app\models\user\UserRecord;
 use yii\db\Migration;
 
 /**
@@ -26,11 +27,39 @@ class m180225_140413_create_roles extends Migration
         $admin->description = 'Админ сайта';
         $rbac->add($admin);
 
-        $rbac->addChild($admin, $customer);
+        $manager = $rbac->createRole('manager');
+        $manager->description = 'Менеджер сайта';
+        $rbac->add($manager);
+
+        $rbac->addChild($admin, $manager);
+        $rbac->addChild($manager, $customer);
         $rbac->addChild($customer, $guest);
 
+        $user = new UserRecord();
+        $user->username = 'admin';
+        $user->password = 'admin';
+        $user->save();
+
+        $user = new UserRecord();
+        $user->username = 'manager';
+        $user->password = 'manager';
+        $user->save();
+
+        $user = new UserRecord();
+        $user->username = 'customer';
+        $user->password = 'customer';
+        $user->save();
+
         $rbac->assign($admin,
-            \app\models\user\UserRecord::findOne(['username'    => 'admin'])->id
+            UserRecord::findOne(['username'    => 'admin'])->id
+        );
+
+        $rbac->assign($manager,
+            UserRecord::findOne(['username'    => 'manager'])->id
+        );
+
+        $rbac->assign($customer,
+            UserRecord::findOne(['username'    => 'customer'])->id
         );
     }
 

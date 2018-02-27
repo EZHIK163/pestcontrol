@@ -12,7 +12,8 @@ class m180225_133446_create_rbac_tables extends Migration
      */
     public function safeUp()
     {
-
+        $sql = "CREATE SCHEMA auth";
+        $this->execute($sql);
     }
 
     /**

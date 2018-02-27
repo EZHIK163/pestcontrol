@@ -35,10 +35,7 @@ class SiteController extends Controller {
 
     public function actionCreate()
     {
-        $user = new UserRecord();
-        $user->username = 'admin';
-        $user->password = 'admin';
-        $user->save();
+
     }
 
     public function behaviors()
