@@ -72,39 +72,39 @@ class Widget {
         $widget_report->class_ul = "nav menu";
         $widget_report->items = [
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'skhemy-tochek-kontrolya',
+                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'account/scheme',
                 'name'  => 'Схемы точек контроля'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'informatsiya-po-monitoringu',
+                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'account/info-on-monitoring',
                 'name'  => 'Информация по мониторингу'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'otchet-po-tochkam-kontrolya',
+                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'account/report-on-point',
                 'name'  => 'Отчет по точкам контроля'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'otchet-po-dezsredstvam-baltika',
+                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'account/report-on-material',
                 'name'  => 'Отчет по дезсредствам'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'otsenka-riskov-po-tochkam-kontrolya-2',
+                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'account/risk-assessment',
                 'name'  => 'Оценка рисков по точкам контроля'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'grafik-zaselennosti-ob-ekta',
+                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'account/occupancy-schedule',
                 'name'  => 'График заселенности объекта'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'rekomendatsii-dlya-zakazchika',
+                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'account/recommendations',
                 'name'  => 'Рекомендации для Заказчика'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'otchet-obshchej-zaselennosti-ob-ekta-vreditelyami',
+                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'account/general-report',
                 'name'  => 'Отчет общей заселенности объекта вредителями'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'vykhoz-brigady-pestkontrolya',
+                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'account/call-employee',
                 'name'  => 'Вызов бригады пестконтроля'
             ]
         ];

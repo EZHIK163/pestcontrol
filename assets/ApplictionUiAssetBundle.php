@@ -30,4 +30,7 @@ class ApplictionUiAssetBundle extends AssetBundle {
         'js/my_js.js'
     ];
 
+    public $depends = [
+        'yii\web\JqueryAsset',
+    ];
 }
