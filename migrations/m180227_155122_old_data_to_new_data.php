@@ -218,7 +218,7 @@ class m180227_155122_old_data_to_new_data extends Migration
                 'id'            => 'pk',
                 'is_active'     => 'boolean DEFAULT true',
                 'id_customer'   => 'integer',
-                'id_point_type' => 'integer',
+                'id_point_status' => 'integer',
                 //'pnt_map'     => '',
                 'title'         => 'string',
                 //'activity'      => 'boolean',
@@ -231,16 +231,16 @@ class m180227_155122_old_data_to_new_data extends Migration
             ]
         );
 
-        $this->addForeignKey('points_id_point_type', 'points',
-            'id_point_type', 'point_types', 'id');
+        $this->addForeignKey('points_id_point_status', 'points',
+            'id_point_status', 'point_status', 'id');
 
         $this->addForeignKey('points_id_customer', 'points',
             'id_customer', 'customers', 'id');
 
-        $this->addForeignKey('points_types_created_by', 'point_types',
+        $this->addForeignKey('points_types_created_by', 'points',
             'created_by', 'auth.users', 'id');
 
-        $this->addForeignKey('points_types_updated_by', 'point_types',
+        $this->addForeignKey('points_types_updated_by', 'points',
             'updated_by', 'auth.users', 'id');
 
         $sql = "
@@ -250,18 +250,17 @@ class m180227_155122_old_data_to_new_data extends Migration
             ->queryAll();
         $sql = "
         INSERT INTO public.points 
-        (id_customer, id_point_type, title, x_coordinate, y_coordinate, created_at, created_by, updated_at, updated_by)
+        (id_customer, id_point_status, title, x_coordinate, y_coordinate, created_at, created_by, updated_at, updated_by)
         VALUES 
-        (:id_customer, :id_point_type, :title, :x_coordinate, :y_coordinate,  :created_at, :created_by, :updated_at, :updated_by)";
+        (:id_customer, :id_point_status, :title, :x_coordinate, :y_coordinate,  :created_at, :created_by, :updated_at, :updated_by)";
 
         foreach ($points as $point) {
             $updated_at = $created_at = \Yii::$app->formatter->asTimestamp(date('Y-d-m h:i:s'));
-            if ($point['id_pnt_type'] == 0) {
-                continue;
-            }
+
+            $point['id_pnt_type']++;
             $this->db->createCommand($sql)
                 ->bindValue(':id_customer', $point['id_comp'])
-                ->bindValue(':id_point_type', $point['id_pnt_type'])
+                ->bindValue(':id_point_status', $point['id_pnt_type'])
                 ->bindValue(':title', $point['pnt_title'])
                 ->bindValue(':x_coordinate', $point['pnt_loc_x'])
                 ->bindValue(':y_coordinate', $point['pnt_loc_y'])
@@ -278,7 +277,7 @@ class m180227_155122_old_data_to_new_data extends Migration
                 'is_active'             => 'boolean DEFAULT true',
                 'id_customer'           => 'integer',
                 'id_disinfector'        => 'integer',
-                'id_point'              => 'integer',
+                'id_external'           => 'integer',
                 'id_point_status'       => 'integer',
                 'created_at'    => 'integer',
                 'created_by'    => 'integer',
@@ -289,9 +288,6 @@ class m180227_155122_old_data_to_new_data extends Migration
 
         $this->addForeignKey('events_id_point_status', 'events',
             'id_point_status', 'point_status', 'id');
-
-        $this->addForeignKey('events_id_point', 'events',
-            'id_point', 'points', 'id');
 
         $this->addForeignKey('events_id_disinfector', 'events',
             'id_disinfector', 'disinfectors', 'id');
@@ -308,34 +304,50 @@ class m180227_155122_old_data_to_new_data extends Migration
 
         $sql_insert = "
         INSERT INTO public.events
-        (id_disinfector, id_customer, id_point, id_point_status, created_at, created_by, updated_at, updated_by)
+        (id_disinfector, id_customer, id_external, id_point_status, created_at, created_by, updated_at, updated_by)
         VALUES 
-        (:id_disinfector, :id_customer, :id_point, :id_point_status, :created_at, :created_by, :updated_at, :updated_by)";
+        (:id_disinfector, :id_customer, :id_external, :id_point_status, :created_at, :created_by, :updated_at, :updated_by)";
 
         foreach ($companies as $company) {
             $name_table = $company['tbl_names'];
+            if ($name_table == "PepsiCo_Sam") {
+                $name_table = "\"PepsiCo_Sam\"";
+            }
+            if ($name_table == "Alpla_spb") {
+                $name_table = "\"Alpla_spb\"";
+            }
+            if ($name_table == "Baltika_Spb") {
+                $name_table = "\"Baltika_Spb\"";
+            }
             $sql = "SELECT * FROM {$name_table}";
             $events = $db_old->createCommand($sql)
                 ->queryAll();
             foreach ($events as $event) {
                 $updated_at = $created_at = \Yii::$app->formatter->asTimestamp(date('Y-d-m h:i:s'));
-                if ($event['executor'] == 666) {
+                if ($event['executor'] == 666
+                    or $event['executor'] == 110
+                    or $event['executor'] == 0) {
                     continue;
                 }
                 if ($event['executor'] == 777) {
                     $event['executor'] = 14;
                 }
                 $event['pointProp']++;
-                $this->db->createCommand($sql_insert)
-                    ->bindValue(':id_disinfector', $event['executor'])
-                    ->bindValue(':id_customer', $event['company'])
-                    ->bindValue(':id_point', $event['pointNum'])
-                    ->bindValue(':id_point_status', $event['pointProp'])
-                    ->bindValue(':created_at', $created_at)
-                    ->bindValue(':created_by', $created_by)
-                    ->bindValue(':updated_at', $updated_at)
-                    ->bindValue(':updated_by', $updated_by)
-                    ->query();
+                $event['pointNum']++;
+                try {
+                    $this->db->createCommand($sql_insert)
+                        ->bindValue(':id_disinfector', $event['executor'])
+                        ->bindValue(':id_customer', $event['company'])
+                        ->bindValue(':id_external', $event['pointNum'])
+                        ->bindValue(':id_point_status', $event['pointProp'])
+                        ->bindValue(':created_at', $created_at)
+                        ->bindValue(':created_by', $created_by)
+                        ->bindValue(':updated_at', $updated_at)
+                        ->bindValue(':updated_by', $updated_by)
+                        ->query();
+                } catch (\yii\db\Exception $e) {
+                    $index = 0;
+                }
             }
         }
         return true;
@@ -346,12 +358,14 @@ class m180227_155122_old_data_to_new_data extends Migration
      */
     public function safeDown()
     {
+        $this->dropTable('points');
+        $this->dropTable('events');
         $this->truncateTable('customers');
         $this->dropTable('disinfectors');
         $this->dropTable('point_status');
         $this->dropTable('point_types');
-        $this->dropTable('points');
-        $this->dropTable('events');
+
+
         return true;
     }
 

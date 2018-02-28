@@ -3,10 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="06996c03-9cbb-43d1-84b5-d89c73097433" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/pestcontrol.iml" afterPath="$PROJECT_DIR$/.idea/pestcontrol.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/console.php" afterPath="$PROJECT_DIR$/config/console.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/web.php" afterPath="$PROJECT_DIR$/config/web.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/AccountController.php" afterPath="$PROJECT_DIR$/controllers/AccountController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/migrations/m180227_155122_old_data_to_new_data.php" afterPath="$PROJECT_DIR$/migrations/m180227_155122_old_data_to_new_data.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,39 +17,39 @@
   <component name="ComposerSettings" doNotAsk="true" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="m180227_155122_old_data_to_new_data.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="m180227_155122_old_data_to_new_data.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/migrations/m180227_155122_old_data_to_new_data.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="338" column="13" lean-forward="true" selection-start-line="338" selection-start-column="13" selection-end-line="338" selection-end-column="13" />
+            <state relative-caret-position="156">
+              <caret line="361" column="9" lean-forward="false" selection-start-line="361" selection-start-column="9" selection-end-line="361" selection-end-column="9" />
               <folding>
                 <element signature="e#7#38#0#PHP" expanded="true" />
-                <marker date="1519753055409" expanded="true" signature="1139:1175" ph="SELECT * FRO... company_names" />
-                <marker date="1519753055409" expanded="true" signature="1279:1455" ph="INSERT INTO public.customers... " />
-                <marker date="1519753055409" expanded="true" signature="2762:2791" ph="SELECT * FRO... desinf" />
-                <marker date="1519753055409" expanded="true" signature="2898:3102" ph="INSERT INTO public.disinfectors... " />
-                <marker date="1519753055409" expanded="true" signature="4409:4444" ph="SELECT * FRO... point_status" />
-                <marker date="1519753055409" expanded="true" signature="4551:4685" ph="INSERT INTO public.point_status... " />
-                <marker date="1519753055409" expanded="true" signature="4551:4757" ph="INSERT INTO public.point_status... " />
-                <marker date="1519753055409" expanded="true" signature="6455:6489" ph="SELECT * FRO... point_types" />
-                <marker date="1519753055409" expanded="true" signature="6595:6800" ph="INSERT INTO public.point_types... " />
-                <marker date="1519753055409" expanded="true" signature="8850:8879" ph="SELECT * FRO... points" />
-                <marker date="1519753055409" expanded="true" signature="8980:9272" ph="INSERT INTO public.point_types... " />
-                <marker date="1519753055409" expanded="true" signature="11413:11577" ph="INSERT INTO public.events... " />
-                <marker date="1519753055409" expanded="true" signature="11413:11688" ph="INSERT INTO public.events... " />
-                <marker date="1519753055409" expanded="true" signature="11413:11761" ph="INSERT INTO public.events... " />
-                <marker date="1519753055409" expanded="true" signature="11804:11818" ph="SELECT * FRO... $" />
-                <marker date="1519753055409" expanded="true" signature="11804:11831" ph="SELECT * FRO... " />
+                <marker date="1519840194130" expanded="true" signature="1139:1175" ph="SELECT * FRO... company_names" />
+                <marker date="1519840194130" expanded="true" signature="1279:1455" ph="INSERT INTO public.customers... " />
+                <marker date="1519840194130" expanded="true" signature="2762:2791" ph="SELECT * FRO... desinf" />
+                <marker date="1519840194130" expanded="true" signature="2898:3102" ph="INSERT INTO public.disinfectors... " />
+                <marker date="1519840194130" expanded="true" signature="4409:4444" ph="SELECT * FRO... point_status" />
+                <marker date="1519840194130" expanded="true" signature="4551:4685" ph="INSERT INTO public.point_status... " />
+                <marker date="1519840194130" expanded="true" signature="4551:4757" ph="INSERT INTO public.point_status... " />
+                <marker date="1519840194130" expanded="true" signature="6455:6489" ph="SELECT * FRO... point_types" />
+                <marker date="1519840194130" expanded="true" signature="6595:6800" ph="INSERT INTO public.point_types... " />
+                <marker date="1519840194130" expanded="true" signature="8847:8876" ph="SELECT * FRO... points" />
+                <marker date="1519840194130" expanded="true" signature="8977:9273" ph="INSERT INTO public.point_types... " />
+                <marker date="1519840194130" expanded="true" signature="11268:11435" ph="INSERT INTO public.events... " />
+                <marker date="1519840194130" expanded="true" signature="11268:11549" ph="INSERT INTO public.events... " />
+                <marker date="1519840194130" expanded="true" signature="11268:11622" ph="INSERT INTO public.events... " />
+                <marker date="1519840194130" expanded="true" signature="11994:12008" ph="SELECT * FRO... $" />
+                <marker date="1519840194130" expanded="true" signature="11994:12021" ph="SELECT * FRO... " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
-              <caret line="1" column="19" lean-forward="false" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+              <caret line="1" column="7" lean-forward="false" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -60,7 +59,7 @@
         <entry file="file://$PROJECT_DIR$/migrations/m180225_105304_add_customers.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="46" column="41" lean-forward="true" selection-start-line="31" selection-start-column="8" selection-end-line="46" selection-end-column="41" />
+              <caret line="46" column="41" lean-forward="false" selection-start-line="31" selection-start-column="8" selection-end-line="46" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -93,6 +92,8 @@
       <find>logout</find>
       <find>point_types_cre</find>
       <find>points_id_cu</find>
+      <find>point_types</find>
+      <find>14</find>
     </findStrings>
     <replaceStrings>
       <replace>auth&quot;.&quot;rule</replace>
@@ -153,8 +154,8 @@
         <option value="$PROJECT_DIR$/controllers/SiteController.php" />
         <option value="$PROJECT_DIR$/config/console.php" />
         <option value="$PROJECT_DIR$/config/web.php" />
-        <option value="$PROJECT_DIR$/migrations/m180227_155122_old_data_to_new_data.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/migrations/m180227_155122_old_data_to_new_data.php" />
       </list>
     </option>
   </component>
@@ -172,7 +173,7 @@
     </servers>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="243" />
     <option name="y" value="239" />
     <option name="width" value="1017" />
@@ -288,15 +289,15 @@
       <option name="presentableId" value="Default" />
       <updated>1519381779742</updated>
       <workItem from="1519381781457" duration="14894000" />
-      <workItem from="1519453518953" duration="45429000" />
+      <workItem from="1519453518953" duration="48680000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60323000" />
+    <option name="totallyTimeSpent" value="63574000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-3" width="1360" height="748" extended-state="7" />
+    <frame x="0" y="-3" width="1360" height="748" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -326,7 +327,14 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="58" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/migrations/m180227_155122_old_data_to_new_data.php</url>
+          <line>348</line>
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="61" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="index.php">
@@ -334,6 +342,9 @@
         <watch expression="$this-&gt;auth_key" language="PHP" />
         <watch expression="Yii::app()-&gt;getController()-&gt;getAction()-&gt;id" language="PHP" />
         <watch expression="\Yii::$app-&gt;controller-&gt;action-&gt;id" language="PHP" />
+      </configuration>
+      <configuration name="yii">
+        <watch expression="$event['pointNum'] == 145" language="PHP" />
       </configuration>
     </watches-manager>
   </component>
@@ -624,12 +635,12 @@
         <state relative-caret-position="221">
           <caret line="34" column="22" lean-forward="false" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
           <folding>
-            <marker date="1519745401170" expanded="true" signature="1678:1998" ph="..." />
-            <marker date="1519745401170" expanded="true" signature="1694:1705" ph="..." />
-            <marker date="1519745401170" expanded="true" signature="1767:1964" ph="..." />
-            <marker date="1519745401170" expanded="true" signature="1795:1954" ph="..." />
-            <marker date="1519745401170" expanded="true" signature="1839:1904" ph="..." />
-            <marker date="1519745401170" expanded="true" signature="1971:1989" ph="..." />
+            <marker date="1519837047796" expanded="true" signature="1680:2000" ph="..." />
+            <marker date="1519837047796" expanded="true" signature="1696:1707" ph="..." />
+            <marker date="1519837047796" expanded="true" signature="1769:1966" ph="..." />
+            <marker date="1519837047796" expanded="true" signature="1797:1956" ph="..." />
+            <marker date="1519837047796" expanded="true" signature="1841:1906" ph="..." />
+            <marker date="1519837047796" expanded="true" signature="1973:1991" ph="..." />
           </folding>
         </state>
       </provider>
@@ -639,7 +650,7 @@
         <state relative-caret-position="100">
           <caret line="9" column="42" lean-forward="false" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="42" />
           <folding>
-            <element signature="e#33#53#0#PHP" expanded="true" />
+            <element signature="e#33#53#0#PHP" expanded="false" />
             <marker date="1519745401164" expanded="true" signature="110:779" ph="..." />
             <marker date="1519745401164" expanded="true" signature="139:775" ph="..." />
             <marker date="1519745401164" expanded="true" signature="185:769" ph="..." />
@@ -708,9 +719,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="134">
           <caret line="35" column="50" lean-forward="false" selection-start-line="35" selection-start-column="50" selection-end-line="35" selection-end-column="50" />
-          <folding>
-            <element signature="e#34#65#0#PHP" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -735,7 +744,7 @@
         <state relative-caret-position="102">
           <caret line="53" column="5" lean-forward="false" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
           <folding>
-            <element signature="e#34#64#0#PHP" expanded="true" />
+            <element signature="e#34#64#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -863,42 +872,42 @@
     <entry file="file://$PROJECT_DIR$/migrations/m180225_105304_add_customers.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="46" column="41" lean-forward="true" selection-start-line="31" selection-start-column="8" selection-end-line="46" selection-end-column="41" />
+          <caret line="46" column="41" lean-forward="false" selection-start-line="31" selection-start-column="8" selection-end-line="46" selection-end-column="41" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/migrations/m180227_155122_old_data_to_new_data.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="338" column="13" lean-forward="true" selection-start-line="338" selection-start-column="13" selection-end-line="338" selection-end-column="13" />
-          <folding>
-            <element signature="e#7#38#0#PHP" expanded="true" />
-            <marker date="1519753055409" expanded="true" signature="1139:1175" ph="SELECT * FRO... company_names" />
-            <marker date="1519753055409" expanded="true" signature="1279:1455" ph="INSERT INTO public.customers... " />
-            <marker date="1519753055409" expanded="true" signature="2762:2791" ph="SELECT * FRO... desinf" />
-            <marker date="1519753055409" expanded="true" signature="2898:3102" ph="INSERT INTO public.disinfectors... " />
-            <marker date="1519753055409" expanded="true" signature="4409:4444" ph="SELECT * FRO... point_status" />
-            <marker date="1519753055409" expanded="true" signature="4551:4685" ph="INSERT INTO public.point_status... " />
-            <marker date="1519753055409" expanded="true" signature="4551:4757" ph="INSERT INTO public.point_status... " />
-            <marker date="1519753055409" expanded="true" signature="6455:6489" ph="SELECT * FRO... point_types" />
-            <marker date="1519753055409" expanded="true" signature="6595:6800" ph="INSERT INTO public.point_types... " />
-            <marker date="1519753055409" expanded="true" signature="8850:8879" ph="SELECT * FRO... points" />
-            <marker date="1519753055409" expanded="true" signature="8980:9272" ph="INSERT INTO public.point_types... " />
-            <marker date="1519753055409" expanded="true" signature="11413:11577" ph="INSERT INTO public.events... " />
-            <marker date="1519753055409" expanded="true" signature="11413:11688" ph="INSERT INTO public.events... " />
-            <marker date="1519753055409" expanded="true" signature="11413:11761" ph="INSERT INTO public.events... " />
-            <marker date="1519753055409" expanded="true" signature="11804:11818" ph="SELECT * FRO... $" />
-            <marker date="1519753055409" expanded="true" signature="11804:11831" ph="SELECT * FRO... " />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="1" column="19" lean-forward="false" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+          <caret line="1" column="7" lean-forward="false" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/migrations/m180227_155122_old_data_to_new_data.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="361" column="9" lean-forward="false" selection-start-line="361" selection-start-column="9" selection-end-line="361" selection-end-column="9" />
+          <folding>
+            <element signature="e#7#38#0#PHP" expanded="true" />
+            <marker date="1519840194130" expanded="true" signature="1139:1175" ph="SELECT * FRO... company_names" />
+            <marker date="1519840194130" expanded="true" signature="1279:1455" ph="INSERT INTO public.customers... " />
+            <marker date="1519840194130" expanded="true" signature="2762:2791" ph="SELECT * FRO... desinf" />
+            <marker date="1519840194130" expanded="true" signature="2898:3102" ph="INSERT INTO public.disinfectors... " />
+            <marker date="1519840194130" expanded="true" signature="4409:4444" ph="SELECT * FRO... point_status" />
+            <marker date="1519840194130" expanded="true" signature="4551:4685" ph="INSERT INTO public.point_status... " />
+            <marker date="1519840194130" expanded="true" signature="4551:4757" ph="INSERT INTO public.point_status... " />
+            <marker date="1519840194130" expanded="true" signature="6455:6489" ph="SELECT * FRO... point_types" />
+            <marker date="1519840194130" expanded="true" signature="6595:6800" ph="INSERT INTO public.point_types... " />
+            <marker date="1519840194130" expanded="true" signature="8847:8876" ph="SELECT * FRO... points" />
+            <marker date="1519840194130" expanded="true" signature="8977:9273" ph="INSERT INTO public.point_types... " />
+            <marker date="1519840194130" expanded="true" signature="11268:11435" ph="INSERT INTO public.events... " />
+            <marker date="1519840194130" expanded="true" signature="11268:11549" ph="INSERT INTO public.events... " />
+            <marker date="1519840194130" expanded="true" signature="11268:11622" ph="INSERT INTO public.events... " />
+            <marker date="1519840194130" expanded="true" signature="11994:12008" ph="SELECT * FRO... $" />
+            <marker date="1519840194130" expanded="true" signature="11994:12021" ph="SELECT * FRO... " />
+          </folding>
         </state>
       </provider>
     </entry>
