@@ -2,8 +2,7 @@
 namespace app\controllers;
 
 use app\models\user\LoginForm;
-use app\models\user\UserRecord;
-use stdClass;
+use app\models\widget\Widget;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 
@@ -14,20 +13,7 @@ class SiteController extends Controller {
         }
         $model = new LoginForm();
 
-        $widget = new stdClass();
-        $widget->title = "Основное меню";
-        $widget->class_li = "item";
-        $widget->class_ul = "nav menu";
-        $widget->items = [
-            [
-                'url'   => 'http://pestcontrol.lesnoe-ozero.com/',
-                'name'  => 'Программа пестконтроля'
-            ],
-            [
-                'url'   => 'http://pestcontrol.lesnoe-ozero.com/kontakty',
-                'name'  => 'Контакты'
-            ]
-        ];
+        $widget = Widget::getSiteWidget();
 
         return $this->render('index', compact('model', 'widget'));
     }
@@ -48,11 +34,6 @@ class SiteController extends Controller {
     public function actionLogout() {
         \Yii::$app->user->logout();
         return $this->goHome();
-    }
-
-    public function actionCreate()
-    {
-
     }
 
     public function behaviors()

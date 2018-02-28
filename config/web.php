@@ -31,5 +31,9 @@ return [
             'allowedIPs'    => ['*']
         ]
     ],
-    'extensions' => require(__DIR__. '/../vendor/yiisoft/extensions.php')
+    'extensions' => require(__DIR__. '/../vendor/yiisoft/extensions.php'),
+    'aliases' => [
+        '@bower' => '@vendor/bower-asset',
+        '@npm'   => '@vendor/npm-asset'
+    ]
 ];

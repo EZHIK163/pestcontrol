@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 
+
 app\assets\ApplictionUiAssetBundle::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -16,6 +17,7 @@ app\assets\ApplictionUiAssetBundle::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <?= Html::csrfMetaTags() ?>
+
 </head>
 <body class="site com_content view-article no-layout no-task itemid-203">
 <?php $this->beginBody() ?>

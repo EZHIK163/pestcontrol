@@ -3,6 +3,13 @@
         "yiisoft/yii2": "*",
         "codeception/codeception": "*",
         "fzaninotto/faker": "*",
-        "yiisoft/yii2-gii": "*"
-    }
+        "yiisoft/yii2-gii": "*",
+        "2amigos/yii2-chartjs-widget": "~2.0"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
 }

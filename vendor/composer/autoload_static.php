@@ -27,6 +27,10 @@ class ComposerStaticInitcfb75b7433e55bc5dcd2a77fc67c32d5
         array (
             'phpDocumentor\\Reflection\\' => 25,
         ),
+        'd' => 
+        array (
+            'dosamigos\\chartjs\\' => 18,
+        ),
         'c' => 
         array (
             'cebe\\markdown\\' => 14,
@@ -96,6 +100,10 @@ class ComposerStaticInitcfb75b7433e55bc5dcd2a77fc67c32d5
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+        ),
+        'dosamigos\\chartjs\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/2amigos/yii2-chartjs-widget/src',
         ),
         'cebe\\markdown\\' => 
         array (

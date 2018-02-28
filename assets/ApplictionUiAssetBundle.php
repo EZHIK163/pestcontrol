@@ -13,20 +13,20 @@ class ApplictionUiAssetBundle extends AssetBundle {
         'css/template.css',
     ];
     public $js = [
-        'js/bootstrap.js',
-        'js/caption.js',
-        'js/core.js',
-        'js/ext_tss.js',
-        'js/html5fallback.js',
-        'js/jquery-migrate-1.js',
-        'js/jquery.js',
-        'js/jquerynoconflict.js',
+        //'js/bootstrap.js',
+        //'js/caption.js',
+        //'js/core.js',
+        //'js/ext_tss.js',
+        //'js/html5fallback.js',
+        //'js/jquery-migrate-1.js',
+        //'js/jquery.min.js',
+        //'js/jquerynoconflict.js',
         'js/mootools-core.js',
         'js/mootools-more.js',
-        'js/powertools-1.js',
+        //'js/powertools-1.js',
         'js/slider.js',
         'js/template.js',
-        'js/watch.js',
+        //'js/watch.js',
         'js/my_js.js'
     ];
 

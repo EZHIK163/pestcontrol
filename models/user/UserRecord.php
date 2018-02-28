@@ -101,4 +101,5 @@ class UserRecord extends ActiveRecord implements IdentityInterface {
     {
         return $this->getAuthKey() == $authKey;
     }
+
 }
