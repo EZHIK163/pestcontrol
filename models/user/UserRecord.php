@@ -102,4 +102,12 @@ class UserRecord extends ActiveRecord implements IdentityInterface {
         return $this->getAuthKey() == $authKey;
     }
 
+    public function behaviors()
+    {
+        return [
+            'timestamp' =>  \yii\behaviors\TimestampBehavior::class,
+            'blame'     => \yii\behaviors\BlameableBehavior::class
+        ];
+    }
+
 }

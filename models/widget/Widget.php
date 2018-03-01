@@ -43,6 +43,10 @@ class Widget {
                 [
                     'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/customers',
                     'name' => 'Клиенты'
+                ],
+                [
+                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/recommendations',
+                    'name' => 'Рекомендации'
                 ]
             ];
         }

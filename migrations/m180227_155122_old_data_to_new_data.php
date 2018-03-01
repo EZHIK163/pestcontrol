@@ -334,20 +334,16 @@ class m180227_155122_old_data_to_new_data extends Migration
                 }
                 $event['pointProp']++;
                 $event['pointNum']++;
-                try {
-                    $this->db->createCommand($sql_insert)
-                        ->bindValue(':id_disinfector', $event['executor'])
-                        ->bindValue(':id_customer', $event['company'])
-                        ->bindValue(':id_external', $event['pointNum'])
-                        ->bindValue(':id_point_status', $event['pointProp'])
-                        ->bindValue(':created_at', $created_at)
-                        ->bindValue(':created_by', $created_by)
-                        ->bindValue(':updated_at', $updated_at)
-                        ->bindValue(':updated_by', $updated_by)
-                        ->query();
-                } catch (\yii\db\Exception $e) {
-                    $index = 0;
-                }
+                $this->db->createCommand($sql_insert)
+                    ->bindValue(':id_disinfector', $event['executor'])
+                    ->bindValue(':id_customer', $event['company'])
+                    ->bindValue(':id_external', $event['pointNum'])
+                    ->bindValue(':id_point_status', $event['pointProp'])
+                    ->bindValue(':created_at', $created_at)
+                    ->bindValue(':created_by', $created_by)
+                    ->bindValue(':updated_at', $updated_at)
+                    ->bindValue(':updated_by', $updated_by)
+                    ->query();
             }
         }
         return true;
@@ -358,13 +354,31 @@ class m180227_155122_old_data_to_new_data extends Migration
      */
     public function safeDown()
     {
+
+        $this->dropForeignKey('events_updated_by', 'events');
+        $this->dropForeignKey('events_created_by', 'events');
+        $this->dropForeignKey('events_id_customer', 'events');
+        $this->dropForeignKey('events_id_disinfector', 'events');
+        $this->dropForeignKey('events_id_point_status', 'events');
+        $this->dropForeignKey('points_types_updated_by', 'points');
+        $this->dropForeignKey('points_types_created_by', 'points');
+        $this->dropForeignKey('points_id_customer', 'points');
+        $this->dropForeignKey('points_id_point_status', 'points');
+        $this->dropForeignKey('point_types_updated_by', 'point_types');
+        $this->dropForeignKey('point_types_created_by', 'point_types');
+        $this->dropForeignKey('point_status_updated_by', 'point_status');
+        $this->dropForeignKey('point_status_created_by', 'point_status');
+        $this->dropForeignKey('disinfector_updated_by', 'disinfectors');
+        $this->dropForeignKey('disinfector_created_by', 'disinfectors');
+        $this->dropForeignKey('customer_updated_by', 'customers');
+        $this->dropForeignKey('customer_created_by', 'customers');
+
         $this->dropTable('points');
         $this->dropTable('events');
         $this->truncateTable('customers');
         $this->dropTable('disinfectors');
         $this->dropTable('point_status');
         $this->dropTable('point_types');
-
 
         return true;
     }
