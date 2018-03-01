@@ -39,9 +39,9 @@ $this->title = "Оценка рисков по точкам контроля"; ?
                             </tr>
                             </tbody>
                         </table>
-                        <p> </p> 	</div>
+                        <p> </p>
                     </div>
-                </div>
+                    </div>
 
                 <!-- End Content -->
             </main>

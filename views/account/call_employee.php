@@ -23,7 +23,7 @@ $this->title = "Вызов бригады пестконтроля"; ?>
 
                     <div itemprop="articleBody">
                     </div>
-                </div>
+
 
                 <!-- End Content -->
             </main>

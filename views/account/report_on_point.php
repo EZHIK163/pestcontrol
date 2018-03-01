@@ -46,7 +46,6 @@ $this->title = "Отчет по точкам контроля"; ?>
                         <p> </p>
                         <p><span style="font-size: 10pt;"></span></p> 	</div>
                     </div>
-                </div>
 
                 <!-- End Content -->
             </main>

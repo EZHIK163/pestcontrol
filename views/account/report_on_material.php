@@ -39,7 +39,6 @@ $this->title = "Отчет по дезсредствам"; ?>
                             <p><input type="submit" value="Экспорт в Excel" /></p>
                         </form> 	</div>
                     </div>
-                </div>
 
                 <!-- End Content -->
             </main>

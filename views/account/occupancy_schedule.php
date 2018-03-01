@@ -28,21 +28,21 @@ $this->title = "График заселенности объекта"; ?>
                             'type' => 'bar',
                             'data' => $current_year
                         ]);
-                        ?></div></p>
+                        ?></p>
                         <p><strong><span style="color: #0000ff;">Предыдущий 2017 год</span></strong></p>
                         <p><?= ChartJs::widget([
                         'type' => 'bar',
                         'data' => $previous_year
                     ]);
-                    ?></div></p>
+                    ?></p>
                         <p><strong><span style="color: #0000ff;">Предыдущий 2016 год</span></strong></p>
                         <p><?= ChartJs::widget([
                                 'type' => 'bar',
                                 'data' => $previous_previous_year
                             ]);
-                            ?></p> 	</div>
+                            ?></p>
                     </div>
-                </div>
+                    </div>
 
                 <!-- End Content -->
             </main>
