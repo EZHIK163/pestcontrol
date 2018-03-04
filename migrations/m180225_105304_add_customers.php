@@ -33,6 +33,7 @@ class m180225_105304_add_customers extends Migration
             [
                 'id'            => 'pk',
                 'name'          => 'string',
+                'id_user_owner' => 'integer',
                 'created_at'    => 'integer',
                 'created_by'    => 'integer',
                 'updated_at'    => 'integer',
@@ -45,6 +46,9 @@ class m180225_105304_add_customers extends Migration
 
         $this->addForeignKey('customer_updated_by', 'customers',
             'updated_by', 'users', 'id');
+
+        $this->addForeignKey('customer_id_user_owner', 'customers',
+            'id_user_owner', 'users', 'id');
     }
 
     public function down()

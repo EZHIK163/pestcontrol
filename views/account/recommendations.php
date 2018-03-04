@@ -1,5 +1,8 @@
 <?php
 use dosamigos\chartjs\ChartJs;
+use yii\grid\GridView;
+use yii\helpers\Html;
+
 $this->title = "Рекомендации для Заказчика"; ?>
 <div class="row-fluid">
             <div id="sidebar" class="span3">
@@ -23,6 +26,31 @@ $this->title = "Рекомендации для Заказчика"; ?>
                     </div>
 
                     <div itemprop="articleBody">
+                        <?= GridView::widget([
+                            'dataProvider' => $data_provider,
+                            'columns' => [
+                                ['class' => 'yii\grid\SerialColumn'],
+                                [
+                                    'attribute' => 'title',
+                                    'header'    => 'Название файла'
+                                ],
+                                [
+                                    'attribute' => 'date_create',
+                                    'header'    => 'Дата добавления'
+                                ],
+                                [
+                                    'header'    =>  'Действия',
+                                    'format'    => 'html',
+                                    'value'     => function ($model, $key, $index, $column){
+                                        return
+                                            Html::tag('a', 'Скачать',
+                                                [
+                                                        'href'      => $model['url'],
+                                                ]);
+                                    }
+                                ],
+                            ],
+                        ]); ?>
                     </div>
                 </div>
 

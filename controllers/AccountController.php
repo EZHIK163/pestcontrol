@@ -1,6 +1,8 @@
 <?php
 namespace app\controllers;
 
+use app\models\customer\FileCustomer;
+use app\models\tools\Tools;
 use app\models\widget\Widget;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -70,7 +72,9 @@ class AccountController extends Controller {
     }
 
     public function actionRecommendations() {
-        return $this->render('recommendations');
+        $recommendations = FileCustomer::getRecommendationsForAccount();
+        $data_provider = Tools::wrapIntoDataProvider($recommendations);
+        return $this->render('recommendations', compact('data_provider'));
     }
 
     public function actionGeneralReport() {

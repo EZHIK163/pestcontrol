@@ -11,6 +11,7 @@ use yii\helpers\ArrayHelper;
  * @property int $id
  * @property bool $is_active
  * @property string $name
+ * @property int $id_user_owner
  * @property int $created_at
  * @property int $created_by
  * @property int $updated_at
@@ -34,10 +35,11 @@ class Customer extends \yii\db\ActiveRecord
         return [
             [['is_active'], 'boolean'],
             [['created_at', 'created_by', 'updated_at', 'updated_by'], 'default', 'value' => null],
-            [['created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
+            [['created_at', 'created_by', 'updated_at', 'updated_by', 'id_user_owner'], 'integer'],
             [['name'], 'string', 'max' => 255],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\user\UserRecord::class, 'targetAttribute' => ['created_by' => 'id']],
             [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\user\UserRecord::class, 'targetAttribute' => ['updated_by' => 'id']],
+            [['id_user_owner'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\user\UserRecord::class, 'targetAttribute' => ['id_user_owner' => 'id']]
         ];
     }
 

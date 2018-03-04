@@ -7,7 +7,9 @@ class Tools {
     public static function wrapIntoDataProvider($data) {
         return new ArrayDataProvider([
             'allModels'     => $data,
-            'pagination'    => false
+            'pagination' => [
+                'pageSize' => 10,
+            ],
         ]);
     }
 }

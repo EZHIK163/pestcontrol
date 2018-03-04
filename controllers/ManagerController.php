@@ -27,8 +27,8 @@ class ManagerController extends Controller {
             $model->id_customer = \Yii::$app->request->post('UploadForm')['id_customer'];
             $model->id_file_customer_type = \Yii::$app->request->post('UploadForm')['id_file_customer_type'];
             if ($model->upload()) {
-                $count = count($model->uploadedFiles);
-                return $this->render('success_upload_files', compact('count'));
+                $action = $model->getViewAfterUpload();
+                $this->redirect($action);
             }
         }
 
@@ -40,7 +40,7 @@ class ManagerController extends Controller {
     }
 
     public function actionRecommendations() {
-        $recommendations = FileCustomer::getRecommendations();
+        $recommendations = FileCustomer::getRecommendationsForAdmin();
         $data_provider = Tools::wrapIntoDataProvider($recommendations);
         return $this->render('recommendations', compact('data_provider'));
     }
@@ -56,7 +56,7 @@ class ManagerController extends Controller {
         return [
             'access'    => [
                 'class' => AccessControl::class,
-                'only'  => ['users', 'upload-files'],
+                'only'  => ['*'],
                 'rules' => [
                     [
                         'controllers'   => ['manager'],

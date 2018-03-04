@@ -16,7 +16,7 @@ class m180225_140413_create_roles extends Migration
         $rbac = Yii::$app->authManager;
 
         $guest = $rbac->createRole('guest');
-        $guest->description = 'Nobody';
+        $guest->description = 'Гость';
         $rbac->add($guest);
 
         $customer = $rbac->createRole('customer');

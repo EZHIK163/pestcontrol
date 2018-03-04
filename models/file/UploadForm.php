@@ -1,6 +1,7 @@
 <?php
 namespace app\models\file;
 
+use app\models\customer\FileCustomerType;
 use yii\base\Model;
 use yii\web\UploadedFile;
 
@@ -38,5 +39,18 @@ class UploadForm extends Model
         } else {
             return false;
         }
+    }
+
+    public function getViewAfterUpload() {
+        $code = FileCustomerType::getCodeById($this->id_file_customer_type);
+        switch ($code) {
+            case 'recommendations':
+                $action = 'recommendations';
+                break;
+            case 'scheme_point_control':
+                $action = 'scheme-point-control';
+                break;
+        }
+        return $action;
     }
 }

@@ -83,16 +83,18 @@ class FileCustomer extends \yii\db\ActiveRecord
         $file_customer->save();
     }
 
-    public static function getRecommendations() {
+    public static function getRecommendationsForAdmin() {
         $file_customer_type_recommendations = FileCustomerType::findOne(['code' => 'recommendations']);
         $recommendations = [];
         $files = $file_customer_type_recommendations->files;
+        $action_download = \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'site/download?id=';
         foreach ($files as $file) {
             $recommendations [] = [
                 'id_file_customer'  => $file->id,
                 'title'             => $file->title,
                 'customer'          => $file->customer->name,
-                'date_create'       => $file->getDateTimeCreatedAt()
+                'date_create'       => $file->getDateTimeCreatedAt(),
+                'url'               => $action_download.$file->file->id
             ];
         }
         return $recommendations;
@@ -110,5 +112,24 @@ class FileCustomer extends \yii\db\ActiveRecord
 
     public function getDateTimeCreatedAt() {
          return date("d.m.y", $this->created_at);
+    }
+
+    public static function getRecommendationsForAccount() {
+        $id_user = \Yii::$app->user->id;
+        $file_customer_type_recommendations = FileCustomerType::findOne(['code' => 'recommendations']);
+        $recommendations = [];
+        $files = $file_customer_type_recommendations->files;
+        $action_download = \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'site/download?id=';
+        foreach ($files as $file) {
+            if ($file->customer->id_user_owner == $id_user) {
+                $recommendations [] = [
+                    'id_file_customer'  => $file->id,
+                    'title'             => $file->title,
+                    'date_create'       => $file->getDateTimeCreatedAt(),
+                    'url'               => $action_download.$file->file->id
+                ];
+            }
+        }
+        return $recommendations;
     }
 }

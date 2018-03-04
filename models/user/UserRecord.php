@@ -2,11 +2,24 @@
 
 namespace app\models\user;
 
+use app\models\customer\Customer;
 use yii\base\NotSupportedException;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
+/**
+ * This is the model class for table "auth.users".
+ *
+ * @property int $id
+ * @property string $username
+ * @property string $password
+ * @property string $auth_key
+ * @property bool $is_active
+ */
 class UserRecord extends ActiveRecord implements IdentityInterface {
+
+    public $role;
+    public $id_customer;
 
     public static function tableName()
     {
@@ -108,6 +121,42 @@ class UserRecord extends ActiveRecord implements IdentityInterface {
             'timestamp' =>  \yii\behaviors\TimestampBehavior::class,
             'blame'     => \yii\behaviors\BlameableBehavior::class
         ];
+    }
+
+    public static function getUsersForAdmin() {
+        $users = UserRecord::find()
+            ->where(['is_active'    => true])
+            ->all();
+        $users_with_customer = [];
+        foreach ($users as $user) {
+            $customer = isset($user->customer->name) ? $user->customer->name : '';
+            $users_with_customer [] = [
+                'id'        => $user->id,
+                'username'  => $user->username,
+                'customer'  => $customer
+            ];
+        }
+        return $users_with_customer;
+    }
+
+    public function getCustomer()
+    {
+        return $this->hasOne(Customer::class, ['id_user_owner' => 'id']);
+    }
+
+    public function addUser($post) {
+        $username = $post['UserRecord']['username'];
+        $password = $post['UserRecord']['password'];
+        $code_role = $post['UserRecord']['role'];
+        $id_customer = $post['UserRecord']['id_customer'];
+        $this->id_customer = (int)$id_customer;
+        $this->username = $username;
+        $this->password = $password;
+        $this->save();
+
+        $rbac = \Yii::$app->authManager;
+        $role = $rbac->getRole($code_role);
+        $rbac->assign($role, $this->id);
     }
 
 }

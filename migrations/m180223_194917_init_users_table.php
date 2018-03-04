@@ -32,11 +32,23 @@ class m180223_194917_init_users_table extends Migration
         $this->createTable('users',
             [
                 'id'        => 'pk',
+                'is_active' => 'boolean DEFAULT true',
                 'username'  => 'string UNIQUE',
                 'password'  => 'string',
-                'auth_key'  => 'string UNIQUE'
+                'auth_key'  => 'string UNIQUE',
+                'created_at'                => 'integer',
+                'created_by'                => 'integer',
+                'updated_at'                => 'integer',
+                'updated_by'                => 'integer'
             ]
         );
+
+
+        $this->addForeignKey('users_created_by', 'auth.users',
+            'created_by', 'auth.users', 'id');
+
+        $this->addForeignKey('users_updated_by', 'auth.users',
+            'updated_by', 'auth.users', 'id');
     }
 
     public function down()

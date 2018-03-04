@@ -4,6 +4,7 @@ namespace app\models\file;
 
 use app\models\customer\FileCustomer;
 use Yii;
+use yii\web\NotFoundHttpException;
 
 /**
  * This is the model class for table "files.files".
@@ -104,5 +105,34 @@ class Files extends \yii\db\ActiveRecord
 
     public static function getRootPath() {
         return 'uploads/';
+    }
+
+    public function getUrl() {
+        return  \Yii::$app->urlManager->createAbsoluteUrl(['/']) .
+            self::getRootPath() .
+            $this->extension->type->path_to_folder .
+            $this->hash . '.' .
+            $this->extension->extension;
+    }
+
+    public function getFullPath() {
+        return  self::getRootPath() .
+            $this->extension->type->path_to_folder .
+            $this->hash . '.' .
+            $this->extension->extension;
+    }
+
+    public function getExtension() {
+        return $this->hasOne(Extension::class, ['id' => 'id_extension']);
+    }
+
+    public static function getInfoForDownloadById($id) {
+        $file = Files::findOne(['id'    => $id]);
+        if (!$file) {
+            throw new NotFoundHttpException();
+        }
+        $url = $file->getFullPath();
+        $name = $file->original_name . '.' . $file->extension->extension;
+        return compact('url', 'name');
     }
 }

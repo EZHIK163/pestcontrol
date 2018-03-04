@@ -4,6 +4,7 @@ use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
+use yii\widgets\Pjax;
 
 $this->title = "Управление рекомендациями"; ?>
 <div class="row-fluid">
@@ -28,7 +29,7 @@ $this->title = "Управление рекомендациями"; ?>
                     </div>
 
                     <div itemprop="articleBody">
-
+                        <?php Pjax::begin(); ?>
                         <?= GridView::widget([
                             'dataProvider' => $data_provider,
                             'columns' => [
@@ -54,11 +55,20 @@ $this->title = "Управление рекомендациями"; ?>
                                                 ['href'  => 'edit-recommendation?id='.$model['id_file_customer']])
                                             .'<br/>'.
                                             Html::tag('a', 'Удалить',
-                                                ['href'  => 'delete-recommendation?id='.$model['id_file_customer']]);
+                                                ['href'  => 'delete-recommendation?id='.$model['id_file_customer']])
+                                                .'<br/>'.
+                                            Html::tag('a', 'Скачать',
+                                                [
+                                                    'href'      => $model['url'],
+                                                ]);
                                     }
                                 ],
                             ],
+                            'pager' => [
+                                'class' => '\app\components\MyPagination',
+                            ]
                         ]); ?>
+                        <?php Pjax::end(); ?>
 
                     </div>
 
