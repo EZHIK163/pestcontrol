@@ -45,6 +45,10 @@ class Widget {
                     'name' => 'Клиенты'
                 ],
                 [
+                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/upload-files',
+                    'name' => 'Загрузка файлов'
+                ],
+                [
                     'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/recommendations',
                     'name' => 'Рекомендации'
                 ]

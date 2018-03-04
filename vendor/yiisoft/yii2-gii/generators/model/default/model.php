@@ -97,4 +97,12 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
         return new <?= $queryClassFullName ?>(get_called_class());
     }
 <?php endif; ?>
+
+    public function behaviors()
+    {
+        return [
+            'timestamp' =>  \yii\behaviors\TimestampBehavior::class,
+            'blame'     => \yii\behaviors\BlameableBehavior::class
+        ];
+    }
 }

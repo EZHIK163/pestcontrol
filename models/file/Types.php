@@ -1,29 +1,31 @@
 <?php
 
-namespace app\models\customer;
+namespace app\models\file;
 
+use app\models\user\UserRecord;
 use Yii;
-use yii\helpers\ArrayHelper;
 
 /**
- * This is the model class for table "public.customers".
+ * This is the model class for table "files.types".
  *
  * @property int $id
  * @property bool $is_active
- * @property string $name
+ * @property string $description
+ * @property string $code
+ * @property string $path_to_folder
  * @property int $created_at
  * @property int $created_by
  * @property int $updated_at
  * @property int $updated_by
  */
-class Customer extends \yii\db\ActiveRecord
+class Types extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'public.customers';
+        return 'files.types';
     }
 
     /**
@@ -35,9 +37,9 @@ class Customer extends \yii\db\ActiveRecord
             [['is_active'], 'boolean'],
             [['created_at', 'created_by', 'updated_at', 'updated_by'], 'default', 'value' => null],
             [['created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
-            [['name'], 'string', 'max' => 255],
-            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\user\UserRecord::class, 'targetAttribute' => ['created_by' => 'id']],
-            [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\user\UserRecord::class, 'targetAttribute' => ['updated_by' => 'id']],
+            [['description', 'code', 'path_to_folder'], 'string', 'max' => 255],
+            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => UserRecord::class, 'targetAttribute' => ['created_by' => 'id']],
+            [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => UserRecord::class, 'targetAttribute' => ['updated_by' => 'id']],
         ];
     }
 
@@ -49,7 +51,9 @@ class Customer extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'is_active' => 'Is Active',
-            'name' => 'Name',
+            'description' => 'Description',
+            'code' => 'Code',
+            'path_to_folder' => 'Path To Folder',
             'created_at' => 'Created At',
             'created_by' => 'Created By',
             'updated_at' => 'Updated At',
@@ -64,14 +68,4 @@ class Customer extends \yii\db\ActiveRecord
             'blame'     => \yii\behaviors\BlameableBehavior::class
         ];
     }
-
-    public static function getCustomers() {
-        return Customer::find()->all();
-    }
-
-    public static function getCustomerForDropDownList() {
-        $customers = self::getCustomers();
-        return ArrayHelper::map($customers,'id','name');
-    }
-
 }

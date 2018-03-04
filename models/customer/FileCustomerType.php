@@ -1,12 +1,12 @@
 <?php
 
-namespace app\models\file_type;
+namespace app\models\customer;
 
-use app\models\user\UserRecord;
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
- * This is the model class for table "files.types".
+ * This is the model class for table "public.file_customer_type".
  *
  * @property int $id
  * @property bool $is_active
@@ -17,14 +17,14 @@ use Yii;
  * @property int $updated_at
  * @property int $updated_by
  */
-class FilesTypes extends \yii\db\ActiveRecord
+class FileCustomerType extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'files.types';
+        return 'public.file_customer_type';
     }
 
     /**
@@ -37,8 +37,8 @@ class FilesTypes extends \yii\db\ActiveRecord
             [['created_at', 'created_by', 'updated_at', 'updated_by'], 'default', 'value' => null],
             [['created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
             [['description', 'code'], 'string', 'max' => 255],
-            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => UserRecord::class, 'targetAttribute' => ['created_by' => 'id']],
-            [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => UserRecord::class, 'targetAttribute' => ['updated_by' => 'id']],
+            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\user\UserRecord::class, 'targetAttribute' => ['created_by' => 'id']],
+            [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\user\UserRecord::class, 'targetAttribute' => ['updated_by' => 'id']],
         ];
     }
 
@@ -65,5 +65,19 @@ class FilesTypes extends \yii\db\ActiveRecord
             'timestamp' =>  \yii\behaviors\TimestampBehavior::class,
             'blame'     => \yii\behaviors\BlameableBehavior::class
         ];
+    }
+
+    public static function getFileCustomerTypes() {
+        return FileCustomerType::find()->all();
+    }
+
+    public static function getFileCustomerTypesForDropDownList() {
+        $customers = self::getFileCustomerTypes();
+        return ArrayHelper::map($customers,'id', 'description');
+    }
+
+    public function getFiles()
+    {
+        return $this->hasMany(FileCustomer::class, ['id_file_customer_type' => 'id'])->orderBy(['file_customer.created_at'=>SORT_DESC]);
     }
 }
