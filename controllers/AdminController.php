@@ -31,6 +31,14 @@ class AdminController extends Controller {
         return $this->render('add-user', compact('model', 'roles', 'customers'));
     }
 
+    public function actionDeleteUser() {
+        $id = \Yii::$app->request->get('id');
+        if (isset($id)) {
+            UserRecord::deleteUser($id);
+            $this->goBack();
+        }
+    }
+
     public function render($view, $params = [])
     {
         $params = array_merge($params, Widget::getWidgetsForAccount());

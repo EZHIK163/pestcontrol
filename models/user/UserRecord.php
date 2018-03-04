@@ -159,4 +159,9 @@ class UserRecord extends ActiveRecord implements IdentityInterface {
         $rbac->assign($role, $this->id);
     }
 
+    public static function deleteUser($id) {
+        $user = UserRecord::findOne($id);
+        $user->delete();
+    }
+
 }
