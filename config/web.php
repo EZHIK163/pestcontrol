@@ -21,7 +21,8 @@ return [
             'identityClass' => 'app\models\user\UserRecord'
         ],
         'authManager' => [
-            'class'         => 'yii\rbac\DbManager',
+            //'class'         => 'yii\rbac\DbManager',
+            'class'         => 'app\utilities\MyRbacManager',
             'defaultRoles'  => ['guest']
         ]
     ],
