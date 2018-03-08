@@ -27,7 +27,8 @@ class ApplictionUiAssetBundle extends AssetBundle {
         'js/slider.js',
         'js/template.js',
         //'js/watch.js',
-        'js/my_js.js'
+        'js/my_js.js',
+        'js/siblings.js'
     ];
 
     public $depends = [

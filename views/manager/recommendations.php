@@ -51,9 +51,9 @@ $this->title = "Управление рекомендациями"; ?>
                                     'format'    => 'html',
                                     'value'     => function ($model, $key, $index, $column){
                                             return
-                                            Html::tag('a', 'Изменить',
-                                                ['href'  => 'edit-recommendation?id='.$model['id_file_customer']])
-                                            .'<br/>'.
+                                            //Html::tag('a', 'Изменить',
+                                            //    ['href'  => 'edit-recommendation?id='.$model['id_file_customer']])
+                                            //.'<br/>'.
                                             Html::tag('a', 'Удалить',
                                                 ['href'  => 'delete-recommendation?id='.$model['id_file_customer']])
                                                 .'<br/>'.

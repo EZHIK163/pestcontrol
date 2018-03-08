@@ -4,6 +4,7 @@ namespace app\controllers;
 use app\models\customer\Customer;
 use app\models\customer\FileCustomer;
 use app\models\customer\FileCustomerType;
+use app\models\file\Files;
 use app\models\file\UploadForm;
 use app\models\tools\Tools;
 use app\models\user\User;
@@ -43,6 +44,22 @@ class ManagerController extends Controller {
         $recommendations = FileCustomer::getRecommendationsForAdmin();
         $data_provider = Tools::wrapIntoDataProvider($recommendations);
         return $this->render('recommendations', compact('data_provider'));
+    }
+
+    public function actionDeleteFile() {
+        $id = \Yii::$app->request->get('id');
+        if (!isset($id)) {
+            throw new InvalidArgumentException();
+        }
+
+        Files::deleteFile($id);
+        $this->redirect('recommendations');
+    }
+
+    public function actionSchemePointControl() {
+        $scheme_point_control = FileCustomer::getSchemePointControlForAdmin();
+        $data_provider = Tools::wrapIntoDataProvider($scheme_point_control);
+        return $this->render('scheme-point-control', compact('data_provider'));
     }
 
     public function render($view, $params = [])

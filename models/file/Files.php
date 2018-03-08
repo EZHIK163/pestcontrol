@@ -94,6 +94,9 @@ class Files extends \yii\db\ActiveRecord
 
             FileCustomer::addFileCustomer($file->id, $id_customer, $uploadedFile->baseName, $id_file_customer_type);
 
+            if (!file_exists(self::getRootPath() . $folder )) {
+                mkdir(self::getRootPath() . $folder , 0777);
+            }
             $uploadedFile->saveAs(self::getRootPath() . $folder . $hash . '.' . $uploadedFile->extension);
             return true;
         }
@@ -134,5 +137,16 @@ class Files extends \yii\db\ActiveRecord
         $url = $file->getFullPath();
         $name = $file->original_name . '.' . $file->extension->extension;
         return compact('url', 'name');
+    }
+
+    public static function deleteFile($id) {
+        $file_customer = FileCustomer::findOne($id);
+        $id_file = $file_customer->id_file;
+        $file_customer->is_active = false;
+        $file_customer->save();
+
+        $file = Files::findOne($id_file);
+        $file->is_active = false;
+        $file->save();
     }
 }

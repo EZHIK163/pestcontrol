@@ -51,6 +51,10 @@ class Widget {
                 [
                     'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/recommendations',
                     'name' => 'Рекомендации'
+                ],
+                [
+                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/scheme-point-control',
+                    'name' => 'Схемы точек контроля'
                 ]
             ];
         }

@@ -4,6 +4,7 @@ namespace app\models\customer;
 
 use app\models\file\Files;
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "public.file_customer".
@@ -115,21 +116,29 @@ class FileCustomer extends \yii\db\ActiveRecord
     }
 
     public static function getRecommendationsForAccount() {
-        $id_user = \Yii::$app->user->id;
-        $file_customer_type_recommendations = FileCustomerType::findOne(['code' => 'recommendations']);
-        $recommendations = [];
-        $files = $file_customer_type_recommendations->files;
+        return self::getFilesForAdmin('recommendations');
+    }
+
+    public static function getSchemePointControlForAdmin() {
+        $scheme_point_control = self::getFilesForAdmin('scheme_point_control');
+        $result = ArrayHelper::index($scheme_point_control, null, 'customer');
+        return $result;
+    }
+
+    private static function getFilesForAdmin($code) {
+        $file_customer_type = FileCustomerType::findOne(['code' => $code]);
+        $result = [];
+        $files = $file_customer_type->files;
         $action_download = \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'site/download?id=';
         foreach ($files as $file) {
-            if ($file->customer->id_user_owner == $id_user) {
-                $recommendations [] = [
-                    'id_file_customer'  => $file->id,
-                    'title'             => $file->title,
-                    'date_create'       => $file->getDateTimeCreatedAt(),
-                    'url'               => $action_download.$file->file->id
-                ];
-            }
+            $result [] = [
+                'id_file_customer'  => $file->id,
+                'title'             => $file->title,
+                'customer'          => $file->customer->name,
+                'date_create'       => $file->getDateTimeCreatedAt(),
+                'url'               => $action_download.$file->file->id
+            ];
         }
-        return $recommendations;
+        return $result;
     }
 }

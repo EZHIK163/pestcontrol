@@ -78,7 +78,9 @@ class FileCustomerType extends \yii\db\ActiveRecord
 
     public function getFiles()
     {
-        return $this->hasMany(FileCustomer::class, ['id_file_customer_type' => 'id'])->orderBy(['file_customer.created_at'=>SORT_DESC]);
+        return $this->hasMany(FileCustomer::class, ['id_file_customer_type' => 'id'])
+            ->where(['is_active'    => true])
+            ->orderBy(['file_customer.created_at'=>SORT_DESC]);
     }
 
     public static function getCodeById($id) {

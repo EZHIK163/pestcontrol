@@ -61,6 +61,8 @@ class SiteController extends Controller {
             // читаем файл и отправляем его пользователю
             readfile($url);
             exit;
+        } else {
+            exit;
         }
     }
 
