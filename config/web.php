@@ -2,6 +2,7 @@
 return [
     'id'            => 'pestcontrol',
     'basePath'      => realpath(__DIR__.'/../'),
+    'language'      => 'ru',
     'components'    => [
         'request'  => [
             'cookieValidationKey'   => 'sdgsgsdfhsdhdfgsddfgtgadxdfgdf'
@@ -23,7 +24,7 @@ return [
         'authManager' => [
             //'class'         => 'yii\rbac\DbManager',
             'class'         => 'app\utilities\MyRbacManager',
-            'defaultRoles'  => ['guest']
+            //'defaultRoles'  => ['guest']
         ]
     ],
     'modules'   => [

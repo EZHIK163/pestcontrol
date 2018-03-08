@@ -481,6 +481,26 @@ class MyRbacManager extends DbManager
         return $roles;
     }
 
+    public function getRoleByUser($userId)
+    {
+        if ($this->isEmptyUserId($userId)) {
+            return [];
+        }
+
+        $query = (new Query())->select('b.*')
+            ->from(['a' => $this->assignmentTable, 'b' => $this->itemTable])
+            ->where('{{a}}.[[item_name]]={{b}}.[[name]]')
+            ->andWhere(['a.user_id' => (string) $userId])
+            ->andWhere(['b.type' => Item::TYPE_ROLE])
+            ->limit(1   );
+
+        foreach ($query->all($this->db) as $row) {
+            $role = $this->populateItem($row);
+        }
+
+        return $role;
+    }
+
     /**
      * {@inheritdoc}
      */

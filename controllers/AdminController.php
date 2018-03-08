@@ -4,8 +4,10 @@ namespace app\controllers;
 use app\models\customer\Customer;
 use app\models\tools\Tools;
 use app\models\user\Role;
+use app\models\user\UserForm;
 use app\models\user\UserRecord;
 use app\models\widget\Widget;
+use yii\base\InvalidArgumentException;
 use yii\web\Controller;
 use yii\filters\AccessControl;
 use yii\web\User;
@@ -20,10 +22,10 @@ class AdminController extends Controller {
 
     public function actionAddUser() {
 
-        $model = new UserRecord();
-        if (\Yii::$app->request->isPost) {
-            $post = \Yii::$app->request->post();
-            $this->addUser($post);
+        $model = new UserForm();
+        if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+            $model->addUser();
+            $this->redirect('users');
         }
 
         $roles = Role::getRolesForDropDownList();
@@ -35,9 +37,28 @@ class AdminController extends Controller {
         $id = \Yii::$app->request->get('id');
         if (isset($id)) {
             UserRecord::deleteUser($id);
-            $this->goBack();
+            $this->redirect('users');
         }
     }
+
+    public function actionEditUser() {
+        $id = \Yii::$app->request->get('id');
+        if (!isset($id)) {
+            throw new InvalidArgumentException();
+        }
+
+        $model = new UserForm();
+        if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+            $model->saveUser();
+            $this->redirect('users');
+        }
+
+        $model->fetchUser($id);
+        $roles = Role::getRolesForDropDownList();
+        $customers = Customer::getCustomerForDropDownList();
+        return $this->render('edit-user', compact('model', 'roles', 'customers'));
+    }
+
 
     public function render($view, $params = [])
     {

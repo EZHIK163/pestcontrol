@@ -71,9 +71,28 @@ class Customer extends \yii\db\ActiveRecord
         return Customer::find()->all();
     }
 
+    public static function getCustomer($id) {
+        return Customer::findOne($id);
+    }
+
     public static function getCustomerForDropDownList() {
         $customers = self::getCustomers();
         return ArrayHelper::map($customers,'id','name');
+    }
+
+    public static function setIdUserOwner($id_customer, $id_user) {
+        self::clearCustomerOnIdOwner($id_user);
+        $customer = self::getCustomer($id_customer);
+        $customer->id_user_owner = $id_user;
+        $customer->save();
+    }
+
+    public static function clearCustomerOnIdOwner($id_owner) {
+        $customers = Customer::findAll(['id_user_owner'    => $id_owner]);
+        foreach ($customers as $customer) {
+            $customer->id_user_owner = null;
+            $customer->save();
+        }
     }
 
 }

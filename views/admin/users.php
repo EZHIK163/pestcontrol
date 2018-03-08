@@ -40,6 +40,10 @@ $this->title = "Управление пользователями"; ?>
                             'header'    => 'Привязан к клиенту'
                         ],
                         [
+                            'attribute' => 'role',
+                            'header'    => 'Роль'
+                        ],
+                        [
                             'header'    =>  'Действия',
                             'format'    => 'html',
                             'value'     => function ($model, $key, $index, $column){

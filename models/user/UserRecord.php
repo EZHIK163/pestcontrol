@@ -18,8 +18,6 @@ use yii\web\IdentityInterface;
  */
 class UserRecord extends ActiveRecord implements IdentityInterface {
 
-    public $role;
-    public $id_customer;
 
     public static function tableName()
     {
@@ -32,9 +30,8 @@ class UserRecord extends ActiveRecord implements IdentityInterface {
             ['id', 'number'],
             ['username', 'required'],
             ['username', 'string', 'max' => 20],
-            ['password', 'required'],
             ['password', 'string', 'max' => 256],
-            ['auth_key', 'string', 'max' => 255]
+            ['auth_key', 'string', 'max' => 255],
         ];
     }
 
@@ -128,38 +125,71 @@ class UserRecord extends ActiveRecord implements IdentityInterface {
             ->where(['is_active'    => true])
             ->all();
         $users_with_customer = [];
+        $rbac = \Yii::$app->authManager;
         foreach ($users as $user) {
             $customer = isset($user->customer->name) ? $user->customer->name : '';
+            $role = $rbac->getRoleByUser($user->id)->description;
             $users_with_customer [] = [
                 'id'        => $user->id,
                 'username'  => $user->username,
-                'customer'  => $customer
+                'customer'  => $customer,
+                'role'      => $role
             ];
         }
         return $users_with_customer;
     }
+
+//    public function getUserById($id) {
+//        $user = $this->findOne($id);
+//        $this->username = $user->username;
+//        $rbac = \Yii::$app->authManager;
+//        $role = $rbac->getRoleByUser($user->id)->name;
+//        $this->role = $role;
+//        $id_customer = isset($user->customer->id) ? $user->customer->id : null;
+//        $this->id_customer = $id_customer;
+//        /*$users_with_customer = [];
+//        $rbac = \Yii::$app->authManager;
+//        $customer = isset($user->customer->name) ? $user->customer->name : '';
+//        $role = $rbac->getRoleByUser($user->id)->description;
+//        $users_with_customer [] = [
+//            'id'        => $user->id,
+//            'username'  => $user->username,
+//            'customer'  => $customer,
+//            'role'      => $role
+//        ];
+//        return $users_with_customer;*/
+//        return $user;
+//    }
+
+    public static function getUserById($id) {
+        $user = UserRecord::findOne($id);
+        return $user;
+    }
+
 
     public function getCustomer()
     {
         return $this->hasOne(Customer::class, ['id_user_owner' => 'id']);
     }
 
-    public function addUser($post) {
-        $username = $post['UserRecord']['username'];
-        $password = $post['UserRecord']['password'];
-        $code_role = $post['UserRecord']['role'];
-        $id_customer = $post['UserRecord']['id_customer'];
-        $this->id_customer = (int)$id_customer;
-        $this->username = $username;
-        $this->password = $password;
-        $this->save();
 
-        $rbac = \Yii::$app->authManager;
-        $role = $rbac->getRole($code_role);
-        $rbac->assign($role, $this->id);
-    }
+
+//    public function editUser($id) {
+//        $user = self::getUserById($id);
+//        $user->username = $this->username;
+//        //$code_role = $post['UserRecord']['role'];
+//        //$id_customer = $post['UserRecord']['id_customer'];
+//
+//        Customer::setIdUserOwner($this->id_customer, $id);
+//
+//        $rbac = \Yii::$app->authManager;
+//        //$role = $rbac->getRole($code_role);
+//        //$rbac->assign($role, $this->id);
+//        $this->save();
+//    }
 
     public static function deleteUser($id) {
+        Customer::clearCustomerOnIdOwner($id);
         $user = UserRecord::findOne($id);
         $user->delete();
     }

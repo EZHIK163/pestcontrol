@@ -61,8 +61,6 @@ class SiteController extends Controller {
             // читаем файл и отправляем его пользователю
             readfile($url);
             exit;
-        } else {
-            $index = 0;
         }
     }
 
@@ -75,7 +73,7 @@ class SiteController extends Controller {
                 'rules' => [
                     [
                         'actions'   => ['login'],
-                        'roles'     => ['guest'],
+                        'roles'     => ['?'],
                         'allow'     => true
                     ],
                     [
