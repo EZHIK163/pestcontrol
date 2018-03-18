@@ -16,7 +16,7 @@ class m180225_133446_create_rbac_tables extends Migration
         $this->execute($sql);
 
         //./yii migrate --migrationPath=@yii/rbac/migrations
-
+        return true;
     }
 
     /**
@@ -24,23 +24,22 @@ class m180225_133446_create_rbac_tables extends Migration
      */
     public function safeDown()
     {
-        echo "m180225_133446_create_rbac_tables cannot be reverted.\n";
 
-        return false;
+        return true;
     }
 
 
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m180225_133446_create_rbac_tables cannot be reverted.\n";
-
-        return false;
-    }
+//    // Use up()/down() to run migration code without a transaction.
+//    public function up()
+//    {
+//
+//    }
+//
+//    public function down()
+//    {
+//        echo "m180225_133446_create_rbac_tables cannot be reverted.\n";
+//
+//        return false;
+//    }
 
 }

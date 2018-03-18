@@ -61,6 +61,8 @@ class m180225_140413_create_roles extends Migration
         $rbac->assign($customer,
             UserRecord::findOne(['username'    => 'customer'])->id
         );
+
+        return true;
     }
 
     /**

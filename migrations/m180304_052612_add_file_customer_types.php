@@ -21,6 +21,8 @@ class m180304_052612_add_file_customer_types extends Migration
         $file_customer_type->description = 'Схемы контрольных точек';
         $file_customer_type->code = 'scheme_point_control';
         $file_customer_type->save();
+
+        return true;
     }
 
     /**

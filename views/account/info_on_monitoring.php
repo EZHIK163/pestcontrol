@@ -23,6 +23,15 @@ $this->title = "Информация по мониторингу"; ?>
                     </div>
 
                     <div itemprop="articleBody">
+                        <div id="spoiler1" class="spoilers">
+                        <div class="title active">За текущий месяц</div>
+                        <div class="desc">
+
+                        </div>
+                        <div class="title active">За текущий год</div>
+                        <div class="desc">
+                        </div>
+                        </div>
                     </div>
                 </div>
 

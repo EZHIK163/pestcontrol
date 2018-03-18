@@ -44,7 +44,7 @@ class m180301_046109_add_file_types extends Migration
 
         $extension->save();
 
-
+        return true;
     }
 
     /**

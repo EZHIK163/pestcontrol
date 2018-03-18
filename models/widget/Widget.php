@@ -139,27 +139,27 @@ class Widget {
                 'name'  => 'Программа пестконтроля'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'svedeniya-o-postavshchike-uslug',
+                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'site/information-about-the-service-provider',
                 'name'  => 'Учредительные документы поставщика услуг'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'litsenzii-sertifikaty-sro-iso',
+                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'site/licenses-and-certificates',
                 'name'  => 'Лицензии и сертификаты'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'spisok-dez-sredstv',
+                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'site/list-of-disinfectants',
                 'name'  => 'Список дез. средств'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'sert-dezsr',
+                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'site/certificates-of-disinfectants',
                 'name'  => 'Сертификаты на дез.средства'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'dokt-sotrudn',
+                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'site/documents-for-employees',
                 'name'  => 'Документы на сотрудников'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'kontakty',
+                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'site/contacts',
                 'name'  => 'Контакты',
             ]
         ];

@@ -12,23 +12,6 @@ class m180223_194917_init_users_table extends Migration
      */
     public function safeUp()
     {
-
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function safeDown()
-    {
-        echo "m180223_194917_init_users_table cannot be reverted.\n";
-
-        return false;
-    }
-
-
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
         $this->createTable('users',
             [
                 'id'        => 'pk',
@@ -43,19 +26,32 @@ class m180223_194917_init_users_table extends Migration
             ]
         );
 
-
-        $this->addForeignKey('users_created_by', 'auth.users',
-            'created_by', 'auth.users', 'id');
-
-        $this->addForeignKey('users_updated_by', 'auth.users',
-            'updated_by', 'auth.users', 'id');
+        return true;
     }
 
-    public function down()
+    /**
+     * {@inheritdoc}
+     */
+    public function safeDown()
     {
         $this->dropTable('users');
 
-        return false;
+        return true;
     }
+
+
+    // Use up()/down() to run migration code without a transaction.
+//    public function up()
+//    {
+//
+//
+//    }
+//
+//    public function down()
+//    {
+//        $this->dropTable('users');
+//
+//        return false;
+//    }
 
 }

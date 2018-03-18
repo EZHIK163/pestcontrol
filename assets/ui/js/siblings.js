@@ -1,3 +1,3 @@
-$(".extremum-click").click(function () {
-    $(this).siblings(".extremum-slide").slideToggle("slow");
+$(".title").click(function () {
+    $(this).siblings(".desc").slideToggle("slow");
 });

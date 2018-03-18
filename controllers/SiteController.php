@@ -66,6 +66,36 @@ class SiteController extends Controller {
         }
     }
 
+    public function actionInformationAboutTheServiceProvider() {
+        $params = Widget::getWidgetsForAccount();
+        return $this->render('information-about-the-service-provider', $params);
+    }
+
+    public function actionLicensesAndCertificates() {
+        $params = Widget::getWidgetsForAccount();
+        return $this->render('licenses-and-certificates', $params);
+    }
+
+    public function actionListOfDisinfectants() {
+        $params = Widget::getWidgetsForAccount();
+        return $this->render('list-of-disinfectants', $params);
+    }
+
+    public function actionCertificatesOfDisinfectants() {
+        $params = Widget::getWidgetsForAccount();
+        return $this->render('certificates-of-disinfectants', $params);
+    }
+
+    public function actionDocumentsForEmployees() {
+        $params = Widget::getWidgetsForAccount();
+        return $this->render('documents-for-employees', $params);
+    }
+
+    public function actionContacts() {
+        $params = Widget::getWidgetsForAccount();
+        return $this->render('contacts', $params);
+    }
+
     public function behaviors()
     {
         return [

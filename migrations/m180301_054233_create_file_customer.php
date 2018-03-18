@@ -55,6 +55,7 @@ class m180301_054233_create_file_customer extends Migration
         $this->addForeignKey('file_customer_id_file_customer_type', 'file_customer',
             'id_file_customer_type', 'file_customer_type', 'id');
 
+        return true;
     }
 
     /**
