@@ -43,7 +43,7 @@ class SiteController extends Controller {
         $url = $file['url'];
         $name = $file['name'];
 
-        \Yii::$app->response->sendContentAsFile($url, $name);
+        \Yii::$app->response->sendFile($url, $name);
         \Yii::$app->response->send();
 //
 //        if (file_exists($url)) {
