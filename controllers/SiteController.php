@@ -43,27 +43,30 @@ class SiteController extends Controller {
         $url = $file['url'];
         $name = $file['name'];
 
-        if (file_exists($url)) {
-            // сбрасываем буфер вывода PHP, чтобы избежать переполнения памяти выделенной под скрипт
-            // если этого не сделать файл будет читаться в память полностью!
-            if (ob_get_level()) {
-                ob_end_clean();
-            }
-            // заставляем браузер показать окно сохранения файла
-            header('Content-Description: File Transfer');
-            header('Content-Type: application/octet-stream');
-            header('Content-Disposition: attachment; filename=' . $name);
-            header('Content-Transfer-Encoding: binary');
-            header('Expires: 0');
-            header('Cache-Control: must-revalidate');
-            header('Pragma: public');
-            header('Content-Length: ' . filesize($url));
-            // читаем файл и отправляем его пользователю
-            readfile($url);
-            exit;
-        } else {
-            exit;
-        }
+        \Yii::$app->response->sendContentAsFile($url, $name);
+        \Yii::$app->response->send();
+//
+//        if (file_exists($url)) {
+//            // сбрасываем буфер вывода PHP, чтобы избежать переполнения памяти выделенной под скрипт
+//            // если этого не сделать файл будет читаться в память полностью!
+//            if (ob_get_level()) {
+//                ob_end_clean();
+//            }
+//            // заставляем браузер показать окно сохранения файла
+//            header('Content-Description: File Transfer');
+//            header('Content-Type: application/octet-stream');
+//            header('Content-Disposition: attachment; filename=' . $name);
+//            header('Content-Transfer-Encoding: binary');
+//            header('Expires: 0');
+//            header('Cache-Control: must-revalidate');
+//            header('Pragma: public');
+//            header('Content-Length: ' . filesize($url));
+//            // читаем файл и отправляем его пользователю
+//            readfile($url);
+//            exit;
+//        } else {
+//            exit;
+//        }
     }
 
     public function actionInformationAboutTheServiceProvider() {

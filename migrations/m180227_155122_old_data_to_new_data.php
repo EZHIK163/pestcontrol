@@ -26,6 +26,7 @@ class m180227_155122_old_data_to_new_data extends Migration
             [
                 'id'            => 'pk',
                 'is_active'     => 'boolean DEFAULT true',
+                'id_user_owner' => 'integer',
                 'name'          => 'string',
                 'created_at'    => 'integer',
                 'created_by'    => 'integer',
@@ -39,6 +40,9 @@ class m180227_155122_old_data_to_new_data extends Migration
 
         $this->addForeignKey('customer_updated_by', 'customers',
             'updated_by', 'auth.users', 'id');
+
+        $this->addForeignKey('customer_id_user_owner', 'customers',
+            'id_user_owner', 'auth.users', 'id');
 
         $sql = "
         SELECT * 
