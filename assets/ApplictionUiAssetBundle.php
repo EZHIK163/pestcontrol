@@ -11,6 +11,7 @@ class ApplictionUiAssetBundle extends AssetBundle {
         'css/my_css.css',
         'css/style.css',
         'css/template.css',
+        'css/css_for_drag_n_drop.css'
     ];
     public $js = [
         //'js/bootstrap.js',

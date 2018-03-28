@@ -1,0 +1,44 @@
+
+
+#outer-dropzone {
+    height: auto;
+}
+
+.dropzone {
+    background-color: #ccc;
+    border: dashed 4px transparent;
+    border-radius: 4px;
+    margin: 10px auto 30px;
+    width: 90%;
+    height: 100px;
+    transition: background-color 0.3s;
+}
+
+.drop-active {
+    border-color: #aaa;
+}
+
+.drop-target {
+    background-color: #29e;
+    border-color: #fff;
+    border-style: solid;
+}
+
+.drag-drop {
+    display: inline-block;
+
+    position: absolute;
+    max-height: 30px;
+    max-width: 30px;
+
+    color: #fff;
+    background-color: #29e;
+
+    transition: background-color 0.3s;
+}
+
+.drag-drop.can-drop {
+    color: #000;
+    background-color: #4e4;
+}
+
