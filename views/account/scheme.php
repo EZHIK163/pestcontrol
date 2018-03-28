@@ -1,4 +1,6 @@
 <?php
+use app\components\InteractWidget;
+
 $this->title = "Схемы точек контроля"; ?>
 <div class="row-fluid">
             <div id="sidebar" class="span3">
@@ -22,6 +24,11 @@ $this->title = "Схемы точек контроля"; ?>
                     </div>
 
                     <div itemprop="articleBody">
+                        <?= InteractWidget::widget([
+                            'type' => 'doughnut',
+                            'data' => []
+                        ]);
+                        ?>
                     </div>
 
                 </div>
