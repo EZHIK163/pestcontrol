@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="06996c03-9cbb-43d1-84b5-d89c73097433" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/pestcontrol.iml" afterPath="$PROJECT_DIR$/.idea/pestcontrol.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yii" afterPath="$PROJECT_DIR$/yii" />
     </list>
-    <list id="c25cd3dc-568b-41ed-87f9-c75f1e47e11e" name="Revert: add all documents" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/composer.phar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/old_pestcontrol.backup" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pestcontrol.backup" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/composer.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/yii" />
-    </list>
+    <list id="c25cd3dc-568b-41ed-87f9-c75f1e47e11e" name="Revert: add all documents" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -468,12 +460,12 @@
       <workItem from="1521307499013" duration="1327000" />
       <workItem from="1521357243645" duration="3016000" />
       <workItem from="1521374530472" duration="2431000" />
-      <workItem from="1521788034570" duration="188000" />
+      <workItem from="1521788034570" duration="1173000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="128445000" />
+    <option name="totallyTimeSpent" value="129430000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-3" width="1920" height="1052" extended-state="6" />
@@ -481,7 +473,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25239617" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32903227" sideWeight="0.42758253" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.42758253" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20790629" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32903227" sideWeight="0.57241744" order="7" side_tool="false" content_ui="tabs" />
