@@ -1,5 +1,6 @@
 <?php
 use app\components\InteractWidget;
+use yii\helpers\Html;
 
 $this->title = "Схемы точек контроля"; ?>
 <div class="row-fluid">
@@ -23,12 +24,17 @@ $this->title = "Схемы точек контроля"; ?>
                         <h2 itemprop="name">Схемы точек контроля</h2>
                     </div>
 
-                    <div itemprop="articleBody">
-                        <?= InteractWidget::widget([
-                            'type' => 'doughnut',
-                            'data' => []
-                        ]);
+                    <div id="main_div" itemprop="articleBody">
+                        <?= InteractWidget::widget();
                         ?>
+                        <?= Html::button(
+                        'Сохранить точки',
+                        [
+                        'id'        => 'myButton',
+                        'class'     => 'btn btn-primary',
+                        'onclick'   => 'savePoint()',
+                        ]
+                        ); ?>
                     </div>
 
                 </div>

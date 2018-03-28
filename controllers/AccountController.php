@@ -6,8 +6,18 @@ use app\models\tools\Tools;
 use app\models\widget\Widget;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\Response;
 
 class AccountController extends Controller {
+
+    public function beforeAction($action)
+    {
+        if ($action->id == 'save-point') {
+            $this->enableCsrfValidation = false;
+        }
+
+        return parent::beforeAction($action);
+    }
 
     public function actionIndex() {
         return $this->render('index');
@@ -83,6 +93,40 @@ class AccountController extends Controller {
 
     public function actionCallEmployee() {
         return $this->render('call_employee');
+    }
+
+    public function actionGetPointsOnSchemaPointControl() {
+        $data = [
+            'img'       => 'http://koffkindom.ru/wp-content/uploads/2016/02/plan-doma-8x8-2et-10.jpg',
+            'points'    => [
+                [
+                    'id'        => 'point_1',
+                    'x'         => 0,
+                    'y'         => 0,
+                    'img_src'   => 'https://png.icons8.com/metro/1600/checkmark.png'
+                ],
+                [
+                    'id'        => 'point_2',
+                    'x'         => 10,
+                    'y'         => 10,
+                    'img_src'   => 'https://png.icons8.com/metro/1600/checkmark.png'
+                ],
+                [
+                    'id'        => 'point_3',
+                    'x'         => 312,
+                    'y'         => 104,
+                    'img_src'   => 'https://png.icons8.com/metro/1600/checkmark.png'
+                ]
+            ]
+        ];
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+        return $data;
+    }
+
+    public function actionSavePoint() {
+        $data = ['status'   => true];
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+        return $data;
     }
 
     public function render($view, $params = [])

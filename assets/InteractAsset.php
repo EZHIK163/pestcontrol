@@ -1,11 +1,5 @@
 <?php
 
-/*
- * This file is part of the 2amigos/yii2-chartjs-widget project.
- * (c) 2amigOS! <http://2amigos.us/>
- * For the full copyright and license information, please view
- * the LICENSE file that was distributed with this source code.
- */
 
 namespace app\assets;
 
@@ -20,7 +14,8 @@ class InteractAsset extends AssetBundle
     public $sourcePath = '@app/assets/ui';
 
     public $js = [
-        'js/interact.min.js'
+        'js/interact.min.js',
+        'js/test_drag_n_drop.js'
     ];
 
     public $depends = [
