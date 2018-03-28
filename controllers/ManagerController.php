@@ -2,12 +2,14 @@
 namespace app\controllers;
 
 use app\models\customer\Customer;
+use app\models\customer\CustomerForm;
 use app\models\customer\FileCustomer;
 use app\models\customer\FileCustomerType;
 use app\models\file\Files;
 use app\models\file\UploadForm;
 use app\models\tools\Tools;
 use app\models\user\User;
+use app\models\user\UserRecord;
 use app\models\widget\Widget;
 use yii\web\Controller;
 use yii\filters\AccessControl;
@@ -46,7 +48,7 @@ class ManagerController extends Controller {
         return $this->render('recommendations', compact('data_provider'));
     }
 
-    public function actionDeleteFile() {
+    public function actionDeleteRecommendation() {
         $id = \Yii::$app->request->get('id');
         if (!isset($id)) {
             throw new InvalidArgumentException();
@@ -66,6 +68,49 @@ class ManagerController extends Controller {
     {
         $params = array_merge($params, Widget::getWidgetsForAccount());
         return parent::render($view, $params);
+    }
+
+    public function actionCustomers() {
+        $users = Customer::getCustomersForManager();
+        $data_provider = Tools::wrapIntoDataProvider($users);
+        return $this->render('customers', compact('data_provider'));
+    }
+
+    public function actionAddCustomer() {
+
+        $model = new CustomerForm();
+        if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+            $model->addCustomer();
+            $this->redirect('customers');
+        }
+
+        $users = UserRecord::getUsersForDropDownList();
+        return $this->render('add-customer', compact('model', 'users'));
+    }
+
+    public function actionDeleteCustomer() {
+        $id = \Yii::$app->request->get('id');
+        if (isset($id)) {
+            Customer::deleteCustomer($id);
+            $this->redirect('customers');
+        }
+    }
+
+    public function actionEditCustomer() {
+        $id = \Yii::$app->request->get('id');
+        if (!isset($id)) {
+            throw new InvalidArgumentException();
+        }
+
+        $model = new CustomerForm();
+        if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+            $model->saveCustomer();
+            $this->redirect('customers');
+        }
+
+        $model->fetchCustomer($id);
+        $users = UserRecord::getUsersForDropDownList();
+        return $this->render('edit-customer', compact('model', 'users'));
     }
 
     public function behaviors()

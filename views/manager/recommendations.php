@@ -48,7 +48,7 @@ $this->title = "Управление рекомендациями"; ?>
                                 ],
                                 [
                                     'header'    =>  'Действия',
-                                    'format'    => 'html',
+                                    'format'    => 'raw',
                                     'value'     => function ($model, $key, $index, $column){
                                             return
                                             //Html::tag('a', 'Изменить',
@@ -60,6 +60,8 @@ $this->title = "Управление рекомендациями"; ?>
                                             Html::tag('a', 'Скачать',
                                                 [
                                                     'href'      => $model['url'],
+                                                    'target'    => '_blank',
+                                                    'data-pjax'=>"0"
                                                 ]);
                                     }
                                 ],

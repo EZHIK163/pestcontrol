@@ -32,7 +32,7 @@ $this->title = "Управление схемами точек котроля"; 
                     <div itemprop="articleBody">
                         <?php echo ListView::widget([
                         'dataProvider' => $data_provider,
-                        'itemView' => 'customer',
+                        'itemView' => 'scheme_customer',
                         ]); ?>
 
                     </div>

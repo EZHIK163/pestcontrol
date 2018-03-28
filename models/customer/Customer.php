@@ -2,6 +2,7 @@
 
 namespace app\models\customer;
 
+use app\models\user\UserRecord;
 use Yii;
 use yii\helpers\ArrayHelper;
 
@@ -27,6 +28,9 @@ class Customer extends \yii\db\ActiveRecord
         return 'public.customers';
     }
 
+    public function getOwner() {
+        return $this->hasOne(UserRecord::class, ['id' => 'id_user_owner']);
+    }
     /**
      * @inheritdoc
      */
@@ -68,7 +72,9 @@ class Customer extends \yii\db\ActiveRecord
     }
 
     public static function getCustomers() {
-        return Customer::find()->all();
+        return Customer::find()
+            ->where(['is_active'    => true])
+            ->all();
     }
 
     public static function getCustomer($id) {
@@ -94,5 +100,26 @@ class Customer extends \yii\db\ActiveRecord
             $customer->save();
         }
     }
+    public static function getCustomersForManager() {
+        $customers = Customer::getCustomers();
+        $finish_customers = [];
+        foreach ($customers as &$customer) {
+            if (!is_null($customer->owner)) {
+                $name_owner = $customer->owner->username;
+            } else {
+                $name_owner = '-';
+            }
+            $finish_customers [] = [
+                'id'            => $customer->id,
+                'name_owner'    => $name_owner,
+                'name'          => $customer->name
+            ];
+        }
+        return $finish_customers;
+    }
 
+    public static function deleteCustomer($id) {
+        $customer = Customer::findOne($id);
+        $customer->delete();
+    }
 }

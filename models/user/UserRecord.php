@@ -5,6 +5,7 @@ namespace app\models\user;
 use app\models\customer\Customer;
 use yii\base\NotSupportedException;
 use yii\db\ActiveRecord;
+use yii\helpers\ArrayHelper;
 use yii\web\IdentityInterface;
 
 /**
@@ -120,10 +121,13 @@ class UserRecord extends ActiveRecord implements IdentityInterface {
         ];
     }
 
-    public static function getUsersForAdmin() {
-        $users = UserRecord::find()
+    public static function getUsers() {
+        return UserRecord::find()
             ->where(['is_active'    => true])
             ->all();
+    }
+    public static function getUsersForAdmin() {
+        $users = self::getUsers();
         $users_with_customer = [];
         $rbac = \Yii::$app->authManager;
         foreach ($users as $user) {
@@ -139,6 +143,10 @@ class UserRecord extends ActiveRecord implements IdentityInterface {
         return $users_with_customer;
     }
 
+    public static function getUsersForDropDownList() {
+        $users = self::getUsers();
+        return ArrayHelper::map($users, 'id', 'username');
+    }
 //    public function getUserById($id) {
 //        $user = $this->findOne($id);
 //        $this->username = $user->username;
