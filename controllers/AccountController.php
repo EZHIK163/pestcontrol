@@ -24,7 +24,8 @@ class AccountController extends Controller {
     }
 
     public function actionScheme() {
-        return $this->render('scheme');
+        $id_scheme_point_control = 666;
+        return $this->render('scheme', compact('id_scheme_point_control'));
     }
 
     public function actionInfoOnMonitoring() {
@@ -96,7 +97,8 @@ class AccountController extends Controller {
     }
 
     public function actionGetPointsOnSchemaPointControl() {
-        $data = [
+        $id = \Yii::$app->request->get('id_scheme_point_control');
+        $data[666] = [
             'img'       => 'http://koffkindom.ru/wp-content/uploads/2016/02/plan-doma-8x8-2et-10.jpg',
             'points'    => [
                 [
@@ -119,8 +121,9 @@ class AccountController extends Controller {
                 ]
             ]
         ];
+        $my_data = $data[$id];
         \Yii::$app->response->format = Response::FORMAT_JSON;
-        return $data;
+        return $my_data;
     }
 
     public function actionSavePoint() {

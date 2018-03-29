@@ -25,7 +25,7 @@ class InteractWidget extends Widget
     public $options = [];
     public $clientOptions = [];
     public $data = [];
-    public $type;
+    public $id_scheme_point_control;
 
     /**
      * Initializes the widget.
@@ -42,6 +42,8 @@ class InteractWidget extends Widget
      */
     public function run()
     {
+        //$this->id_scheme_point_control = 1;
+
 //        $this->data = [
 //            'img'       => 'http://koffkindom.ru/wp-content/uploads/2016/02/plan-doma-8x8-2et-10.jpg',
 //            'points'    => [
@@ -247,7 +249,7 @@ class InteractWidget extends Widget
 //
 //
 //";
-        //$js = "var element = document.getElementById('outer-dropzone');";
-        //$view->registerJs($js);
+        $js = "setIdSchemaPointControl({$this->id_scheme_point_control}); getPoints();";
+        $view->registerJs($js);
     }
 }

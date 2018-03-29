@@ -1,27 +1,51 @@
+var points = [];
+
+var id_scheme_point_control = -1;
+
+
 async function getPoints() {
-    const response = await fetch( 'http://test.pestcontrol.ru/account/get-points-on-schema-point-control' );
+    //var my_body = {id_scheme_point_control:id_scheme_point_control};
+    var params = jQuery.param({
+        id_scheme_point_control: id_scheme_point_control
+    });
+    const response = await fetch( 'http://test.pestcontrol.ru/account/get-points-on-schema-point-control/?' + params//,
+        //{
+        //    method: "GET",
+        //    headers: {
+       //         "Content-Type": "application'json"
+        //    },
+        //    body: my_body
+        //}
+    );
     const json = await response.json();
-    var points = json.points;
+    points = json.points;
 
     $('#main_div').append('<div class="dropzone" id="outer-dropzone"><img src="' + json.img +'"/></div>');
     var element = document.getElementById('outer-dropzone');
     var position = element.getBoundingClientRect();
 
     points.forEach(function(point, i, points) {
-        $('#main_div').append('<div class="draggable drag-drop" id="' + point.id + '"><img src="' + point.img_src +'"/></div>');
+        $('#main_div').append('<div data-toggle="tooltip" data-placement="top" title="Вверху" class="draggable drag-drop" id="' + point.id + '"><img src="' + point.img_src +'"/></div>');
+
         var temp = document.getElementById(point.id);
         temp.style.left = position.left + point.x + 'px'
         temp.style.top = position.top + point.y + 'px';
     });
 
+    $('[data-toggle="tooltip"]').tooltip();
 };
 
+var setIdSchemaPointControl = function(id) {
+    id_scheme_point_control = id;
+}
+
+window.setIdSchemaPointControl = setIdSchemaPointControl;
 
 var savePoint = async function() {
 
-    const response = await fetch( 'http://test.pestcontrol.ru/account/get-points-on-schema-point-control' );
-    const json = await response.json();
-    var points = json.points;
+    //const response = await fetch( 'http://test.pestcontrol.ru/account/get-points-on-schema-point-control' );
+    //const json = await response.json();
+    //var points = json.points;
 
     var element = document.getElementById('outer-dropzone');
     var position = element.getBoundingClientRect();
@@ -45,7 +69,7 @@ var savePoint = async function() {
     });
 };
 
-getPoints();
+
 //getPoints();
 window.savePoint = savePoint;
 
