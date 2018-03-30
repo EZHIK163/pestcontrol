@@ -99,7 +99,7 @@ class AccountController extends Controller {
     public function actionGetPointsOnSchemaPointControl() {
         $id = \Yii::$app->request->get('id_scheme_point_control');
         $data[666] = [
-            'img'       => 'http://koffkindom.ru/wp-content/uploads/2016/02/plan-doma-8x8-2et-10.jpg',
+            'img'       => 'http://www.all-metro.ru/image/moscow.jpg',
             'points'    => [
                 [
                     'id'        => 'point_1',
