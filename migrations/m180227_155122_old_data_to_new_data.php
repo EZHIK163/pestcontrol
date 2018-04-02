@@ -239,8 +239,7 @@ class m180227_155122_old_data_to_new_data extends Migration
         $this->addForeignKey('points_id_point_status', 'points',
             'id_point_status', 'point_status', 'id');
 
-        $this->addForeignKey('points_id_file_customer', 'points',
-            'id_customer', 'file_customer', 'id');
+
 
         $this->addForeignKey('points_types_created_by', 'points',
             'created_by', 'auth.users', 'id');

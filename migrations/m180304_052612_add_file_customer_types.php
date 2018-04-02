@@ -33,7 +33,7 @@ class m180304_052612_add_file_customer_types extends Migration
         $file_customer_type = \app\models\customer\FileCustomerType::findOne(['code' => 'recommendations']);
         $file_customer_type->delete();
 
-        $file_customer_type = \app\models\customer\FileCustomerType::findOne(['code'    => 'scheme_control_points']);
+        $file_customer_type = \app\models\customer\FileCustomerType::findOne(['code'    => 'scheme_point_control']);
         $file_customer_type->delete();
 
         return false;

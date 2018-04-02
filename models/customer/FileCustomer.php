@@ -133,6 +133,9 @@ class FileCustomer extends \yii\db\ActiveRecord
     private static function getFilesForAdmin($code) {
         $file_customer_type = FileCustomerType::findOne(['code' => $code]);
         $result = [];
+        if (!isset($file_customer_type->files)) {
+            return $result;
+        }
         $files = $file_customer_type->files;
         $action_download = \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'site/download?id=';
         foreach ($files as $file) {
