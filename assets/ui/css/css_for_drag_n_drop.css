@@ -1,38 +1,44 @@
 
+#inner-dropzone {
+    height: auto;
+}
 
 #outer-dropzone {
-    height: auto;
+    padding: 64px;
 }
 
 .dropzone {
     background-color: #ccc;
     border: dashed 4px transparent;
     border-radius: 4px;
-    margin: 10px auto 30px;
-    width: 90%;
-    height: 100px;
+
     transition: background-color 0.3s;
 }
 
 .drop-active {
     border-color: #aaa;
+    margin-left: -16px;
+    margin-top: -43px;
 }
 
 .drop-target {
     background-color: #29e;
     border-color: #fff;
     border-style: solid;
+    margin-left: -16px;
+    margin-top: -43px;
 }
 
 .drag-drop {
     display: inline-block;
 
     position: absolute;
-    max-height: 30px;
-    max-width: 30px;
+    max-height: 40px;
+    max-width: 40px;
 
-    color: #fff;
-    background-color: #29e;
+    margin-left: -16px;
+    margin-top: -43px;
+    color: #000;
 
     transition: background-color 0.3s;
 }
@@ -40,5 +46,7 @@
 .drag-drop.can-drop {
     color: #000;
     background-color: #4e4;
+    margin-left: -16px;
+    margin-top: -43px;
 }
 

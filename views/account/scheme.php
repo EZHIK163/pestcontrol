@@ -25,16 +25,7 @@ $this->title = "Схемы точек контроля"; ?>
                     </div>
 
                     <div id="main_div" itemprop="articleBody">
-                        <?= InteractWidget::widget(['id_scheme_point_control'   => $id_scheme_point_control]);
-                        ?>
-                        <?= Html::button(
-                        'Сохранить точки',
-                        [
-                        'id'        => 'myButton',
-                        'class'     => 'btn btn-primary',
-                        'onclick'   => 'savePoint()',
-                        ]
-                        ); ?>
+
                     </div>
 
                 </div>

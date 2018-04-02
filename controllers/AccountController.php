@@ -10,22 +10,15 @@ use yii\web\Response;
 
 class AccountController extends Controller {
 
-    public function beforeAction($action)
-    {
-        if ($action->id == 'save-point') {
-            $this->enableCsrfValidation = false;
-        }
 
-        return parent::beforeAction($action);
-    }
 
     public function actionIndex() {
         return $this->render('index');
     }
 
     public function actionScheme() {
-        $id_scheme_point_control = 666;
-        return $this->render('scheme', compact('id_scheme_point_control'));
+//        $id_scheme_point_control = 666;
+//        return $this->render('scheme', compact('id_scheme_point_control'));
     }
 
     public function actionInfoOnMonitoring() {
@@ -94,42 +87,6 @@ class AccountController extends Controller {
 
     public function actionCallEmployee() {
         return $this->render('call_employee');
-    }
-
-    public function actionGetPointsOnSchemaPointControl() {
-        $id = \Yii::$app->request->get('id_scheme_point_control');
-        $data[666] = [
-            'img'       => 'http://koffkindom.ru/wp-content/uploads/2016/02/plan-doma-8x8-2et-10.jpg',
-            'points'    => [
-                [
-                    'id'        => 'point_1',
-                    'x'         => 0,
-                    'y'         => 0,
-                    'img_src'   => 'https://png.icons8.com/metro/1600/checkmark.png'
-                ],
-                [
-                    'id'        => 'point_2',
-                    'x'         => 10,
-                    'y'         => 10,
-                    'img_src'   => 'https://png.icons8.com/metro/1600/checkmark.png'
-                ],
-                [
-                    'id'        => 'point_3',
-                    'x'         => 312,
-                    'y'         => 104,
-                    'img_src'   => 'https://png.icons8.com/metro/1600/checkmark.png'
-                ]
-            ]
-        ];
-        $my_data = $data[$id];
-        \Yii::$app->response->format = Response::FORMAT_JSON;
-        return $my_data;
-    }
-
-    public function actionSavePoint() {
-        $data = ['status'   => true];
-        \Yii::$app->response->format = Response::FORMAT_JSON;
-        return $data;
     }
 
     public function render($view, $params = [])

@@ -5,7 +5,10 @@ return [
     'language'      => 'ru',
     'components'    => [
         'request'  => [
-            'cookieValidationKey'   => 'sdgsgsdfhsdhdfgsddfgtgadxdfgdf'
+            'cookieValidationKey'   => 'sdgsgsdfhsdhdfgsddfgtgadxdfgdf',
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ]
         ],
         'db'  => require (__DIR__. '/db.php'),
         'urlManager'    => [

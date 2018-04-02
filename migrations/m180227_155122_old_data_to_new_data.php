@@ -221,7 +221,8 @@ class m180227_155122_old_data_to_new_data extends Migration
             [
                 'id'            => 'pk',
                 'is_active'     => 'boolean DEFAULT true',
-                'id_customer'   => 'integer',
+                'id_file_customer'   => 'integer',
+                'id_internal'   => 'integer',
                 'id_point_status' => 'integer',
                 //'pnt_map'     => '',
                 'title'         => 'string',
@@ -238,8 +239,8 @@ class m180227_155122_old_data_to_new_data extends Migration
         $this->addForeignKey('points_id_point_status', 'points',
             'id_point_status', 'point_status', 'id');
 
-        $this->addForeignKey('points_id_customer', 'points',
-            'id_customer', 'customers', 'id');
+        $this->addForeignKey('points_id_file_customer', 'points',
+            'id_customer', 'file_customer', 'id');
 
         $this->addForeignKey('points_types_created_by', 'points',
             'created_by', 'auth.users', 'id');
@@ -247,33 +248,33 @@ class m180227_155122_old_data_to_new_data extends Migration
         $this->addForeignKey('points_types_updated_by', 'points',
             'updated_by', 'auth.users', 'id');
 
-        $sql = "
-        SELECT * 
-        FROM points";
-        $points = $db_old->createCommand($sql)
-            ->queryAll();
-        $sql = "
-        INSERT INTO public.points 
-        (id_customer, id_point_status, title, x_coordinate, y_coordinate, created_at, created_by, updated_at, updated_by)
-        VALUES 
-        (:id_customer, :id_point_status, :title, :x_coordinate, :y_coordinate,  :created_at, :created_by, :updated_at, :updated_by)";
-
-        foreach ($points as $point) {
-            $updated_at = $created_at = \Yii::$app->formatter->asTimestamp(date('Y-d-m h:i:s'));
-
-            $point['id_pnt_type']++;
-            $this->db->createCommand($sql)
-                ->bindValue(':id_customer', $point['id_comp'])
-                ->bindValue(':id_point_status', $point['id_pnt_type'])
-                ->bindValue(':title', $point['pnt_title'])
-                ->bindValue(':x_coordinate', $point['pnt_loc_x'])
-                ->bindValue(':y_coordinate', $point['pnt_loc_y'])
-                ->bindValue(':created_at', $created_at)
-                ->bindValue(':created_by', $created_by)
-                ->bindValue(':updated_at', $updated_at)
-                ->bindValue(':updated_by', $updated_by)
-                ->query();
-        }
+//        $sql = "
+//        SELECT *
+//        FROM points";
+//        $points = $db_old->createCommand($sql)
+//            ->queryAll();
+//        $sql = "
+//        INSERT INTO public.points
+//        (id_customer, id_point_status, title, x_coordinate, y_coordinate, created_at, created_by, updated_at, updated_by)
+//        VALUES
+//        (:id_customer, :id_point_status, :title, :x_coordinate, :y_coordinate,  :created_at, :created_by, :updated_at, :updated_by)";
+//
+//        foreach ($points as $point) {
+//            $updated_at = $created_at = \Yii::$app->formatter->asTimestamp(date('Y-d-m h:i:s'));
+//
+//            $point['id_pnt_type']++;
+//            $this->db->createCommand($sql)
+//                ->bindValue(':id_customer', $point['id_comp'])
+//                ->bindValue(':id_point_status', $point['id_pnt_type'])
+//                ->bindValue(':title', $point['pnt_title'])
+//                ->bindValue(':x_coordinate', $point['pnt_loc_x'])
+//                ->bindValue(':y_coordinate', $point['pnt_loc_y'])
+//                ->bindValue(':created_at', $created_at)
+//                ->bindValue(':created_by', $created_by)
+//                ->bindValue(':updated_at', $updated_at)
+//                ->bindValue(':updated_by', $updated_by)
+//                ->query();
+//        }
 
         $this->createTable('events',
             [

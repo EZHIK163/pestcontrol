@@ -2,13 +2,24 @@ var points = [];
 
 var id_scheme_point_control = -1;
 
+var base_url = window.location.origin;
+
+var img_src_new_point = null;
+
+var prefix_point_id = 'point_';
+
+var position_root_element = null;
+
+var id_file_customer = -1;
+
+var max_id_internal_in_customer = -1;
 
 async function getPoints() {
     //var my_body = {id_scheme_point_control:id_scheme_point_control};
     var params = jQuery.param({
         id_scheme_point_control: id_scheme_point_control
     });
-    const response = await fetch( 'http://test.pestcontrol.ru/account/get-points-on-schema-point-control/?' + params//,
+    const response = await fetch( base_url + '/manager/get-points-on-schema-point-control/?' + params//,
         //{
         //    method: "GET",
         //    headers: {
@@ -18,22 +29,57 @@ async function getPoints() {
         //}
     );
     const json = await response.json();
+
+    max_id_internal_in_customer = json.max_id_internal_in_customer;
+    img_src_new_point = json.img_src_new_point;
+    id_file_customer = json.id_file_customer;
+
     points = json.points;
 
-    $('#main_div').append('<div class="dropzone" id="outer-dropzone"><img src="' + json.img +'"/></div>');
-    var element = document.getElementById('outer-dropzone');
-    var position = element.getBoundingClientRect();
+    $('#main_div').append('<div id="outer-dropzone"></div>');
+    $('#outer-dropzone').append('<div id="inner-dropzone" class="dropzone"><img id="root_img" src="' + json.img +'"/></div>');
+    var element = document.getElementById('inner-dropzone');
+    //var position = element.getBoundingClientRect();
 
-    points.forEach(function(point, i, points) {
-        $('#main_div').append('<div data-toggle="tooltip" data-placement="top" title="Вверху" class="draggable drag-drop" id="' + point.id + '"><img src="' + point.img_src +'"/></div>');
+    position_root_element = findPos(element);
+    if (points.length > 0) {
+        points.forEach(function (point, i, points) {
+            $('#main_div').append('<div data-toggle="tooltip" data-placement="top" title="' + point.id_internal + '" class="draggable drag-drop" id="' + prefix_point_id + point.id_internal + '"><img src="' + point.img_src + '"/><p class="text_in_marker">' + point.id_internal + '</p></div>');
 
-        var temp = document.getElementById(point.id);
-        temp.style.left = position.left + point.x + 'px'
-        temp.style.top = position.top + point.y + 'px';
-    });
-
-    $('[data-toggle="tooltip"]').tooltip();
+            var temp = document.getElementById(prefix_point_id + point.id_internal);
+            temp.style.left = position_root_element[0] + point.x + 'px'
+            temp.style.top = position_root_element[1] + point.y  + 'px';
+        });
+    }
+    //$('[data-toggle="tooltip"]').tooltip();
 };
+
+function findPos(obj) {
+    var curleft = 0;
+    var curtop = 0;
+    if(obj.offsetLeft) curleft += parseInt(obj.offsetLeft);
+    if(obj.offsetTop) curtop += parseInt(obj.offsetTop);
+    if(obj.scrollTop && obj.scrollTop > 0) curtop -= parseInt(obj.scrollTop);
+    if(obj.offsetParent) {
+        var pos = findPos(obj.offsetParent);
+        //console.log(pos);
+        curleft += pos[0];
+        curtop += pos[1];
+    } else if(obj.ownerDocument) {
+        var thewindow = obj.ownerDocument.defaultView;
+        if(!thewindow && obj.ownerDocument.parentWindow)
+            thewindow = obj.ownerDocument.parentWindow;
+        if(thewindow) {
+            if(thewindow.frameElement) {
+                var pos = findPos(thewindow.frameElement);
+                curleft += pos[0];
+                curtop += pos[1];
+            }
+        }
+    }
+
+    return [curleft,curtop];
+}
 
 var setIdSchemaPointControl = function(id) {
     id_scheme_point_control = id;
@@ -43,32 +89,77 @@ window.setIdSchemaPointControl = setIdSchemaPointControl;
 
 var savePoint = async function() {
 
+    window.scrollTo(0, 0);
     //const response = await fetch( 'http://test.pestcontrol.ru/account/get-points-on-schema-point-control' );
     //const json = await response.json();
     //var points = json.points;
 
-    var element = document.getElementById('outer-dropzone');
-    var position = element.getBoundingClientRect();
-
+    //var element = document.getElementById('outer-dropzone');
+    //var element = document.querySelector('outer-dropzone');
+    //var position = findPos(element);
+    //console.log();
+    //var max_x = $('#inner-dropzone').width() + position_root_element[0];
+    //var max_y = $('#inner-dropzone').height()  + position_root_element[1];
+    //console.log(max_x);
+    //console.log(max_y);
     var newPoints = points.map(function(point) {
-        var temp = document.getElementById(point.id);
+        var temp = document.getElementById(prefix_point_id + point.id_internal);
         var position_div = temp.getBoundingClientRect();
-        point.x = position_div.left -position.left;
-        point.y = position_div.top -position.top;
+        //var position_div = findPos(element);
+        //console.log(point.id_internal);
+        //if (position_div.left < position_root_element[0]
+        //|| position_div.left > max_x
+        //|| position_div.top < position_root_element[1]
+        //|| position_div.top > max_y) {
+            //console.log('out');
+            //console.log(position_div.left > max_x);
+        //} else {
+            //console.log('in');
+
+        //}
+        //console.log(position_div.left);
+        //console.log(position_div.top);
+        //console.log(position_div);
+        //console.log(position_root_element);
+        //console.log(element.height + position_root_element[1]);
+        //console.log(element.width + position_root_element[0]);
+
+        var style = window.getComputedStyle(document.getElementById(prefix_point_id + point.id_internal));
+        var marginTop = style.getPropertyValue('margin-top');
+        var offset_y = marginTop.replace('px', '');
+        var marginLeft = style.getPropertyValue('margin-left');
+        var offset_x = marginLeft.replace('px', '');
+
+        point.x = position_div.left - position_root_element[0] + Math.abs(offset_x);
+        point.y = position_div.top - position_root_element[1] + Math.abs(offset_y);
         return point;
     });
 
-    var my_body = JSON.stringify({points:newPoints});
-    fetch("http://test.pestcontrol.ru/account/save-point/",
+    var my_body = JSON.stringify({id_file_customer:id_file_customer, points:newPoints});
+    fetch(base_url + "/manager/save-point/",
     {
         method: "POST",
         headers: {
-        "Content-Type": "application'json"
+            "Content-Type": "application/json"
         },
         body: my_body
     });
 };
 
+var addPoint = function() {
+    //var element = document.getElementById('outer-dropzone');
+    //var position = findPos(element);
+    $('#main_div').append('<div data-toggle="tooltip" data-placement="top" title="Вверху" class="draggable drag-drop" id="' + prefix_point_id + max_id_internal_in_customer + '"><img src="' + img_src_new_point + '"/><p class="text_in_marker">' + max_id_internal_in_customer + '</p></div>');
+
+    var temp = document.getElementById(prefix_point_id + max_id_internal_in_customer);
+    temp.style.left = (position_root_element[0] - 31) + 'px'
+    temp.style.top = position_root_element[1] + 'px';
+
+    points.push({x:temp.style.left, y:temp.style.top, id_internal: max_id_internal_in_customer, is_new:true});
+
+    max_id_internal_in_customer = max_id_internal_in_customer + 1;
+}
+window.addPoint = addPoint;
 
 //getPoints();
 window.savePoint = savePoint;
@@ -92,20 +183,21 @@ window.savePoint = savePoint;
         // call this function on every dragend event
         onend: function (event) {
 
-        var element = document.getElementById('outer-dropzone');
-        var position = element.getBoundingClientRect();
+        //var element = document.getElementById('outer-dropzone');
+        //var position = element.getBoundingClientRect();
+            // /var position = findPos(element);
 
-        var x = event.clientX - position.left;
-        var y = event.clientY- position.top;
-        console.log('x: ' + x + ' | y: ' + y);
+        //var x = event.clientX - position[1];
+        //var y = event.clientY - position[0];
+        //console.log('x: ' + x + ' | y: ' + y);
 
-        var textEl = event.target.querySelector('p');
+        //var textEl = event.target.querySelector('p');
 
-        textEl && (textEl.textContent =
-            'moved a distance of '
-            + (Math.sqrt(Math.pow(event.pageX - event.x0, 2) +
-            Math.pow(event.pageY - event.y0, 2) | 0))
-                .toFixed(2) + 'px');
+        //textEl && (textEl.textContent =
+        //    'moved a distance of '
+        //    + (Math.sqrt(Math.pow(event.pageX - event.x0, 2) +
+        //    Math.pow(event.pageY - event.y0, 2) | 0))
+        //        .toFixed(2) + 'px');
     }
 });
 
@@ -144,21 +236,21 @@ window.savePoint = savePoint;
 
         ondropactivate: function (event) {
             // add active dropzone feedback
-            event.target.classList.add('drop-active');
+            //event.target.classList.add('drop-active');
         },
         ondragenter: function (event) {
-            var draggableElement = event.relatedTarget,
-                dropzoneElement = event.target;
+            //var draggableElement = event.relatedTarget,
+                //dropzoneElement = event.target;
 
             // feedback the possibility of a drop
-            dropzoneElement.classList.add('drop-target');
-            draggableElement.classList.add('can-drop');
+            //dropzoneElement.classList.add('drop-target');
+            //draggableElement.classList.add('can-drop');
             //draggableElement.textContent = 'Dragged in';
         },
         ondragleave: function (event) {
             // remove the drop feedback style
-            event.target.classList.remove('drop-target');
-            event.relatedTarget.classList.remove('can-drop');
+            //event.target.classList.remove('drop-target');
+            //event.relatedTarget.classList.remove('can-drop');
             //event.relatedTarget.textContent = 'Не установлен';
         },
         ondrop: function (event) {
@@ -168,7 +260,7 @@ window.savePoint = savePoint;
         },
         ondropdeactivate: function (event) {
             // remove active dropzone feedback
-            event.target.classList.remove('drop-active');
-            event.target.classList.remove('drop-target');
+            //event.target.classList.remove('drop-active');
+            //event.target.classList.remove('drop-target');
         }
     });

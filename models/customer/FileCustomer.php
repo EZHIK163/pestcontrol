@@ -111,6 +111,11 @@ class FileCustomer extends \yii\db\ActiveRecord
         return $this->hasOne(Files::class, ['id' => 'id_file']);
     }
 
+    public function getPoints()
+    {
+        return $this->hasMany(Points::class, ['id_file_customer' => 'id']);
+    }
+
     public function getDateTimeCreatedAt() {
          return date("d.m.y", $this->created_at);
     }
@@ -140,5 +145,61 @@ class FileCustomer extends \yii\db\ActiveRecord
             ];
         }
         return $result;
+    }
+
+    public static function getSchemeForEdit($id) {
+        $file_customer = self::findOne(['id_file'   => $id]);
+        $file = $file_customer->file;
+        $action_download = \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'site/download?id=';
+        $points = $file_customer->points;
+        $count_points = 0;
+        $finish_points = [];
+        $max_id_internal_in_customer = 0;
+        foreach ($points as $point) {
+            $finish_points [] = [
+                'x'                 => $point->x_coordinate,
+                'y'                 => $point->y_coordinate,
+                'img_src'           => 'http://test.pestcontrol.ru/blue_marker.png',
+                'id_internal'       => $point->id_internal,
+                'is_new'            => false,
+                'id'                => $point->id
+            ];
+            if ($point->id_internal > $max_id_internal_in_customer) {
+                $max_id_internal_in_customer = $point->id_internal;
+            }
+            $count_points++;
+        }
+        $max_id_internal_in_customer = $max_id_internal_in_customer == 0 ? 1 : ($max_id_internal_in_customer + 1);
+        $result = [
+            'img'                       => $action_download.$file->id,
+            'img_src_new_point'         => 'http://test.pestcontrol.ru/blue_marker.png',
+            'max_id_internal_in_customer'  =>  $max_id_internal_in_customer,
+            'id_file_customer'          => $file_customer->id,
+            'points'                    => $finish_points
+            ];
+
+        return $result;
+    }
+
+    public static function savePoints($id_file_customer, $points) {
+        $code = 'not_touch';
+        $id_status_not_touch = PointStatus::getIdItemByCode($code);
+
+        foreach ($points as $point) {
+            if ($point['is_new'] === true) {
+                $new_point = new Points();
+                $new_point->id_file_customer = $id_file_customer;
+                $new_point->x_coordinate = $point['x'];
+                $new_point->y_coordinate = $point['y'];
+                $new_point->id_point_status = $id_status_not_touch;
+                $new_point->id_internal = $point['id_internal'];
+                $new_point->save();
+            } else {
+                $exist_point = Points::getPoint($point['id']);
+                $exist_point->x_coordinate = $point['x'];
+                $exist_point->y_coordinate = $point['y'];
+                $exist_point->save();
+            }
+        }
     }
 }
