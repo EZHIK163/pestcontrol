@@ -174,7 +174,7 @@ body {
 	line-height: 18px;
 	color: #333;
 	background-color: #fff;
-  	background-image: url(bg_grad.jpg);
+  	#background-image: url(bg_grad.jpg);
 	background-attachment: fixed;
 	background-position: top;
 }
