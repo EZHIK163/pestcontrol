@@ -14,6 +14,30 @@ var id_file_customer = -1;
 
 var max_id_internal_in_customer = -1;
 
+var coefficient_x = null;
+
+var coefficient_y = null;
+
+window.addEventListener('scroll', function(e) {
+    coefficient_x = $('#inner-dropzone').width() / 100;
+    coefficient_y = $('#inner-dropzone').height() / 100;
+
+    var element = document.getElementById('inner-dropzone');
+    //var position = element.getBoundingClientRect();
+
+    position_root_element = findPos(element);
+
+    if (points.length > 0) {
+        points.forEach(function (point, i, points) {
+            var temp = document.getElementById(prefix_point_id + point.id_internal);
+            temp.style.left = position_root_element[0] + (point.x * coefficient_x) + 'px'
+            temp.style.top = position_root_element[1] + (point.y* coefficient_y)  + 'px';
+        });
+    }
+
+});
+
+
 async function getPoints() {
     //var my_body = {id_scheme_point_control:id_scheme_point_control};
     var params = jQuery.param({
@@ -42,15 +66,22 @@ async function getPoints() {
     //var position = element.getBoundingClientRect();
 
     position_root_element = findPos(element);
+
+
+    coefficient_x = $('#inner-dropzone').width() / 100;
+    coefficient_y = $('#inner-dropzone').height() / 100;
+
+    console.log(coefficient_x); console.log(coefficient_y);
     if (points.length > 0) {
         points.forEach(function (point, i, points) {
             $('#main_div').append('<div data-toggle="tooltip" data-placement="top" title="' + point.id_internal + '" class="draggable drag-drop" id="' + prefix_point_id + point.id_internal + '"><img src="' + point.img_src + '"/><p class="text_in_marker">' + point.id_internal + '</p></div>');
 
-            var temp = document.getElementById(prefix_point_id + point.id_internal);
-            temp.style.left = position_root_element[0] + point.x + 'px'
-            temp.style.top = position_root_element[1] + point.y  + 'px';
+            //var temp = document.getElementById(prefix_point_id + point.id_internal);
+            //temp.style.left = position_root_element[0] + (point.x * coefficient_x) + 'px'
+            //temp.style.top = position_root_element[1] + (point.y* coefficient_y)  + 'px';
         });
     }
+    window.scrollTo(0, 0);
     //$('[data-toggle="tooltip"]').tooltip();
 };
 
@@ -98,8 +129,7 @@ var savePoint = async function() {
     //var element = document.querySelector('outer-dropzone');
     //var position = findPos(element);
     //console.log();
-    //var max_x = $('#inner-dropzone').width() + position_root_element[0];
-    //var max_y = $('#inner-dropzone').height()  + position_root_element[1];
+
     //console.log(max_x);
     //console.log(max_y);
     var newPoints = points.map(function(point) {
@@ -130,8 +160,8 @@ var savePoint = async function() {
         var marginLeft = style.getPropertyValue('margin-left');
         var offset_x = marginLeft.replace('px', '');
 
-        point.x = position_div.left - position_root_element[0] + Math.abs(offset_x);
-        point.y = position_div.top - position_root_element[1] + Math.abs(offset_y);
+        point.x = (position_div.left - position_root_element[0] + Math.abs(offset_x)) / coefficient_x;
+        point.y = (position_div.top - position_root_element[1] + Math.abs(offset_y)) / coefficient_y;
         return point;
     });
 
