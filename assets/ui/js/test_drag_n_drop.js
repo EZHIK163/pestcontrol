@@ -18,24 +18,29 @@ var coefficient_x = null;
 
 var coefficient_y = null;
 
-window.addEventListener('scroll', function(e) {
-    coefficient_x = $('#inner-dropzone').width() / 100;
-    coefficient_y = $('#inner-dropzone').height() / 100;
-
-    var element = document.getElementById('inner-dropzone');
-    //var position = element.getBoundingClientRect();
-
-    position_root_element = findPos(element);
-
-    if (points.length > 0) {
-        points.forEach(function (point, i, points) {
-            var temp = document.getElementById(prefix_point_id + point.id_internal);
-            temp.style.left = position_root_element[0] + (point.x * coefficient_x) + 'px'
-            temp.style.top = position_root_element[1] + (point.y* coefficient_y)  + 'px';
-        });
-    }
-
-});
+// window.addEventListener('scroll', function(e) {
+//     coefficient_x = $('#inner-dropzone').width() / 100;
+//     coefficient_y = $('#inner-dropzone').height() / 100;
+//
+//     var element = document.getElementById('inner-dropzone');
+//     //console.log(getCoords(element));
+//     //console.log(findPos(element));
+//     //var position = element.getBoundingClientRect();
+//
+//     if (element == null) {
+//         console.log('elem is null in handler');
+//     }
+//     position_root_element = getCoords(element);
+//
+//     if (points.length > 0) {
+//         points.forEach(function (point, i, points) {
+//             var temp = document.getElementById(prefix_point_id + point.id_internal);
+//             temp.style.left = position_root_element[0] + (point.x * coefficient_x) + 'px'
+//             temp.style.top = position_root_element[1] + (point.y* coefficient_y)  + 'px';
+//         });
+//     }
+//
+// });
 
 
 async function getPoints() {
@@ -61,30 +66,59 @@ async function getPoints() {
     points = json.points;
 
     $('#main_div').append('<div id="outer-dropzone"></div>');
-    $('#outer-dropzone').append('<div id="inner-dropzone" class="dropzone"><img id="root_img" src="' + json.img +'"/></div>');
+    $('#outer-dropzone').append('<div id="inner-dropzone" class="dropzone"><img id="root_img" onLoad="loadPoints();"  src="' + json.img +'"/></div>');
+
+
+    //$('[data-toggle="tooltip"]').tooltip();
+};
+
+function loadPoints() {
     var element = document.getElementById('inner-dropzone');
     //var position = element.getBoundingClientRect();
 
-    position_root_element = findPos(element);
-
+    if (element == null) {
+        console.log('elem is null in getPoints');
+    }
+    position_root_element = getCoords(element);
+    //console.log(getCoords(element));
+    //console.log(findPos(element));
 
     coefficient_x = $('#inner-dropzone').width() / 100;
     coefficient_y = $('#inner-dropzone').height() / 100;
 
-    console.log(coefficient_x); console.log(coefficient_y);
+    //console.log(coefficient_x); console.log(coefficient_y);
     if (points.length > 0) {
         points.forEach(function (point, i, points) {
             $('#main_div').append('<div data-toggle="tooltip" data-placement="top" title="' + point.id_internal + '" class="draggable drag-drop" id="' + prefix_point_id + point.id_internal + '"><img src="' + point.img_src + '"/><p class="text_in_marker">' + point.id_internal + '</p></div>');
 
-            //var temp = document.getElementById(prefix_point_id + point.id_internal);
-            //temp.style.left = position_root_element[0] + (point.x * coefficient_x) + 'px'
-            //temp.style.top = position_root_element[1] + (point.y* coefficient_y)  + 'px';
+            var temp = document.getElementById(prefix_point_id + point.id_internal);
+            temp.style.left = position_root_element[0] + (point.x * coefficient_x) + 'px'
+            temp.style.top = position_root_element[1] + (point.y* coefficient_y)  + 'px';
         });
     }
-    window.scrollTo(0, 0);
-    //$('[data-toggle="tooltip"]').tooltip();
-};
+}
 
+function getCoords(elem) {
+    // (1)
+    var box = elem.getBoundingClientRect();
+
+    var body = document.body;
+    var docEl = document.documentElement;
+
+    // (2)
+    var scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
+    var scrollLeft = window.pageXOffset || docEl.scrollLeft || body.scrollLeft;
+
+    // (3)
+    var clientTop = docEl.clientTop || body.clientTop || 0;
+    var clientLeft = docEl.clientLeft || body.clientLeft || 0;
+
+    // (4)
+    var top = box.top + scrollTop - clientTop;
+    var left = box.left + scrollLeft - clientLeft;
+
+    return [left, top];
+}
 function findPos(obj) {
     var curleft = 0;
     var curtop = 0;
