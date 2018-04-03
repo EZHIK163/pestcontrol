@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list id="c25cd3dc-568b-41ed-87f9-c75f1e47e11e" name="Revert: add all documents" comment="" />
     <list default="true" id="06996c03-9cbb-43d1-84b5-d89c73097433" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/assets/ui/js/test_drag_n_drop.js" afterPath="$PROJECT_DIR$/assets/ui/js/test_drag_n_drop.js" />
+      <change beforePath="$PROJECT_DIR$/models/customer/FileCustomer.php" afterPath="$PROJECT_DIR$/models/customer/FileCustomer.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -75,11 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FileCustomer.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="FileCustomer.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/models/customer/FileCustomer.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2720">
-              <caret line="160" column="0" lean-forward="false" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
+            <state relative-caret-position="136">
+              <caret line="164" column="107" lean-forward="false" selection-start-line="164" selection-start-column="107" selection-end-line="164" selection-end-column="107" />
               <folding />
             </state>
           </provider>
@@ -116,7 +115,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_drag_n_drop.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test_drag_n_drop.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/ui/js/test_drag_n_drop.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="223">
@@ -273,12 +272,12 @@
         <option value="$PROJECT_DIR$/controllers/ManagerController.php" />
         <option value="$PROJECT_DIR$/migrations/m180227_155122_old_data_to_new_data.php" />
         <option value="$PROJECT_DIR$/models/customer/Points.php" />
-        <option value="$PROJECT_DIR$/models/customer/FileCustomer.php" />
         <option value="$PROJECT_DIR$/controllers/AccountController.php" />
         <option value="$PROJECT_DIR$/assets/ui/css/css_for_drag_n_drop.css" />
         <option value="$PROJECT_DIR$/assets/ui/css/template.css" />
         <option value="$PROJECT_DIR$/components/InteractWidget.php" />
         <option value="$PROJECT_DIR$/assets/ui/js/test_drag_n_drop.js" />
+        <option value="$PROJECT_DIR$/models/customer/FileCustomer.php" />
       </list>
     </option>
   </component>
@@ -292,6 +291,7 @@
   <component name="PhpServers">
     <servers>
       <server host="test.pestcontrol.ru" id="1bb7c2d8-0880-490a-a9a8-9171ff7d540f" name="test.pestcontrol.ru" />
+      <server host="192.168.0.104" id="917918d7-6dd8-42af-b3b3-a648dae0d00a" name="192.168.0.104" />
     </servers>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true">
@@ -367,7 +367,7 @@
     </include_path>
   </component>
   <component name="PhpXdebugProxy" ide_key="PHPSTORM" host="localhost" port="9009" />
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="-3" />
     <option name="width" value="320" />
     <option name="height" value="220" />
@@ -620,15 +620,15 @@
       <workItem from="1522567453559" duration="17977000" />
       <workItem from="1522637334488" duration="66000" />
       <workItem from="1522680503686" duration="4240000" />
-      <workItem from="1522771046631" duration="2718000" />
+      <workItem from="1522771046631" duration="2928000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="173108000" />
+    <option name="totallyTimeSpent" value="173318000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-3" width="1366" height="748" extended-state="7" />
+    <frame x="0" y="-3" width="1366" height="748" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29575402" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1039,6 +1039,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4913">
           <caret line="297" column="0" lean-forward="false" selection-start-line="297" selection-start-column="0" selection-end-line="297" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1046,14 +1047,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1428">
           <caret line="90" column="0" lean-forward="false" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/customer/FileCustomer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2720">
-          <caret line="160" column="0" lean-forward="false" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1150,6 +1143,14 @@
             <element signature="e#4912#4949#0" expanded="false" />
             <element signature="e#7296#8074#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/customer/FileCustomer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="164" column="107" lean-forward="false" selection-start-line="164" selection-start-column="107" selection-end-line="164" selection-end-column="107" />
+          <folding />
         </state>
       </provider>
     </entry>

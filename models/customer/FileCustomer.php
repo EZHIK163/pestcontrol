@@ -162,7 +162,7 @@ class FileCustomer extends \yii\db\ActiveRecord
             $finish_points [] = [
                 'x'                 => $point->x_coordinate,
                 'y'                 => $point->y_coordinate,
-                'img_src'           => 'http://test.pestcontrol.ru/blue_marker.png',
+                'img_src'           => \Yii::$app->urlManager->createAbsoluteUrl(['/']). 'blue_marker.png',
                 'id_internal'       => $point->id_internal,
                 'is_new'            => false,
                 'id'                => $point->id
@@ -175,7 +175,7 @@ class FileCustomer extends \yii\db\ActiveRecord
         $max_id_internal_in_customer = $max_id_internal_in_customer == 0 ? 1 : ($max_id_internal_in_customer + 1);
         $result = [
             'img'                       => $action_download.$file->id,
-            'img_src_new_point'         => 'http://test.pestcontrol.ru/blue_marker.png',
+            'img_src_new_point'         => \Yii::$app->urlManager->createAbsoluteUrl(['/']). 'blue_marker.png',
             'max_id_internal_in_customer'  =>  $max_id_internal_in_customer,
             'id_file_customer'          => $file_customer->id,
             'points'                    => $finish_points
