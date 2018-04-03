@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list id="c25cd3dc-568b-41ed-87f9-c75f1e47e11e" name="Revert: add all documents" comment="" />
     <list default="true" id="06996c03-9cbb-43d1-84b5-d89c73097433" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/assets/ApplictionUiAssetBundle.php" afterPath="$PROJECT_DIR$/assets/ApplictionUiAssetBundle.php" />
+      <change beforePath="$PROJECT_DIR$/assets/InteractAsset.php" afterPath="$PROJECT_DIR$/assets/InteractAsset.php" />
       <change beforePath="$PROJECT_DIR$/assets/ui/js/test_drag_n_drop.js" afterPath="$PROJECT_DIR$/assets/ui/js/test_drag_n_drop.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -84,16 +86,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Points.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/customer/Points.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1343">
-              <caret line="79" column="34" lean-forward="false" selection-start-line="79" selection-start-column="34" selection-end-line="79" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="m180227_155122_old_data_to_new_data.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/migrations/m180227_155122_old_data_to_new_data.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -118,11 +110,31 @@
       <file leaf-file-name="test_drag_n_drop.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/ui/js/test_drag_n_drop.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1311">
-              <caret line="200" column="33" lean-forward="false" selection-start-line="200" selection-start-column="33" selection-end-line="200" selection-end-column="33" />
+            <state relative-caret-position="308">
+              <caret line="50" column="54" lean-forward="false" selection-start-line="50" selection-start-column="54" selection-end-line="50" selection-end-column="54" />
               <folding>
                 <element signature="e#4912#4949#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ApplictionUiAssetBundle.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/ApplictionUiAssetBundle.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="426">
+              <caret line="38" column="4" lean-forward="false" selection-start-line="38" selection-start-column="4" selection-end-line="41" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InteractAsset.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/InteractAsset.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="27" column="6" lean-forward="false" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -180,7 +192,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>linkPager</find>
       <find>find(</find>
       <find>getRolesByUser</find>
       <find>rbac</find>
@@ -210,6 +221,7 @@
       <find>outer-dropzone</find>
       <find>line-h</find>
       <find>findPo</find>
+      <find>abs</find>
     </findStrings>
     <replaceStrings>
       <replace>auth&quot;.&quot;rule</replace>
@@ -226,8 +238,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/migrations/m180223_194917_init_users_table.php" />
-        <option value="$PROJECT_DIR$/migrations/m180225_133446_create_rbac_tables.php" />
         <option value="$PROJECT_DIR$/migrations/m180225_135838_users_to_schema_auth.php" />
         <option value="$PROJECT_DIR$/migrations/m180225_140413_create_roles.php" />
         <option value="$PROJECT_DIR$/migrations/m180301_046109_add_file_types.php" />
@@ -276,6 +286,8 @@
         <option value="$PROJECT_DIR$/assets/ui/css/template.css" />
         <option value="$PROJECT_DIR$/components/InteractWidget.php" />
         <option value="$PROJECT_DIR$/models/customer/FileCustomer.php" />
+        <option value="$PROJECT_DIR$/assets/ApplictionUiAssetBundle.php" />
+        <option value="$PROJECT_DIR$/assets/InteractAsset.php" />
         <option value="$PROJECT_DIR$/assets/ui/js/test_drag_n_drop.js" />
       </list>
     </option>
@@ -619,12 +631,12 @@
       <workItem from="1522567453559" duration="17977000" />
       <workItem from="1522637334488" duration="66000" />
       <workItem from="1522680503686" duration="4240000" />
-      <workItem from="1522771046631" duration="4633000" />
+      <workItem from="1522771046631" duration="7279000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="175023000" />
+    <option name="totallyTimeSpent" value="177669000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-3" width="1366" height="748" extended-state="6" />
@@ -765,13 +777,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/composer.lock">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1100,14 +1105,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/InteractAsset.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/ui/css/css_for_drag_n_drop.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
@@ -1142,10 +1139,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/ApplictionUiAssetBundle.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="426">
+          <caret line="38" column="4" lean-forward="false" selection-start-line="38" selection-start-column="4" selection-end-line="41" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/InteractAsset.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="6" lean-forward="false" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assets/ui/js/test_drag_n_drop.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1311">
-          <caret line="200" column="33" lean-forward="false" selection-start-line="200" selection-start-column="33" selection-end-line="200" selection-end-column="33" />
+        <state relative-caret-position="308">
+          <caret line="50" column="54" lean-forward="false" selection-start-line="50" selection-start-column="54" selection-end-line="50" selection-end-column="54" />
           <folding>
             <element signature="e#4912#4949#0" expanded="false" />
           </folding>

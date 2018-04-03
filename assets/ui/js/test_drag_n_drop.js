@@ -197,8 +197,18 @@ var savePoint = async function() {
         var marginLeft = style.getPropertyValue('margin-left');
         var offset_x = marginLeft.replace('px', '');
 
-        point.x = (position_div[0] - position_root_element[0] + Math.abs(offset_x)) / coefficient_x;
-        point.y = (position_div[1] - position_root_element[1] + Math.abs(offset_y)) / coefficient_y;
+        //console.log(position_div[1].toFixed(0));
+        //console.log(position_root_element[1].toFixed(0));
+        //console.log(Math.abs(offset_y));
+        //console.log(coefficient_y);
+
+        var new_x = (position_div[0] - position_root_element[0] + Math.abs(offset_x)) / coefficient_x;
+        var new_y = (position_div[1] - position_root_element[1] + Math.abs(offset_y)) / coefficient_y;
+        if (((new_x > (point.x + 1) || new_x < (point.x - 1))
+        || (new_y > (point.y + 1) || new_y < (point.y - 1))) && point.is_new == false) {
+            point.x = new_x;
+            point.y = new_y;
+        }
         return point;
     });
 
@@ -230,6 +240,7 @@ var addPoint = function() {
 
     temp.style.left = (position_root_element[0] - 31) + 'px'
     temp.style.top = position_root_element[1] + 'px';
+
 
     points.push({x:temp.style.left, y:temp.style.top, id_internal: id, is_new:true});
 

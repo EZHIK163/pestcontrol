@@ -35,4 +35,9 @@ class ApplictionUiAssetBundle extends AssetBundle {
     public $depends = [
         'yii\web\JqueryAsset',
     ];
+
+    public $publishOptions = [
+        'forceCopy' => true,
+        //you can also make it work only in debug mode: 'forceCopy' => YII_DEBUG
+    ];
 }
