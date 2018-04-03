@@ -154,7 +154,7 @@ window.setIdSchemaPointControl = setIdSchemaPointControl;
 
 var savePoint = async function() {
 
-    window.scrollTo(0, 0);
+    //window.scrollTo(0, 0);
     //const response = await fetch( 'http://test.pestcontrol.ru/account/get-points-on-schema-point-control' );
     //const json = await response.json();
     //var points = json.points;
@@ -167,8 +167,11 @@ var savePoint = async function() {
     //console.log(max_x);
     //console.log(max_y);
     var newPoints = points.map(function(point) {
-        var temp = document.getElementById(prefix_point_id + point.id_internal);
-        var position_div = temp.getBoundingClientRect();
+        var my_div = document.getElementById(prefix_point_id + point.id_internal);
+        var position_div = getCoords(my_div);
+        //console.log(getCoords(temp));
+        //var position_div = temp.getBoundingClientRect();
+        //console.log(position_div);
         //var position_div = findPos(element);
         //console.log(point.id_internal);
         //if (position_div.left < position_root_element[0]
@@ -194,8 +197,8 @@ var savePoint = async function() {
         var marginLeft = style.getPropertyValue('margin-left');
         var offset_x = marginLeft.replace('px', '');
 
-        point.x = (position_div.left - position_root_element[0] + Math.abs(offset_x)) / coefficient_x;
-        point.y = (position_div.top - position_root_element[1] + Math.abs(offset_y)) / coefficient_y;
+        point.x = (position_div[0] - position_root_element[0] + Math.abs(offset_x)) / coefficient_x;
+        point.y = (position_div[1] - position_root_element[1] + Math.abs(offset_y)) / coefficient_y;
         return point;
     });
 
@@ -211,17 +214,26 @@ var savePoint = async function() {
 };
 
 var addPoint = function() {
+
+    var name_element = prefix_point_id + max_id_internal_in_customer;
+    var id = max_id_internal_in_customer;
+    max_id_internal_in_customer = max_id_internal_in_customer + 1;
     //var element = document.getElementById('outer-dropzone');
     //var position = findPos(element);
-    $('#main_div').append('<div data-toggle="tooltip" data-placement="top" title="Вверху" class="draggable drag-drop" id="' + prefix_point_id + max_id_internal_in_customer + '"><img src="' + img_src_new_point + '"/><p class="text_in_marker">' + max_id_internal_in_customer + '</p></div>');
+    var temp = document.getElementById(name_element);
+    if (temp != null) {
+        return;
+    }
+    $('#main_div').append('<div data-toggle="tooltip" data-placement="top" title="Вверху" class="draggable drag-drop" id="' + name_element + '"><img src="' + img_src_new_point + '"/><p class="text_in_marker">' + id + '</p></div>');
+    var temp = document.getElementById(name_element);
 
-    var temp = document.getElementById(prefix_point_id + max_id_internal_in_customer);
+
     temp.style.left = (position_root_element[0] - 31) + 'px'
     temp.style.top = position_root_element[1] + 'px';
 
-    points.push({x:temp.style.left, y:temp.style.top, id_internal: max_id_internal_in_customer, is_new:true});
+    points.push({x:temp.style.left, y:temp.style.top, id_internal: id, is_new:true});
 
-    max_id_internal_in_customer = max_id_internal_in_customer + 1;
+
 }
 window.addPoint = addPoint;
 
