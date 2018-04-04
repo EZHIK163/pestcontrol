@@ -15,6 +15,7 @@ class ApplictionUiAssetBundle extends AssetBundle {
     ];
     public $js = [
         'js/bootstrap.js',
+        'js/interact.min.js',
         //'js/caption.js',
         //'js/core.js',
         //'js/ext_tss.js',
@@ -29,7 +30,8 @@ class ApplictionUiAssetBundle extends AssetBundle {
         'js/template.js',
         //'js/watch.js',
         'js/my_js.js',
-        'js/siblings.js'
+        'js/siblings.js',
+
     ];
 
     public $depends = [

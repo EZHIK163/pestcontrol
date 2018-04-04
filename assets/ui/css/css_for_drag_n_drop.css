@@ -15,6 +15,14 @@
     transition: background-color 0.3s;
 }
 
+.my_name {
+    background-color: #ccc;
+    border: dashed 4px transparent;
+    border-radius: 4px;
+
+    transition: background-color 0.3s;
+}
+
 .drop-active {
     border-color: #aaa;
     margin-left: -16px;
@@ -30,6 +38,20 @@
 }
 
 .drag-drop {
+    display: inline-block;
+
+    position: absolute;
+    max-height: 40px;
+    max-width: 40px;
+
+    margin-left: -16px;
+    margin-top: -43px;
+    color: #000;
+
+    transition: background-color 0.3s;
+}
+
+.not-drag-drop {
     display: inline-block;
 
     position: absolute;

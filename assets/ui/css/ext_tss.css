@@ -17,6 +17,9 @@
 /* spoilers */
 .spoilers {width:100%;}
 .spoilers .title {background:#e9e7e7 url(../images/arrow-square.gif) no-repeat right -51px;padding:7px 15px;margin:0;margin-top:10px;font-size:1.2em;line-height:1em;font-weight:bold;border:solid 1px #c4c4c4;cursor:pointer;}
+.spoilers .general_title {background:#e9e7e7 url(../images/arrow-square.gif) no-repeat right -51px;padding:7px 15px;margin:0;margin-top:10px;font-size:1.2em;line-height:1em;font-weight:bold;border:solid 1px #c4c4c4;cursor:pointer;}
 .spoilers .title:hover {background-color:#e3e2e2;}
-.spoilers .title.active {background-position:right 5px;}
+.spoilers .general_title:hover {background-color:#e3e2e2;}
+.spoilers .title.active  {background-position:right 5px;}
+.spoilers .general_title.active  {background-position:right 5px;}
 .spoilers .desc {display:none;margin:0;padding: 10px 15px 20px;background:#f7f7f7;border-left:solid 1px #c4c4c4;border-right:solid 1px #c4c4c4;border-bottom:solid 1px #c4c4c4;}
