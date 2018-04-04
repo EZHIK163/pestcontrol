@@ -184,9 +184,17 @@ class FileCustomer extends \yii\db\ActiveRecord
         return $result;
     }
 
+    static function getItem($id) {
+        return self::findOne($id);
+    }
+
     public static function savePoints($id_file_customer, $points) {
         $code = 'not_touch';
         $id_status_not_touch = PointStatus::getIdItemByCode($code);
+
+        $file_customer = self::getItem($id_file_customer);
+
+        $id_customer = $file_customer->id_customer;
 
         foreach ($points as $point) {
             if ($point['is_new'] === true) {
@@ -198,10 +206,11 @@ class FileCustomer extends \yii\db\ActiveRecord
                 $new_point->id_internal = $point['id_internal'];
                 $new_point->save();
             } else {
-                $exist_point = Points::getPoint($point['id']);
-                $exist_point->x_coordinate = $point['x'];
-                $exist_point->y_coordinate = $point['y'];
-                $exist_point->save();
+                Points::savePoint($point['id_internal'], $id_customer, $point['x'], $point['y']);
+                //$exist_point = Points::getPoint($point['id_internal'], $id_customer);
+                //$exist_point->x_coordinate = $point['x'];
+                //$exist_point->y_coordinate = $point['y'];
+                //$exist_point->save();
             }
         }
     }

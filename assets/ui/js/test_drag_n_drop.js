@@ -204,8 +204,8 @@ var savePoint = async function() {
 
         var new_x = (position_div[0] - position_root_element[0] + Math.abs(offset_x)) / coefficient_x;
         var new_y = (position_div[1] - position_root_element[1] + Math.abs(offset_y)) / coefficient_y;
-        if (((new_x > (point.x + 1) || new_x < (point.x - 1))
-        || (new_y > (point.y + 1) || new_y < (point.y - 1))) && point.is_new == false) {
+        if ((((new_x > (point.x + 1) || new_x < (point.x - 1))
+        || (new_y > (point.y + 1) || new_y < (point.y - 1))) && point.is_new == false) || point.is_new == true) {
             point.x = new_x;
             point.y = new_y;
         }
@@ -221,6 +221,15 @@ var savePoint = async function() {
         },
         body: my_body
     });
+
+    console.log('do');
+    console.log(points);
+    points = points.map(function(point) {
+        point.is_new = false;
+        return point;
+    });
+    console.log('posle');
+    console.log(points);
 };
 
 var addPoint = function() {
@@ -238,11 +247,13 @@ var addPoint = function() {
     var temp = document.getElementById(name_element);
 
 
-    temp.style.left = (position_root_element[0] - 31) + 'px'
-    temp.style.top = position_root_element[1] + 'px';
+    var my_x = (position_root_element[0] - 31);
+    var my_y = position_root_element[1];
+    temp.style.left = my_x + 'px'
+    temp.style.top = my_y + 'px';
 
 
-    points.push({x:temp.style.left, y:temp.style.top, id_internal: id, is_new:true});
+    points.push({x:my_x, y:my_y, id_internal: id, is_new:true});
 
 
 }

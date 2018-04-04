@@ -76,7 +76,26 @@ class Points extends \yii\db\ActiveRecord
         ];
     }
 
-    public static function getPoint($id) {
-        return self::findOne($id);
+    public static function savePoint($id_internal, $id_customer, $x, $y) {
+
+        $sql = "
+        SELECT p.id 
+        FROM public.points as p
+        JOIN public.file_customer as fc ON fc.id = p.id_file_customer
+        WHERE fc.id_customer = :id_customer AND p.id_internal = :id_internal";
+        $point = Yii::$app->db->createCommand($sql)
+            ->bindValue(':id_customer', $id_customer)
+            ->bindValue(':id_internal', $id_internal)
+            ->queryOne();
+
+        $sql = "UPDATE public.points
+        SET x_coordinate = :x_coordinate, y_coordinate = :y_coordinate
+        WHERE id = :id";
+        \Yii::$app->db->createCommand($sql)
+            ->bindValue(':x_coordinate', $x)
+            ->bindValue(':y_coordinate', $y)
+            ->bindValue(':id', $point['id'])
+            ->query();
+        return true;
     }
 }
