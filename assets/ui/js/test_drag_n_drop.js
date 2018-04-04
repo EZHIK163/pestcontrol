@@ -221,15 +221,11 @@ var savePoint = async function() {
         },
         body: my_body
     });
-
-    console.log('do');
-    console.log(points);
+    
     points = points.map(function(point) {
         point.is_new = false;
         return point;
     });
-    console.log('posle');
-    console.log(points);
 };
 
 var addPoint = function() {

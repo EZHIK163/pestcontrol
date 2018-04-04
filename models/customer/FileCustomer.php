@@ -155,9 +155,10 @@ class FileCustomer extends \yii\db\ActiveRecord
         $file = $file_customer->file;
         $action_download = \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'site/download?id=';
         $points = $file_customer->points;
+        $id_customer = $file_customer->id_customer;
         $count_points = 0;
         $finish_points = [];
-        $max_id_internal_in_customer = 0;
+        $max_id_internal_in_customer = self::getMaxIdInternal($id_customer);
         foreach ($points as $point) {
             $finish_points [] = [
                 'x'                 => $point->x_coordinate,
@@ -167,12 +168,8 @@ class FileCustomer extends \yii\db\ActiveRecord
                 'is_new'            => false,
                 'id'                => $point->id
             ];
-            if ($point->id_internal > $max_id_internal_in_customer) {
-                $max_id_internal_in_customer = $point->id_internal;
-            }
             $count_points++;
         }
-        $max_id_internal_in_customer = $max_id_internal_in_customer == 0 ? 1 : ($max_id_internal_in_customer + 1);
         $result = [
             'img'                       => $action_download.$file->id,
             'img_src_new_point'         => \Yii::$app->urlManager->createAbsoluteUrl(['/']). 'blue_marker.png',
@@ -213,5 +210,20 @@ class FileCustomer extends \yii\db\ActiveRecord
                 //$exist_point->save();
             }
         }
+    }
+
+    static function getMaxIdInternal($id_customer) {
+        $sql = "
+        SELECT max(p.id_internal) 
+        FROM public.points as p
+        JOIN public.file_customer as fc ON fc.id = p.id_file_customer
+        WHERE fc.id_customer = :id_customer";
+        $point = Yii::$app->db->createCommand($sql)
+            ->bindValue(':id_customer', $id_customer)
+            ->queryOne();
+        if (is_null($point['max'])) {
+            return 1;
+        }
+        return $point['max'] + 1;
     }
 }
