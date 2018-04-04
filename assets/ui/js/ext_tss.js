@@ -14,19 +14,21 @@ jQuery(function($) {
 });
 
 jQuery(document).ready(function() {
-  if (elle_sliders_nfa == 1) {
-    jQuery(".sliders .desc").hide();    
-  } else {
-    jQuery(".sliders .title:first").addClass("active");
-    jQuery(".sliders .desc:not(:first)").hide();
-  }
-  jQuery(".sliders .title").click(function() {
-    jQuery(this).next("div.desc").slideToggle("slow").siblings("div.desc:visible").slideUp();
-    jQuery(this).toggleClass("active");
-    jQuery(this).siblings(".title").removeClass("active");
-  });
+
+  //if (elle_sliders_nfa == 1) {
+  //  jQuery(".sliders .desc").hide();
+  //} else {
+  //  jQuery(".sliders .title:first").addClass("active");
+  //  jQuery(".sliders .desc:not(:first)").hide();
+  //}
+  //jQuery(".sliders .title").click(function() {
+  //  jQuery(this).next("div.desc").slideToggle("slow").siblings("div.desc:visible").slideUp();
+  //  jQuery(this).toggleClass("active");
+  //  jQuery(this).siblings(".title").removeClass("active");
+  //});
 
   jQuery(".spoilers .title").click(function() {
+    //console.log('click');
     jQuery(this).next("div.desc").slideToggle("slow");
     jQuery(this).toggleClass("active");
   });
