@@ -39,7 +39,8 @@ var coefficient_y = null;
 
      position_root_element = getCoords(element);
 
-     const json = await getData(id_scheme_point_control);
+     const json = await  getData(id_scheme_point_control);
+
 
         points = json.points;
 
@@ -63,12 +64,6 @@ var coefficient_y = null;
                     //temp.style.left = position_root_element[0] + (point.x * coefficient_x) + 'px'
                     //temp.style.top = position_root_element[1] + (point.y * coefficient_y) + 'px';
 
-                    if (i == 1) {
-                        console.log(point.x);
-                        console.log(coefficient_x);
-                        console.log((point.x * coefficient_x));
-                    }
-
                     temp.style.left = (point.x * coefficient_x)  + 'px';
                     temp.style.top =  (point.y * coefficient_y)  + 'px';
                 } else {
@@ -81,20 +76,25 @@ var coefficient_y = null;
 
 //window.showPoints = showPoints;
 
- async function getData(id_scheme_point_control) {
+async function getData(id_scheme_point_control) {
      var params = jQuery.param({
          id_scheme_point_control: id_scheme_point_control
      });
-     const response = await fetch( base_url + '/manager/get-points-on-schema-point-control/?' + params//,
-         //{
-         //    method: "GET",
-         //    headers: {
-         //         "Content-Type": "application'json"
-         //    },
-         //    body: my_body
-         //}
-     );
-     return await response.json();
+     // const response = await fetch( base_url + '/manager/get-points-on-schema-point-control/?' + params//,
+     //     //{
+     //     //    method: "GET",
+     //     //    headers: {
+     //     //         "Content-Type": "application'json"
+     //     //    },
+     //     //    body: my_body
+     //     //}
+     // );
+     // return await response.json();
+
+     const response = await axios.get(base_url + '/manager/get-points-on-schema-point-control/?' + params);
+     //console.log(await response.data);
+     //return response.data;
+    return response.data;
  }
 
 // window.addEventListener('scroll', function(e) {

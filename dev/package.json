@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-plugin-transform-regenerator": "^6.1.4",
     "babel-polyfill": "^6.26.0",
     "babel-preset-es2015": "^6.1.4",
