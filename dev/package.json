@@ -1,0 +1,30 @@
+{
+  "name": "awesome-async",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "babel-plugin-transform-regenerator": "^6.1.4",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.1.4",
+    "request": "^2.65.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.44",
+    "babel-plugin-syntax-async-functions": "^6.13.0",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.3",
+    "gulp-concat": "^2.6.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "*",
+    "gulp-sourcemaps": "^1.7.3",
+    "gulp-uglify": "^2.0.0",
+    "path": "^0.12.7"
+  },
+  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "main": "github.js"
+}
