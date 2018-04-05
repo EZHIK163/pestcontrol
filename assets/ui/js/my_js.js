@@ -301,16 +301,7 @@ var savePoint = async function() {
     //         body: my_body
     //     });
 
-    axios({
-        method: 'post',
-        url: base_url + "/manager/save-point/",
-        data: my_body,
-        headers: {
-            "Content-Type": "application/json"
-        }
-    });
-
-    //await axios.post(base_url + "/manager/save-point/", my_body);
+    axios.post(base_url + "/manager/save-point/", my_body);
 
     points = points.map(function(point) {
         point.is_new = false;
