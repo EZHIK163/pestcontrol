@@ -23,11 +23,13 @@
         <div class="desc">
             <div style="display: none" id="name_dropzone">inner-dropzone_<?= $scheme['id_file_customer']?></div>
             <div style="display: none" id="id_file_customer"><?= $scheme['id_file_customer']?></div>
-            <div id="inner-dropzone_<?=$scheme['id_file_customer']?>" class="my_name">
-                <?= Html::img($scheme['url'], [
-                    'alt' => $scheme['title'],
-                    //'onclick'    => 'showPoints("inner-dropzone_'.$scheme['id_file_customer'].'", '.$scheme['id_file_customer'].');'
-                ]) ?>
+            <div id="outer-dropzone2" class="dropzone">
+                <div id="inner-dropzone_<?=$scheme['id_file_customer']?>" class="dropzone">
+                    <?= Html::img($scheme['url'], [
+                        'alt' => $scheme['title'],
+                        //'onclick'    => 'showPoints("inner-dropzone_'.$scheme['id_file_customer'].'", '.$scheme['id_file_customer'].');'
+                    ]) ?>
+                </div>
             </div>
 
         </div>

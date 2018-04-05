@@ -7,19 +7,14 @@
     padding: 64px;
 }
 
-.dropzone {
-    background-color: #ccc;
-    border: dashed 4px transparent;
-    border-radius: 4px;
-
-    transition: background-color 0.3s;
+#outer-dropzone2 {
+    padding: 40px;
 }
 
-.my_name {
+.dropzone {
     background-color: #ccc;
-    border: dashed 4px transparent;
-    border-radius: 4px;
 
+    position: relative;
     transition: background-color 0.3s;
 }
 
@@ -48,22 +43,12 @@
     margin-top: -43px;
     color: #000;
 
-    transition: background-color 0.3s;
-}
-
-.not-drag-drop {
-    display: inline-block;
-
-    position: absolute;
-    max-height: 40px;
-    max-width: 40px;
-
-    margin-left: -16px;
-    margin-top: -43px;
-    color: #000;
+    min-height: 40px;
+    min-width: 40px;
 
     transition: background-color 0.3s;
 }
+
 
 .drag-drop.can-drop {
     color: #000;

@@ -98,8 +98,9 @@ class Files extends \yii\db\ActiveRecord
                 mkdir(self::getRootPath() . $folder , 0777);
             }
             $uploadedFile->saveAs(self::getRootPath() . $folder . $hash . '.' . $uploadedFile->extension);
-            return true;
+
         }
+        return true;
     }
 
     public static function getSupportExtensions() {

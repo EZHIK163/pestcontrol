@@ -86,6 +86,10 @@ class Customer extends \yii\db\ActiveRecord
         return ArrayHelper::map($customers,'id','name');
     }
 
+    static function getCustomerByIdUser($id_user_owner) {
+        return Customer::findOne(compact('id_user_owner'));
+    }
+
     public static function setIdUserOwner($id_customer, $id_user) {
         self::clearCustomerOnIdOwner($id_user);
         $customer = self::getCustomer($id_customer);
