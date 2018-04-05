@@ -292,14 +292,16 @@ var savePoint = async function() {
     });
 
     var my_body = JSON.stringify({id_file_customer:id_file_customer, points:newPoints});
-    fetch(base_url + "/manager/save-point/",
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: my_body
-        });
+    // fetch(base_url + "/manager/save-point/",
+    //     {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         },
+    //         body: my_body
+    //     });
+
+    axios.post(base_url + "/manager/save-point/", my_body);
 
     points = points.map(function(point) {
         point.is_new = false;
