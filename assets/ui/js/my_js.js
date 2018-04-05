@@ -79,7 +79,7 @@ var coefficient_y = null;
 
  }
 
-window.showPoints = showPoints;
+//window.showPoints = showPoints;
 
  async function getData(id_scheme_point_control) {
      var params = jQuery.param({
@@ -222,7 +222,7 @@ var setIdSchemaPointControl = function(id) {
     id_scheme_point_control = id;
 }
 
-window.setIdSchemaPointControl = setIdSchemaPointControl;
+//window.setIdSchemaPointControl = setIdSchemaPointControl;
 
 var savePoint = async function() {
 
@@ -332,10 +332,11 @@ var addPoint = function() {
 
 
 }
-window.addPoint = addPoint;
+//window.addPoint = addPoint;
 
 //getPoints();
-window.savePoint = savePoint;
+
+//window.savePoint = savePoint;
 
 // target elements with the "draggable" class
 interact('.draggable')
