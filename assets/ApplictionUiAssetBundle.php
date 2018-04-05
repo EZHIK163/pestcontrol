@@ -32,6 +32,7 @@ class ApplictionUiAssetBundle extends AssetBundle {
         //'js/watch.js',
         'js/new_my.js',
         'js/siblings.js',
+        'js/axios.min.js'
 
     ];
 
