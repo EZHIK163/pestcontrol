@@ -14,6 +14,7 @@ class ApplictionUiAssetBundle extends AssetBundle {
         'css/css_for_drag_n_drop.css'
     ];
     public $js = [
+        'js/polyfill.js',
         'js/bootstrap.js',
         'js/interact.min.js',
         //'js/caption.js',
@@ -29,8 +30,10 @@ class ApplictionUiAssetBundle extends AssetBundle {
         'js/slider.js',
         'js/template.js',
         //'js/watch.js',
-        'js/my_js.js',
+        'js/new_my.js',
+        //'js/my.js',
         'js/siblings.js',
+        'js/axios.min.js'
 
     ];
 

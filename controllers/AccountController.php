@@ -1,6 +1,7 @@
 <?php
 namespace app\controllers;
 
+use app\models\customer\Customer;
 use app\models\customer\FileCustomer;
 use app\models\tools\Tools;
 use app\models\widget\Widget;
@@ -17,8 +18,15 @@ class AccountController extends Controller {
     }
 
     public function actionScheme() {
-//        $id_scheme_point_control = 666;
-//        return $this->render('scheme', compact('id_scheme_point_control'));
+        $id = \Yii::$app->user->id;
+        $customer = Customer::getCustomerByIdUser($id);
+        if (is_null($customer)) {
+            $this->redirect('index');
+            return;
+        }
+        $scheme_point_control = FileCustomer::getSchemePointControlCustomer($customer->id);
+        $data_provider = Tools::wrapIntoDataProvider($scheme_point_control);
+        return $this->render('scheme', compact('data_provider'));
     }
 
     public function actionInfoOnMonitoring() {

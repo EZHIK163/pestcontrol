@@ -1,13 +1,12 @@
 ﻿var elle_sliders_nfa = 0;
-        jQuery(window).on('load',  function() {
-            //new JCaption('img.caption');
-        });
-        window.setInterval(function(){var r;try{r=window.XMLHttpRequest?new XMLHttpRequest():new ActiveXObject("Microsoft.XMLHTTP")}catch(e){}if(r){r.open("GET","/index.php?option=com_ajax&format=json",true);r.send(null)}},1740000);
-        jQuery(document).ready(function(){
-            jQuery('.hasTooltip').tooltip({"html": true,"container": "body"});
-        });
-        (function($){ window.addEvent('domready',function(){this.Slider87 = new DJImageSliderModule({id: '87', slider_type: 2, slide_size: 1000, visible_slides: 1, show_buttons: 1, show_arrows: 1, preload: 800},{auto: 1, transition: Fx.Transitions.linear, duration: 600, delay: 12600})}); })(document.id);
-
+        //jQuery(window).on('load',  function() {
+        //    //new JCaption('img.caption');
+        //});
+        //window.setInterval(function(){var r;try{r=window.XMLHttpRequest?new XMLHttpRequest():new ActiveXObject("Microsoft.XMLHTTP")}catch(e){}if(r){r.open("GET","/index.php?option=com_ajax&format=json",true);r.send(null)}},1740000);
+        //jQuery(document).ready(function(){
+        //    jQuery('.hasTooltip').tooltip({"html": true,"container": "body"});
+        //});
+        //(function($){ window.addEvent('domready',function(){this.Slider87 = new DJImageSliderModule({id: '87', slider_type: 2, slide_size: 1000, visible_slides: 1, show_buttons: 1, show_arrows: 1, preload: 800},{auto: 1, transition: Fx.Transitions.linear, duration: 600, delay: 12600})}); })(document.id);
 
 
 var points = [];
@@ -30,31 +29,43 @@ var coefficient_x = null;
 
 var coefficient_y = null;
 
- var showPoints = async function showPoints(id, id_scheme_point_control) {
+ var showPoints = async function showPoints(id, id_scheme_point_control_local) {
+    setIdSchemaPointControl(id_scheme_point_control_local);
      var element = document.getElementById(id);
      //var position = element.getBoundingClientRect();
         //console.log(id);
         //console.log(id_scheme_point_control);
 
+
      position_root_element = getCoords(element);
 
-     const json = await getData(id_scheme_point_control);
+     const json = await  getData(id_scheme_point_control);
+
 
         points = json.points;
 
         coefficient_x = $('#' + id).width() / 100;
         coefficient_y = $('#' + id).height() / 100;
 
+    var outer_element = document.getElementById('outer-dropzone2');
+    var style = window.getComputedStyle(outer_element);
+
+    var padding_left = Number(style.getPropertyValue('padding-left').replace('px', ''));
+    var padding_top = Number(style.getPropertyValue('padding-top').replace('px', ''));
+
         //console.log(coefficient_x); console.log(coefficient_y);
         if (points.length > 0) {
             points.forEach(function (point, i, points) {
-                var element = document.getElementById(prefix_point_id + point.id_internal);
+                var element = document.getElementById(prefix_point_id + id_scheme_point_control + point.id_internal);
                 if (element == null) {
-                    $('#' + id).append('<div data-toggle="tooltip" data-placement="top" title="' + point.id_internal + '" class="not-drag-drop" id="' + prefix_point_id + point.id_internal + '"><img src="' + point.img_src + '"/><p class="text_in_marker">' + point.id_internal + '</p></div>');
+                    $('#' + id).append('<div data-toggle="tooltip" data-placement="top" title="' + point.id_internal + '" class="drag-drop" id="' + prefix_point_id + id_scheme_point_control + point.id_internal + '"><img src="' + point.img_src + '"/><p class="text_in_marker">' + point.id_internal + '</p></div>');
 
-                    var temp = document.getElementById(prefix_point_id + point.id_internal);
-                    temp.style.left = position_root_element[0] + (point.x * coefficient_x) + 'px'
-                    temp.style.top = position_root_element[1] + (point.y * coefficient_y) + 'px';
+                    var temp = document.getElementById(prefix_point_id + id_scheme_point_control + point.id_internal);
+                    //temp.style.left = position_root_element[0] + (point.x * coefficient_x) + 'px'
+                    //temp.style.top = position_root_element[1] + (point.y * coefficient_y) + 'px';
+
+                    temp.style.left = (point.x * coefficient_x)  + 'px';
+                    temp.style.top =  (point.y * coefficient_y)  + 'px';
                 } else {
                     element.remove();
                 }
@@ -63,22 +74,27 @@ var coefficient_y = null;
 
  }
 
-window.showPoints = showPoints;
+//window.showPoints = showPoints;
 
- async function getData(id_scheme_point_control) {
+async function getData(id_scheme_point_control) {
      var params = jQuery.param({
          id_scheme_point_control: id_scheme_point_control
      });
-     const response = await fetch( base_url + '/manager/get-points-on-schema-point-control/?' + params//,
-         //{
-         //    method: "GET",
-         //    headers: {
-         //         "Content-Type": "application'json"
-         //    },
-         //    body: my_body
-         //}
-     );
-     return await response.json();
+     // const response = await fetch( base_url + '/manager/get-points-on-schema-point-control/?' + params//,
+     //     //{
+     //     //    method: "GET",
+     //     //    headers: {
+     //     //         "Content-Type": "application'json"
+     //     //    },
+     //     //    body: my_body
+     //     //}
+     // );
+     // return await response.json();
+
+     const response = await axios.get(base_url + '/manager/get-points-on-schema-point-control/?' + params);
+     //console.log(await response.data);
+     //return response.data;
+    return response.data;
  }
 
 // window.addEventListener('scroll', function(e) {
@@ -108,14 +124,14 @@ window.showPoints = showPoints;
 
 async function getPoints() {
     const json = await getData(id_scheme_point_control);
-    console.log(json);
+    //console.log(json);
     max_id_internal_in_customer = json.max_id_internal_in_customer;
     img_src_new_point = json.img_src_new_point;
     id_file_customer = json.id_file_customer;
 
     points = json.points;
 
-    $('#main_div').append('<div id="outer-dropzone"></div>');
+    $('#main_div').append('<div id="outer-dropzone" class="dropzone"></div>');
     $('#outer-dropzone').append('<div id="inner-dropzone" class="dropzone"><img id="root_img" onLoad="loadPoints();"  src="' + json.img +'"/></div>');
 
 
@@ -124,26 +140,58 @@ async function getPoints() {
 
 function loadPoints() {
     var element = document.getElementById('inner-dropzone');
+    var outer_element = document.getElementById('outer-dropzone');
     //var position = element.getBoundingClientRect();
 
     if (element == null) {
         console.log('elem is null in getPoints');
     }
+
     position_root_element = getCoords(element);
-    //console.log(getCoords(element));
-    //console.log(findPos(element));
+    //position_outer_element = getCoords(outer_element);
+    //console.log(position_root_element);
+    //console.log(position_outer_element);
+    //console.log(position_root_element[0] - position_outer_element[0]);
+    //console.log(position_root_element[1] - position_outer_element[1]);
+
+    //offset_x = position_root_element[0] - position_outer_element[0];
+    //offset_y = position_root_element[1] - position_outer_element[1]
+
+    var style = window.getComputedStyle(outer_element);
+
+    var padding_left = Number(style.getPropertyValue('padding-left').replace('px', ''));
+    var padding_top = Number(style.getPropertyValue('padding-top').replace('px', ''));
+    //console.log(padding_left);
+    //console.log(padding_top);
 
     coefficient_x = $('#inner-dropzone').width() / 100;
     coefficient_y = $('#inner-dropzone').height() / 100;
 
+    //inner_width = $('#inner-dropzone').width();
+    //inner_height = $('#inner-dropzone').height();
+
+    //offset_x = padding_left / ($('#outer-dropzone').width() / 100);
+    //offset_y = padding_top / ($('#outer-dropzone').height() / 100);
+
+    //console.log(outer_width);
+    //console.log(outer_height);
+    //console.log(outer_coefficient_x);
+    //console.log(outer_coefficient_y);
+
+
+
     //console.log(coefficient_x); console.log(coefficient_y);
     if (points.length > 0) {
         points.forEach(function (point, i, points) {
-            $('#main_div').append('<div data-toggle="tooltip" data-placement="top" title="' + point.id_internal + '" class="draggable drag-drop" id="' + prefix_point_id + point.id_internal + '"><img src="' + point.img_src + '"/><p class="text_in_marker">' + point.id_internal + '</p></div>');
+            $('#outer-dropzone').append('<div data-toggle="tooltip" data-placement="top" title="' + point.id_internal + '" class="draggable drag-drop" id="' + prefix_point_id + point.id_internal + '"><img src="' + point.img_src + '"/><p class="text_in_marker">' + point.id_internal + '</p></div>');
 
             var temp = document.getElementById(prefix_point_id + point.id_internal);
-            temp.style.left = position_root_element[0] + (point.x * coefficient_x) + 'px'
-            temp.style.top = position_root_element[1] + (point.y* coefficient_y)  + 'px';
+
+            temp.style.left = (point.x * coefficient_x) + padding_left + 'px';
+            temp.style.top =  (point.y * coefficient_y)  + padding_top + 'px';
+
+            //temp.style.left = point.x + offset_x + 'px';
+            //temp.style.top = point.y + offset_y + 'px';
         });
     }
 }
@@ -174,7 +222,7 @@ var setIdSchemaPointControl = function(id) {
     id_scheme_point_control = id;
 }
 
-window.setIdSchemaPointControl = setIdSchemaPointControl;
+//window.setIdSchemaPointControl = setIdSchemaPointControl;
 
 var savePoint = async function() {
 
@@ -193,8 +241,9 @@ var savePoint = async function() {
     var newPoints = points.map(function(point) {
         var my_div = document.getElementById(prefix_point_id + point.id_internal);
         var position_div = getCoords(my_div);
+        //console.log(position_div);
         //console.log(getCoords(temp));
-        //var position_div = temp.getBoundingClientRect();
+        //var position_div = my_div.getBoundingClientRect();
         //console.log(position_div);
         //var position_div = findPos(element);
         //console.log(point.id_internal);
@@ -226,8 +275,14 @@ var savePoint = async function() {
         //console.log(Math.abs(offset_y));
         //console.log(coefficient_y);
 
+        //console.log(position_div[0]);
+        //console.log(position_root_element[0]);
+        //console.log(Math.abs(offset_x));
+        //console.log(coefficient_x);
         var new_x = (position_div[0] - position_root_element[0] + Math.abs(offset_x)) / coefficient_x;
         var new_y = (position_div[1] - position_root_element[1] + Math.abs(offset_y)) / coefficient_y;
+        console.log(new_x);
+        console.log(new_y);
         if ((((new_x > (point.x + 1) || new_x < (point.x - 1))
                 || (new_y > (point.y + 1) || new_y < (point.y - 1))) && point.is_new == false) || point.is_new == true) {
             point.x = new_x;
@@ -237,14 +292,16 @@ var savePoint = async function() {
     });
 
     var my_body = JSON.stringify({id_file_customer:id_file_customer, points:newPoints});
-    fetch(base_url + "/manager/save-point/",
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: my_body
-        });
+    // fetch(base_url + "/manager/save-point/",
+    //     {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         },
+    //         body: my_body
+    //     });
+
+    axios.post(base_url + "/manager/save-point/", my_body);
 
     points = points.map(function(point) {
         point.is_new = false;
@@ -277,10 +334,11 @@ var addPoint = function() {
 
 
 }
-window.addPoint = addPoint;
+//window.addPoint = addPoint;
 
 //getPoints();
-window.savePoint = savePoint;
+
+//window.savePoint = savePoint;
 
 // target elements with the "draggable" class
 interact('.draggable')

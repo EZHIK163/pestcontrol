@@ -130,6 +130,12 @@ class FileCustomer extends \yii\db\ActiveRecord
         return $result;
     }
 
+    public static function getSchemePointControlCustomer($id_customer) {
+        $scheme_point_control = self::getFilesCustomer('scheme_point_control', $id_customer);
+        //$result = ArrayHelper::index($scheme_point_control, null, 'customer');
+        return $scheme_point_control;
+    }
+
     private static function getFilesForAdmin($code) {
         $file_customer_type = FileCustomerType::findOne(['code' => $code]);
         $result = [];
@@ -137,6 +143,28 @@ class FileCustomer extends \yii\db\ActiveRecord
             return $result;
         }
         $files = $file_customer_type->files;
+        $action_download = \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'site/download?id=';
+        foreach ($files as $file) {
+            $result [] = [
+                'id_file_customer'  => $file->id,
+                'title'             => $file->title,
+                'customer'          => $file->customer->name,
+                'date_create'       => $file->getDateTimeCreatedAt(),
+                'url'               => $action_download.$file->file->id
+            ];
+        }
+        return $result;
+    }
+
+    private static function getFilesCustomer($code, $id_customer) {
+        $file_customer_type = FileCustomerType::findOne(['code' => $code]);
+        $result = [];
+        if (!isset($file_customer_type->files)) {
+            return $result;
+        }
+        $files = $file_customer_type->getFiles()
+            ->where(['id_customer'   => $id_customer])
+            ->all();;
         $action_download = \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'site/download?id=';
         foreach ($files as $file) {
             $result [] = [
