@@ -5,6 +5,7 @@ use app\models\customer\Customer;
 use app\models\customer\CustomerForm;
 use app\models\customer\FileCustomer;
 use app\models\customer\FileCustomerType;
+use app\models\customer\SearchForm;
 use app\models\file\Files;
 use app\models\file\UploadForm;
 use app\models\tools\Tools;
@@ -70,9 +71,17 @@ class ManagerController extends Controller {
     }
 
     public function actionSchemePointControl() {
-        $scheme_point_control = FileCustomer::getSchemePointControlForAdmin();
+
+        $model = new SearchForm();
+
+        if (\Yii::$app->request->isPost) {
+            $model->query = \Yii::$app->request->post('SearchForm')['query'];
+        }
+
+        $scheme_point_control = $model->getResultsForAdmin();
+
         $data_provider = Tools::wrapIntoDataProvider($scheme_point_control);
-        return $this->render('scheme-point-control', compact('data_provider'));
+        return $this->render('scheme-point-control', compact('data_provider', 'model'));
     }
 
     public function actionEditSchemaPointControl() {

@@ -2,9 +2,25 @@
     <?php
     use yii\helpers\Html;
     $schema = $model;
+    $base_url = \Yii::$app->urlManager->createAbsoluteUrl(['/']);
     ?>
     <div  class="title">
-        <div class="scheme_title"><?php echo $schema['title']; ?></div>
+        <div class="scheme_title"><?php echo $schema['title']; ?>
+            <div class="scheme_manage">
+            |
+            <?=Html::tag('a', 'Выгрузить отчет',
+                [
+                    'href'  => $base_url.'account/generate-report-schema-point-control?id='.$schema['id_file_customer'],
+                    'target'    => '_blank',
+                ])?>
+            |
+            <?=Html::tag('a', 'Печать',
+                [
+                    'href'  => $base_url.'account/print-schema-point-control?id='.$schema['id_file_customer'],
+                    'target'    => '_blank',
+                ])?>
+            </div>
+        </div>
     </div>
     <div class="desc">
         <div style="display: none" id="name_dropzone">inner-dropzone_<?= $schema['id_file_customer']?></div>
@@ -15,6 +31,7 @@
                     'alt' => $schema['title'],
                     //'onclick'    => 'showPoints("inner-dropzone_'.$scheme['id_file_customer'].'", '.$scheme['id_file_customer'].');'
                 ]) ?>
+            </div>
             </div>
         </div>
 

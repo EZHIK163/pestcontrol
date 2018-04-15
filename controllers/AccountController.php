@@ -3,6 +3,7 @@ namespace app\controllers;
 
 use app\models\customer\Customer;
 use app\models\customer\FileCustomer;
+use app\models\customer\SearchForm;
 use app\models\tools\Tools;
 use app\models\widget\Widget;
 use yii\filters\AccessControl;
@@ -24,9 +25,17 @@ class AccountController extends Controller {
             $this->redirect('index');
             return;
         }
-        $scheme_point_control = FileCustomer::getSchemePointControlCustomer($customer->id);
+
+        $model = new SearchForm();
+
+        if (\Yii::$app->request->isPost) {
+            $model->query = \Yii::$app->request->post('SearchForm')['query'];
+        }
+
+        $scheme_point_control = $model->getResultsForAccount($customer->id);
+
         $data_provider = Tools::wrapIntoDataProvider($scheme_point_control);
-        return $this->render('scheme', compact('data_provider'));
+        return $this->render('scheme', compact('data_provider', 'model'));
     }
 
     public function actionInfoOnMonitoring() {
@@ -110,6 +119,15 @@ class AccountController extends Controller {
         }
 
         //TODO Реализовать генерацию отчета по выбранной схеме точек контроля
+    }
+
+    public function actionPrintSchemaPointControl() {
+        $id = \Yii::$app->request->get('id');
+        if (!isset($id)) {
+            throw new InvalidArgumentException();
+        }
+
+        //TODO Реализовать печать по выбранной схеме точек контроля
     }
 
     public function behaviors()

@@ -9,6 +9,10 @@
     <?php $count = 0; foreach ($model as $scheme) { ?>
         <div  class="title <?php if ($count == 0) { ?> active <?php } ?>">
             <div class="scheme_title"><?php echo $scheme['title']; ?></div>
+
+        </div>
+        <div class="desc">
+
             <div class="scheme_manage">
                 <?=Html::tag('a', 'Изменить',
                     ['href'  => 'edit-schema-point-control?id='.$scheme['id_file_customer']])?>
@@ -29,11 +33,20 @@
                         'target'    => '_blank',
                         'data-pjax'=>"0"
                     ])?>
+                |
+                <?=Html::tag('a', 'Печать',
+                    [
+                        //'href'  => $base_url.'account/print-schema-point-control?id='.$scheme['id_file_customer'],
+                        //'target'    => '_blank',
+                        'onclick'    => "CallPrint('print-content_{$scheme['id_file_customer']}');"
+                        //'onclick'    => "CallPrint('outer-dropzone2');"
+                    ])?>
             </div>
-        </div>
-        <div class="desc">
+
             <div style="display: none" id="name_dropzone">inner-dropzone_<?= $scheme['id_file_customer']?></div>
             <div style="display: none" id="id_file_customer"><?= $scheme['id_file_customer']?></div>
+
+            <div id="print-content_<?=$scheme['id_file_customer']?>" >
             <div id="outer-dropzone2" class="dropzone">
                 <div id="inner-dropzone_<?=$scheme['id_file_customer']?>" class="dropzone">
                     <?= Html::img($scheme['url'], [
@@ -41,6 +54,7 @@
                         //'onclick'    => 'showPoints("inner-dropzone_'.$scheme['id_file_customer'].'", '.$scheme['id_file_customer'].');'
                     ]) ?>
                 </div>
+            </div>
             </div>
 
         </div>

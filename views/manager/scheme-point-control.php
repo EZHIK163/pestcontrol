@@ -30,6 +30,18 @@ $this->title = "Управление схемами точек котроля"; 
                     </div>
 
                     <div itemprop="articleBody">
+                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
+
+                        <?php echo $form->field($model, 'query')
+                            ->label('Введите название схемы точек контроля'); ?>
+
+                        <button>Поиск</button>
+
+                        <?php ActiveForm::end() ?>
+
+                    </div>
+
+                    <div itemprop="articleBody">
                         <?php echo ListView::widget([
                         'dataProvider' => $data_provider,
                         'itemView' => 'scheme_customer',

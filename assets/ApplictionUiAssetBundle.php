@@ -33,7 +33,8 @@ class ApplictionUiAssetBundle extends AssetBundle {
         'js/new_my.js',
         //'js/my.js',
         'js/siblings.js',
-        'js/axios.min.js'
+        'js/axios.min.js',
+        'js/print.js'
 
     ];
 
