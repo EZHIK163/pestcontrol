@@ -1,5 +1,9 @@
 <div id="spoiler1" class="spoilers">
-    <?php use yii\helpers\Html; ?>
+    <?php
+    use yii\helpers\Html;
+
+    $base_url = \Yii::$app->urlManager->createAbsoluteUrl(['/']);
+    ?>
     <div class="general_title"><?php echo $model[0]['customer']; ?> </div>
     <div class="desc">
     <?php $count = 0; foreach ($model as $scheme) { ?>
@@ -15,6 +19,13 @@
                 <?=Html::tag('a', 'Скачать',
                     [
                         'href'      => $scheme['url'],
+                        'target'    => '_blank',
+                        'data-pjax'=>"0"
+                    ])?>
+                |
+                <?=Html::tag('a', 'Выгрузить отчет',
+                    [
+                        'href'  => $base_url.'account/generate-report-schema-point-control?id='.$scheme['id_file_customer'],
                         'target'    => '_blank',
                         'data-pjax'=>"0"
                     ])?>

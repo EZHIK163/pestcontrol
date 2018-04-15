@@ -181,6 +181,8 @@ class ManagerController extends Controller {
         return $this->render('edit-customer', compact('model', 'users'));
     }
 
+
+
     public function behaviors()
     {
         return [

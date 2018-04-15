@@ -95,6 +95,15 @@ class AccountController extends Controller {
         return parent::render($view, $params);
     }
 
+    public function actionGenerateReportSchemaPointControl() {
+        $id = \Yii::$app->request->get('id');
+        if (!isset($id)) {
+            throw new InvalidArgumentException();
+        }
+
+        //TODO Реализовать генерацию отчета по выбранной схеме точек контроля
+    }
+
     public function behaviors()
     {
         return [
