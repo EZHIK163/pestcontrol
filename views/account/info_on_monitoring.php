@@ -1,5 +1,7 @@
 <?php
 use dosamigos\chartjs\ChartJs;
+use yii\grid\GridView;
+
 $this->title = "Информация по мониторингу"; ?>
 <div class="row-fluid">
             <div id="sidebar" class="span3">
@@ -24,12 +26,47 @@ $this->title = "Информация по мониторингу"; ?>
 
                     <div itemprop="articleBody">
                         <div id="spoiler1" class="spoilers">
-                        <div class="title active">За текущий месяц</div>
+                        <div class="general_title">За текущий месяц</div>
                         <div class="desc">
-
+                            <?= GridView::widget([
+                                'dataProvider' => $data_provider_start_month,
+                                'columns' => [
+                                    ['class' => 'yii\grid\SerialColumn'],
+                                    [
+                                        'attribute' => 'full_name',
+                                        'header'    => 'Дезинфектор'
+                                    ],
+                                    [
+                                        'attribute' => 'status',
+                                        'header'    => 'Статус'
+                                    ],
+                                    [
+                                        'attribute' => 'date_check',
+                                        'header'    => 'Дата проверки'
+                                    ]
+                                ]
+                            ]); ?>
                         </div>
-                        <div class="title active">За текущий год</div>
+                        <div class="general_title">За текущий год</div>
                         <div class="desc">
+                            <?= GridView::widget([
+                                'dataProvider' => $data_provider_start_year,
+                                'columns' => [
+                                    ['class' => 'yii\grid\SerialColumn'],
+                                    [
+                                        'attribute' => 'full_name',
+                                        'header'    => 'Дезинфектор'
+                                    ],
+                                    [
+                                        'attribute' => 'status',
+                                        'header'    => 'Статус'
+                                    ],
+                                    [
+                                        'attribute' => 'date_check',
+                                        'header'    => 'Дата проверки'
+                                    ]
+                                ]
+                            ]); ?>
                         </div>
                         </div>
                     </div>

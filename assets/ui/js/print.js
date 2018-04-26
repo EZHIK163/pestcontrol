@@ -8,7 +8,7 @@
     WinPrint.document.write('</div>');
     WinPrint.document.close();
     WinPrint.focus();
-    //WinPrint.print();
-    //WinPrint.close();
+    WinPrint.print();
+    WinPrint.close();
     //prtContent.innerHTML=strOldOne;
 }

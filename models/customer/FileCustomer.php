@@ -145,8 +145,14 @@ class FileCustomer extends \yii\db\ActiveRecord
         }
 
         if (!empty($search)) {
+//            $files = $file_customer_type->getFiles()
+//                ->where(['like', 'title', '%'.$search.'%', false])
+//                ->all();
             $files = $file_customer_type->getFiles()
-                ->where(['like', 'title', '%'.$search.'%', false])
+                ->leftJoin('public.points', 'points.id_file_customer = file_customer.id')
+                ->andWhere(['or',
+                    ['like', 'file_customer.title', '%'.$search.'%', false],
+                    ['points.id_internal' => $search]])
                 ->all();
         } else {
             $files = $file_customer_type->getFiles()->all();
@@ -174,8 +180,11 @@ class FileCustomer extends \yii\db\ActiveRecord
 
         if (!empty($search)) {
             $files = $file_customer_type->getFiles()
-                ->where(['id_customer'   => $id_customer])
-                ->where(['like', 'title', '%'.$search.'%', false])
+                ->leftJoin('public.points', 'points.id_file_customer = file_customer.id')
+                ->where(['file_customer.id_customer'   => $id_customer])
+                ->andWhere(['or',
+                    ['like', 'file_customer.title', '%'.$search.'%', false],
+                    ['points.id_internal' => $search]])
                 ->all();
         } else {
             $files = $file_customer_type->getFiles()

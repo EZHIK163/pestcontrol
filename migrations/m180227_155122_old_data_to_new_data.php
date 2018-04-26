@@ -327,7 +327,10 @@ class m180227_155122_old_data_to_new_data extends Migration
             $events = $db_old->createCommand($sql)
                 ->queryAll();
             foreach ($events as $event) {
-                $updated_at = $created_at = \Yii::$app->formatter->asTimestamp(date('Y-d-m h:i:s'));
+                if (!isset($event['created'])) {
+                    $event['created'] = $event['Created'];
+                }
+                $updated_at = $created_at = \Yii::$app->formatter->asTimestamp(new DateTime($event['created']));
                 if ($event['executor'] == 666
                     or $event['executor'] == 110
                     or $event['executor'] == 0) {

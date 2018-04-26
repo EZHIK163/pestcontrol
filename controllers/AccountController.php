@@ -2,6 +2,7 @@
 namespace app\controllers;
 
 use app\models\customer\Customer;
+use app\models\customer\Events;
 use app\models\customer\FileCustomer;
 use app\models\customer\SearchForm;
 use app\models\tools\Tools;
@@ -39,7 +40,21 @@ class AccountController extends Controller {
     }
 
     public function actionInfoOnMonitoring() {
-        return $this->render('info_on_monitoring');
+
+        $id = \Yii::$app->user->id;
+        $customer = Customer::getCustomerByIdUser($id);
+        if (is_null($customer)) {
+            $this->redirect('index');
+            return;
+        }
+
+        $events = Events::getEventsCurrentMonth($customer->id);
+
+        $data_provider_start_month = Tools::wrapIntoDataProvider($events, false);
+
+        $events = Events::getEventsCurrentYear($customer->id);
+        $data_provider_start_year = Tools::wrapIntoDataProvider($events, false);
+        return $this->render('info_on_monitoring', compact('data_provider_start_month', 'data_provider_start_year'));
     }
 
     public function actionReportOnPoint() {
