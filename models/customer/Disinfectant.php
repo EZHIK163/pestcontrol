@@ -98,12 +98,12 @@ class Disinfectant extends \yii\db\ActiveRecord
             ->where(['events.id_customer'  => $id_customer]);
         if (!is_null($end_to_time)) {
             $events = $events
-                ->where(['>=', 'events.created_at', $start_from_time])
-                ->where(['<', 'events.created_at', $end_to_time])
+                ->andWhere(['>=', 'events.created_at', $start_from_time])
+                ->andWhere(['<', 'events.created_at', $end_to_time])
                 ->asArray()
                 ->all();
         } else {
-            $events = $events->where(['>=', 'events.created_at', $start_from_time])
+            $events = $events->andWhere(['>=', 'events.created_at', $start_from_time])
                 ->asArray()
                 ->all();
         }

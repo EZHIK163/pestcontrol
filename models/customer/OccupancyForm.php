@@ -21,6 +21,12 @@ class OccupancyForm extends Model
         ];
     }
 
+    public function __construct()
+    {
+        $this->date_from = (new \DateTime())->format('01.m.Y');
+        $this->date_to = (new \DateTime())->format('d.m.Y');
+    }
+
     /**
      * @return array|bool
      */

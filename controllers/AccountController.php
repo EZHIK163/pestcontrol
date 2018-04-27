@@ -60,37 +60,39 @@ class AccountController extends Controller {
     }
 
     public function actionReportOnPoint() {
-        $labels = ["Приманка не тронута", "Частичная замена приманки", "Полная замена приманки", "Пойман вредитель"];
-        $data_all_periods = [
-            'labels' => $labels,
-            'datasets' => [
-                [
-                    'label' => "My First dataset",
-                    'backgroundColor' => "rgba(179,181,198,0.2)",
-                    'borderColor' => "rgba(179,181,198,1)",
-                    'pointBackgroundColor' => "rgba(179,181,198,1)",
-                    'pointBorderColor' => "#fff",
-                    'pointHoverBackgroundColor' => "#fff",
-                    'pointHoverBorderColor' => "rgba(179,181,198,1)",
-                    'data' => [65, 59, 90, 81, 56, 55, 40]
-                ]
-            ]
-        ];
-        $data_current_month = [
-            'labels' => $labels,
-            'datasets' => [
-                [
-                    'label' => "My First dataset",
-                    'backgroundColor' => "rgba(179,181,198,0.2)",
-                    'borderColor' => "rgba(179,181,198,1)",
-                    'pointBackgroundColor' => "rgba(179,181,198,1)",
-                    'pointBorderColor' => "#fff",
-                    'pointHoverBackgroundColor' => "#fff",
-                    'pointHoverBorderColor' => "rgba(179,181,198,1)",
-                    'data' => [65, 59, 90, 81, 56, 55, 40]
-                ]
-            ]
-        ];
+        $id = \Yii::$app->user->id;
+        $customer = Customer::getCustomerByIdUser($id);
+
+        if (is_null($customer)) {
+            $this->redirect('index');
+            return;
+        }
+
+//        $labels = ["Приманка не тронута", "Частичная замена приманки", "Полная замена приманки", "Пойман вредитель"];
+//        $data_all_periods = [
+//            'labels' => $labels,
+//            'datasets' => [
+//                [
+//                    'label' => "My First dataset",
+//                    'data' => [65, 59, 90, 81, 56, 55, 40]
+//                ]
+//            ]
+//        ];
+//        $data_current_month = [
+//            'labels' => $labels,
+//            'datasets' => [
+//                [
+//                    'label' => "My First dataset",
+//                    'data' => [65, 59, 90, 81, 56, 55, 40]
+//                ]
+//            ]
+//        ];
+
+
+        $data_current_month = Events::getPointReportCurrentMonth($customer->id);
+
+        $data_all_periods = Events::getPointReportAllPeriod($customer->id);
+
         return $this->render('report_on_point', compact('data_current_month', 'data_all_periods'));
     }
 
@@ -141,14 +143,13 @@ class AccountController extends Controller {
     }
 
     public function actionOccupancySchedule() {
+
         $id = \Yii::$app->user->id;
         $customer = Customer::getCustomerByIdUser($id);
         if (is_null($customer)) {
             $this->redirect('index');
             return;
         }
-
-
 
         $current_year = Events::getOccupancyScheduleCurrentYear($customer->id);
         $previous_year = Events::getOccupancySchedulePreviousYear($customer->id);
@@ -163,7 +164,17 @@ class AccountController extends Controller {
     }
 
     public function actionGeneralReport() {
-        return $this->render('general_report');
+
+        $id = \Yii::$app->user->id;
+        $customer = Customer::getCustomerByIdUser($id);
+        if (is_null($customer)) {
+            $this->redirect('index');
+            return;
+        }
+
+        $data_current_month = Events::getGeneralReportCurrentMonth($customer->id);
+
+        return $this->render('general_report', compact('data_current_month'));
     }
 
     public function actionCallEmployee() {

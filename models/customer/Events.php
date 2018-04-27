@@ -94,7 +94,7 @@ class Events extends \yii\db\ActiveRecord
             ->join('inner join', 'public.disinfectors', 'disinfectors.id = events.id_disinfector')
             ->join('inner join', 'public.point_status', 'point_status.id = events.id_point_status')
             ->where(['events.id_customer'  => $id_customer])
-            ->where(['>=', 'events.created_at', $start_current_month])
+            ->andWhere(['>=', 'events.created_at', $start_current_month])
             ->limit(500)
             ->asArray()
             ->all();
@@ -198,16 +198,16 @@ class Events extends \yii\db\ActiveRecord
             ->select($expressions)
             ->join('inner join', 'public.point_status', 'point_status.id = events.id_point_status')
             ->where(['events.id_customer'  => $id_customer])
-            ->where(['point_status.code'  => 'caught']);
+            ->andWhere(['point_status.code'  => 'caught']);
         if (!is_null($end_time)) {
             $events = $events
-                ->where(['>=', 'events.created_at', $from_time])
-                ->where(['<', 'events.created_at', $end_time])
+                ->andWhere(['>=', 'events.created_at', $from_time])
+                ->andWhere(['<', 'events.created_at', $end_time])
                 ->groupBy('extract(month from to_timestamp(events.created_at))')
                 ->asArray()
                 ->all();
         } else {
-            $events = $events->where(['>=', 'events.created_at', $from_time])
+            $events = $events->andWhere(['>=', 'events.created_at', $from_time])
                 ->groupBy('extract(month from to_timestamp(events.created_at))')
                 ->asArray()
                 ->all();
@@ -249,8 +249,6 @@ class Events extends \yii\db\ActiveRecord
         $end_time = \Yii::$app->formatter->asTimestamp($end_time);
 
         $events = self::getEventsForOccupancyFromAndToTime($id_customer, $from_time, $end_time);
-
-
 
         return self::preProcessingDataForGraphic($events, $label);
     }
@@ -304,6 +302,127 @@ class Events extends \yii\db\ActiveRecord
         }
         return [
             'labels'    => $labels,
+            'datasets'  => $datasets
+        ];
+    }
+
+    public static function getGeneralReportCurrentMonth($id_customer) {
+        $events = self::find()
+            ->select('point_status.code')
+            ->join('inner join', 'public.point_status', 'point_status.id = events.id_point_status')
+            ->where(['events.id_customer'  => $id_customer])
+            ->asArray()
+            ->all();
+
+        $events_free = 0;
+        $events_caught = 0;
+        foreach ($events as $item) {
+            switch($item['code']) {
+                case 'part_replace':
+                case 'not_touch':
+                case 'full_replace':
+                    $events_free++;
+                    break;
+                case 'caught':
+                    $events_caught++;
+                    break;
+            }
+        }
+
+        $datasets[0] = [
+            'label' => 'График заселенности за все время',
+            'data'  => [$events_free, $events_caught],
+            'backgroundColor'   => ["#3e95cd", "#8e5ea2"]
+        ];
+        return [
+            'labels'    => ['Свободно', 'Заселено'],
+            'datasets'  => $datasets
+        ];
+    }
+
+    public static function getPointReportCurrentMonth($id_customer) {
+
+        $start_current_month = date('Y-m-01');
+        $start_current_month = \Yii::$app->formatter->asTimestamp($start_current_month);
+
+        $events = self::find()
+            ->select('point_status.code')
+            ->join('inner join', 'public.point_status', 'point_status.id = events.id_point_status')
+            ->where(['events.id_customer'  => $id_customer])
+            ->andWhere(['>=', 'events.created_at', $start_current_month])
+            ->asArray()
+            ->all();
+
+        $events_part_replace = 0;
+        $events_not_touch = 0;
+        $events_full_replace = 0;
+        $events_caught = 0;
+        foreach ($events as $item) {
+            switch($item['code']) {
+                case 'part_replace':
+                    $events_part_replace++;
+                    break;
+                case 'not_touch':
+                    $events_not_touch++;
+                    break;
+                case 'full_replace':
+                    $events_full_replace++;
+                    break;
+                case 'caught':
+                    $events_caught++;
+                    break;
+            }
+        }
+        $datasets[0] = [
+            'label' => 'График заселенности за все время',
+            'data'  => [$events_not_touch, $events_part_replace, $events_full_replace, $events_caught],
+            'backgroundColor'   => ["#3e95cd", "#3463a2", "#894ea2", "green"]
+        ];
+        return [
+            'labels'    => ["Приманка не тронута", "Частичная замена приманки", "Полная замена приманки", "Пойман вредитель"],
+            'datasets'  => $datasets
+        ];
+    }
+
+    public static function getPointReportAllPeriod($id_customer) {
+
+        $start_current_month = date('Y-m-01');
+        $start_current_month = \Yii::$app->formatter->asTimestamp($start_current_month);
+
+        $events = self::find()
+            ->select('point_status.code')
+            ->join('inner join', 'public.point_status', 'point_status.id = events.id_point_status')
+            ->where(['events.id_customer'  => $id_customer])
+            ->asArray()
+            ->all();
+
+        $events_part_replace = 0;
+        $events_not_touch = 0;
+        $events_full_replace = 0;
+        $events_caught = 0;
+        foreach ($events as $item) {
+            switch($item['code']) {
+                case 'part_replace':
+                    $events_part_replace++;
+                    break;
+                case 'not_touch':
+                    $events_not_touch++;
+                    break;
+                case 'full_replace':
+                    $events_full_replace++;
+                    break;
+                case 'caught':
+                    $events_caught++;
+                    break;
+            }
+        }
+        $datasets[0] = [
+            'label' => 'График заселенности за все время',
+            'data'  => [$events_not_touch, $events_part_replace, $events_full_replace, $events_caught],
+            'backgroundColor'   => ["#3e95cd", "#3463a2", "#894ea2", "green"]
+        ];
+        return [
+            'labels'    => ["Приманка не тронута", "Частичная замена приманки", "Полная замена приманки", "Пойман вредитель"],
             'datasets'  => $datasets
         ];
     }

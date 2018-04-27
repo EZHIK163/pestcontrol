@@ -1,4 +1,6 @@
 <?php
+use dosamigos\chartjs\ChartJs;
+
 $this->title = "Отчет общей заселенности объекта вредителями"; ?>
 <div class="row-fluid">
             <div id="sidebar" class="span3">
@@ -22,6 +24,11 @@ $this->title = "Отчет общей заселенности объекта в
                     </div>
 
                     <div itemprop="articleBody">
+                        <?= ChartJs::widget([
+                            'type' => 'doughnut',
+                            'data' =>  $data_current_month
+                        ]);
+                        ?>
                     </div>
                 </div>
 
