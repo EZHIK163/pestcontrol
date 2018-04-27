@@ -386,9 +386,6 @@ class Events extends \yii\db\ActiveRecord
 
     public static function getPointReportAllPeriod($id_customer) {
 
-        $start_current_month = date('Y-m-01');
-        $start_current_month = \Yii::$app->formatter->asTimestamp($start_current_month);
-
         $events = self::find()
             ->select('point_status.code')
             ->join('inner join', 'public.point_status', 'point_status.id = events.id_point_status')
