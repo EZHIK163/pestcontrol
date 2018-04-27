@@ -1,5 +1,7 @@
 <?php
 use dosamigos\chartjs\ChartJs;
+use yii\grid\GridView;
+
 $this->title = "Отчет по дезсредствам"; ?>
 <div class="row-fluid">
             <div id="sidebar" class="span3">
@@ -24,13 +26,62 @@ $this->title = "Отчет по дезсредствам"; ?>
 
                     <div itemprop="articleBody">
                         <p><span style="font-family: impact,chicago; font-size: 14pt;"><span style="font-family: arial,helvetica,sans-serif;">Текущий месяц:</span></span></p>
-                        <p><span style="font-family: arial,helvetica,sans-serif; font-size: 14pt;"><span style="font-size: 12pt;"><div id="chart_107" style="display:inline-block"></div></span></span><span style="font-family: impact,chicago; font-size: 12pt;"><span style="font-family: arial,helvetica,sans-serif;">      <br /></span></span></p>
-                        <p> </p>
-                        <hr />
-                        <p> </p>
+                        <?= GridView::widget([
+                            'dataProvider' => $data_provider_current_month,
+                            'columns' => [
+                                ['class' => 'yii\grid\SerialColumn'],
+                                [
+                                    'attribute' => 'alt-klej',
+                                    'header'    => 'АЛТ-клей, кг'
+                                ],
+                                [
+                                    'attribute' => 'shturm_brickety',
+                                    'header'    => 'Штурм брикеты, кг'
+                                ],
+                                [
+                                    'attribute' => 'shturm_granuly',
+                                    'header'    => 'Штурм гранулы, кг'
+                                ],
+                                [
+                                    'attribute' => 'indan-block',
+                                    'header'    => 'Индан-блок, кг'
+                                ],
+
+                                [
+                                    'attribute' => 'rattidion',
+                                    'header'    => 'Раттидион, кг'
+                                ]
+                            ]
+                        ]); ?>
                         <p><span style="font-family: impact,chicago; font-size: 14pt;"><span style="font-family: arial,helvetica,sans-serif;">Предыдущий месяц:<br /></span></span></p>
-                        <p><span style="font-family: impact,chicago; font-size: 14pt;"><span style="font-family: arial,helvetica,sans-serif;"><span style="font-family: arial,helvetica,sans-serif; font-size: 12pt;"><div id="chart_108" style="display:inline-block"></div></span></span></span><span style="font-family: arial,helvetica,sans-serif; font-size: 12pt;">           <br /></span></p>
-                        <p> </p>
+                        <?= GridView::widget([
+                            'dataProvider' => $data_provider_previous_month,
+                            'columns' => [
+                                ['class' => 'yii\grid\SerialColumn'],
+                                [
+                                    'attribute' => 'alt-klej',
+                                    'header'    => 'АЛТ-клей, кг'
+                                ],
+                                [
+                                    'attribute' => 'shturm_brickety',
+                                    'header'    => 'Штурм брикеты, кг'
+                                ],
+                                [
+                                    'attribute' => 'shturm_granuly',
+                                    'header'    => 'Штурм гранулы, кг'
+                                ],
+                                [
+                                    'attribute' => 'indan-block',
+                                    'header'    => 'Индан-блок, кг'
+                                ],
+
+                                [
+                                    'attribute' => 'rattidion',
+                                    'header'    => 'Раттидион, кг'
+                                ]
+                            ]
+                        ]); ?>
+
                         <p><span style="font-family: arial,helvetica,sans-serif; font-size: 14pt;">Укажите месяц и год отчетности:</span></p>
                         <form action="andr/poisonsExport.php" method="post">
                             <p><input max="12" min="1" name="month" type="number" value="1" /></p>

@@ -4,7 +4,9 @@
         "codeception/codeception": "*",
         "fzaninotto/faker": "*",
         "yiisoft/yii2-gii": "*",
-        "2amigos/yii2-chartjs-widget": "~2.0"
+        "2amigos/yii2-chartjs-widget": "~2.0",
+        "2amigos/yii2-date-picker-widget": "^1.0",
+        "kartik-v/yii2-widget-datepicker": "@dev"
     },
     "repositories": [
         {

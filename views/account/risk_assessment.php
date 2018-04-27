@@ -1,4 +1,8 @@
 <?php
+use dosamigos\datepicker\DatePicker;
+use yii\grid\GridView;
+use yii\widgets\ActiveForm;
+
 $this->title = "Оценка рисков по точкам контроля"; ?>
 <div class="row-fluid">
             <div id="sidebar" class="span3">
@@ -22,25 +26,58 @@ $this->title = "Оценка рисков по точкам контроля"; ?
                     </div>
 
                     <div itemprop="articleBody">
-                        <table style="border-color: #127012; background-color: #127012;" border="1" cellspacing="1" cellpadding="5">
-                            <tbody>
-                            <tr>
-                                <td><div id="chart_53" style="display:inline-block"></div></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <p> </p>
-                        <hr />
-                        <p> </p>
-                        <table style="border-color: #ab1515; background-color: #ab1515;" border="1" cellspacing="1" cellpadding="5">
-                            <tbody>
-                            <tr>
-                                <td><div id="chart_54" style="display:inline-block"></div></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <p> </p>
-                    </div>
+
+                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
+                        <div class="datepicker" style="display: flex; text-align: center; justify-content: space-around;">
+                        <?= $form->field($model, 'date_from')->widget(
+                            DatePicker::class, [
+                            // inline too, not bad
+                            'inline' => true,
+                            'language'  => 'ru',
+                            // modify template for custom rendering
+                            'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+                            'clientOptions' => [
+                                'autoclose' => true,
+                                'format' => 'dd.mm.yyyy',
+                            ]
+                        ]);?>
+
+                            <?= $form->field($model, 'date_to')->widget(
+                                DatePicker::class, [
+                                // inline too, not bad
+                                'inline' => true,
+                                'language'  => 'ru',
+                                // modify template for custom rendering
+                                'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+                                'clientOptions' => [
+                                    'autoclose' => true,
+                                    'format' => 'dd.mm.yyyy',
+                                ]
+                            ]);?>
+                        </div>
+                        <button>Обновить</button>
+
+                        <?php ActiveForm::end() ?>
+
+                        <?= GridView::widget([
+                            'dataProvider' => $data_provider_green,
+                            'columns' => [
+                                [
+                                    'attribute' => 'id_external',
+                                    'header'    => 'Точки рекомендуемые для удаления или перемещения'
+                                ]
+                            ]
+                        ]); ?>
+
+                        <?= GridView::widget([
+                            'dataProvider' => $data_provider_red,
+                            'columns' => [
+                                [
+                                    'attribute' => 'id_external',
+                                    'header'    => 'Критические точки (особое внимание)'
+                                ]
+                            ]
+                        ]); ?>
                     </div>
 
                 <!-- End Content -->

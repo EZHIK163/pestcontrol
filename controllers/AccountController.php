@@ -2,8 +2,10 @@
 namespace app\controllers;
 
 use app\models\customer\Customer;
+use app\models\customer\Disinfectant;
 use app\models\customer\Events;
 use app\models\customer\FileCustomer;
+use app\models\customer\OccupancyForm;
 use app\models\customer\SearchForm;
 use app\models\tools\Tools;
 use app\models\widget\Widget;
@@ -93,17 +95,64 @@ class AccountController extends Controller {
     }
 
     public function actionReportOnMaterial() {
-        return $this->render('report_on_material');
+        $id = \Yii::$app->user->id;
+        $customer = Customer::getCustomerByIdUser($id);
+        if (is_null($customer)) {
+            $this->redirect('index');
+            return;
+        }
+
+        $disinfectant_current_month = Disinfectant::getCurrentMonth($customer->id);
+
+        $data_provider_current_month = Tools::wrapIntoDataProvider($disinfectant_current_month, false);
+
+        $disinfectant_previous_month = Disinfectant::getCurrentMonth($customer->id);
+
+        $data_provider_previous_month = Tools::wrapIntoDataProvider($disinfectant_previous_month, false);
+
+        return $this->render('report_on_material', compact('data_provider_current_month', 'data_provider_previous_month'));
     }
 
     public function actionRiskAssessment() {
-        return $this->render('risk_assessment');
+        $id = \Yii::$app->user->id;
+        $customer = Customer::getCustomerByIdUser($id);
+        if (is_null($customer)) {
+            $this->redirect('index');
+            return;
+        }
+
+        $model = new OccupancyForm();
+
+        $from_datetime = $to_datetime = null;
+        if (\Yii::$app->request->isPost) {
+            $from_datetime = $model->date_from = \Yii::$app->request->post('OccupancyForm')['date_from'];
+            $to_datetime = $model->date_to = \Yii::$app->request->post('OccupancyForm')['date_to'];
+        }
+
+        $green_risk = Events::getGreenRisk($customer->id, $from_datetime, $to_datetime);
+
+        $data_provider_green = Tools::wrapIntoDataProvider($green_risk, false);
+
+        $red_risk = Events::getRedRisk($customer->id, $from_datetime, $to_datetime);
+
+        $data_provider_red = Tools::wrapIntoDataProvider($red_risk, false);
+
+        return $this->render('risk_assessment', compact('data_provider_green', 'data_provider_red', 'model'));
     }
 
     public function actionOccupancySchedule() {
-        $current_year = [];
-        $previous_year = [];
-        $previous_previous_year = [];
+        $id = \Yii::$app->user->id;
+        $customer = Customer::getCustomerByIdUser($id);
+        if (is_null($customer)) {
+            $this->redirect('index');
+            return;
+        }
+
+
+
+        $current_year = Events::getOccupancyScheduleCurrentYear($customer->id);
+        $previous_year = Events::getOccupancySchedulePreviousYear($customer->id);
+        $previous_previous_year = Events::getOccupancySchedulePreviousPreviousYear($customer->id);
         return $this->render('occupancy_schedule', compact('current_year', 'previous_previous_year', 'previous_year'));
     }
 

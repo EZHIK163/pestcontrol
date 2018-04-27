@@ -1,5 +1,7 @@
 <?php
 use dosamigos\chartjs\ChartJs;
+use dosamigos\datepicker\DatePicker;
+
 $this->title = "График заселенности объекта"; ?>
 <div class="row-fluid">
             <div id="sidebar" class="span3">
@@ -23,19 +25,19 @@ $this->title = "График заселенности объекта"; ?>
                     </div>
 
                     <div itemprop="articleBody">
-                        <p><span style="color: #0000ff;"><strong>Текущий год</strong></span></p>
+
+     
+
                         <p><?= ChartJs::widget([
                             'type' => 'bar',
                             'data' => $current_year
                         ]);
                         ?></p>
-                        <p><strong><span style="color: #0000ff;">Предыдущий 2017 год</span></strong></p>
                         <p><?= ChartJs::widget([
                         'type' => 'bar',
                         'data' => $previous_year
                     ]);
                     ?></p>
-                        <p><strong><span style="color: #0000ff;">Предыдущий 2016 год</span></strong></p>
                         <p><?= ChartJs::widget([
                                 'type' => 'bar',
                                 'data' => $previous_previous_year

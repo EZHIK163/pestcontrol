@@ -217,6 +217,70 @@ class m180227_155122_old_data_to_new_data extends Migration
                 ->query();
         }
 
+        $this->createTable('disinfectant',
+            [
+                'id'            => 'pk',
+                'is_active'     => 'boolean DEFAULT true',
+                'description'   => 'string',
+                'code'          => 'string',
+                'value'         => 'string',
+                'created_at'    => 'integer',
+                'created_by'    => 'integer',
+                'updated_at'    => 'integer',
+                'updated_by'    => 'integer'
+            ]
+        );
+
+        $this->addForeignKey('disinfectant_created_by', 'disinfectant',
+            'created_by', 'auth.users', 'id');
+
+        $this->addForeignKey('disinfectant_updated_by', 'disinfectant',
+            'updated_by', 'auth.users', 'id');
+
+        $sql = "
+        SELECT * FROM poisoncalc ORDER BY id";
+        $poisoncalc = $db_old->createCommand($sql)
+            ->queryAll();
+
+        $sql = "
+        INSERT INTO public.disinfectant 
+        (description, code, value, created_at, created_by, updated_at, updated_by)
+        VALUES 
+        (:description, :code, :value, :created_at, :created_by, :updated_at, :updated_by)";
+
+        foreach ($poisoncalc as $poison) {
+            $updated_at = $created_at = \Yii::$app->formatter->asTimestamp(date('Y-d-m h:i:s'));
+
+            switch($poison['id']) {
+                case 1:
+                    $code = 'rattidion';
+                    break;
+                case 2:
+                    $code = 'indan-block';
+                    break;
+                case 3:
+                    $code = 'shturm_granuly';
+                    break;
+                case 4:
+                    $code = 'shturm_brickety';
+                    break;
+                case 5:
+                    $code = 'alt-klej';
+                    break;
+            }
+
+            $this->db->createCommand($sql)
+                ->bindValue(':description', $poison['pname'])
+                ->bindValue(':code', $code)
+                ->bindValue(':value', $poison['pvalue'])
+                ->bindValue(':created_at', $created_at)
+                ->bindValue(':created_by', $created_by)
+                ->bindValue(':updated_at', $updated_at)
+                ->bindValue(':updated_by', $updated_by)
+                ->query();
+        }
+
+
         $this->createTable('points',
             [
                 'id'            => 'pk',
@@ -379,7 +443,10 @@ class m180227_155122_old_data_to_new_data extends Migration
         $this->dropForeignKey('disinfector_created_by', 'disinfectors');
         $this->dropForeignKey('customer_updated_by', 'customers');
         $this->dropForeignKey('customer_created_by', 'customers');
+        $this->dropForeignKey('disinfectant_created_by', 'disinfectant');
+        $this->dropForeignKey('disinfectant_updated_by', 'disinfectant');
 
+        $this->dropTable('disinfectant');
         $this->dropTable('points');
         $this->dropTable('events');
         $this->truncateTable('customers');
