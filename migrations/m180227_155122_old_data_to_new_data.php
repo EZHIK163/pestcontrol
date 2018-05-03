@@ -403,6 +403,9 @@ class m180227_155122_old_data_to_new_data extends Migration
                 if ($event['executor'] == 777) {
                     $event['executor'] = 14;
                 }
+                if ($event['pointProp'] == 3 && $name_table == "\"Alpla_spb\"") {
+                    $index = 0;
+                }
                 $event['pointProp']++;
                 $event['pointNum']++;
                 $this->db->createCommand($sql_insert)

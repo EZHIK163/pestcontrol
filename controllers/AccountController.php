@@ -108,7 +108,7 @@ class AccountController extends Controller {
 
         $data_provider_current_month = Tools::wrapIntoDataProvider($disinfectant_current_month, false);
 
-        $disinfectant_previous_month = Disinfectant::getCurrentMonth($customer->id);
+        $disinfectant_previous_month = Disinfectant::getPreviousMonth($customer->id);
 
         $data_provider_previous_month = Tools::wrapIntoDataProvider($disinfectant_previous_month, false);
 

@@ -30,12 +30,16 @@ $this->title = "Отчет по точкам контроля"; ?>
                             ]);
                             ?></p>
                         <hr />
+                        <?php if ($data_current_month['is_view'] === true) { ?>
                         <p><span style="font-size: 14pt;">Информация за текущий месяц:</span></p>
                         <p><?= ChartJs::widget([
                                 'type' => 'doughnut',
                                 'data' => $data_current_month
                             ]);
                             ?></p>
+                        <?php } else {?>
+                            <p><span style="font-size: 14pt;">Информация за текущий месяц отсутствует</span></p>
+                        <?php } ?>
                         <hr />
                         <p><span style="font-size: 14pt;">Отчет по точкам<br /></span></p>
                         <p><span style="font-size: 8pt;"><div id="chart_40" style="display:inline-block"></div></span></p>

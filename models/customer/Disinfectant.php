@@ -81,12 +81,13 @@ class Disinfectant extends \yii\db\ActiveRecord
         $start_current_month = \Yii::$app->formatter->asTimestamp($start_current_month);
 
         $start_previous_month = $datetime_current_month->sub(\DateInterval::createFromDateString('1 month'));
+        $start_previous_month = \Yii::$app->formatter->asTimestamp($start_previous_month);
 
         return self::getStartFromTime($start_previous_month, $id_customer, $start_current_month);
     }
 
 
-    public function getStartFromTime($start_from_time, $id_customer, $end_to_time = null) {
+    public static function getStartFromTime($start_from_time, $id_customer, $end_to_time = null) {
 
         $disinfectants = self::find()
             ->asArray()
@@ -133,7 +134,7 @@ class Disinfectant extends \yii\db\ActiveRecord
         foreach ($disinfectants as &$disinfectant) {
             switch($disinfectant['code']) {
                 case 'alt-klej':
-                    $data[0][$disinfectant['code']] = count($events) * floatval($disinfectant['value']);
+                    $data[0][$disinfectant['code']] = $events_caught * floatval($disinfectant['value']);
                     //$disinfectant['count'] =
                     break;
                 case 'shturm_brickety':

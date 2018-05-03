@@ -353,6 +353,9 @@ class Events extends \yii\db\ActiveRecord
             ->asArray()
             ->all();
 
+        if (count($events) == 0) {
+            return ['is_view'   => false];
+        }
         $events_part_replace = 0;
         $events_not_touch = 0;
         $events_full_replace = 0;
@@ -374,13 +377,14 @@ class Events extends \yii\db\ActiveRecord
             }
         }
         $datasets[0] = [
-            'label' => 'График заселенности за все время',
+            'label' => 'Отчет по точкам контроля за месяц',
             'data'  => [$events_not_touch, $events_part_replace, $events_full_replace, $events_caught],
             'backgroundColor'   => ["#3e95cd", "#3463a2", "#894ea2", "green"]
         ];
         return [
             'labels'    => ["Приманка не тронута", "Частичная замена приманки", "Полная замена приманки", "Пойман вредитель"],
-            'datasets'  => $datasets
+            'datasets'  => $datasets,
+            'is_view'   => true
         ];
     }
 
@@ -414,7 +418,7 @@ class Events extends \yii\db\ActiveRecord
             }
         }
         $datasets[0] = [
-            'label' => 'График заселенности за все время',
+            'label' => 'Отчет по точкам контроля за все время',
             'data'  => [$events_not_touch, $events_part_replace, $events_full_replace, $events_caught],
             'backgroundColor'   => ["#3e95cd", "#3463a2", "#894ea2", "green"]
         ];
