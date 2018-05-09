@@ -15,7 +15,7 @@ class CustomerForm extends Model {
     {
         return [
             [['id_owner', 'id'], 'number'],
-            [['name', 'contacts', 'id_owner', 'contacts'], 'required'],
+            [['name', 'id_owner', 'contacts'], 'required'],
             [['name'], 'string', 'max' => 50],
         ];
     }

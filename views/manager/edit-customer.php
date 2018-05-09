@@ -45,12 +45,12 @@ $this->title = "Изменение пользователя"; ?>
                     echo 'Управление контактами<br/>';
                     echo $form->field($model, 'contacts')->widget(MultipleInput::class, [
                         'max' => 10,
-                        'cloneButton' => true,
                         'columns' => [
                             [
                                 'name'  => 'id',
                                 'type'  => 'textInput',
                                 'title' => 'ID',
+                                'defaultValue'  => '0',
                                 'options'   => [
                                     'style'     => 'width: 10px',
                                     'readonly'  => true

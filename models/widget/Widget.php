@@ -61,8 +61,12 @@ class Widget {
                     'name' => 'Управление точками'
                 ],
                 [
-                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/manage-material',
+                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/manage-disinfectants',
                     'name' => 'Управление дезсредствами'
+                ],
+                [
+                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/manage-disinfectants-on-customers',
+                    'name' => 'Дезсредства клиентов'
                 ],
                 [
                     'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/manage-events',

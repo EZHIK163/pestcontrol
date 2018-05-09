@@ -3,8 +3,12 @@ namespace app\controllers;
 
 use app\models\customer\Customer;
 use app\models\customer\CustomerForm;
+use app\models\customer\Disinfectant;
 use app\models\customer\FileCustomer;
 use app\models\customer\FileCustomerType;
+use app\models\customer\ManageDisinfectantsForm;
+use app\models\customer\ManagePointsForm;
+use app\models\customer\Points;
 use app\models\customer\SearchForm;
 use app\models\file\Files;
 use app\models\file\UploadForm;
@@ -191,6 +195,52 @@ class ManagerController extends Controller {
     }
 
 
+    public function actionManagePoints() {
+
+        $model = new ManagePointsForm();
+
+        $id_customer = null;
+        if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+            $id_customer = $model->id_customer;
+        }
+
+        $customers = Customer::getCustomerForDropDownList();
+
+        $points = Points::getPointsForManager($id_customer);
+        $data_provider = Tools::wrapIntoDataProvider($points);
+        return $this->render('manage-points', compact('data_provider', 'model', 'customers'));
+    }
+
+    public function actionManageDisinfectants() {
+
+        $disinfectants = Disinfectant::getDisinfectants();
+        $data_provider = Tools::wrapIntoDataProvider($disinfectants);
+        return $this->render('disinfectants', compact('data_provider'));
+    }
+
+    public function actionManageDisinfectantsOnCustomers() {
+        $users = Customer::getCustomersForManageDisinfectants();
+        $data_provider = Tools::wrapIntoDataProvider($users);
+        return $this->render('manage-disinfectants-on-customers', compact('data_provider'));
+    }
+
+    public function actionManageCustomerDisinfectant() {
+
+        $id = \Yii::$app->request->get('id');
+        if (!isset($id)) {
+            throw new InvalidArgumentException();
+        }
+
+        $model = new ManageDisinfectantsForm();
+
+        if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+            $model->updateDisinfectants($id);
+        }
+
+        $model->fetchDisinfectants($id);
+
+        return $this->render('manage-customer-disinfectant', compact('model'));
+    }
 
     public function behaviors()
     {
@@ -202,7 +252,8 @@ class ManagerController extends Controller {
                     [
                         'actions'=> ['users','upload-files','recommendations','delete-recommendation',
                             'scheme-point-control', 'edit-schema-point-control' ,'customers', 'add-customer',
-                            'delete-customer', 'edit-customer'],
+                            'delete-customer', 'edit-customer', 'manage-points', 'manage-disinfectants',
+                            'manage-disinfectants-on-customers', 'manage-customer-disinfectant'],
                         'roles'     => ['manager'],
                         'allow'     => true
                     ],

@@ -268,6 +268,7 @@ class m180227_155122_old_data_to_new_data extends Migration
                     $code = 'alt-klej';
                     break;
             }
+            $poison['pvalue'] = floatval(str_replace('руб', '', $poison['pvalue']));
 
             $this->db->createCommand($sql)
                 ->bindValue(':description', $poison['pname'])

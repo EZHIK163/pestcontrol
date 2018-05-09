@@ -3,7 +3,9 @@
 namespace app\models\customer;
 
 use app\models\user\UserRecord;
+use Composer\Package\Package;
 use Yii;
+use yii\base\Exception;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -35,6 +37,17 @@ class Customer extends \yii\db\ActiveRecord
     public function getContacts() {
         return $this->hasMany(CustomerContact::class, ['id_customer' => 'id'])
             ->where(['is_active'   => true]);
+    }
+
+    public function getDisinfectants() {
+        return $this->hasMany(Disinfectant::class, ['id' => 'id_disinfectant'])
+            ->viaTable('customer_disinfectant', ['id_customer' => 'id'],
+                function ($query) {
+                    /* @var $query \yii\db\ActiveQuery */
+
+                    $query->andWhere(['is_active' => true]);
+                })
+            ->andWhere(['is_active' => true]);
     }
     /**
      * @inheritdoc
@@ -110,6 +123,22 @@ class Customer extends \yii\db\ActiveRecord
             $customer->save();
         }
     }
+
+    static function getCustomersForManageDisinfectants() {
+        $customers = Customer::getCustomers();
+        $finish_customers = [];
+        foreach ($customers as &$customer) {
+            $disinfectants = $customer->disinfectants;
+
+            $str_disinfectants = implode(', ', $disinfectants);
+            $finish_customers [] = [
+                'id'            => $customer->id,
+                'name'          => $customer->name,
+                'disinfectants' => $str_disinfectants
+            ];
+        }
+        return $finish_customers;
+    }
     public static function getCustomersForManager() {
         $customers = Customer::getCustomers();
         $finish_customers = [];
@@ -144,4 +173,36 @@ class Customer extends \yii\db\ActiveRecord
         $customer = Customer::findOne($id);
         $customer->delete();
     }
+
+    static function getDisinfectantsCustomer($id) {
+        $customer = Customer::findOne($id);
+        $disinfectants = $customer->getDisinfectants()->asArray()->all();
+        return $disinfectants;
+    }
+
+    static function setDisinfectantsCustomer($id, $disinfectants) {
+        foreach ($disinfectants as $disinfectant) {
+            $customer_disinfectant = CustomerDisinfectant::findOne([
+                'id_disinfectant'    => $disinfectant['id'],
+                'id_customer'        => $id
+            ]);
+
+            if (is_null($customer_disinfectant) && $disinfectant['is_set'] == true) {
+                $new_customer_disinfectant = new CustomerDisinfectant();
+                $new_customer_disinfectant->id_customer = $id;
+                $new_customer_disinfectant->id_disinfectant = $disinfectant['id'];
+                $new_customer_disinfectant->save();
+            } else if (!is_null($customer_disinfectant) && $disinfectant['is_set'] == true) {
+                $customer_disinfectant->is_active = true;
+                $customer_disinfectant->save();
+            } else if (!is_null($customer_disinfectant) && $disinfectant['is_set'] == false){
+                $customer_disinfectant->is_active = false;
+                $customer_disinfectant->save();
+            } else {
+
+            }
+        }
+    }
+
+
 }

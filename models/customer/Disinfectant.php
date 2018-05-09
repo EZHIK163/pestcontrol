@@ -76,18 +76,6 @@ class Disinfectant extends \yii\db\ActiveRecord
         return self::getStartFromTime($start_timestamp, $end_timestamp, $id_customer);
     }
 
-//    public static function getPreviousMonth($id_customer) {
-//        $start_current_month = date('Y-m-01');
-//        $datetime_current_month = new \DateTime($start_current_month);
-//        $start_current_month = \Yii::$app->formatter->asTimestamp($start_current_month);
-//
-//        $start_previous_month = $datetime_current_month->sub(\DateInterval::createFromDateString('1 month'));
-//        $start_previous_month = \Yii::$app->formatter->asTimestamp($start_previous_month);
-//
-//        return self::getStartFromTime($start_previous_month, $id_customer, $start_current_month);
-//    }
-
-
     public static function getStartFromTime($start_from_time, $end_to_time, $id_customer) {
 
         $disinfectants = self::find()
@@ -150,5 +138,15 @@ class Disinfectant extends \yii\db\ActiveRecord
         }
 
         return $data;
+    }
+
+    static function getDisinfectants() {
+        $disinfectants = self::find()
+            ->select('id, description, value')
+            ->where(['is_active'    => true])
+            ->orderBy('id ASC')
+            ->asArray()
+            ->all();
+        return $disinfectants;
     }
 }

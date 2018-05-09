@@ -98,4 +98,23 @@ class Points extends \yii\db\ActiveRecord
             ->query();
         return true;
     }
+
+    static function getPointsForManager($id_customer) {
+
+        $points = self::find()
+            ->select('points.id, file_customer.title, points.id_internal')
+            ->join('inner join', 'public.file_customer', 'file_customer.id = points.id_file_customer')
+            ->andWhere(['points.is_active' => true])
+            ->andWhere(['file_customer.is_active' => true]);
+
+
+        if (!is_null($id_customer)) {
+            $points = $points->andWhere(['file_customer.id_customer'    => $id_customer]);
+        }
+        $points = $points
+            ->orderBy('points.id_internal ASC')
+            ->asArray()
+            ->all();
+        return $points;
+    }
 }
