@@ -2,7 +2,7 @@
 use dosamigos\chartjs\ChartJs;
 use yii\grid\GridView;
 
-$this->title = "Отчет по дезсредствам"; ?>
+$this->title = "Отчет по дезсредствам  {$name_customer}"; ?>
 <div class="row-fluid">
             <div id="sidebar" class="span3">
                 <div class="sidebar-nav">
@@ -21,7 +21,7 @@ $this->title = "Отчет по дезсредствам"; ?>
 
 
                     <div class="page-header">
-                        <h2 itemprop="name">Отчет по дезсредствам</h2>
+                        <h2 itemprop="name"><?= $this->title ?></h2>
                     </div>
 
                     <div itemprop="articleBody">

@@ -7,8 +7,8 @@ namespace Composer\Autoload;
 class ComposerStaticInitcfb75b7433e55bc5dcd2a77fc67c32d5
 {
     public static $files = array (
-        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
@@ -22,6 +22,12 @@ class ComposerStaticInitcfb75b7433e55bc5dcd2a77fc67c32d5
             'yii\\composer\\' => 13,
             'yii\\bootstrap\\' => 14,
             'yii\\' => 4,
+        ),
+        'u' => 
+        array (
+            'unclead\\multipleinput\\tests\\' => 28,
+            'unclead\\multipleinput\\examples\\' => 31,
+            'unclead\\multipleinput\\' => 22,
         ),
         'p' => 
         array (
@@ -100,6 +106,18 @@ class ComposerStaticInitcfb75b7433e55bc5dcd2a77fc67c32d5
         'yii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
+        ),
+        'unclead\\multipleinput\\tests\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/unclead/yii2-multiple-input/tests',
+        ),
+        'unclead\\multipleinput\\examples\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/unclead/yii2-multiple-input/examples',
+        ),
+        'unclead\\multipleinput\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/unclead/yii2-multiple-input/src',
         ),
         'phpDocumentor\\Reflection\\' => 
         array (

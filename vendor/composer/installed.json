@@ -3193,6 +3193,57 @@
         "description": "A small library for converting tokenized PHP source code into XML and potentially other formats"
     },
     {
+        "name": "unclead/yii2-multiple-input",
+        "version": "2.14.0",
+        "version_normalized": "2.14.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/unclead/yii2-multiple-input.git",
+            "reference": "dbfd58641ed2338c3771561fb8f726f56e337351"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/unclead/yii2-multiple-input/zipball/dbfd58641ed2338c3771561fb8f726f56e337351",
+            "reference": "dbfd58641ed2338c3771561fb8f726f56e337351",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4.0",
+            "yiisoft/yii2": ">=2.0.13"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "5.7.*"
+        },
+        "time": "2018-03-09T15:27:43+00:00",
+        "type": "yii2-extension",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "unclead\\multipleinput\\examples\\": "examples/",
+                "unclead\\multipleinput\\": "src/",
+                "unclead\\multipleinput\\tests\\": "tests/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Eugene Tupikov",
+                "email": "unclead.nsk@gmail.com"
+            }
+        ],
+        "description": "Widget for handle multiple inputs for an attribute of Yii2 framework model",
+        "keywords": [
+            "yii2",
+            "yii2 array input",
+            "yii2 multiple field",
+            "yii2 multiple input",
+            "yii2 tabular input"
+        ]
+    },
+    {
         "name": "webmozart/assert",
         "version": "1.3.0",
         "version_normalized": "1.3.0.0",

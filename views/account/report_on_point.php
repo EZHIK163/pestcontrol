@@ -1,6 +1,6 @@
 <?php
 use dosamigos\chartjs\ChartJs;
-$this->title = "Отчет по точкам контроля"; ?>
+$this->title = "Отчет по точкам контроля  {$name_customer}"; ?>
 <div class="row-fluid">
             <div id="sidebar" class="span3">
                 <div class="sidebar-nav">
@@ -19,7 +19,7 @@ $this->title = "Отчет по точкам контроля"; ?>
 
 
                     <div class="page-header">
-                        <h2 itemprop="name">Отчет по точкам контроля</h2>
+                        <h2 itemprop="name"><?= $this->title ?></h2>
                     </div>
 
                     <div itemprop="articleBody">

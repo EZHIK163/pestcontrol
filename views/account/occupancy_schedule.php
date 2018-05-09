@@ -2,7 +2,7 @@
 use dosamigos\chartjs\ChartJs;
 use dosamigos\datepicker\DatePicker;
 
-$this->title = "График заселенности объекта"; ?>
+$this->title = "График заселенности объекта {$name_customer}"; ?>
 <div class="row-fluid">
             <div id="sidebar" class="span3">
                 <div class="sidebar-nav">
@@ -21,7 +21,7 @@ $this->title = "График заселенности объекта"; ?>
 
 
                     <div class="page-header">
-                        <h2 itemprop="name">График заселенности объекта</h2>
+                        <h2 itemprop="name"><?= $this->title ?></h2>
                     </div>
 
                     <div itemprop="articleBody">

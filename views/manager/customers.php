@@ -36,8 +36,12 @@ $this->title = "Управление клиентами"; ?>
                             'header'    => 'Наименование'
                         ],
                         [
+                            'attribute' => 'contacts',
+                            'header'    => 'Контакты'
+                        ],
+                        [
                             'attribute' => 'name_owner',
-                            'header'    => 'Имя пользователя владельца'
+                            'header'    => 'Владелец'
                         ],
                         [
                             'header'    =>  'Действия',

@@ -7,7 +7,7 @@ use yii\widgets\ActiveForm;
 use yii\widgets\ListView;
 use yii\widgets\Pjax;
 
-$this->title = "Управление схемами точек котроля"; ?>
+$this->title = "Управление схемами точек котроля {$name_customer}"; ?>
 <div class="row-fluid">
     <div id="sidebar" class="span3">
         <div class="sidebar-nav">
@@ -26,7 +26,7 @@ $this->title = "Управление схемами точек котроля"; 
 
 
             <div class="page-header">
-                <h2 itemprop="name">Управление схемами точек котроля</h2>
+                <h2 itemprop="name"><?= $this->title ?></h2>
             </div>
 
             <div itemprop="articleBody">

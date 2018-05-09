@@ -9,13 +9,14 @@ class CustomerForm extends Model {
     public $id;
     public $name;
     public $id_owner;
+    public $contacts;
 
     public function rules()
     {
         return [
             [['id_owner', 'id'], 'number'],
-            [['name'], 'required'],
-            [['name'], 'string', 'max' => 20],
+            [['name', 'contacts', 'id_owner', 'contacts'], 'required'],
+            [['name'], 'string', 'max' => 50],
         ];
     }
 
@@ -25,6 +26,7 @@ class CustomerForm extends Model {
         $id_owner = isset($customer->id_user_owner) ? $customer->id_user_owner : null;
         $this->id_owner = $id_owner;
         $this->id = $customer->id;
+        $this->contacts = CustomerContact::getContacts($id);
 
     }
 
@@ -33,6 +35,8 @@ class CustomerForm extends Model {
         $customer->name = $this->name;
 
         Customer::setIdUserOwner($this->id, $this->id_owner);
+
+        CustomerContact::updateContacts($this->contacts, $this->id);
 
         $customer->save();
     }
@@ -45,4 +49,13 @@ class CustomerForm extends Model {
         Customer::setIdUserOwner($customer->id, $this->id_owner);
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'Номер',
+            'name' => 'Наименование',
+            'id_owner' => 'Владелец',
+            'contacts' => 'Контакты',
+        ];
+    }
 }

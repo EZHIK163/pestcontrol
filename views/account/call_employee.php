@@ -1,5 +1,5 @@
 <?php
-$this->title = "Вызов бригады пестконтроля"; ?>
+$this->title = "Вызов бригады пестконтроля {$name_customer}"; ?>
 <div class="row-fluid">
             <div id="sidebar" class="span3">
                 <div class="sidebar-nav">
@@ -18,7 +18,7 @@ $this->title = "Вызов бригады пестконтроля"; ?>
 
 
                     <div class="page-header">
-                        <h2 itemprop="name">Вызов бригады пестконтроля</h2>
+                        <h2 itemprop="name"><?= $this->title ?></h2>
                     </div>
 
                     <div itemprop="articleBody">

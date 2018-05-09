@@ -31,6 +31,11 @@ class Customer extends \yii\db\ActiveRecord
     public function getOwner() {
         return $this->hasOne(UserRecord::class, ['id' => 'id_user_owner']);
     }
+
+    public function getContacts() {
+        return $this->hasMany(CustomerContact::class, ['id_customer' => 'id'])
+            ->where(['is_active'   => true]);
+    }
     /**
      * @inheritdoc
      */
@@ -74,6 +79,7 @@ class Customer extends \yii\db\ActiveRecord
     public static function getCustomers() {
         return Customer::find()
             ->where(['is_active'    => true])
+            ->orderBy('id ASC')
             ->all();
     }
 
@@ -113,10 +119,22 @@ class Customer extends \yii\db\ActiveRecord
             } else {
                 $name_owner = '-';
             }
+            $contacts = $customer->contacts;
+            $finish_contacts = [];
+
+            foreach ($contacts as $contact) {
+                if (!empty($contact->phone)) {
+                    $finish_contacts []= $contact->name . ' - ' . $contact->email . ' - ' . $contact->phone;
+                } else {
+                    $finish_contacts []= $contact->name . ' - ' . $contact->email;
+                }
+            }
+            $str_contacts = implode(', ', $finish_contacts);
             $finish_customers [] = [
                 'id'            => $customer->id,
                 'name_owner'    => $name_owner,
-                'name'          => $customer->name
+                'name'          => $customer->name,
+                'contacts'      => $str_contacts
             ];
         }
         return $finish_customers;

@@ -1,8 +1,8 @@
 <?php
 
-use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use unclead\multipleinput\MultipleInput;
 
 $this->title = "Изменение пользователя"; ?>
 <div class="row-fluid">
@@ -41,6 +41,52 @@ $this->title = "Изменение пользователя"; ?>
                         [
                             'prompt' => 'Выберите пользователя владельца'
                         ]); ?>
+                <?php
+                    echo 'Управление контактами<br/>';
+                    echo $form->field($model, 'contacts')->widget(MultipleInput::class, [
+                        'max' => 10,
+                        'cloneButton' => true,
+                        'columns' => [
+                            [
+                                'name'  => 'id',
+                                'type'  => 'textInput',
+                                'title' => 'ID',
+                                'options'   => [
+                                    'style'     => 'width: 10px',
+                                    'readonly'  => true
+                                ]
+                            ],
+                            [
+                                'name'  => 'name',
+                                'type'  => 'textInput',
+                                'title' => 'Наименование',
+                                'options'   => [
+                                        'style' => 'width: 100px'
+                                ]
+                            ],
+                            [
+                                'name'  => 'email',
+                                'title' => 'Email',
+                                'type'  => 'textInput',
+                                'options'   => [
+                                    'style' => 'width: 100px',
+                                    'type'  => 'email'
+                                ]
+                            ],
+                            [
+                                'name'  => 'phone',
+                                'title' => 'Номер телефона',
+                                'type'  => \yii\widgets\MaskedInput::class,
+                                'options'   => [
+                                    'class' => 'input-phone',
+                                    'mask' => '9-999-999-99-99',
+                                ]
+                            ]
+                        ],
+                        'addButtonPosition' => MultipleInput::POS_HEADER, // show add button in the header
+                        'cloneButton'       => false
+                    ])->label(false);
+                ?>
 
 
                 <?php echo Html::submitButton('Изменить', ['class' => 'btn btn-primary']); ?>

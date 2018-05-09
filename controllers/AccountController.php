@@ -183,6 +183,10 @@ class AccountController extends Controller {
 
     public function render($view, $params = [])
     {
+        $id = \Yii::$app->user->id;
+        $customer = Customer::getCustomerByIdUser($id);
+        $name_customer = $customer->name;
+        $params = array_merge($params, compact('name_customer'));
         $params = array_merge($params, Widget::getWidgetsForAccount());
         return parent::render($view, $params);
     }

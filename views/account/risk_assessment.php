@@ -3,7 +3,7 @@ use dosamigos\datepicker\DatePicker;
 use yii\grid\GridView;
 use yii\widgets\ActiveForm;
 
-$this->title = "Оценка рисков по точкам контроля"; ?>
+$this->title = "Оценка рисков по точкам контроля {$name_customer}"; ?>
 <div class="row-fluid">
             <div id="sidebar" class="span3">
                 <div class="sidebar-nav">
@@ -22,7 +22,7 @@ $this->title = "Оценка рисков по точкам контроля"; ?
 
 
                     <div class="page-header">
-                        <h2 itemprop="name">Оценка рисков по точкам контроля</h2>
+                        <h2 itemprop="name"><?= $this->title ?></h2>
                     </div>
 
                     <div itemprop="articleBody">
