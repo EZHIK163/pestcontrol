@@ -55,6 +55,22 @@ class Widget {
                 [
                     'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/scheme-point-control',
                     'name' => 'Схемы точек контроля'
+                ],
+                [
+                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/manage-points',
+                    'name' => 'Управление точками'
+                ],
+                [
+                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/manage-material',
+                    'name' => 'Управление дезсредствами'
+                ],
+                [
+                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/manage-events',
+                    'name' => 'Управление событиями'
+                ],
+                [
+                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/history-call-employee',
+                    'name' => 'История вызовов бригад'
                 ]
             ];
         }

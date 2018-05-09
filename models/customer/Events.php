@@ -74,28 +74,29 @@ class Events extends \yii\db\ActiveRecord
         ];
     }
 
-    public static function getEventsCurrentMonth($id_customer) {
-        $start_current_month = date('Y-m-01');
-        $start_current_month = \Yii::$app->formatter->asTimestamp($start_current_month);
+    public static function getEventsFromPeriod($id_customer, $from_datetime, $to_datetime) {
 
-        return self::getEventsStartFromTime($start_current_month, $id_customer);
+        $start_timestamp = \Yii::$app->formatter->asTimestamp($from_datetime);
+        $end_timestamp = \Yii::$app->formatter->asTimestamp($to_datetime);
+
+        return self::getEventsStartFromTime($start_timestamp, $end_timestamp, $id_customer);
     }
 
-    public static function getEventsCurrentYear($id_customer) {
-        $start_current_year = date('Y-01-01');
-        $start_current_year = \Yii::$app->formatter->asTimestamp($start_current_year);
+//    public static function getEventsCurrentYear($id_customer) {
+//        $start_current_year = date('Y-01-01');
+//        $start_current_year = \Yii::$app->formatter->asTimestamp($start_current_year);
+//
+//        return self::getEventsStartFromTime($start_current_year, $id_customer);
+//    }
 
-        return self::getEventsStartFromTime($start_current_year, $id_customer);
-    }
-
-    public static function getEventsStartFromTime($start_current_month, $id_customer) {
+    public static function getEventsStartFromTime($start_timestamp, $end_timestamp, $id_customer) {
         $events = self::find()
             ->select('disinfectors.full_name, point_status.description as status, events.created_at')
             ->join('inner join', 'public.disinfectors', 'disinfectors.id = events.id_disinfector')
             ->join('inner join', 'public.point_status', 'point_status.id = events.id_point_status')
             ->where(['events.id_customer'  => $id_customer])
-            ->andWhere(['>=', 'events.created_at', $start_current_month])
-            ->limit(500)
+            ->andWhere(['>=', 'events.created_at', $start_timestamp])
+            ->andWhere(['<', 'events.created_at', $end_timestamp])
             ->asArray()
             ->all();
 
@@ -181,77 +182,69 @@ class Events extends \yii\db\ActiveRecord
     }
 
 
-    public static function getOccupancyScheduleCurrentYear($id_customer) {
+    public static function getOccupancyScheduleFromPeriod($id_customer, $from_datetime, $to_datetime) {
 
-        $start_current_year = date('Y-01-01');
-        $from_time = \Yii::$app->formatter->asTimestamp($start_current_year);
-        $events = self::getEventsForOccupancyFromAndToTime($id_customer, $from_time) ;
-        $label = 'График заселенности на текущий год';
+        $start_timestamp = \Yii::$app->formatter->asTimestamp($from_datetime);
+        $end_timestamp = \Yii::$app->formatter->asTimestamp($to_datetime);
+
+        $events = self::getEventsForOccupancyFromAndToTime($id_customer, $start_timestamp, $end_timestamp) ;
+        $label = 'График заселенности на выбранный период';
 
         return self::preProcessingDataForGraphic($events, $label);
     }
 
-    public static function getEventsForOccupancyFromAndToTime($id_customer, $from_time, $end_time = null) {
+    public static function getEventsForOccupancyFromAndToTime($id_customer, $from_time, $end_time) {
         $expressions = [];
         $expressions [] = new Expression("extract(month from to_timestamp(events.created_at)) as month, count(*) as count");
         $events = self::find()
             ->select($expressions)
             ->join('inner join', 'public.point_status', 'point_status.id = events.id_point_status')
             ->where(['events.id_customer'  => $id_customer])
-            ->andWhere(['point_status.code'  => 'caught']);
-        if (!is_null($end_time)) {
-            $events = $events
-                ->andWhere(['>=', 'events.created_at', $from_time])
-                ->andWhere(['<', 'events.created_at', $end_time])
-                ->groupBy('extract(month from to_timestamp(events.created_at))')
-                ->asArray()
-                ->all();
-        } else {
-            $events = $events->andWhere(['>=', 'events.created_at', $from_time])
-                ->groupBy('extract(month from to_timestamp(events.created_at))')
-                ->asArray()
-                ->all();
-        }
-
+            ->andWhere(['point_status.code'  => 'caught'])
+            ->andWhere(['>=', 'events.created_at', $from_time])
+            ->andWhere(['<', 'events.created_at', $end_time])
+            ->groupBy('extract(month from to_timestamp(events.created_at))')
+            ->asArray()
+            ->all();
 
         return $events;
     }
 
-    public static function getOccupancySchedulePreviousYear($id_customer) {
-
-        $start_current_year = date('Y-01-01');
-        $datetime_current_year = new \DateTime($start_current_year);
-        $end_time = \Yii::$app->formatter->asTimestamp($start_current_year);
-        $from_time = $datetime_current_year->sub(\DateInterval::createFromDateString('1 year'));
-
-        $label = 'График заселенности за '.$from_time->format('Y').' год';
-
-        $from_time = \Yii::$app->formatter->asTimestamp($from_time);
-
-        $events = self::getEventsForOccupancyFromAndToTime($id_customer, $from_time, $end_time);
-
-
-
-        return self::preProcessingDataForGraphic($events, $label);
-    }
-
-    public static function getOccupancySchedulePreviousPreviousYear($id_customer) {
-
-        $start_current_year = date('Y-01-01');
-        $datetime_current_year = new \DateTime($start_current_year);
-        $end_time =$datetime_current_year
-            ->sub(\DateInterval::createFromDateString('1 year'));
-        $from_time = $datetime_current_year->sub(\DateInterval::createFromDateString('1 year'));
-
-        $label = 'График заселенности за '.$from_time->format('Y').' год';
-
-        $from_time = \Yii::$app->formatter->asTimestamp($from_time);
-        $end_time = \Yii::$app->formatter->asTimestamp($end_time);
-
-        $events = self::getEventsForOccupancyFromAndToTime($id_customer, $from_time, $end_time);
-
-        return self::preProcessingDataForGraphic($events, $label);
-    }
+//    public static function getOccupancySchedulePreviousYear($id_customer) {
+//
+//        $start_current_year = date('Y-01-01');
+//        $datetime_current_year = new \DateTime($start_current_year);
+//        $end_time = \Yii::$app->formatter->asTimestamp($start_current_year);
+//        $from_time = $datetime_current_year->sub(\DateInterval::createFromDateString('1 year'));
+//
+//        $label = 'График заселенности за '.$from_time->format('Y').' год';
+//
+//        $from_time = \Yii::$app->formatter->asTimestamp($from_time);
+//
+//        $events = self::getEventsForOccupancyFromAndToTime($id_customer, $from_time, $end_time);
+//
+//
+//
+//        return self::preProcessingDataForGraphic($events, $label);
+//    }
+//
+//    public static function getOccupancySchedulePreviousPreviousYear($id_customer) {
+//
+//        $start_current_year = date('Y-01-01');
+//        $datetime_current_year = new \DateTime($start_current_year);
+//        $end_time =$datetime_current_year
+//            ->sub(\DateInterval::createFromDateString('1 year'));
+//        $from_time = $datetime_current_year->sub(\DateInterval::createFromDateString('1 year'));
+//
+//        $label = 'График заселенности за '.$from_time->format('Y').' год';
+//
+//        $from_time = \Yii::$app->formatter->asTimestamp($from_time);
+//        $end_time = \Yii::$app->formatter->asTimestamp($end_time);
+//
+//        $events = self::getEventsForOccupancyFromAndToTime($id_customer, $from_time, $end_time);
+//
+//        return self::preProcessingDataForGraphic($events, $label);
+//    }
 
     public static function preProcessingDataForGraphic($events, $label) {
         $datasets[0]['label'] = $label;
@@ -340,22 +333,20 @@ class Events extends \yii\db\ActiveRecord
         ];
     }
 
-    public static function getPointReportCurrentMonth($id_customer) {
+    public static function getPointReportFromPeriod($id_customer, $from_datetime, $to_datetime) {
 
-        $start_current_month = date('Y-m-01');
-        $start_current_month = \Yii::$app->formatter->asTimestamp($start_current_month);
+        $start_timestamp = \Yii::$app->formatter->asTimestamp($from_datetime);
+        $end_timestamp = \Yii::$app->formatter->asTimestamp($to_datetime);
 
         $events = self::find()
             ->select('point_status.code')
             ->join('inner join', 'public.point_status', 'point_status.id = events.id_point_status')
             ->where(['events.id_customer'  => $id_customer])
-            ->andWhere(['>=', 'events.created_at', $start_current_month])
+            ->andWhere(['>=', 'events.created_at', $start_timestamp])
+            ->andWhere(['<', 'events.created_at', $end_timestamp])
             ->asArray()
             ->all();
 
-        if (count($events) == 0) {
-            return ['is_view'   => false];
-        }
         $events_part_replace = 0;
         $events_not_touch = 0;
         $events_full_replace = 0;

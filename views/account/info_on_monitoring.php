@@ -1,6 +1,8 @@
 <?php
 use dosamigos\chartjs\ChartJs;
+use dosamigos\datepicker\DatePicker;
 use yii\grid\GridView;
+use yii\widgets\ActiveForm;
 
 $this->title = "Информация по мониторингу {$name_customer}"; ?>
 <div class="row-fluid">
@@ -25,11 +27,40 @@ $this->title = "Информация по мониторингу {$name_customer
                     </div>
 
                     <div itemprop="articleBody">
-                        <div id="spoiler1" class="spoilers">
-                        <div class="general_title">За текущий месяц</div>
-                        <div class="desc">
+                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
+                        <div class="datepicker" style="display: flex; text-align: center; justify-content: space-around;">
+                            <?= $form->field($model, 'date_from')->widget(
+                                DatePicker::class, [
+                                // inline too, not bad
+                                'inline' => true,
+                                'language'  => 'ru',
+                                // modify template for custom rendering
+                                'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+                                'clientOptions' => [
+                                    'autoclose' => true,
+                                    'format' => 'dd.mm.yyyy',
+                                ]
+                            ]);?>
+
+                            <?= $form->field($model, 'date_to')->widget(
+                                DatePicker::class, [
+                                // inline too, not bad
+                                'inline' => true,
+                                'language'  => 'ru',
+                                // modify template for custom rendering
+                                'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+                                'clientOptions' => [
+                                    'autoclose' => true,
+                                    'format' => 'dd.mm.yyyy',
+                                ]
+                            ]);?>
+                        </div>
+                        <button>Обновить</button>
+
+                        <?php ActiveForm::end() ?>
+
                             <?= GridView::widget([
-                                'dataProvider' => $data_provider_start_month,
+                                'dataProvider' => $data_provider,
                                 'columns' => [
                                     ['class' => 'yii\grid\SerialColumn'],
                                     [
@@ -46,30 +77,6 @@ $this->title = "Информация по мониторингу {$name_customer
                                     ]
                                 ]
                             ]); ?>
-                        </div>
-                        <div class="general_title">За текущий год</div>
-                        <div class="desc">
-                            <?= GridView::widget([
-                                'dataProvider' => $data_provider_start_year,
-                                'columns' => [
-                                    ['class' => 'yii\grid\SerialColumn'],
-                                    [
-                                        'attribute' => 'full_name',
-                                        'header'    => 'Дезинфектор'
-                                    ],
-                                    [
-                                        'attribute' => 'status',
-                                        'header'    => 'Статус'
-                                    ],
-                                    [
-                                        'attribute' => 'date_check',
-                                        'header'    => 'Дата проверки'
-                                    ]
-                                ]
-                            ]); ?>
-                        </div>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- End Content -->

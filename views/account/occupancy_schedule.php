@@ -1,6 +1,7 @@
 <?php
 use dosamigos\chartjs\ChartJs;
 use dosamigos\datepicker\DatePicker;
+use yii\widgets\ActiveForm;
 
 $this->title = "График заселенности объекта {$name_customer}"; ?>
 <div class="row-fluid">
@@ -26,23 +27,45 @@ $this->title = "График заселенности объекта {$name_cust
 
                     <div itemprop="articleBody">
 
-     
+
+                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
+                        <div class="datepicker" style="display: flex; text-align: center; justify-content: space-around;">
+                            <?= $form->field($model, 'date_from')->widget(
+                                DatePicker::class, [
+                                // inline too, not bad
+                                'inline' => true,
+                                'language'  => 'ru',
+                                // modify template for custom rendering
+                                'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+                                'clientOptions' => [
+                                    'autoclose' => true,
+                                    'format' => 'dd.mm.yyyy',
+                                ]
+                            ]);?>
+
+                            <?= $form->field($model, 'date_to')->widget(
+                                DatePicker::class, [
+                                // inline too, not bad
+                                'inline' => true,
+                                'language'  => 'ru',
+                                // modify template for custom rendering
+                                'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+                                'clientOptions' => [
+                                    'autoclose' => true,
+                                    'format' => 'dd.mm.yyyy',
+                                ]
+                            ]);?>
+                        </div>
+                        <button>Обновить</button>
+
+                        <?php ActiveForm::end() ?>
 
                         <p><?= ChartJs::widget([
                             'type' => 'bar',
-                            'data' => $current_year
+                            'data' => $data
                         ]);
                         ?></p>
-                        <p><?= ChartJs::widget([
-                        'type' => 'bar',
-                        'data' => $previous_year
-                    ]);
-                    ?></p>
-                        <p><?= ChartJs::widget([
-                                'type' => 'bar',
-                                'data' => $previous_previous_year
-                            ]);
-                            ?></p>
+
                     </div>
                     </div>
 

@@ -1,5 +1,8 @@
 <?php
 use dosamigos\chartjs\ChartJs;
+use dosamigos\datepicker\DatePicker;
+use yii\widgets\ActiveForm;
+
 $this->title = "Отчет по точкам контроля  {$name_customer}"; ?>
 <div class="row-fluid">
             <div id="sidebar" class="span3">
@@ -23,23 +26,43 @@ $this->title = "Отчет по точкам контроля  {$name_customer}"
                     </div>
 
                     <div itemprop="articleBody">
-                        <p><span style="font-size: 14pt;">Информация за весь период обслуживания:</span></p>
+                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
+                        <div class="datepicker" style="display: flex; text-align: center; justify-content: space-around;">
+                            <?= $form->field($model, 'date_from')->widget(
+                                DatePicker::class, [
+                                // inline too, not bad
+                                'inline' => true,
+                                'language'  => 'ru',
+                                // modify template for custom rendering
+                                'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+                                'clientOptions' => [
+                                    'autoclose' => true,
+                                    'format' => 'dd.mm.yyyy',
+                                ]
+                            ]);?>
+
+                            <?= $form->field($model, 'date_to')->widget(
+                                DatePicker::class, [
+                                // inline too, not bad
+                                'inline' => true,
+                                'language'  => 'ru',
+                                // modify template for custom rendering
+                                'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+                                'clientOptions' => [
+                                    'autoclose' => true,
+                                    'format' => 'dd.mm.yyyy',
+                                ]
+                            ]);?>
+                        </div>
+                        <button>Обновить</button>
+
+                        <?php ActiveForm::end() ?>
+                        <p><span style="font-size: 14pt;">Информация за выбранный период обслуживания:</span></p>
                         <p><?= ChartJs::widget([
                                 'type' => 'doughnut',
-                                'data' => $data_all_periods
+                                'data' => $data
                             ]);
                             ?></p>
-                        <hr />
-                        <?php if ($data_current_month['is_view'] === true) { ?>
-                        <p><span style="font-size: 14pt;">Информация за текущий месяц:</span></p>
-                        <p><?= ChartJs::widget([
-                                'type' => 'doughnut',
-                                'data' => $data_current_month
-                            ]);
-                            ?></p>
-                        <?php } else {?>
-                            <p><span style="font-size: 14pt;">Информация за текущий месяц отсутствует</span></p>
-                        <?php } ?>
                         <hr />
                         <p><span style="font-size: 14pt;">Отчет по точкам<br /></span></p>
                         <p><span style="font-size: 8pt;"><div id="chart_40" style="display:inline-block"></div></span></p>

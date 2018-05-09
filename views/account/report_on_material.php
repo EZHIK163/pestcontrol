@@ -1,6 +1,8 @@
 <?php
 use dosamigos\chartjs\ChartJs;
+use dosamigos\datepicker\DatePicker;
 use yii\grid\GridView;
+use yii\widgets\ActiveForm;
 
 $this->title = "Отчет по дезсредствам  {$name_customer}"; ?>
 <div class="row-fluid">
@@ -25,37 +27,42 @@ $this->title = "Отчет по дезсредствам  {$name_customer}"; ?>
                     </div>
 
                     <div itemprop="articleBody">
-                        <p><span style="font-family: impact,chicago; font-size: 14pt;"><span style="font-family: arial,helvetica,sans-serif;">Текущий месяц:</span></span></p>
-                        <?= GridView::widget([
-                            'dataProvider' => $data_provider_current_month,
-                            'columns' => [
-                                ['class' => 'yii\grid\SerialColumn'],
-                                [
-                                    'attribute' => 'alt-klej',
-                                    'header'    => 'АЛТ-клей, кг'
-                                ],
-                                [
-                                    'attribute' => 'shturm_brickety',
-                                    'header'    => 'Штурм брикеты, кг'
-                                ],
-                                [
-                                    'attribute' => 'shturm_granuly',
-                                    'header'    => 'Штурм гранулы, кг'
-                                ],
-                                [
-                                    'attribute' => 'indan-block',
-                                    'header'    => 'Индан-блок, кг'
-                                ],
 
-                                [
-                                    'attribute' => 'rattidion',
-                                    'header'    => 'Раттидион, кг'
+                        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
+                        <div class="datepicker" style="display: flex; text-align: center; justify-content: space-around;">
+                            <?= $form->field($model, 'date_from')->widget(
+                                DatePicker::class, [
+                                // inline too, not bad
+                                'inline' => true,
+                                'language'  => 'ru',
+                                // modify template for custom rendering
+                                'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+                                'clientOptions' => [
+                                    'autoclose' => true,
+                                    'format' => 'dd.mm.yyyy',
                                 ]
-                            ]
-                        ]); ?>
-                        <p><span style="font-family: impact,chicago; font-size: 14pt;"><span style="font-family: arial,helvetica,sans-serif;">Предыдущий месяц:<br /></span></span></p>
+                            ]);?>
+
+                            <?= $form->field($model, 'date_to')->widget(
+                                DatePicker::class, [
+                                // inline too, not bad
+                                'inline' => true,
+                                'language'  => 'ru',
+                                // modify template for custom rendering
+                                'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+                                'clientOptions' => [
+                                    'autoclose' => true,
+                                    'format' => 'dd.mm.yyyy',
+                                ]
+                            ]);?>
+                        </div>
+                        <button>Обновить</button>
+
+                        <?php ActiveForm::end() ?>
+
+                        <p><span style="font-family: impact,chicago; font-size: 14pt;"><span style="font-family: arial,helvetica,sans-serif;">За выбранный период:</span></span></p>
                         <?= GridView::widget([
-                            'dataProvider' => $data_provider_previous_month,
+                            'dataProvider' => $data_provider,
                             'columns' => [
                                 ['class' => 'yii\grid\SerialColumn'],
                                 [

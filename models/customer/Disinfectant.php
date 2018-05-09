@@ -68,26 +68,27 @@ class Disinfectant extends \yii\db\ActiveRecord
         ];
     }
 
-    public static function getCurrentMonth($id_customer) {
-        $start_current_month = date('Y-m-01');
-        $start_current_month = \Yii::$app->formatter->asTimestamp($start_current_month);
+    public static function getFromPeriod($id_customer, $from_datetime, $to_datetime) {
 
-        return self::getStartFromTime($start_current_month, $id_customer);
+        $start_timestamp = \Yii::$app->formatter->asTimestamp($from_datetime);
+        $end_timestamp = \Yii::$app->formatter->asTimestamp($to_datetime);
+
+        return self::getStartFromTime($start_timestamp, $end_timestamp, $id_customer);
     }
 
-    public static function getPreviousMonth($id_customer) {
-        $start_current_month = date('Y-m-01');
-        $datetime_current_month = new \DateTime($start_current_month);
-        $start_current_month = \Yii::$app->formatter->asTimestamp($start_current_month);
+//    public static function getPreviousMonth($id_customer) {
+//        $start_current_month = date('Y-m-01');
+//        $datetime_current_month = new \DateTime($start_current_month);
+//        $start_current_month = \Yii::$app->formatter->asTimestamp($start_current_month);
+//
+//        $start_previous_month = $datetime_current_month->sub(\DateInterval::createFromDateString('1 month'));
+//        $start_previous_month = \Yii::$app->formatter->asTimestamp($start_previous_month);
+//
+//        return self::getStartFromTime($start_previous_month, $id_customer, $start_current_month);
+//    }
 
-        $start_previous_month = $datetime_current_month->sub(\DateInterval::createFromDateString('1 month'));
-        $start_previous_month = \Yii::$app->formatter->asTimestamp($start_previous_month);
 
-        return self::getStartFromTime($start_previous_month, $id_customer, $start_current_month);
-    }
-
-
-    public static function getStartFromTime($start_from_time, $id_customer, $end_to_time = null) {
+    public static function getStartFromTime($start_from_time, $end_to_time, $id_customer) {
 
         $disinfectants = self::find()
             ->asArray()
@@ -96,19 +97,11 @@ class Disinfectant extends \yii\db\ActiveRecord
         $events = Events::find()
             ->select('events.id, point_status.code')
             ->join('inner join', 'public.point_status', 'point_status.id = events.id_point_status')
-            ->where(['events.id_customer'  => $id_customer]);
-        if (!is_null($end_to_time)) {
-            $events = $events
-                ->andWhere(['>=', 'events.created_at', $start_from_time])
-                ->andWhere(['<', 'events.created_at', $end_to_time])
-                ->asArray()
-                ->all();
-        } else {
-            $events = $events->andWhere(['>=', 'events.created_at', $start_from_time])
-                ->asArray()
-                ->all();
-        }
-
+            ->where(['events.id_customer'  => $id_customer])
+            ->andWhere(['>=', 'events.created_at', $start_from_time])
+            ->andWhere(['<', 'events.created_at', $end_to_time])
+            ->asArray()
+            ->all();
 
         $events_part_replace = 0;
         $events_not_touch = 0;

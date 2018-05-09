@@ -5,7 +5,7 @@ use app\models\customer\Customer;
 use app\models\customer\Disinfectant;
 use app\models\customer\Events;
 use app\models\customer\FileCustomer;
-use app\models\customer\OccupancyForm;
+use app\models\customer\CalendarForm;
 use app\models\customer\SearchForm;
 use app\models\tools\Tools;
 use app\models\widget\Widget;
@@ -50,13 +50,21 @@ class AccountController extends Controller {
             return;
         }
 
-        $events = Events::getEventsCurrentMonth($customer->id);
+        $model = new CalendarForm();
 
-        $data_provider_start_month = Tools::wrapIntoDataProvider($events, false);
+        if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+            $from_datetime = $model->date_from;
+            $to_datetime = $model->date_to;
+        } else {
+            $model->date_from = $from_datetime = (new \DateTime())->format('01.m.Y');
+            $model->date_to = $to_datetime = (new \DateTime())->format('d.m.Y');
+        }
 
-        $events = Events::getEventsCurrentYear($customer->id);
-        $data_provider_start_year = Tools::wrapIntoDataProvider($events, false);
-        return $this->render('info_on_monitoring', compact('data_provider_start_month', 'data_provider_start_year'));
+        $events = Events::getEventsFromPeriod($customer->id, $from_datetime, $to_datetime);
+
+        $data_provider = Tools::wrapIntoDataProvider($events, false);
+
+        return $this->render('info_on_monitoring', compact('model', 'data_provider'));
     }
 
     public function actionReportOnPoint() {
@@ -68,32 +76,19 @@ class AccountController extends Controller {
             return;
         }
 
-//        $labels = ["Приманка не тронута", "Частичная замена приманки", "Полная замена приманки", "Пойман вредитель"];
-//        $data_all_periods = [
-//            'labels' => $labels,
-//            'datasets' => [
-//                [
-//                    'label' => "My First dataset",
-//                    'data' => [65, 59, 90, 81, 56, 55, 40]
-//                ]
-//            ]
-//        ];
-//        $data_current_month = [
-//            'labels' => $labels,
-//            'datasets' => [
-//                [
-//                    'label' => "My First dataset",
-//                    'data' => [65, 59, 90, 81, 56, 55, 40]
-//                ]
-//            ]
-//        ];
+        $model = new CalendarForm();
 
+        if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+            $from_datetime = $model->date_from;
+            $to_datetime = $model->date_to;
+        } else {
+            $model->date_from = $from_datetime = (new \DateTime())->format('01.m.Y');
+            $model->date_to = $to_datetime = (new \DateTime())->format('d.m.Y');
+        }
 
-        $data_current_month = Events::getPointReportCurrentMonth($customer->id);
+        $data = Events::getPointReportFromPeriod($customer->id, $from_datetime, $to_datetime);
 
-        $data_all_periods = Events::getPointReportAllPeriod($customer->id);
-
-        return $this->render('report_on_point', compact('data_current_month', 'data_all_periods'));
+        return $this->render('report_on_point', compact('data', 'model'));
     }
 
     public function actionReportOnMaterial() {
@@ -104,15 +99,21 @@ class AccountController extends Controller {
             return;
         }
 
-        $disinfectant_current_month = Disinfectant::getCurrentMonth($customer->id);
+        $model = new CalendarForm();
 
-        $data_provider_current_month = Tools::wrapIntoDataProvider($disinfectant_current_month, false);
+        if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+            $from_datetime = $model->date_from;
+            $to_datetime = $model->date_to;
+        } else {
+            $model->date_from = $from_datetime = (new \DateTime())->format('01.m.Y');
+            $model->date_to = $to_datetime = (new \DateTime())->format('d.m.Y');
+        }
 
-        $disinfectant_previous_month = Disinfectant::getPreviousMonth($customer->id);
+        $disinfectant = Disinfectant::getFromPeriod($customer->id, $from_datetime, $to_datetime);
 
-        $data_provider_previous_month = Tools::wrapIntoDataProvider($disinfectant_previous_month, false);
+        $data_provider = Tools::wrapIntoDataProvider($disinfectant, false);
 
-        return $this->render('report_on_material', compact('data_provider_current_month', 'data_provider_previous_month'));
+        return $this->render('report_on_material', compact('data_provider', 'model'));
     }
 
     public function actionRiskAssessment() {
@@ -123,12 +124,14 @@ class AccountController extends Controller {
             return;
         }
 
-        $model = new OccupancyForm();
+        $model = new CalendarForm();
 
-        $from_datetime = $to_datetime = null;
-        if (\Yii::$app->request->isPost) {
-            $from_datetime = $model->date_from = \Yii::$app->request->post('OccupancyForm')['date_from'];
-            $to_datetime = $model->date_to = \Yii::$app->request->post('OccupancyForm')['date_to'];
+        if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+            $from_datetime = $model->date_from;
+            $to_datetime = $model->date_to;
+        } else {
+            $model->date_from = $from_datetime = (new \DateTime())->format('01.m.Y');
+            $model->date_to = $to_datetime = (new \DateTime())->format('d.m.Y');
         }
 
         $green_risk = Events::getGreenRisk($customer->id, $from_datetime, $to_datetime);
@@ -151,10 +154,20 @@ class AccountController extends Controller {
             return;
         }
 
-        $current_year = Events::getOccupancyScheduleCurrentYear($customer->id);
-        $previous_year = Events::getOccupancySchedulePreviousYear($customer->id);
-        $previous_previous_year = Events::getOccupancySchedulePreviousPreviousYear($customer->id);
-        return $this->render('occupancy_schedule', compact('current_year', 'previous_previous_year', 'previous_year'));
+        $model = new CalendarForm();
+
+        if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+            $from_datetime = $model->date_from;
+            $to_datetime = $model->date_to;
+        } else {
+            $model->date_from = $from_datetime = (new \DateTime())->format('01.m.Y');
+            $model->date_to = $to_datetime = (new \DateTime())->format('d.m.Y');
+        }
+
+        $data = Events::getOccupancyScheduleFromPeriod($customer->id, $from_datetime, $to_datetime);
+        //$previous_year = Events::getOccupancySchedulePreviousYear($customer->id);
+        //$previous_previous_year = Events::getOccupancySchedulePreviousPreviousYear($customer->id);
+        return $this->render('occupancy_schedule', compact('data', 'model'));
     }
 
     public function actionRecommendations() {
