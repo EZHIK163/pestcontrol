@@ -22,6 +22,7 @@ class ComposerStaticInitcfb75b7433e55bc5dcd2a77fc67c32d5
             'yii\\composer\\' => 13,
             'yii\\bootstrap\\' => 14,
             'yii\\' => 4,
+            'yii2tech\\spreadsheet\\' => 21,
         ),
         'u' => 
         array (
@@ -65,7 +66,9 @@ class ComposerStaticInitcfb75b7433e55bc5dcd2a77fc67c32d5
         ),
         'P' => 
         array (
+            'Psr\\SimpleCache\\' => 16,
             'Psr\\Http\\Message\\' => 17,
+            'PhpOffice\\PhpSpreadsheet\\' => 25,
         ),
         'G' => 
         array (
@@ -106,6 +109,10 @@ class ComposerStaticInitcfb75b7433e55bc5dcd2a77fc67c32d5
         'yii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
+        ),
+        'yii2tech\\spreadsheet\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yii2tech/spreadsheet/src',
         ),
         'unclead\\multipleinput\\tests\\' => 
         array (
@@ -185,9 +192,17 @@ class ComposerStaticInitcfb75b7433e55bc5dcd2a77fc67c32d5
         array (
             0 => __DIR__ . '/..' . '/symfony/browser-kit',
         ),
+        'Psr\\SimpleCache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/simple-cache/src',
+        ),
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'PhpOffice\\PhpSpreadsheet\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (

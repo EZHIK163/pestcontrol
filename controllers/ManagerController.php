@@ -6,7 +6,9 @@ use app\models\customer\CustomerForm;
 use app\models\customer\Disinfectant;
 use app\models\customer\FileCustomer;
 use app\models\customer\FileCustomerType;
+use app\models\customer\ManageDisinfectantForm;
 use app\models\customer\ManageDisinfectantsForm;
+use app\models\customer\ManagePointForm;
 use app\models\customer\ManagePointsForm;
 use app\models\customer\Points;
 use app\models\customer\SearchForm;
@@ -98,35 +100,15 @@ class ManagerController extends Controller {
 
     public function actionGetPointsOnSchemaPointControl() {
         $id_file = \Yii::$app->request->get('id_scheme_point_control');
+        $is_show_free_points = \Yii::$app->request->get('is_show_free_points');
+
+        $is_show_free_points = $is_show_free_points === 'true' ? true : false;
 
         if (!isset($id_file) or $id_file === 0) {
             throw new InvalidArgumentException();
         }
-//        $data[666] = [
-//            'img'       => 'http://koffkindom.ru/wp-content/uploads/2016/02/plan-doma-8x8-2et-10.jpg',
-//            'points'    => [
-//                [
-//                    'id'        => 'point_1',
-//                    'x'         => 0,
-//                    'y'         => 0,
-//                    'img_src'   => 'https://png.icons8.com/metro/1600/checkmark.png'
-//                ],
-//                [
-//                    'id'        => 'point_2',
-//                    'x'         => 10,
-//                    'y'         => 10,
-//                    'img_src'   => 'https://png.icons8.com/metro/1600/checkmark.png'
-//                ],
-//                [
-//                    'id'        => 'point_3',
-//                    'x'         => 312,
-//                    'y'         => 104,
-//                    'img_src'   => 'https://png.icons8.com/metro/1600/checkmark.png'
-//                ]
-//            ]
-//        ];
-//        $my_data = $data[$id];
-        $my_data = FileCustomer::getSchemeForEdit($id_file);
+
+        $my_data = FileCustomer::getSchemeForEdit($id_file, $is_show_free_points);
         \Yii::$app->response->format = Response::FORMAT_JSON;
         return $my_data;
     }
@@ -138,6 +120,7 @@ class ManagerController extends Controller {
         if (!isset($points) or $id_file_customer === 0) {
             throw new \yii\base\InvalidArgumentException();
         }
+
         FileCustomer::savePoints($id_file_customer, $points);
 
         $data = ['status'   => true];
@@ -242,6 +225,77 @@ class ManagerController extends Controller {
         return $this->render('manage-customer-disinfectant', compact('model'));
     }
 
+    public function actionManagePoint() {
+
+        $id_point = \Yii::$app->request->get('id');
+        if (!isset($id_point)) {
+            throw new InvalidArgumentException();
+        }
+
+        $model = new ManagePointForm($id_point);
+
+        if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+            $model->savePoint();
+        }
+
+        $id_customer = Points::getIdCustomerPoint($id_point);
+
+        $scheme_point_control = FileCustomer::getSchemePointControlForDropDownList($id_customer);
+
+        return $this->render('manage-point', compact('scheme_point_control', 'model'));
+    }
+
+    public function actionDeletePoint() {
+        $id = \Yii::$app->request->get('id');
+        if (isset($id)) {
+            Points::deletePoint($id);
+            $this->redirect('manage-points');
+        }
+    }
+
+    public function actionEditDisinfectant() {
+        $id = \Yii::$app->request->get('id');
+
+        if (!isset($id)) {
+            throw new InvalidArgumentException();
+        }
+
+        $model = new ManageDisinfectantForm($id);
+
+        if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+            $model->saveDisinfectant();
+        }
+
+        return $this->render('manage-disinfectant', compact( 'model'));
+    }
+
+    public function actionDeleteDisinfectant() {
+        $id = \Yii::$app->request->get('id');
+
+        if (!isset($id)) {
+            throw new InvalidArgumentException();
+        }
+
+        Disinfectant::deleteDisinfectant($id);
+
+        $this->redirect('manage-disinfectants');
+    }
+
+    public function actionAddDisinfectant() {
+
+        $id = null;
+
+        $model = new ManageDisinfectantForm($id);
+
+        if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+            $model->addDisinfectant();
+
+            $this->redirect('manage-disinfectants');
+        }
+
+        return $this->render('add-disinfectant', compact( 'model'));
+    }
+
     public function behaviors()
     {
         return [
@@ -253,7 +307,8 @@ class ManagerController extends Controller {
                         'actions'=> ['users','upload-files','recommendations','delete-recommendation',
                             'scheme-point-control', 'edit-schema-point-control' ,'customers', 'add-customer',
                             'delete-customer', 'edit-customer', 'manage-points', 'manage-disinfectants',
-                            'manage-disinfectants-on-customers', 'manage-customer-disinfectant'],
+                            'manage-disinfectants-on-customers', 'manage-customer-disinfectant', 'manage-point',
+                            'delete-point', 'edit-disinfectant', 'delete-disinfectant', 'add-disinfectant'],
                         'roles'     => ['manager'],
                         'allow'     => true
                     ],

@@ -53,6 +53,10 @@ $this->title = "Управление точками контроля"; ?>
                             'header'    => 'Номер точки'
                         ],
                         [
+                            'attribute' => 'status',
+                            'header'    => 'Статус'
+                        ],
+                        [
                             'header'    =>  'Действия',
                             'format'    => 'html',
                             'value'     => function ($model, $key, $index, $column){

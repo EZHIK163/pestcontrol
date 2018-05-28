@@ -68,4 +68,13 @@ return array (
       '@unclead/multipleinput/tests' => $vendorDir . '/unclead/yii2-multiple-input/tests',
     ),
   ),
+  'yii2tech/spreadsheet' => 
+  array (
+    'name' => 'yii2tech/spreadsheet',
+    'version' => '1.0.2.0',
+    'alias' => 
+    array (
+      '@yii2tech/spreadsheet' => $vendorDir . '/yii2tech/spreadsheet/src',
+    ),
+  ),
 );

@@ -3,6 +3,7 @@
 namespace app\models\customer;
 
 use Yii;
+use yii\base\ErrorException;
 
 /**
  * This is the model class for table "public.points".
@@ -76,7 +77,7 @@ class Points extends \yii\db\ActiveRecord
         ];
     }
 
-    public static function savePoint($id_internal, $id_customer, $x, $y) {
+    public static function savePoint($id_internal, $id_customer, $x, $y, $id_file_customer) {
 
         $sql = "
         SELECT p.id 
@@ -88,12 +89,14 @@ class Points extends \yii\db\ActiveRecord
             ->bindValue(':id_internal', $id_internal)
             ->queryOne();
 
-        $sql = "UPDATE public.points
-        SET x_coordinate = :x_coordinate, y_coordinate = :y_coordinate
+        $sql = "
+        UPDATE public.points
+        SET x_coordinate = :x_coordinate, y_coordinate = :y_coordinate, id_file_customer = :id_file_customer
         WHERE id = :id";
         \Yii::$app->db->createCommand($sql)
             ->bindValue(':x_coordinate', $x)
             ->bindValue(':y_coordinate', $y)
+            ->bindValue(':id_file_customer', $id_file_customer)
             ->bindValue(':id', $point['id'])
             ->query();
         return true;
@@ -102,9 +105,15 @@ class Points extends \yii\db\ActiveRecord
     static function getPointsForManager($id_customer) {
 
         $points = self::find()
-            ->select('points.id, file_customer.title, points.id_internal')
+            ->select('
+            points.id, 
+            file_customer.title, 
+            points.id_internal, 
+            points.x_coordinate, 
+            points.y_coordinate,
+            points.is_active')
             ->join('inner join', 'public.file_customer', 'file_customer.id = points.id_file_customer')
-            ->andWhere(['points.is_active' => true])
+            //->andWhere(['points.is_active' => true])
             ->andWhere(['file_customer.is_active' => true]);
 
 
@@ -115,6 +124,90 @@ class Points extends \yii\db\ActiveRecord
             ->orderBy('points.id_internal ASC')
             ->asArray()
             ->all();
+
+        foreach ($points as &$point) {
+            if ($point['is_active'] == false) {
+                $point['status'] = 'Удалена';
+            } else if ($point['x_coordinate'] <= 0 or $point['y_coordinate'] <= 0) {
+                $point['status'] = 'Не прикреплена';
+                $point['title'] = '';
+            } else {
+                $point['status'] = 'Прикреплена';
+            }
+        }
+
         return $points;
+    }
+
+    static function getFreePoints() {
+        $points = self::find()
+            ->where(['<=', 'x_coordinate', 0])
+            ->orWhere(['<=', 'y_coordinate', 0])
+            ->asArray()
+            ->all();
+        return $points;
+    }
+
+    static function getItemForEditing($id) {
+        $point = self::find()
+            ->select('
+            points.x_coordinate, 
+            points.y_coordinate, 
+            file_customer.title, 
+            points.id_file_customer,
+            points.title')
+            ->join('inner join', 'file_customer', 'file_customer.id = points.id_file_customer')
+            ->where(['points.id'  => $id])
+            ->asArray()
+            ->all();
+
+        if (!isset($point[0])) {
+            throw new ErrorException("Точка не найдена");
+        }
+        return $point[0];
+    }
+
+
+    static function getIdCustomerPoint($id) {
+
+        $point = self::find()
+            ->select('file_customer.id_customer')
+            ->join('inner join', 'file_customer', 'file_customer.id = points.id_file_customer')
+            ->where(['points.id'  => $id])
+            ->asArray()
+            ->all();
+
+        if (!isset($point[0])) {
+            throw new ErrorException("Точка не найдена");
+        }
+
+        return $point[0]['id_customer'];
+    }
+
+    static function saveItem($id, $x_coordinate, $y_coordinate, $title, $id_file_customer) {
+
+        $point = self::findOne($id);
+
+        if ($point->id_file_customer != $id_file_customer) {
+            $x_coordinate = 0;
+            $y_coordinate = 0;
+        }
+
+        $point->y_coordinate = $y_coordinate;
+        $point->x_coordinate = $x_coordinate;
+        $point->title = $title;
+        $point->id_file_customer = $id_file_customer;
+        $point->is_active = true;
+
+        $point->save();
+
+        return true;
+    }
+
+    static function deletePoint($id) {
+        $point = self::findOne($id);
+        $point->is_active = false;
+
+        $point->save();
     }
 }

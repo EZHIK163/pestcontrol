@@ -111,9 +111,13 @@ class AccountController extends Controller {
 
         $disinfectant = Disinfectant::getFromPeriod($customer->id, $from_datetime, $to_datetime);
 
+        $setting_column = $disinfectant['setting_column'];
+
+        unset($disinfectant['setting_column']);
+
         $data_provider = Tools::wrapIntoDataProvider($disinfectant, false);
 
-        return $this->render('report_on_material', compact('data_provider', 'model'));
+        return $this->render('report_on_material', compact('data_provider', 'model', 'setting_column'));
     }
 
     public function actionRiskAssessment() {
@@ -198,7 +202,12 @@ class AccountController extends Controller {
     {
         $id = \Yii::$app->user->id;
         $customer = Customer::getCustomerByIdUser($id);
-        $name_customer = $customer->name;
+
+        if ($customer) {
+            $name_customer = $customer->name;
+        } else {
+            $name_customer = '';
+        }
         $params = array_merge($params, compact('name_customer'));
         $params = array_merge($params, Widget::getWidgetsForAccount());
         return parent::render($view, $params);

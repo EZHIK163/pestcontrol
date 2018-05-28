@@ -113,7 +113,7 @@ class FileCustomer extends \yii\db\ActiveRecord
 
     public function getPoints()
     {
-        return $this->hasMany(Points::class, ['id_file_customer' => 'id']);
+        return $this->hasMany(Points::class, ['id_file_customer' => 'id'])->where(['is_active'  => true]);
     }
 
     public function getDateTimeCreatedAt() {
@@ -206,16 +206,20 @@ class FileCustomer extends \yii\db\ActiveRecord
         return $result;
     }
 
-    public static function getSchemeForEdit($id) {
+    public static function getSchemeForEdit($id, $is_add_free_points = false) {
         $file_customer = self::findOne(['id_file'   => $id]);
         $file = $file_customer->file;
         $action_download = \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'site/download?id=';
         $points = $file_customer->points;
         $id_customer = $file_customer->id_customer;
-        $count_points = 0;
+        //$count_points = 0;
         $finish_points = [];
         $max_id_internal_in_customer = self::getMaxIdInternal($id_customer);
+        $ids_points = [];
         foreach ($points as $point) {
+            if (!$is_add_free_points && ($point->x_coordinate <= 0 or $point->y_coordinate <= 0)) {
+                continue;
+            }
             $finish_points [] = [
                 'x'                 => $point->x_coordinate,
                 'y'                 => $point->y_coordinate,
@@ -224,7 +228,24 @@ class FileCustomer extends \yii\db\ActiveRecord
                 'is_new'            => false,
                 'id'                => $point->id
             ];
-            $count_points++;
+            $ids_points [] = $point->id;
+            //$count_points++;
+        }
+        if ($is_add_free_points) {
+            $free_points = Points::getFreePoints();
+            foreach ($free_points as $free_point) {
+                if (in_array($free_point['id'], $ids_points)) {
+                    continue;
+                }
+                $finish_points [] = [
+                    'x' => $free_point['x_coordinate'],
+                    'y' => $free_point['y_coordinate'],
+                    'img_src' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'blue_marker.png',
+                    'id_internal' => $free_point['id_internal'],
+                    'is_new' => false,
+                    'id' => $free_point['id']
+                ];
+            }
         }
         $result = [
             'img'                       => $action_download.$file->id,
@@ -259,7 +280,7 @@ class FileCustomer extends \yii\db\ActiveRecord
                 $new_point->id_internal = $point['id_internal'];
                 $new_point->save();
             } else {
-                Points::savePoint($point['id_internal'], $id_customer, $point['x'], $point['y']);
+                Points::savePoint($point['id_internal'], $id_customer, $point['x'], $point['y'], $id_file_customer);
                 //$exist_point = Points::getPoint($point['id_internal'], $id_customer);
                 //$exist_point->x_coordinate = $point['x'];
                 //$exist_point->y_coordinate = $point['y'];
@@ -281,5 +302,12 @@ class FileCustomer extends \yii\db\ActiveRecord
             return 1;
         }
         return $point['max'] + 1;
+    }
+
+    static function getSchemePointControlForDropDownList($id_customer) {
+
+        $scheme = self::getSchemePointControlCustomer($id_customer, '');
+
+        return ArrayHelper::map($scheme, 'id_file_customer', 'title');
     }
 }

@@ -128,9 +128,13 @@ class Customer extends \yii\db\ActiveRecord
         $customers = Customer::getCustomers();
         $finish_customers = [];
         foreach ($customers as &$customer) {
-            $disinfectants = $customer->disinfectants;
+            $disinfectants = $customer->getDisinfectants()->asArray()->all();
 
-            $str_disinfectants = implode(', ', $disinfectants);
+            $name_disinfectants = [];
+            foreach ($disinfectants as $disinfectant) {
+                $name_disinfectants [] = $disinfectant['description'];
+            }
+            $str_disinfectants = implode(', ', $name_disinfectants);
             $finish_customers [] = [
                 'id'            => $customer->id,
                 'name'          => $customer->name,

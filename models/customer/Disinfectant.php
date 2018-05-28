@@ -79,6 +79,11 @@ class Disinfectant extends \yii\db\ActiveRecord
     public static function getStartFromTime($start_from_time, $end_to_time, $id_customer) {
 
         $disinfectants = self::find()
+            ->select('disinfectant.value, disinfectant.id, disinfectant.code, disinfectant.description')
+            ->join('inner join', 'public.customer_disinfectant', 'customer_disinfectant.id_disinfectant = disinfectant.id')
+            ->where(['disinfectant.is_active'    => true])
+            ->andWhere(['customer_disinfectant.is_active'    => true])
+            ->andWhere(['customer_disinfectant.id_customer'  => $id_customer])
             ->asArray()
             ->all();
 
@@ -112,6 +117,7 @@ class Disinfectant extends \yii\db\ActiveRecord
             }
         }
         $data = [];
+        $setting_column = [];
         foreach ($disinfectants as &$disinfectant) {
             switch($disinfectant['code']) {
                 case 'alt-klej':
@@ -135,7 +141,14 @@ class Disinfectant extends \yii\db\ActiveRecord
                         / 2 + $events_full_replace;
                     break;
             }
+
+            $setting_column [] = [
+                'attribute' => $disinfectant['code'],
+                'header'    => $disinfectant['description']
+            ];
         }
+
+        $data['setting_column'] = $setting_column;
 
         return $data;
     }
@@ -148,5 +161,37 @@ class Disinfectant extends \yii\db\ActiveRecord
             ->asArray()
             ->all();
         return $disinfectants;
+    }
+
+    static function getItemForEditing($id) {
+        $disinfectant = self::findOne($id)->toArray();
+        return $disinfectant;
+    }
+
+    static function saveItem($id, $title, $value) {
+        $item = self::findOne($id);
+
+        $item->value = $value;
+        $item->description = $title;
+
+        $item->save();
+    }
+
+    static function addItem($title, $value) {
+        $item = new Disinfectant();
+
+        $item->value = $value;
+        $item->description = $title;
+
+        $item->save();
+    }
+
+
+    static function deleteDisinfectant($id) {
+        $item = self::findOne($id);
+
+        $item->is_active = false;
+
+        $item->save();
     }
 }

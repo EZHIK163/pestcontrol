@@ -63,30 +63,9 @@ $this->title = "Отчет по дезсредствам  {$name_customer}"; ?>
                         <p><span style="font-family: impact,chicago; font-size: 14pt;"><span style="font-family: arial,helvetica,sans-serif;">За выбранный период:</span></span></p>
                         <?= GridView::widget([
                             'dataProvider' => $data_provider,
-                            'columns' => [
+                            'columns' => array_merge([
                                 ['class' => 'yii\grid\SerialColumn'],
-                                [
-                                    'attribute' => 'alt-klej',
-                                    'header'    => 'АЛТ-клей, кг'
-                                ],
-                                [
-                                    'attribute' => 'shturm_brickety',
-                                    'header'    => 'Штурм брикеты, кг'
-                                ],
-                                [
-                                    'attribute' => 'shturm_granuly',
-                                    'header'    => 'Штурм гранулы, кг'
-                                ],
-                                [
-                                    'attribute' => 'indan-block',
-                                    'header'    => 'Индан-блок, кг'
-                                ],
-
-                                [
-                                    'attribute' => 'rattidion',
-                                    'header'    => 'Раттидион, кг'
-                                ]
-                            ]
+                            ], $setting_column)
                         ]); ?>
 
                         <p><span style="font-family: arial,helvetica,sans-serif; font-size: 14pt;">Укажите месяц и год отчетности:</span></p>

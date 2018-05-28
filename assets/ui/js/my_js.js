@@ -80,46 +80,12 @@ async function getData(id_scheme_point_control) {
      var params = jQuery.param({
          id_scheme_point_control: id_scheme_point_control
      });
-     // const response = await fetch( base_url + '/manager/get-points-on-schema-point-control/?' + params//,
-     //     //{
-     //     //    method: "GET",
-     //     //    headers: {
-     //     //         "Content-Type": "application'json"
-     //     //    },
-     //     //    body: my_body
-     //     //}
-     // );
-     // return await response.json();
 
      const response = await axios.get(base_url + '/manager/get-points-on-schema-point-control/?' + params);
-     //console.log(await response.data);
-     //return response.data;
+
     return response.data;
  }
 
-// window.addEventListener('scroll', function(e) {
-//     coefficient_x = $('#inner-dropzone').width() / 100;
-//     coefficient_y = $('#inner-dropzone').height() / 100;
-//
-//     var element = document.getElementById('inner-dropzone');
-//     //console.log(getCoords(element));
-//     //console.log(findPos(element));
-//     //var position = element.getBoundingClientRect();
-//
-//     if (element == null) {
-//         console.log('elem is null in handler');
-//     }
-//     position_root_element = getCoords(element);
-//
-//     if (points.length > 0) {
-//         points.forEach(function (point, i, points) {
-//             var temp = document.getElementById(prefix_point_id + point.id_internal);
-//             temp.style.left = position_root_element[0] + (point.x * coefficient_x) + 'px'
-//             temp.style.top = position_root_element[1] + (point.y* coefficient_y)  + 'px';
-//         });
-//     }
-//
-// });
 
 
 async function getPoints() {
@@ -148,37 +114,14 @@ function loadPoints() {
     }
 
     position_root_element = getCoords(element);
-    //position_outer_element = getCoords(outer_element);
-    //console.log(position_root_element);
-    //console.log(position_outer_element);
-    //console.log(position_root_element[0] - position_outer_element[0]);
-    //console.log(position_root_element[1] - position_outer_element[1]);
-
-    //offset_x = position_root_element[0] - position_outer_element[0];
-    //offset_y = position_root_element[1] - position_outer_element[1]
 
     var style = window.getComputedStyle(outer_element);
 
     var padding_left = Number(style.getPropertyValue('padding-left').replace('px', ''));
     var padding_top = Number(style.getPropertyValue('padding-top').replace('px', ''));
-    //console.log(padding_left);
-    //console.log(padding_top);
 
     coefficient_x = $('#inner-dropzone').width() / 100;
     coefficient_y = $('#inner-dropzone').height() / 100;
-
-    //inner_width = $('#inner-dropzone').width();
-    //inner_height = $('#inner-dropzone').height();
-
-    //offset_x = padding_left / ($('#outer-dropzone').width() / 100);
-    //offset_y = padding_top / ($('#outer-dropzone').height() / 100);
-
-    //console.log(outer_width);
-    //console.log(outer_height);
-    //console.log(outer_coefficient_x);
-    //console.log(outer_coefficient_y);
-
-
 
     //console.log(coefficient_x); console.log(coefficient_y);
     if (points.length > 0) {
@@ -226,43 +169,10 @@ var setIdSchemaPointControl = function(id) {
 
 var savePoint = async function() {
 
-    //window.scrollTo(0, 0);
-    //const response = await fetch( 'http://test.pestcontrol.ru/account/get-points-on-schema-point-control' );
-    //const json = await response.json();
-    //var points = json.points;
-
-    //var element = document.getElementById('outer-dropzone');
-    //var element = document.querySelector('outer-dropzone');
-    //var position = findPos(element);
-    //console.log();
-
-    //console.log(max_x);
-    //console.log(max_y);
     var newPoints = points.map(function(point) {
         var my_div = document.getElementById(prefix_point_id + point.id_internal);
         var position_div = getCoords(my_div);
-        //console.log(position_div);
-        //console.log(getCoords(temp));
-        //var position_div = my_div.getBoundingClientRect();
-        //console.log(position_div);
-        //var position_div = findPos(element);
-        //console.log(point.id_internal);
-        //if (position_div.left < position_root_element[0]
-        //|| position_div.left > max_x
-        //|| position_div.top < position_root_element[1]
-        //|| position_div.top > max_y) {
-        //console.log('out');
-        //console.log(position_div.left > max_x);
-        //} else {
-        //console.log('in');
 
-        //}
-        //console.log(position_div.left);
-        //console.log(position_div.top);
-        //console.log(position_div);
-        //console.log(position_root_element);
-        //console.log(element.height + position_root_element[1]);
-        //console.log(element.width + position_root_element[0]);
 
         var style = window.getComputedStyle(document.getElementById(prefix_point_id + point.id_internal));
         var marginTop = style.getPropertyValue('margin-top');
@@ -270,15 +180,6 @@ var savePoint = async function() {
         var marginLeft = style.getPropertyValue('margin-left');
         var offset_x = marginLeft.replace('px', '');
 
-        //console.log(position_div[1].toFixed(0));
-        //console.log(position_root_element[1].toFixed(0));
-        //console.log(Math.abs(offset_y));
-        //console.log(coefficient_y);
-
-        //console.log(position_div[0]);
-        //console.log(position_root_element[0]);
-        //console.log(Math.abs(offset_x));
-        //console.log(coefficient_x);
         var new_x = (position_div[0] - position_root_element[0] + Math.abs(offset_x)) / coefficient_x;
         var new_y = (position_div[1] - position_root_element[1] + Math.abs(offset_y)) / coefficient_y;
         console.log(new_x);
@@ -292,14 +193,6 @@ var savePoint = async function() {
     });
 
     var my_body = JSON.stringify({id_file_customer:id_file_customer, points:newPoints});
-    // fetch(base_url + "/manager/save-point/",
-    //     {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: my_body
-    //     });
 
     axios.post(base_url + "/manager/save-point/", my_body);
 
@@ -359,21 +252,6 @@ interact('.draggable')
         // call this function on every dragend event
         onend: function (event) {
 
-            //var element = document.getElementById('outer-dropzone');
-            //var position = element.getBoundingClientRect();
-            // /var position = findPos(element);
-
-            //var x = event.clientX - position[1];
-            //var y = event.clientY - position[0];
-            //console.log('x: ' + x + ' | y: ' + y);
-
-            //var textEl = event.target.querySelector('p');
-
-            //textEl && (textEl.textContent =
-            //    'moved a distance of '
-            //    + (Math.sqrt(Math.pow(event.pageX - event.x0, 2) +
-            //    Math.pow(event.pageY - event.y0, 2) | 0))
-            //        .toFixed(2) + 'px');
         }
     });
 
