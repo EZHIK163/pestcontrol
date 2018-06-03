@@ -16,6 +16,12 @@ use Yii;
  * @property int $created_by
  * @property int $updated_at
  * @property int $updated_by
+ * @property string $form_of_facility
+ * @property string $active_substance
+ * @property string $concentration_of_substance
+ * @property string $manufacturer
+ * @property string $terms_of_use
+ * @property string $place_of_application
  */
 class Disinfectant extends \yii\db\ActiveRecord
 {
@@ -163,25 +169,46 @@ class Disinfectant extends \yii\db\ActiveRecord
         return $disinfectants;
     }
 
-    static function getItemForEditing($id) {
+    static function getItem($id) {
         $disinfectant = self::findOne($id)->toArray();
         return $disinfectant;
     }
 
-    static function saveItem($id, $title, $value) {
+    static function getItemByCode($code) {
+        $disinfectant = self::findOne(compact('code'))->toArray();
+        return $disinfectant;
+    }
+
+    static function saveItem($id, $title, $value, $form_of_facility, $active_substance,
+            $concentration_of_substance, $manufacturer,
+            $terms_of_use, $place_of_application) {
         $item = self::findOne($id);
 
         $item->value = $value;
         $item->description = $title;
+        $item->form_of_facility = $form_of_facility;
+        $item->active_substance = $active_substance;
+        $item->concentration_of_substance = $concentration_of_substance;
+        $item->manufacturer = $manufacturer;
+        $item->terms_of_use = $terms_of_use;
+        $item->place_of_application = $place_of_application;
 
         $item->save();
     }
 
-    static function addItem($title, $value) {
+    static function addItem($title, $value, $form_of_facility, $active_substance,
+                            $concentration_of_substance, $manufacturer,
+                            $terms_of_use, $place_of_application) {
         $item = new Disinfectant();
 
         $item->value = $value;
         $item->description = $title;
+        $item->form_of_facility = $form_of_facility;
+        $item->active_substance = $active_substance;
+        $item->concentration_of_substance = $concentration_of_substance;
+        $item->manufacturer = $manufacturer;
+        $item->terms_of_use = $terms_of_use;
+        $item->place_of_application = $place_of_application;
 
         $item->save();
     }
@@ -193,5 +220,28 @@ class Disinfectant extends \yii\db\ActiveRecord
         $item->is_active = false;
 
         $item->save();
+    }
+
+    static function getDataForReport($id_customer, $from_datetime, $to_datetime) {
+        $data = self::getFromPeriod($id_customer, $from_datetime, $to_datetime);
+        unset($data['setting_column']);
+
+        $result = [];
+        foreach ($data[0] as $key => $item) {
+            $disinfectant = self::getItemByCode($key);
+            $result [] = [
+                'value'                         => $item,
+                'name'                          => $disinfectant['description'],
+                'form_of_facility'              => $disinfectant['form_of_facility'],
+                'active_substance'              => $disinfectant['active_substance'],
+                'concentration_of_substance'    => $disinfectant['concentration_of_substance'],
+                'manufacturer'                  => $disinfectant['manufacturer'],
+                'terms_of_use'                  => $disinfectant['terms_of_use'],
+                'place_of_application'          => $disinfectant['place_of_application'],
+                'disinfector'                   => ''
+            ];
+        }
+
+        return $result;
     }
 }

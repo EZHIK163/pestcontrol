@@ -3,6 +3,7 @@ use dosamigos\chartjs\ChartJs;
 use dosamigos\datepicker\DatePicker;
 use yii\grid\GridView;
 use yii\widgets\ActiveForm;
+use yii\helpers\Html;
 
 $this->title = "Отчет по дезсредствам  {$name_customer}"; ?>
 <div class="row-fluid">
@@ -68,13 +69,9 @@ $this->title = "Отчет по дезсредствам  {$name_customer}"; ?>
                             ], $setting_column)
                         ]); ?>
 
-                        <p><span style="font-family: arial,helvetica,sans-serif; font-size: 14pt;">Укажите месяц и год отчетности:</span></p>
-                        <form action="andr/poisonsExport.php" method="post">
-                            <p><input max="12" min="1" name="month" type="number" value="1" /></p>
-                            <p><input max="2018" min="2016" name="year" type="number" value="2018" /></p>
-                            <p><input name="company" type="hidden" value="baltika" /></p>
-                            <p><input type="submit" value="Экспорт в Excel" /></p>
-                        </form> 	</div>
+                        <a href="<?=\Yii::$app->urlManager->createAbsoluteUrl(['/'])?>report/report-disinfectant?from_datetime=<?=$model->date_from?>&to_datetime=<?=$model->date_to?>">Экспорт в Excel</a>
+
+                    </div>
                     </div>
 
                 <!-- End Content -->
