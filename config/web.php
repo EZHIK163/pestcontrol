@@ -13,7 +13,10 @@ return [
         'db'  => require (__DIR__. '/db.php'),
         'urlManager'    => [
             'enablePrettyUrl'   => true,
-            'showScriptName'    => false
+            'showScriptName'    => false,
+            'rules' => [
+                'andr/create_point.php'              => 'account/new-point/',
+            ]
         ],
         'db_old' => [
             'class'     => 'yii\db\Connection',

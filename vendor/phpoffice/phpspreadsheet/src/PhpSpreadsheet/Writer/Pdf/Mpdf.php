@@ -79,11 +79,10 @@ class Mpdf extends Pdf
         $pdf->SetKeywords($this->spreadsheet->getProperties()->getKeywords());
         $pdf->SetCreator($this->spreadsheet->getProperties()->getCreator());
 
-        $pdf->WriteHTML(
-            $this->generateHTMLHeader(false) .
+        $html = $this->generateHTMLHeader(false) .
             $this->generateSheetData() .
-            $this->generateHTMLFooter()
-        );
+            $this->generateHTMLFooter();
+        $pdf->WriteHTML($html);
 
         //  Write to file
         fwrite($fileHandle, $pdf->Output('', 'S'));

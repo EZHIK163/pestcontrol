@@ -21,6 +21,10 @@ class AccountController extends Controller {
         return $this->render('index');
     }
 
+    public function actionNewPoint() {
+
+    }
+
     public function actionScheme() {
         $id = \Yii::$app->user->id;
         $customer = Customer::getCustomerByIdUser($id);

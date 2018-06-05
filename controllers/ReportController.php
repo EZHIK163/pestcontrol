@@ -10,6 +10,8 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\Style\Font;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use PhpOffice\PhpSpreadsheet\Writer\Pdf\Mpdf;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -109,22 +111,39 @@ class ReportController extends Controller {
             ],
         ];
 
+        $highestRow = $sheet->getHighestRow();
+        $highestCol = $sheet->getHighestColumn();
+
+        $spreadsheet->getActiveSheet()->setBreak('A10', Worksheet::BREAK_ROW);
+        $spreadsheet->getActiveSheet()->setBreak('D10', Worksheet::BREAK_COLUMN);
         //$spreadsheet->getActiveSheet()->getStyle('A3')
         $current_style = $sheet->getStyle($start_cell.':'.$end_cell);
+        $sheet->rangeToArray("A1:Z10", null, true, false, false);
         $current_style->applyFromArray($styleArray);
 
 
-        $name_file = $customer->name.'_report_disinfectant_from_'.$from_datetime.'_to_'.$to_datetime;
-        // redirect output to client browser
-        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment;filename="'.$name_file.'"');
-        header('Cache-Control: max-age=0');
+//        $name_file = $customer->name.'_report_disinfectant_from_'.$from_datetime.'_to_'.$to_datetime;
+//
+//        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+//        header('Content-Disposition: attachment;filename="'.$name_file.'"');
+//        header('Cache-Control: max-age=0');
+//
+//        $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
+//        $writer->save('php://output');
 
-        $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
-        $writer->save('php://output');
-        //$writer = new Xlsx($spreadsheet);
-        //$writer->save(\Yii::$app->basePath.'/web/reports/'.$name_file.'.xlsx');
-        //return $this->render('scheme', compact('data_provider', 'model'));
+        $name_file = 'test.pdf';
+//        header('Content-Type: application/pdf');
+//        header('Content-Disposition: attachment;filename="'.$name_file.'"');
+//        header('Cache-Control: max-age=0');
+
+        //$class = Mpdf::class;
+        //IOFactory::registerWriter('Pdf', $class);
+        //$writer = IOFactory::createWriter($spreadsheet, 'Pdf');
+        $writer = new Mpdf($spreadsheet);
+        ini_set("pcre.backtrack_limit", "5000000");
+        $writer->save(\Yii::$app->basePath.'/'."05featuredemo.pdf");
+        //$xmlWriter =  IOFactory::createWriter($spreadsheet , 'Mpdf');
+        //$xmlWriter->save(\Yii::$app->basePath.'/'.$name_file);
     }
 
     public function behaviors()

@@ -1166,6 +1166,76 @@
         ]
     },
     {
+        "name": "mpdf/mpdf",
+        "version": "v7.1.0",
+        "version_normalized": "7.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/mpdf/mpdf.git",
+            "reference": "8e3d0d7bf74f71d04904215fb487d01e924c469a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/mpdf/mpdf/zipball/8e3d0d7bf74f71d04904215fb487d01e924c469a",
+            "reference": "8e3d0d7bf74f71d04904215fb487d01e924c469a",
+            "shasum": ""
+        },
+        "require": {
+            "ext-gd": "*",
+            "ext-mbstring": "*",
+            "myclabs/deep-copy": "^1.7",
+            "paragonie/random_compat": "^1.4|^2.0",
+            "php": "^5.6 || ~7.0.0 || ~7.1.0 || ~7.2.0",
+            "psr/log": "^1.0",
+            "setasign/fpdi": "1.6.*"
+        },
+        "require-dev": {
+            "mockery/mockery": "^0.9.5",
+            "phpunit/phpunit": "^5.0",
+            "squizlabs/php_codesniffer": "^2.7.0",
+            "tracy/tracy": "^2.4"
+        },
+        "suggest": {
+            "ext-bcmath": "Needed for generation of some types of barcodes",
+            "ext-xml": "Needed mainly for SVG manipulation",
+            "ext-zlib": "Needed for compression of embedded resources, such as fonts"
+        },
+        "time": "2018-05-18T05:41:37+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-development": "7.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Mpdf\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0-only"
+        ],
+        "authors": [
+            {
+                "name": "Matěj Humpál",
+                "role": "Developer, maintainer"
+            },
+            {
+                "name": "Ian Back",
+                "role": "Developer (retired)"
+            }
+        ],
+        "description": "A PHP class to generate PDF files from HTML with Unicode/UTF-8 and CJK support",
+        "homepage": "https://mpdf.github.io",
+        "keywords": [
+            "pdf",
+            "php",
+            "utf-8"
+        ]
+    },
+    {
         "name": "myclabs/deep-copy",
         "version": "1.7.0",
         "version_normalized": "1.7.0.0",
@@ -1210,6 +1280,95 @@
             "duplicate",
             "object",
             "object graph"
+        ]
+    },
+    {
+        "name": "paragonie/random_compat",
+        "version": "v2.0.12",
+        "version_normalized": "2.0.12.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/paragonie/random_compat.git",
+            "reference": "258c89a6b97de7dfaf5b8c7607d0478e236b04fb"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/paragonie/random_compat/zipball/258c89a6b97de7dfaf5b8c7607d0478e236b04fb",
+            "reference": "258c89a6b97de7dfaf5b8c7607d0478e236b04fb",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "4.*|5.*"
+        },
+        "suggest": {
+            "ext-libsodium": "Provides a modern crypto API that can be used to generate random bytes."
+        },
+        "time": "2018-04-04T21:24:14+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "lib/random.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Paragon Initiative Enterprises",
+                "email": "security@paragonie.com",
+                "homepage": "https://paragonie.com"
+            }
+        ],
+        "description": "PHP 5.x polyfill for random_bytes() and random_int() from PHP 7",
+        "keywords": [
+            "csprng",
+            "pseudorandom",
+            "random"
+        ]
+    },
+    {
+        "name": "pclzip/pclzip",
+        "version": "2.8.2",
+        "version_normalized": "2.8.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ivanlanin/pclzip.git",
+            "reference": "19dd1de9d3f5fc4d7d70175b4c344dee329f45fd"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ivanlanin/pclzip/zipball/19dd1de9d3f5fc4d7d70175b4c344dee329f45fd",
+            "reference": "19dd1de9d3f5fc4d7d70175b4c344dee329f45fd",
+            "shasum": ""
+        },
+        "time": "2014-06-05T11:42:24+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "pclzip.lib.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPL-2.1"
+        ],
+        "authors": [
+            {
+                "name": "Vincent Blavet"
+            }
+        ],
+        "description": "A PHP library that offers compression and extraction functions for Zip formatted archives",
+        "homepage": "http://www.phpconcept.net/pclzip",
+        "keywords": [
+            "php",
+            "zip"
         ]
     },
     {
@@ -1477,6 +1636,63 @@
         ]
     },
     {
+        "name": "phpoffice/common",
+        "version": "0.2.7",
+        "version_normalized": "0.2.7.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/PHPOffice/Common.git",
+            "reference": "d5992c95f199842fa8ba6329bb15d02716265d5b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/PHPOffice/Common/zipball/d5992c95f199842fa8ba6329bb15d02716265d5b",
+            "reference": "d5992c95f199842fa8ba6329bb15d02716265d5b",
+            "shasum": ""
+        },
+        "require": {
+            "pclzip/pclzip": "^2.8",
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "phpdocumentor/phpdocumentor": "2.*",
+            "phploc/phploc": "2.*",
+            "phpmd/phpmd": "2.*",
+            "phpunit/phpunit": "3.7.*",
+            "sebastian/phpcpd": "2.*",
+            "squizlabs/php_codesniffer": "2.*"
+        },
+        "time": "2017-11-23T14:13:25+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "PhpOffice\\Common\\": "src/Common/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPL"
+        ],
+        "authors": [
+            {
+                "name": "Mark Baker"
+            },
+            {
+                "name": "Franck Lefevre",
+                "homepage": "http://rootslabs.net"
+            }
+        ],
+        "description": "PHPOffice Common",
+        "homepage": "http://phpoffice.github.io",
+        "keywords": [
+            "common",
+            "component",
+            "office",
+            "php"
+        ]
+    },
+    {
         "name": "phpoffice/phpspreadsheet",
         "version": "1.2.1",
         "version_normalized": "1.2.1.0",
@@ -1562,6 +1778,111 @@
             "spreadsheet",
             "xls",
             "xlsx"
+        ]
+    },
+    {
+        "name": "phpoffice/phpword",
+        "version": "v0.14.0",
+        "version_normalized": "0.14.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/PHPOffice/PHPWord.git",
+            "reference": "b614497ae6dd44280be1c2dda56772198bcd25ae"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/PHPOffice/PHPWord/zipball/b614497ae6dd44280be1c2dda56772198bcd25ae",
+            "reference": "b614497ae6dd44280be1c2dda56772198bcd25ae",
+            "shasum": ""
+        },
+        "require": {
+            "ext-xml": "*",
+            "php": "^5.3.3 || ^7.0",
+            "phpoffice/common": "^0.2",
+            "zendframework/zend-escaper": "^2.2",
+            "zendframework/zend-stdlib": "^2.2 || ^3.0"
+        },
+        "require-dev": {
+            "dompdf/dompdf": "0.8.*",
+            "friendsofphp/php-cs-fixer": "^2.0",
+            "mpdf/mpdf": "5.* || 6.* || 7.*",
+            "phpdocumentor/phpdocumentor": "2.*",
+            "phploc/phploc": "2.* || 3.* || 4.*",
+            "phpmd/phpmd": "2.*",
+            "phpunit/phpunit": "^4.8.36 || ^5.0",
+            "squizlabs/php_codesniffer": "^2.7",
+            "tecnickcom/tcpdf": "6.*"
+        },
+        "suggest": {
+            "dompdf/dompdf": "Allows writing PDF",
+            "ext-gd2": "Allows adding images",
+            "ext-xmlwriter": "Allows writing OOXML and ODF",
+            "ext-xsl": "Allows applying XSL style sheet to headers, to main document part, and to footers of an OOXML template",
+            "ext-zip": "Allows writing OOXML and ODF"
+        },
+        "time": "2017-12-29T01:30:53+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "PhpOffice\\PhpWord\\": "src/PhpWord"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPL-3.0"
+        ],
+        "authors": [
+            {
+                "name": "Mark Baker"
+            },
+            {
+                "name": "Gabriel Bull",
+                "email": "me@gabrielbull.com",
+                "homepage": "http://gabrielbull.com/"
+            },
+            {
+                "name": "Ivan Lanin",
+                "homepage": "http://ivan.lanin.org"
+            },
+            {
+                "name": "Roman Syroeshko",
+                "homepage": "http://ru.linkedin.com/pub/roman-syroeshko/34/a53/994/"
+            },
+            {
+                "name": "Franck Lefevre",
+                "homepage": "https://rootslabs.net/blog/"
+            },
+            {
+                "name": "Antoine de Troostembergh"
+            }
+        ],
+        "description": "PHPWord - A pure PHP library for reading and writing word processing documents (OOXML, ODF, RTF, HTML, PDF)",
+        "homepage": "http://phpoffice.github.io",
+        "keywords": [
+            "ISO IEC 29500",
+            "OOXML",
+            "Office Open XML",
+            "OpenDocument",
+            "OpenXML",
+            "PhpOffice",
+            "PhpWord",
+            "Rich Text Format",
+            "WordprocessingML",
+            "doc",
+            "docx",
+            "html",
+            "odf",
+            "odt",
+            "office",
+            "pdf",
+            "php",
+            "reader",
+            "rtf",
+            "template",
+            "template processor",
+            "word",
+            "writer"
         ]
     },
     {
@@ -2125,6 +2446,55 @@
             "psr-7",
             "request",
             "response"
+        ]
+    },
+    {
+        "name": "psr/log",
+        "version": "1.0.2",
+        "version_normalized": "1.0.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/php-fig/log.git",
+            "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/php-fig/log/zipball/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+            "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2016-10-10T12:19:37+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Psr\\Log\\": "Psr/Log/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "PHP-FIG",
+                "homepage": "http://www.php-fig.org/"
+            }
+        ],
+        "description": "Common interface for logging libraries",
+        "homepage": "https://github.com/php-fig/log",
+        "keywords": [
+            "log",
+            "psr",
+            "psr-3"
         ]
     },
     {
@@ -2757,6 +3127,57 @@
         ],
         "description": "Library that helps with managing the version number of Git-hosted PHP projects",
         "homepage": "https://github.com/sebastianbergmann/version"
+    },
+    {
+        "name": "setasign/fpdi",
+        "version": "1.6.2",
+        "version_normalized": "1.6.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Setasign/FPDI.git",
+            "reference": "a6ad58897a6d97cc2d2cd2adaeda343b25a368ea"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Setasign/FPDI/zipball/a6ad58897a6d97cc2d2cd2adaeda343b25a368ea",
+            "reference": "a6ad58897a6d97cc2d2cd2adaeda343b25a368ea",
+            "shasum": ""
+        },
+        "suggest": {
+            "setasign/fpdf": "FPDI will extend this class but as it is also possible to use \"tecnickcom/tcpdf\" as an alternative there's no fixed dependency configured.",
+            "setasign/fpdi-fpdf": "Use this package to automatically evaluate dependencies to FPDF.",
+            "setasign/fpdi-tcpdf": "Use this package to automatically evaluate dependencies to TCPDF."
+        },
+        "time": "2017-05-11T14:25:49+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "filters/",
+                "fpdi.php",
+                "fpdf_tpl.php",
+                "fpdi_pdf_parser.php",
+                "pdf_context.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jan Slabon",
+                "email": "jan.slabon@setasign.com",
+                "homepage": "https://www.setasign.com"
+            }
+        ],
+        "description": "FPDI is a collection of PHP classes facilitating developers to read pages from existing PDF documents and use them as templates in FPDF. Because it is also possible to use FPDI with TCPDF, there are no fixed dependencies defined. Please see suggestions for packages which evaluates the dependencies automatically.",
+        "homepage": "https://www.setasign.com/fpdi",
+        "keywords": [
+            "fpdf",
+            "fpdi",
+            "pdf"
+        ]
     },
     {
         "name": "symfony/browser-kit",
@@ -3755,6 +4176,101 @@
             "code generator",
             "gii",
             "yii2"
+        ]
+    },
+    {
+        "name": "zendframework/zend-escaper",
+        "version": "2.6.0",
+        "version_normalized": "2.6.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/zendframework/zend-escaper.git",
+            "reference": "31d8aafae982f9568287cb4dce987e6aff8fd074"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/zendframework/zend-escaper/zipball/31d8aafae982f9568287cb4dce987e6aff8fd074",
+            "reference": "31d8aafae982f9568287cb4dce987e6aff8fd074",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^5.6 || ^7.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.2",
+            "zendframework/zend-coding-standard": "~1.0.0"
+        },
+        "time": "2018-04-25T15:48:53+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.6.x-dev",
+                "dev-develop": "2.7.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Zend\\Escaper\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "description": "Securely and safely escape HTML, HTML attributes, JavaScript, CSS, and URLs",
+        "keywords": [
+            "ZendFramework",
+            "escaper",
+            "zf"
+        ]
+    },
+    {
+        "name": "zendframework/zend-stdlib",
+        "version": "3.2.0",
+        "version_normalized": "3.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/zendframework/zend-stdlib.git",
+            "reference": "cd164b4a18b5d1aeb69be2c26db035b5ed6925ae"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/zendframework/zend-stdlib/zipball/cd164b4a18b5d1aeb69be2c26db035b5ed6925ae",
+            "reference": "cd164b4a18b5d1aeb69be2c26db035b5ed6925ae",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^5.6 || ^7.0"
+        },
+        "require-dev": {
+            "phpbench/phpbench": "^0.13",
+            "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.2",
+            "zendframework/zend-coding-standard": "~1.0.0"
+        },
+        "time": "2018-04-30T13:50:40+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.2.x-dev",
+                "dev-develop": "3.3.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Zend\\Stdlib\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "description": "SPL extensions, array utilities, error handlers, and more",
+        "keywords": [
+            "ZendFramework",
+            "stdlib",
+            "zf"
         ]
     }
 ]
