@@ -418,4 +418,62 @@ class Events extends \yii\db\ActiveRecord
             'datasets'  => $datasets
         ];
     }
+
+    static function getDataForReport($id_customer) {
+
+        $from_datetime = (new \DateTime())->format('01.01.Y');
+        $start_timestamp = \Yii::$app->formatter->asTimestamp($from_datetime);
+
+        $events = self::find()
+            ->select('events.id_external, point_status.code, events.created_at')
+            ->join('inner join', 'public.point_status', 'point_status.id = events.id_point_status')
+            ->where(compact('id_customer'))
+            ->andWhere(['>=', 'events.created_at', $start_timestamp])
+            ->orderBy('events.created_at ASC')
+        ->asArray()
+        ->all();
+
+        $data = [];
+        foreach ($events as $item) {
+            $data[$item['id_external']] [] = $item;
+        }
+
+        ksort($data);
+
+        $result = [];
+        foreach ($data as $id_external => $point) {
+            foreach ($point as $item) {
+                $month = date('m', $item['created_at']);
+                $result[$id_external][$month] [] = $item;
+            }
+        }
+
+        $data = [];
+        foreach ($result as $id_external => $months) {
+            foreach ($months as $my_month => $month) {
+                $statistics = [];
+                foreach ($month as $event) {
+                    switch($event['code']) {
+                        case 'part_replace':
+                            $statistics [] = 1;
+                            break;
+                        case 'not_touch':
+                            $statistics [] = 0;
+                            break;
+                        case 'full_replace':
+                            $statistics [] = 2;
+                            break;
+                        case 'caught':
+                            $statistics [] = 3;
+                            break;
+                    }
+                }
+                $data[$id_external][$my_month] = implode(' | ', $statistics);
+
+            }
+            $data[$id_external]['name'] = '';
+        }
+
+        return $data;
+    }
 }

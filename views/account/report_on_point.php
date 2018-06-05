@@ -64,14 +64,8 @@ $this->title = "Отчет по точкам контроля  {$name_customer}"
                             ]);
                             ?></p>
                         <hr />
-                        <p><span style="font-size: 14pt;">Отчет по точкам<br /></span></p>
-                        <p><span style="font-size: 8pt;"><div id="chart_40" style="display:inline-block"></div></span></p>
-                        <p><span style="font-size: 12pt;">Укажите год отчетности:</span></p>
-                        <form action="andr/pointsExportBal.php" method="post">
-                            <p><input max="2018" min="2016" name="year" type="number" value="2018" /></p>
-                            <input name="company" type="hidden" value="baltika" /> <input type="submit" value="Экспорт в Excel" /></form>
-                        <p> </p>
-                        <p><span style="font-size: 10pt;"></span></p> 	</div>
+                        <a href="<?=\Yii::$app->urlManager->createAbsoluteUrl(['/'])?>report/report-points">Экспорт в Word</a>
+                    </div>
                     </div>
 
                 <!-- End Content -->
