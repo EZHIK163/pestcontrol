@@ -28,6 +28,7 @@ class m180227_155122_old_data_to_new_data extends Migration
                 'is_active'     => 'boolean DEFAULT true',
                 'id_user_owner' => 'integer',
                 'name'          => 'string',
+                'code'          => 'string',
                 'created_at'    => 'integer',
                 'created_by'    => 'integer',
                 'updated_at'    => 'integer',
@@ -51,14 +52,15 @@ class m180227_155122_old_data_to_new_data extends Migration
             ->queryAll();
         $sql = "
         INSERT INTO public.customers 
-        (name, created_at, created_by, updated_at, updated_by)
+        (name, created_at, created_by, updated_at, updated_by, code)
         VALUES 
-        (:name, :created_at, :created_by, :updated_at, :updated_by)";
+        (:name, :created_at, :created_by, :updated_at, :updated_by, :code)";
         $updated_by = $created_by = UserRecord::findOne(['username'    => 'admin'])->id;
         foreach ($companies as $company) {
             $updated_at = $created_at = \Yii::$app->formatter->asTimestamp(date('Y-d-m h:i:s'));
             $this->db->createCommand($sql)
                 ->bindValue(':name', $company['name'])
+                ->bindValue(':code', $company['tbl_names'])
                 ->bindValue(':created_at', $created_at)
                 ->bindValue(':created_by', $created_by)
                 ->bindValue(':updated_at', $updated_at)
@@ -347,6 +349,7 @@ class m180227_155122_old_data_to_new_data extends Migration
                 'id_customer'           => 'integer',
                 'id_disinfector'        => 'integer',
                 'id_external'           => 'integer',
+                'id_point'              => 'integer',
                 'id_point_status'       => 'integer',
                 'created_at'    => 'integer',
                 'created_by'    => 'integer',
@@ -360,6 +363,9 @@ class m180227_155122_old_data_to_new_data extends Migration
 
         $this->addForeignKey('events_id_disinfector', 'events',
             'id_disinfector', 'disinfectors', 'id');
+
+        $this->addForeignKey('events_id_point', 'events',
+            'id_point', 'points', 'id');
 
         $this->addForeignKey('events_id_customer', 'events',
             'id_customer', 'customers', 'id');

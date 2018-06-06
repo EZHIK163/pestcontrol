@@ -2,6 +2,7 @@
 
 namespace app\models\customer;
 
+use ErrorException;
 use Yii;
 use yii\db\Expression;
 use yii\helpers\ArrayHelper;
@@ -14,6 +15,7 @@ use yii\helpers\ArrayHelper;
  * @property int $id_customer
  * @property int $id_disinfector
  * @property int $id_external
+ * @property int $id_point
  * @property int $id_point_status
  * @property int $created_at
  * @property int $created_by
@@ -41,8 +43,8 @@ class Events extends \yii\db\ActiveRecord
             [['id_customer', 'id_disinfector', 'id_external', 'id_point_status', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\user\UserRecord::class, 'targetAttribute' => ['created_by' => 'id']],
             [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\user\UserRecord::class, 'targetAttribute' => ['updated_by' => 'id']],
-            [['id_customer'], 'exist', 'skipOnError' => true, 'targetClass' => Customers::class, 'targetAttribute' => ['id_customer' => 'id']],
-            [['id_disinfector'], 'exist', 'skipOnError' => true, 'targetClass' => Disinfectors::class, 'targetAttribute' => ['id_disinfector' => 'id']],
+            [['id_customer'], 'exist', 'skipOnError' => true, 'targetClass' => Customer::class, 'targetAttribute' => ['id_customer' => 'id']],
+            [['id_disinfector'], 'exist', 'skipOnError' => true, 'targetClass' => Disinfector::class, 'targetAttribute' => ['id_disinfector' => 'id']],
             [['id_point_status'], 'exist', 'skipOnError' => true, 'targetClass' => PointStatus::class, 'targetAttribute' => ['id_point_status' => 'id']],
         ];
     }
@@ -475,5 +477,73 @@ class Events extends \yii\db\ActiveRecord
         }
 
         return $data;
+    }
+
+    static function addEvent($code_company, $id_disinfector, $id_external, $id_point_status) {
+
+        $id_customer = Customer::getIdCustomerByCode($code_company);
+
+        $id_point = Points::getPointByIdInternal($id_external, $id_customer);
+        $event = new Events();
+
+        $event->id_customer = $id_customer;
+        $event->id_disinfector = $id_disinfector;
+        $event->id_external = $id_external;
+        $event->id_point = $id_point;
+        $event->id_point_status = $id_point_status;
+
+        $event->save();
+    }
+
+    static function getEventsForManager($id_customer) {
+
+        $events = self::find()
+            ->select('events.id, customers.name, point_status.description as point_status, points.id_internal, events.created_at')
+            ->join('inner join', 'public.point_status', 'point_status.id = events.id_point_status')
+            ->join('inner join', 'public.points', 'points.id = events.id_point')
+            ->join('inner join', 'public.customers', 'customers.id = events.id_customer')
+            ->andWhere(['events.is_active' => true]);
+
+
+        if (!is_null($id_customer)) {
+            $events = $events->andWhere(['events.id_customer'    => $id_customer]);
+        }
+
+        $events = $events
+            ->orderBy('events.id ASC')
+            ->asArray()
+            ->all();
+
+        foreach ($events as &$event) {
+            $event['datetime'] = date('d.m.y h:i', $event['created_at']);
+        }
+
+        return $events;
+    }
+
+    static function deleteEvent($id) {
+        $event = self::findOne($id);
+        $event->is_active = false;
+
+        $event->save();
+    }
+
+    static function getItemForEditing($id) {
+        $event = self::find()
+            ->select('id_point_status')
+            ->where(['id'  => $id])
+            ->asArray()
+            ->all();
+
+        if (!isset($event[0])) {
+            throw new ErrorException("Точка не найдена");
+        }
+        return $event[0];
+    }
+
+    static function saveItem($id, $id_point_status) {
+        $event = self::findOne($id);
+        $event->id_point_status = $id_point_status;
+        $event->save();
     }
 }

@@ -210,4 +210,21 @@ class Points extends \yii\db\ActiveRecord
 
         $point->save();
     }
+
+    static function getPointByIdInternal($id_internal, $id_customer) {
+        $point = self::find()
+            ->select('points.id')
+            ->join('inner join', 'file_customer', 'file_customer.id = points.id_file_customer')
+            ->where(['points.id_internal'  => $id_internal])
+            ->andWhere(['file_customer.id_customer' => $id_customer])
+            ->asArray()
+            ->all()
+        ;
+
+        if (count($point) != 0) {
+            return $point->id;
+        } else {
+            return null;
+        }
+    }
 }
