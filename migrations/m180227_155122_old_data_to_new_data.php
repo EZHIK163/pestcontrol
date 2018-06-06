@@ -404,11 +404,15 @@ class m180227_155122_old_data_to_new_data extends Migration
                 if ($event['executor'] == 777) {
                     $event['executor'] = 14;
                 }
-                if ($event['pointProp'] == 3 && $name_table == "\"Alpla_spb\"") {
+                //2018-01-11 10:00:45+03
+                if ($event['pointNum'] == 1
+                    && $name_table == "baltika"
+                    && $event['created'] == '2018-01-11 10:00:45+03') {
                     $index = 0;
                 }
                 $event['pointProp']++;
-                $event['pointNum']++;
+                $event['company']++;
+                //$event['pointNum']++;
                 $this->db->createCommand($sql_insert)
                     ->bindValue(':id_disinfector', $event['executor'])
                     ->bindValue(':id_customer', $event['company'])
