@@ -4,13 +4,17 @@ namespace app\controllers;
 use app\models\customer\Customer;
 use app\models\customer\CustomerForm;
 use app\models\customer\Disinfectant;
+use app\models\customer\Events;
 use app\models\customer\FileCustomer;
 use app\models\customer\FileCustomerType;
 use app\models\customer\ManageDisinfectantForm;
 use app\models\customer\ManageDisinfectantsForm;
+use app\models\customer\ManageEventForm;
+use app\models\customer\ManageEventsForm;
 use app\models\customer\ManagePointForm;
 use app\models\customer\ManagePointsForm;
 use app\models\customer\Points;
+use app\models\customer\PointStatus;
 use app\models\customer\SearchForm;
 use app\models\file\Files;
 use app\models\file\UploadForm;
@@ -18,6 +22,7 @@ use app\models\tools\Tools;
 use app\models\user\User;
 use app\models\user\UserRecord;
 use app\models\widget\Widget;
+use InvalidArgumentException;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\filters\AccessControl;
@@ -28,11 +33,31 @@ class ManagerController extends Controller {
 
     public function beforeAction($action)
     {
-        if ($action->id == 'save-point') {
+        if (in_array($action->id , ['save-point', 'new-point'])) {
             $this->enableCsrfValidation = false;
         }
 
         return parent::beforeAction($action);
+    }
+
+    public function actionNewPoint($version = null) {
+
+        $code_company = \Yii::$app->request->post('company');
+        $id_disinfector = \Yii::$app->request->post('executor');
+        $id_external = \Yii::$app->request->post('pointNum');
+        $id_point_status = \Yii::$app->request->post('pointProp');
+
+        $id_point_status++;
+
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+
+        Events::addEvent($code_company, $id_disinfector, $id_external, $id_point_status);
+
+        $my_data = [
+            'success'   => 1,
+            'message'   => 'Product successfully created'
+        ];
+        return $my_data;
     }
 
     public function actionUsers() {
@@ -296,6 +321,50 @@ class ManagerController extends Controller {
         return $this->render('add-disinfectant', compact( 'model'));
     }
 
+    public function actionManageEvents() {
+
+        $model = new ManageEventsForm();
+
+        $id_customer = null;
+        if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+            $id_customer = $model->id_customer;
+        }
+
+        $customers = Customer::getCustomerForDropDownList();
+
+        $points = Events::getEventsForManager($id_customer);
+
+        $data_provider = Tools::wrapIntoDataProvider($points);
+        return $this->render('manage-events', compact('data_provider', 'model', 'customers'));
+    }
+
+    public function actionDeleteEvent() {
+        $id = \Yii::$app->request->get('id');
+        if (isset($id)) {
+            Events::deleteEvent($id);
+            $this->redirect('manage-events');
+        }
+    }
+
+    public function actionEditEvent() {
+
+        $id = \Yii::$app->request->get('id');
+
+        if (!isset($id)) {
+            throw new InvalidArgumentException();
+        }
+
+        $model = new ManageEventForm($id);
+
+        if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+            $model->saveEvent();
+        }
+
+        $point_status = PointStatus::getPointStatusesForDropDownList();
+
+        return $this->render('manage-event', compact( 'model', 'point_status'));
+    }
+
     public function behaviors()
     {
         return [
@@ -308,12 +377,13 @@ class ManagerController extends Controller {
                             'scheme-point-control', 'edit-schema-point-control' ,'customers', 'add-customer',
                             'delete-customer', 'edit-customer', 'manage-points', 'manage-disinfectants',
                             'manage-disinfectants-on-customers', 'manage-customer-disinfectant', 'manage-point',
-                            'delete-point', 'edit-disinfectant', 'delete-disinfectant', 'add-disinfectant'],
+                            'delete-point', 'edit-disinfectant', 'delete-disinfectant', 'add-disinfectant',
+                            'manage-events', 'delete-event', 'edit-event'],
                         'roles'     => ['manager'],
                         'allow'     => true
                     ],
                     [
-                        'actions'=> ['get-points-on-schema-point-control','save-point'],
+                        'actions'=> ['get-points-on-schema-point-control','save-point', 'new-point'],
                         'roles'     => [],
                         'allow'     => true
                     ]

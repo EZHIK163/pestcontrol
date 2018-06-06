@@ -208,5 +208,8 @@ class Customer extends \yii\db\ActiveRecord
         }
     }
 
-
+    static function getIdCustomerByCode($code) {
+        $customer = self::findOne(compact('code'));
+        return $customer->id;
+    }
 }

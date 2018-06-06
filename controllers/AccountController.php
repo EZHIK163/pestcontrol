@@ -16,13 +16,8 @@ use yii\web\Response;
 class AccountController extends Controller {
 
 
-
     public function actionIndex() {
         return $this->render('index');
-    }
-
-    public function actionNewPoint() {
-
     }
 
     public function actionScheme() {

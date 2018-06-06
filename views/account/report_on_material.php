@@ -69,7 +69,8 @@ $this->title = "Отчет по дезсредствам  {$name_customer}"; ?>
                             ], $setting_column)
                         ]); ?>
 
-                        <a href="<?=\Yii::$app->urlManager->createAbsoluteUrl(['/'])?>report/report-disinfectant?from_datetime=<?=$model->date_from?>&to_datetime=<?=$model->date_to?>">Экспорт в Word</a>
+                        <a href="<?=\Yii::$app->urlManager->createAbsoluteUrl(['/'])?>report/report-disinfectant-to-excel?from_datetime=<?=$model->date_from?>&to_datetime=<?=$model->date_to?>">Экспорт в Excel</a><br/>
+                        <a href="<?=\Yii::$app->urlManager->createAbsoluteUrl(['/'])?>report/report-disinfectant-to-word?from_datetime=<?=$model->date_from?>&to_datetime=<?=$model->date_to?>">Экспорт в Word</a>
 
                     </div>
                     </div>

@@ -64,7 +64,9 @@ $this->title = "Отчет по точкам контроля  {$name_customer}"
                             ]);
                             ?></p>
                         <hr />
-                        <a href="<?=\Yii::$app->urlManager->createAbsoluteUrl(['/'])?>report/report-points">Экспорт в Word</a>
+                        <a href="<?=\Yii::$app->urlManager->createAbsoluteUrl(['/'])?>report/report-points-to-word">Экспорт в Word</a><br/>
+                        <a href="<?=\Yii::$app->urlManager->createAbsoluteUrl(['/'])?>report/report-points-to-excel">Экспорт в Excel</a>
+
                     </div>
                     </div>
 
