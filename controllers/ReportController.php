@@ -347,8 +347,7 @@ class ReportController extends Controller {
         return [
             'access'    => [
                 'class' => AccessControl::class,
-                'only'  => ['report-disinfectant-to-excel', 'report-disinfectant-to-word',
-                    'report-points-to-word', 'report-points-to-excel'],
+                'only'  => ['*'],
                 'rules' => [
                     [
                         'actions'   => ['report-disinfectant-to-excel', 'report-disinfectant-to-word',
