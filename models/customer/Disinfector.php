@@ -93,4 +93,14 @@ class Disinfector extends \yii\db\ActiveRecord
             'blame'     => \yii\behaviors\BlameableBehavior::class
         ];
     }
+
+    public static function getAllForManager() {
+
+        $disinfectors = self::find()
+            ->asArray()
+            ->all();
+
+        return $disinfectors;
+
+    }
 }

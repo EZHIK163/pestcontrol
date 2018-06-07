@@ -115,7 +115,7 @@ class ReportController extends Controller {
         $name_file = 'Отчет по дезсредствам.xlsx';
 
         $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
-        $writer->save(\Yii::$app->basePath.'/temp.xlsx');
+        $writer->save(\Yii::$app->basePath.'/temp/temp.xlsx');
 
         return \Yii::$app->response->sendFile(
             \Yii::$app->basePath.'/temp.xlsx',
@@ -170,7 +170,7 @@ class ReportController extends Controller {
         }
 
         $name_file = 'Отчет по дезсредствам.docx';
-        $templateProcessor->saveAs(\Yii::$app->basePath.'/temp.docx');
+        $templateProcessor->saveAs(\Yii::$app->basePath.'/temp/temp.docx');
 
         return \Yii::$app->response->sendFile(
             \Yii::$app->basePath.'/temp.docx',
@@ -232,7 +232,7 @@ class ReportController extends Controller {
         }
 
         $name_file = 'Отчет по точкам.docx';
-        $templateProcessor->saveAs(\Yii::$app->basePath.'/temp.docx');
+        $templateProcessor->saveAs(\Yii::$app->basePath.'/temp/temp.docx');
 
         return \Yii::$app->response->sendFile(
             \Yii::$app->basePath.'/temp.docx',
@@ -333,7 +333,7 @@ class ReportController extends Controller {
         $name_file = 'Отчет по точкам.xlsx';
 
         $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
-        $writer->save(\Yii::$app->basePath.'/temp.xlsx');
+        $writer->save(\Yii::$app->basePath.'/temp/temp.xlsx');
 
         return \Yii::$app->response->sendFile(
             \Yii::$app->basePath.'/temp.xlsx',

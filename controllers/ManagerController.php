@@ -4,6 +4,7 @@ namespace app\controllers;
 use app\models\customer\Customer;
 use app\models\customer\CustomerForm;
 use app\models\customer\Disinfectant;
+use app\models\customer\Disinfector;
 use app\models\customer\Events;
 use app\models\customer\FileCustomer;
 use app\models\customer\FileCustomerType;
@@ -365,6 +366,14 @@ class ManagerController extends Controller {
         return $this->render('manage-event', compact( 'model', 'point_status'));
     }
 
+    public function actionManageDisinfectors() {
+
+        $disinfectors = Disinfector::getAllForManager();
+
+        $data_provider = Tools::wrapIntoDataProvider($disinfectors);
+        return $this->render('manage-disinfectors', compact('data_provider'));
+    }
+
     public function behaviors()
     {
         return [
@@ -378,7 +387,7 @@ class ManagerController extends Controller {
                             'delete-customer', 'edit-customer', 'manage-points', 'manage-disinfectants',
                             'manage-disinfectants-on-customers', 'manage-customer-disinfectant', 'manage-point',
                             'delete-point', 'edit-disinfectant', 'delete-disinfectant', 'add-disinfectant',
-                            'manage-events', 'delete-event', 'edit-event'],
+                            'manage-events', 'delete-event', 'edit-event', 'manage-disinfectors'],
                         'roles'     => ['manager'],
                         'allow'     => true
                     ],

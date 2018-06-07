@@ -73,9 +73,17 @@ class Widget {
                     'name' => 'Управление событиями'
                 ],
                 [
-                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/history-call-employee',
-                    'name' => 'История вызовов бригад'
-                ]
+                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/manage-events',
+                    'name' => 'Управление событиями'
+                ],
+                [
+                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/manage-disinfectors',
+                    'name' => 'Управление дезинфекторами'
+                ],
+//                [
+//                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/history-call-employee',
+//                    'name' => 'История вызовов бригад'
+//                ]
             ];
         }
         return $widget_manager;
