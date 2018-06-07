@@ -118,7 +118,7 @@ class ReportController extends Controller {
         $writer->save(\Yii::$app->basePath.'/temp/temp.xlsx');
 
         return \Yii::$app->response->sendFile(
-            \Yii::$app->basePath.'/temp.xlsx',
+            \Yii::$app->basePath.'/temp/temp.xlsx',
             $name_file,
             ['mimeType'=>'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet']
         );
@@ -173,7 +173,7 @@ class ReportController extends Controller {
         $templateProcessor->saveAs(\Yii::$app->basePath.'/temp/temp.docx');
 
         return \Yii::$app->response->sendFile(
-            \Yii::$app->basePath.'/temp.docx',
+            \Yii::$app->basePath.'/temp/temp.docx',
             $name_file,
             ['mimeType'=>'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
         );
@@ -235,7 +235,7 @@ class ReportController extends Controller {
         $templateProcessor->saveAs(\Yii::$app->basePath.'/temp/temp.docx');
 
         return \Yii::$app->response->sendFile(
-            \Yii::$app->basePath.'/temp.docx',
+            \Yii::$app->basePath.'/temp/temp.docx',
             $name_file,
             ['mimeType'=>'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
         );
@@ -336,7 +336,7 @@ class ReportController extends Controller {
         $writer->save(\Yii::$app->basePath.'/temp/temp.xlsx');
 
         return \Yii::$app->response->sendFile(
-            \Yii::$app->basePath.'/temp.xlsx',
+            \Yii::$app->basePath.'/temp/temp.xlsx',
             $name_file,
             ['mimeType'=>'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet']
         );
