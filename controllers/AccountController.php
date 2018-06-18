@@ -238,7 +238,7 @@ class AccountController extends Controller {
                 'only'  => ['*'],
                 'rules' => [
                     [
-                        'actions'   => ['index', 'call-employee', 'general_report',
+                        'actions'   => ['index', 'call-employee', 'general-report',
                             'recommendations', 'occupancy-schedule', 'risk-assessment', 'report-on-material',
                             'report-on-point', 'info-on-monitoring', 'scheme'],
                         'roles'     => ['customer'],
