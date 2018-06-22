@@ -398,6 +398,9 @@ class m180227_155122_old_data_to_new_data extends Migration
             if ($name_table == "Baltika_Spb") {
                 $name_table = "\"Baltika_Spb\"";
             }
+            if ($name_table == "Globus") {
+                $name_table = "\"Globus\"";
+            }
             $sql = "SELECT * FROM {$name_table}";
             $events = $db_old->createCommand($sql)
                 ->queryAll();

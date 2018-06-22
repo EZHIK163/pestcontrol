@@ -374,8 +374,14 @@ class Events extends \yii\db\ActiveRecord
             'data'  => [$events_not_touch, $events_part_replace, $events_full_replace, $events_caught],
             'backgroundColor'   => ["#3e95cd", "#3463a2", "#894ea2", "green"]
         ];
+
+
         return [
-            'labels'    => ["Приманка не тронута", "Частичная замена приманки", "Полная замена приманки", "Пойман вредитель"],
+            'labels'    => [
+                "Приманка целая/клеевая подложка чистая",
+                "Замена приманки/Клеевой подложки-следов вредителей нет",
+                "Замена приманки/Клеевой подложки-следы вредителей",
+                "Пойман вредитель"],
             'datasets'  => $datasets,
             'is_view'   => true
         ];
