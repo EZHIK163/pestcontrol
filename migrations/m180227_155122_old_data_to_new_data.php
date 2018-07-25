@@ -145,19 +145,23 @@ class m180227_155122_old_data_to_new_data extends Migration
             switch($point['stt_id']) {
                 case 0:
                     $code = 'not_touch';
+                    $description = 'Приманка целая/клеевая подложка чистая';
                     break;
                 case 1:
                     $code = 'part_replace';
+                    $description = 'Замена приманки/Клеевой подложки-следов вредителей нет';
                     break;
                 case 2:
                     $code = 'full_replace';
+                    $description = 'Замена приманки/Клеевой подложки-следы вредителей';
                     break;
                 case 3:
                     $code = 'caught';
+                    $description = 'Пойман вредитель';
                     break;
             }
             $this->db->createCommand($sql)
-                ->bindValue(':description', $point['stt_name'])
+                ->bindValue(':description', $description)
                 ->bindValue(':code', $code)
                 ->bindValue(':created_at', $created_at)
                 ->bindValue(':created_by', $created_by)
@@ -393,6 +397,9 @@ class m180227_155122_old_data_to_new_data extends Migration
             }
             if ($name_table == "Baltika_Spb") {
                 $name_table = "\"Baltika_Spb\"";
+            }
+            if ($name_table == "Globus") {
+                $name_table = "\"Globus\"";
             }
             $sql = "SELECT * FROM {$name_table}";
             $events = $db_old->createCommand($sql)

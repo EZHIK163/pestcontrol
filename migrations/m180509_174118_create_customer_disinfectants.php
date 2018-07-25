@@ -35,6 +35,33 @@ class m180509_174118_create_customer_disinfectants extends Migration
         $this->addForeignKey('customer_disinfectant_updated_by', 'customer_disinfectant',
             'updated_by', 'auth.users', 'id');
 
+        $customers = \app\models\customer\Customer::find()->asArray()->all();
+        foreach ($customers as $customer) {
+            $c_d = new \app\models\customer\CustomerDisinfectant();
+            $c_d->id_customer = $customer['id'];
+            $c_d->id_disinfectant = 1;
+            $c_d->save();
+
+            $c_d = new \app\models\customer\CustomerDisinfectant();
+            $c_d->id_customer = $customer['id'];
+            $c_d->id_disinfectant = 2;
+            $c_d->save();
+
+            $c_d = new \app\models\customer\CustomerDisinfectant();
+            $c_d->id_customer = $customer['id'];
+            $c_d->id_disinfectant = 3;
+            $c_d->save();
+
+            $c_d = new \app\models\customer\CustomerDisinfectant();
+            $c_d->id_customer = $customer['id'];
+            $c_d->id_disinfectant = 4;
+            $c_d->save();
+
+            $c_d = new \app\models\customer\CustomerDisinfectant();
+            $c_d->id_customer = $customer['id'];
+            $c_d->id_disinfectant = 5;
+            $c_d->save();
+        }
         return true;
     }
 

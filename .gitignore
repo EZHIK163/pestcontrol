@@ -3,3 +3,4 @@ web/reports/*
 .idea
 .idea/*
 .idea/workspace.xml
+temp/*

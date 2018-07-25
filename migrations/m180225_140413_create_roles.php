@@ -50,6 +50,11 @@ class m180225_140413_create_roles extends Migration
         $user->password = 'customer';
         $user->save();
 
+        $user = new UserRecord();
+        $user->username = 'PepsiCo_Sam';
+        $user->password = 'gg15hj';
+        $user->save();
+
         $rbac->assign($admin,
             UserRecord::findOne(['username'    => 'admin'])->id
         );
@@ -60,6 +65,10 @@ class m180225_140413_create_roles extends Migration
 
         $rbac->assign($customer,
             UserRecord::findOne(['username'    => 'customer'])->id
+        );
+
+        $rbac->assign($customer,
+            UserRecord::findOne(['username'    => 'PepsiCo_Sam'])->id
         );
 
         return true;

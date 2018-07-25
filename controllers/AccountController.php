@@ -235,14 +235,12 @@ class AccountController extends Controller {
         return [
             'access'    => [
                 'class' => AccessControl::class,
-                'only'  => ['index', 'call-employee', 'general_report',
-                    'recommendations', 'occupancy_schedule', 'risk_assessment', 'report_on_material',
-                    'report_on_point', 'info_on_monitoring', 'scheme'],
+                'only'  => ['*'],
                 'rules' => [
                     [
-                        'actions'   => ['index', 'call-employee', 'general_report',
-                            'recommendations', 'occupancy_schedule', 'risk_assessment', 'report_on_material',
-                            'report_on_point', 'info_on_monitoring', 'scheme'],
+                        'actions'   => ['index', 'call-employee', 'general-report',
+                            'recommendations', 'occupancy-schedule', 'risk-assessment', 'report-on-material',
+                            'report-on-point', 'info-on-monitoring', 'scheme'],
                         'roles'     => ['customer'],
                         'allow'     => true
                     ]

@@ -44,6 +44,21 @@ class m180301_046109_add_file_types extends Migration
 
         $extension->save();
 
+        $extension = new \app\models\file\Extension();
+
+        $extension->extension = 'png';
+        $extension->description = 'Растровый графический формат';
+        $extension->id_type = \app\models\file\Types::findOne(['code'    => 'images'])->id;
+
+        $extension->save();
+
+        $extension = new \app\models\file\Extension();
+
+        $extension->extension = 'gif';
+        $extension->description = 'Растровый графический формат';
+        $extension->id_type = \app\models\file\Types::findOne(['code'    => 'images'])->id;
+
+        $extension->save();
         return true;
     }
 
