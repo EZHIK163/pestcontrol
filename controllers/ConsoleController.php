@@ -27,6 +27,10 @@ class ConsoleController extends Controller
         $db_old->getSchema()->refresh();
         $db_old->enableSlaves = false;
 
+        $db = Instance::ensure('db', Connection::class);
+        $db->getSchema()->refresh();
+        $db->enableSlaves = false;
+
 
         $sql = "
         SELECT * 
@@ -80,7 +84,7 @@ class ConsoleController extends Controller
                 $event['pointProp']++;
                 $event['company']++;
                 //$event['pointNum']++;
-                $this->db->createCommand($sql_insert)
+                $db->createCommand($sql_insert)
                     ->bindValue(':id_disinfector', $event['executor'])
                     ->bindValue(':id_customer', $event['company'])
                     ->bindValue(':id_external', $event['pointNum'])
