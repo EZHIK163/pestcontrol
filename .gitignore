@@ -4,3 +4,4 @@ web/reports/*
 .idea/*
 .idea/workspace.xml
 temp/*
+config/*
