@@ -5,3 +5,5 @@ web/reports/*
 .idea/workspace.xml
 temp/*
 config/*
+web/uploads/*
+web/office/*

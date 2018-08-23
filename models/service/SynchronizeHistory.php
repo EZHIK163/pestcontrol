@@ -70,11 +70,11 @@ class SynchronizeHistory extends \yii\db\ActiveRecord
 
         $datetime = new \DateTime();
 
-        if (!isset($last_sync['created_at'])) {
+        if (!isset($last_sync[0]['created_at'])) {
             $last_sync['created_at'] = 0;
         }
 
-        $datetime->setTimestamp($last_sync['created_at']);
+        $datetime->setTimestamp($last_sync[0]['created_at']);
 
         return $datetime->format('Y-m-d H:i:s');
     }
