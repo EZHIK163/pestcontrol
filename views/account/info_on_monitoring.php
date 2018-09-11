@@ -62,19 +62,26 @@ $this->title = "Информация по мониторингу {$name_customer
                             <?= GridView::widget([
                                 'dataProvider' => $data_provider,
                                 'columns' => [
-                                    ['class' => 'yii\grid\SerialColumn'],
+                                    [
+                                        'attribute' => 'n_point',
+                                        'label'     => '№ точки'
+                                        //'header'    => '№ точки',
+                                    ],
                                     [
                                         'attribute' => 'full_name',
-                                        'header'    => 'Дезинфектор'
+                                        'label'     => 'Дезинфектор'
+                                        //'header'    => 'Дезинфектор'
                                     ],
                                     [
                                         'attribute' => 'status',
-                                        'header'    => 'Статус'
+                                        'label'     => 'Статус'
+                                       // 'header'    => 'Статус'
                                     ],
                                     [
                                         'attribute' => 'date_check',
-                                        'header'    => 'Дата проверки'
-                                    ]
+                                        'label'     => 'Дата проверки'
+                                        //'header'    => 'Дата проверки',
+                                    ],
                                 ]
                             ]); ?>
                 </div>

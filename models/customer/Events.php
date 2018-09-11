@@ -93,9 +93,10 @@ class Events extends \yii\db\ActiveRecord
 
     public static function getEventsStartFromTime($start_timestamp, $end_timestamp, $id_customer) {
         $events = self::find()
-            ->select('disinfectors.full_name, point_status.description as status, events.created_at')
+            ->select('disinfectors.full_name, point_status.description as status, events.created_at, points.id_internal, events.id_external')
             ->join('inner join', 'public.disinfectors', 'disinfectors.id = events.id_disinfector')
             ->join('inner join', 'public.point_status', 'point_status.id = events.id_point_status')
+            ->join('left join', 'public.points', 'points.id = events.id_point')
             ->where(['events.id_customer'  => $id_customer])
             ->andWhere(['>=', 'events.created_at', $start_timestamp])
             ->andWhere(['<', 'events.created_at', $end_timestamp])
@@ -107,6 +108,7 @@ class Events extends \yii\db\ActiveRecord
             $created_at = ((new \DateTime(date('Y-m-d H:i:s', $event['created_at'] )))
                 ->format('d.m.Y'));
             $finish_events [] = [
+                'n_point'       => !is_null($event['id_internal']) ? $event['id_internal'] : $event['id_external'],
                 'full_name'     => $event['full_name'],
                 'date_check'    => $created_at,
                 'status'        => $event['status']

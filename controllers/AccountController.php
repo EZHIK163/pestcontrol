@@ -9,6 +9,7 @@ use app\models\customer\CalendarForm;
 use app\models\customer\SearchForm;
 use app\models\tools\Tools;
 use app\models\widget\Widget;
+use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
@@ -54,6 +55,13 @@ class AccountController extends Controller {
         if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
             $from_datetime = $model->date_from;
             $to_datetime = $model->date_to;
+            $_SESSION['from_datetime'] = $from_datetime;
+            $_SESSION['to_datetime'] = $to_datetime;
+        } else if (\Yii::$app->request->isGet
+            && isset($_SESSION['from_datetime'])
+            && isset($_SESSION['to_datetime'])) {
+            $model->date_from = $from_datetime = $_SESSION['from_datetime'];
+            $model->date_to = $to_datetime = $_SESSION['to_datetime'];
         } else {
             $model->date_from = $from_datetime = (new \DateTime())->format('01.m.Y');
             $model->date_to = $to_datetime = (new \DateTime())->format('d.m.Y');
@@ -61,7 +69,38 @@ class AccountController extends Controller {
 
         $events = Events::getEventsFromPeriod($customer->id, $from_datetime, $to_datetime);
 
-        $data_provider = Tools::wrapIntoDataProvider($events, false);
+        $data_provider = Tools::wrapIntoDataProvider($events, false, ['full_name', 'n_point', 'status', 'date_check']);
+
+//        $data_provider->setSort([
+//            'attributes' => [
+//                'n_point' => [
+//                    'asc' => ['n_point' => SORT_ASC],
+//                    'desc' => ['n_point' => SORT_DESC],
+//                    'default' => SORT_ASC
+//                ],
+//                'full_name' => [
+//                    'asc' => ['full_name' => SORT_ASC],
+//                    'desc' => ['full_name' => SORT_DESC],
+//                    'default' => SORT_ASC,
+//                ],
+//            ],
+//            'defaultOrder' => [
+//                'n_point' => SORT_ASC
+//            ]
+//        ]);
+//        $data_provider->sort->attributes['n_point'] = [
+//            'asc' => ['n_point' => SORT_ASC],
+//            'desc' => ['n_point' => SORT_DESC],
+//        ];
+
+//        $data_provider->setSort([
+//            'attributes' => [
+//                'n_point',
+//                'full_name',
+//                'status',
+//                'date_check'
+//            ]
+//        ]);
 
         return $this->render('info_on_monitoring', compact('model', 'data_provider'));
     }
