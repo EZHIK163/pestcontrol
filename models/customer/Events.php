@@ -93,7 +93,7 @@ class Events extends \yii\db\ActiveRecord
 
     public static function getEventsStartFromTime($start_timestamp, $end_timestamp, $id_customer) {
         $events = self::find()
-            ->select('disinfectors.full_name, point_status.description as status, events.created_at, points.id_internal, events.id_external')
+            ->select('disinfectors.full_name, point_status.description as status, events.created_at, points.id_internal, events.id_external, points.id_file_customer')
             ->join('inner join', 'public.disinfectors', 'disinfectors.id = events.id_disinfector')
             ->join('inner join', 'public.point_status', 'point_status.id = events.id_point_status')
             ->join('left join', 'public.points', 'points.id = events.id_point')
@@ -107,11 +107,16 @@ class Events extends \yii\db\ActiveRecord
         foreach ($events as &$event) {
             $created_at = ((new \DateTime(date('Y-m-d H:i:s', $event['created_at'] )))
                 ->format('d.m.Y'));
+            $url = '';
+            if (!is_null($event['id_file_customer'])) {
+                $url = \Yii::$app->urlManager->createAbsoluteUrl(['/']). 'account/show-scheme-point-control?id'.$event['id_file_customer'];
+            }
             $finish_events [] = [
                 'n_point'       => !is_null($event['id_internal']) ? $event['id_internal'] : $event['id_external'],
                 'full_name'     => $event['full_name'],
                 'date_check'    => $created_at,
-                'status'        => $event['status']
+                'status'        => $event['status'],
+                'url'           => $url
             ];
         }
 

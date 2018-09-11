@@ -220,10 +220,13 @@ class FileCustomer extends \yii\db\ActiveRecord
             if (!$is_add_free_points && ($point->x_coordinate <= 0 or $point->y_coordinate <= 0)) {
                 continue;
             }
+            $events = $point->events;
+            //TODO MSMR На основании событий менять цвет маркера
+            $img_src = \Yii::$app->urlManager->createAbsoluteUrl(['/']). 'blue_marker.png';
             $finish_points [] = [
                 'x'                 => $point->x_coordinate,
                 'y'                 => $point->y_coordinate,
-                'img_src'           => \Yii::$app->urlManager->createAbsoluteUrl(['/']). 'blue_marker.png',
+                'img_src'           => $img_src,
                 'id_internal'       => $point->id_internal,
                 'is_new'            => false,
                 'id'                => $point->id

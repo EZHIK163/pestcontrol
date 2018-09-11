@@ -227,4 +227,9 @@ class Points extends \yii\db\ActiveRecord
             return null;
         }
     }
+
+    public function getEvents()
+    {
+        return $this->hasMany(Events::class, ['id_point' => 'id'])->where(['is_active'  => true]);
+    }
 }

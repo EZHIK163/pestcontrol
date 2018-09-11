@@ -71,37 +71,6 @@ class AccountController extends Controller {
 
         $data_provider = Tools::wrapIntoDataProvider($events, false, ['full_name', 'n_point', 'status', 'date_check']);
 
-//        $data_provider->setSort([
-//            'attributes' => [
-//                'n_point' => [
-//                    'asc' => ['n_point' => SORT_ASC],
-//                    'desc' => ['n_point' => SORT_DESC],
-//                    'default' => SORT_ASC
-//                ],
-//                'full_name' => [
-//                    'asc' => ['full_name' => SORT_ASC],
-//                    'desc' => ['full_name' => SORT_DESC],
-//                    'default' => SORT_ASC,
-//                ],
-//            ],
-//            'defaultOrder' => [
-//                'n_point' => SORT_ASC
-//            ]
-//        ]);
-//        $data_provider->sort->attributes['n_point'] = [
-//            'asc' => ['n_point' => SORT_ASC],
-//            'desc' => ['n_point' => SORT_DESC],
-//        ];
-
-//        $data_provider->setSort([
-//            'attributes' => [
-//                'n_point',
-//                'full_name',
-//                'status',
-//                'date_check'
-//            ]
-//        ]);
-
         return $this->render('info_on_monitoring', compact('model', 'data_provider'));
     }
 

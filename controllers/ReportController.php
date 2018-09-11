@@ -339,6 +339,7 @@ class ReportController extends Controller {
             \Yii::$app->basePath.'/temp/temp.xlsx',
             $name_file,
             ['mimeType'=>'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet']
+            //['mimeType' => 'application/vnd.ms-excel']
         );
     }
 

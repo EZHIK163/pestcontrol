@@ -2,6 +2,7 @@
 use dosamigos\chartjs\ChartJs;
 use dosamigos\datepicker\DatePicker;
 use yii\grid\GridView;
+use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 $this->title = "Информация по мониторингу {$name_customer}"; ?>
@@ -81,6 +82,20 @@ $this->title = "Информация по мониторингу {$name_customer
                                         'attribute' => 'date_check',
                                         'label'     => 'Дата проверки'
                                         //'header'    => 'Дата проверки',
+                                    ],
+                                    [
+                                        'label'     => 'Ссылка на схему',
+                                        'format'    => 'html',
+                                        'value'     => function ($model, $key, $index, $column){
+                                            if (!empty($model['url'])) {
+                                                return
+                                                    Html::tag('a', 'Перейти к схеме',
+                                                        ['href'  => $model['url']]);
+                                            }
+                                            return
+                                                'нет';
+
+                                        }
                                     ],
                                 ]
                             ]); ?>
