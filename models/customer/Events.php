@@ -109,7 +109,7 @@ class Events extends \yii\db\ActiveRecord
                 ->format('d.m.Y'));
             $url = '';
             if (!is_null($event['id_file_customer'])) {
-                $url = \Yii::$app->urlManager->createAbsoluteUrl(['/']). 'account/show-scheme-point-control?id'.$event['id_file_customer'];
+                $url = \Yii::$app->urlManager->createAbsoluteUrl(['/']). 'account/show-scheme-point-control?id='.$event['id_file_customer'];
             }
             $finish_events [] = [
                 'n_point'       => !is_null($event['id_internal']) ? $event['id_internal'] : $event['id_external'],

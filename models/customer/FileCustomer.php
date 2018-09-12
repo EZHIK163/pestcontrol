@@ -313,4 +313,23 @@ class FileCustomer extends \yii\db\ActiveRecord
 
         return ArrayHelper::map($scheme, 'id_file_customer', 'title');
     }
+
+    static function getSchemeForStat($id) {
+
+        $scheme = self::findOne(compact('id'));
+
+
+        $action_download = \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'site/download?id=';
+
+        $model = [
+            'id_file_customer'  => $scheme->id,
+            'title'             => $scheme->title,
+            'customer'          => $scheme->customer->name,
+            'date_create'       => $scheme->getDateTimeCreatedAt(),
+            'url'               => $action_download.$scheme->file->id
+        ];
+
+        return $model;
+
+    }
 }

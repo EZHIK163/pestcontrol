@@ -41,6 +41,27 @@ class AccountController extends Controller {
         return $this->render('scheme', compact('data_provider', 'model'));
     }
 
+    public function actionShowSchemePointControl() {
+
+        $id = \Yii::$app->user->id;
+        $customer = Customer::getCustomerByIdUser($id);
+        if (is_null($customer)) {
+            $this->redirect('index');
+            return;
+        }
+
+        $id_scheme = (int)\Yii::$app->request->get('id');
+
+
+        //$scheme_point_control = $model->getResultsForAccount($customer->id);
+
+        //$data_provider = Tools::wrapIntoDataProvider($scheme_point_control);
+
+        $model = FileCustomer::getSchemeForStat($id_scheme);
+
+        return $this->render('show_scheme_point_control', compact('model'));
+    }
+
     public function actionInfoOnMonitoring() {
 
         $id = \Yii::$app->user->id;
@@ -248,7 +269,7 @@ class AccountController extends Controller {
                     [
                         'actions'   => ['index', 'call-employee', 'general-report',
                             'recommendations', 'occupancy-schedule', 'risk-assessment', 'report-on-material',
-                            'report-on-point', 'info-on-monitoring', 'scheme'],
+                            'report-on-point', 'info-on-monitoring', 'scheme', 'show-scheme-point-control'],
                         'roles'     => ['customer'],
                         'allow'     => true
                     ]
