@@ -1,5 +1,6 @@
 <?php
 
+use dosamigos\datepicker\DatePicker;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -30,6 +31,38 @@ $this->title = "Статистика по схеме точек котроля: 
             </div>
 
             <div itemprop="articleBody">
+
+                <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
+                <div class="datepicker" style="display: flex; text-align: center; justify-content: space-around;">
+                    <?= $form->field($model_calendar, 'date_from')->widget(
+                        DatePicker::class, [
+                        // inline too, not bad
+                        'inline' => true,
+                        'language'  => 'ru',
+                        // modify template for custom rendering
+                        'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+                        'clientOptions' => [
+                            'autoclose' => true,
+                            'format' => 'dd.mm.yyyy',
+                        ]
+                    ]);?>
+
+                    <?= $form->field($model_calendar, 'date_to')->widget(
+                        DatePicker::class, [
+                        // inline too, not bad
+                        'inline' => true,
+                        'language'  => 'ru',
+                        // modify template for custom rendering
+                        'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+                        'clientOptions' => [
+                            'autoclose' => true,
+                            'format' => 'dd.mm.yyyy',
+                        ]
+                    ]);?>
+                </div>
+                <button>Обновить</button>
+
+                <?php ActiveForm::end() ?>
                 <div class="desc">
                     <div style="display: none" id="name_dropzone">inner-dropzone_<?= $model['id_file_customer']?></div>
                     <div style="display: none" id="id_file_customer"><?= $model['id_file_customer']?></div>

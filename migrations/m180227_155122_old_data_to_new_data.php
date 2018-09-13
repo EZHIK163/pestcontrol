@@ -157,7 +157,7 @@ class m180227_155122_old_data_to_new_data extends Migration
                     break;
                 case 3:
                     $code = 'caught';
-                    $description = 'Пойман вредитель';
+                    $description = 'Пойман вредитель (старое)';
                     break;
             }
             $this->db->createCommand($sql)

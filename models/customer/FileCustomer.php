@@ -314,7 +314,7 @@ class FileCustomer extends \yii\db\ActiveRecord
         return ArrayHelper::map($scheme, 'id_file_customer', 'title');
     }
 
-    static function getSchemeForStat($id) {
+    static function getSchemeForStat($id, $from_datetime, $to_datetime) {
 
         $scheme = self::findOne(compact('id'));
 

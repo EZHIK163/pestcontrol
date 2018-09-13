@@ -73,6 +73,7 @@ class PointStatus extends \yii\db\ActiveRecord
 
     public function getPointStatuses() {
         $statuses = self::find()
+            ->orderBy('id')
             ->asArray()
             ->all();
         return $statuses;
@@ -81,5 +82,10 @@ class PointStatus extends \yii\db\ActiveRecord
         $statuses = self::getPointStatuses();
 
         return ArrayHelper::map($statuses, 'id', 'description');
+    }
+
+    static function getStatusesForApplication() {
+        $statuses = self::getPointStatuses();
+        return $statuses;
     }
 }

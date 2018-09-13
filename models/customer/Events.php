@@ -559,4 +559,18 @@ class Events extends \yii\db\ActiveRecord
         $event->id_point_status = $id_point_status;
         $event->save();
     }
+
+    static function addEvent2($id_customer, $id_desinector, $id_external, $id_status) {
+
+        $id_point = Points::getPointByIdInternal($id_external, $id_customer);
+        $event = new Events();
+
+        $event->id_customer = $id_customer;
+        $event->id_disinfector = $id_desinector;
+        $event->id_external = $id_external;
+        $event->id_point = $id_point;
+        $event->id_point_status = $id_status;
+
+        $event->save();
+    }
 }

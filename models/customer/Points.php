@@ -222,7 +222,7 @@ class Points extends \yii\db\ActiveRecord
         ;
 
         if (count($point) != 0) {
-            return $point->id;
+            return $point[0]['id'];
         } else {
             return null;
         }

@@ -50,6 +50,23 @@ class AccountController extends Controller {
             return;
         }
 
+        $model_calendar = new CalendarForm();
+
+        if ($model_calendar->load(\Yii::$app->request->post()) && $model_calendar->validate()) {
+            $from_datetime = $model_calendar->date_from;
+            $to_datetime = $model_calendar->date_to;
+            $_SESSION['from_datetime'] = $from_datetime;
+            $_SESSION['to_datetime'] = $to_datetime;
+        } else if (\Yii::$app->request->isGet
+            && isset($_SESSION['from_datetime'])
+            && isset($_SESSION['to_datetime'])) {
+            $model_calendar->date_from = $from_datetime = $_SESSION['from_datetime'];
+            $model_calendar->date_to = $to_datetime = $_SESSION['to_datetime'];
+        } else {
+            $model_calendar->date_from = $from_datetime = (new \DateTime())->format('01.m.Y');
+            $model_calendar->date_to = $to_datetime = (new \DateTime())->format('d.m.Y');
+        }
+
         $id_scheme = (int)\Yii::$app->request->get('id');
 
 
@@ -57,9 +74,9 @@ class AccountController extends Controller {
 
         //$data_provider = Tools::wrapIntoDataProvider($scheme_point_control);
 
-        $model = FileCustomer::getSchemeForStat($id_scheme);
+        $model = FileCustomer::getSchemeForStat($id_scheme, $from_datetime, $to_datetime);
 
-        return $this->render('show_scheme_point_control', compact('model'));
+        return $this->render('show_scheme_point_control', compact('model', 'model_calendar'));
     }
 
     public function actionInfoOnMonitoring() {
