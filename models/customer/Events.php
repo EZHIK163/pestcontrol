@@ -360,6 +360,8 @@ class Events extends \yii\db\ActiveRecord
         $events_not_touch = 0;
         $events_full_replace = 0;
         $events_caught = 0;
+        $events_caught_insekt = 0;
+        $events_caught_nagetier = 0;
         foreach ($events as $item) {
             switch($item['code']) {
                 case 'part_replace':
@@ -374,21 +376,30 @@ class Events extends \yii\db\ActiveRecord
                 case 'caught':
                     $events_caught++;
                     break;
+                case 'caught_insekt':
+                    $events_caught_insekt++;
+                    break;
+                case 'caught_nagetier':
+                    $events_caught_nagetier++;
+                    break;
             }
         }
         $datasets[0] = [
             'label' => 'Отчет по точкам контроля за месяц',
-            'data'  => [$events_not_touch, $events_part_replace, $events_full_replace, $events_caught],
-            'backgroundColor'   => ["#3e95cd", "#3463a2", "#894ea2", "green"]
+            'data'  => [$events_not_touch, $events_part_replace, $events_full_replace, $events_caught, $events_caught_insekt, $events_caught_nagetier],
+            'backgroundColor'   => ["yellow", "red", "green", "blue", "gray", "#894ea2"]
         ];
 
+        $statuses = PointStatus::getStatusesForApplication();
+
+        $labels = [];
+
+        foreach ($statuses as $status) {
+            $labels [] = $status['description'];
+        }
 
         return [
-            'labels'    => [
-                "Приманка целая/клеевая подложка чистая",
-                "Замена приманки/Клеевой подложки-следов вредителей нет",
-                "Замена приманки/Клеевой подложки-следы вредителей",
-                "Пойман вредитель"],
+            'labels'    => $labels,
             'datasets'  => $datasets,
             'is_view'   => true
         ];
@@ -480,6 +491,12 @@ class Events extends \yii\db\ActiveRecord
                             break;
                         case 'caught':
                             $statistics [] = 3;
+                            break;
+                        case 'caught_insekt':
+                            $statistics [] = 4;
+                            break;
+                        case 'caught_nagetier':
+                            $statistics [] = 5;
                             break;
                     }
                 }
