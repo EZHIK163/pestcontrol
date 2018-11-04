@@ -21,6 +21,7 @@ use yii\helpers\ArrayHelper;
  * @property int $created_by
  * @property int $updated_at
  * @property int $updated_by
+ * @property int $count
  */
 class Events extends \yii\db\ActiveRecord
 {
@@ -78,18 +79,14 @@ class Events extends \yii\db\ActiveRecord
 
     public static function getEventsFromPeriod($id_customer, $from_datetime, $to_datetime) {
 
+        $to_datetime = new \DateTime($to_datetime);
+        $to_datetime = $to_datetime->add(\DateInterval::createFromDateString('1 days'));
+        $end_timestamp= $to_datetime->getTimestamp();
         $start_timestamp = \Yii::$app->formatter->asTimestamp($from_datetime);
-        $end_timestamp = \Yii::$app->formatter->asTimestamp($to_datetime);
+        //$end_timestamp = \Yii::$app->formatter->asTimestamp($to_datetime);
 
         return self::getEventsStartFromTime($start_timestamp, $end_timestamp, $id_customer);
     }
-
-//    public static function getEventsCurrentYear($id_customer) {
-//        $start_current_year = date('Y-01-01');
-//        $start_current_year = \Yii::$app->formatter->asTimestamp($start_current_year);
-//
-//        return self::getEventsStartFromTime($start_current_year, $id_customer);
-//    }
 
     public static function getEventsStartFromTime($start_timestamp, $end_timestamp, $id_customer) {
         $events = self::find()
@@ -194,7 +191,9 @@ class Events extends \yii\db\ActiveRecord
     public static function getOccupancyScheduleFromPeriod($id_customer, $from_datetime, $to_datetime) {
 
         $start_timestamp = \Yii::$app->formatter->asTimestamp($from_datetime);
-        $end_timestamp = \Yii::$app->formatter->asTimestamp($to_datetime);
+        $to_datetime = new \DateTime($to_datetime);
+        $to_datetime = $to_datetime->add(\DateInterval::createFromDateString('1 days'));
+        $end_timestamp= $to_datetime->getTimestamp();
 
         $events = self::getEventsForOccupancyFromAndToTime($id_customer, $start_timestamp, $end_timestamp) ;
         $label = 'График заселенности на выбранный период';
@@ -219,41 +218,6 @@ class Events extends \yii\db\ActiveRecord
         return $events;
     }
 
-//    public static function getOccupancySchedulePreviousYear($id_customer) {
-//
-//        $start_current_year = date('Y-01-01');
-//        $datetime_current_year = new \DateTime($start_current_year);
-//        $end_time = \Yii::$app->formatter->asTimestamp($start_current_year);
-//        $from_time = $datetime_current_year->sub(\DateInterval::createFromDateString('1 year'));
-//
-//        $label = 'График заселенности за '.$from_time->format('Y').' год';
-//
-//        $from_time = \Yii::$app->formatter->asTimestamp($from_time);
-//
-//        $events = self::getEventsForOccupancyFromAndToTime($id_customer, $from_time, $end_time);
-//
-//
-//
-//        return self::preProcessingDataForGraphic($events, $label);
-//    }
-//
-//    public static function getOccupancySchedulePreviousPreviousYear($id_customer) {
-//
-//        $start_current_year = date('Y-01-01');
-//        $datetime_current_year = new \DateTime($start_current_year);
-//        $end_time =$datetime_current_year
-//            ->sub(\DateInterval::createFromDateString('1 year'));
-//        $from_time = $datetime_current_year->sub(\DateInterval::createFromDateString('1 year'));
-//
-//        $label = 'График заселенности за '.$from_time->format('Y').' год';
-//
-//        $from_time = \Yii::$app->formatter->asTimestamp($from_time);
-//        $end_time = \Yii::$app->formatter->asTimestamp($end_time);
-//
-//        $events = self::getEventsForOccupancyFromAndToTime($id_customer, $from_time, $end_time);
-//
-//        return self::preProcessingDataForGraphic($events, $label);
-//    }
 
     public static function preProcessingDataForGraphic($events, $label) {
         $datasets[0]['label'] = $label;
@@ -345,7 +309,9 @@ class Events extends \yii\db\ActiveRecord
     public static function getPointReportFromPeriod($id_customer, $from_datetime, $to_datetime) {
 
         $start_timestamp = \Yii::$app->formatter->asTimestamp($from_datetime);
-        $end_timestamp = \Yii::$app->formatter->asTimestamp($to_datetime);
+        $to_datetime = new \DateTime($to_datetime);
+        $to_datetime = $to_datetime->add(\DateInterval::createFromDateString('1 days'));
+        $end_timestamp= $to_datetime->getTimestamp();
 
         $events = self::find()
             ->select('point_status.code')
@@ -451,7 +417,7 @@ class Events extends \yii\db\ActiveRecord
         $start_timestamp = \Yii::$app->formatter->asTimestamp($from_datetime);
 
         $events = self::find()
-            ->select('events.id_external, point_status.code, events.created_at')
+            ->select('events.id_external, point_status.code, events.created_at, events.count')
             ->join('inner join', 'public.point_status', 'point_status.id = events.id_point_status')
             ->where(compact('id_customer'))
             ->andWhere(['>=', 'events.created_at', $start_timestamp])
@@ -481,22 +447,22 @@ class Events extends \yii\db\ActiveRecord
                 foreach ($month as $event) {
                     switch($event['code']) {
                         case 'part_replace':
-                            $statistics [] = 1;
+                            $statistics [] = '1';
                             break;
                         case 'not_touch':
-                            $statistics [] = 0;
+                            $statistics [] = '0';
                             break;
                         case 'full_replace':
-                            $statistics [] = 2;
+                            $statistics [] = '2';
                             break;
                         case 'caught':
-                            $statistics [] = 3;
+                            $statistics [] = '3';
                             break;
                         case 'caught_insekt':
-                            $statistics [] = 4;
+                            $statistics [] = '3Н'.$event['count'];
                             break;
                         case 'caught_nagetier':
-                            $statistics [] = 5;
+                            $statistics [] = '3Г'.$event['count'];
                             break;
                     }
                 }
@@ -577,7 +543,7 @@ class Events extends \yii\db\ActiveRecord
         $event->save();
     }
 
-    static function addEvent2($id_customer, $id_desinector, $id_external, $id_status) {
+    static function addEvent2($id_customer, $id_desinector, $id_external, $id_status, $count) {
 
         $id_point = Points::getPointByIdInternal($id_external, $id_customer);
         $event = new Events();
@@ -587,6 +553,7 @@ class Events extends \yii\db\ActiveRecord
         $event->id_external = $id_external;
         $event->id_point = $id_point;
         $event->id_point_status = $id_status;
+        $event->count = $count;
 
         $event->save();
     }

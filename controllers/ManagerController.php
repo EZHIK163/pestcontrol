@@ -67,10 +67,11 @@ class ManagerController extends Controller {
         $id_desinector = \Yii::$app->request->post('id_desinector');
         $id_point = \Yii::$app->request->post('id_point');
         $id_status = \Yii::$app->request->post('id_status');
+        $count = \Yii::$app->request->post('count');
 
         \Yii::$app->response->format = Response::FORMAT_JSON;
 
-        Events::addEvent2($id_company, $id_desinector, $id_point, $id_status);
+        Events::addEvent2($id_company, $id_desinector, $id_point, $id_status, $count);
 
         $my_data = [
             'status'   => true
@@ -156,6 +157,8 @@ class ManagerController extends Controller {
     public function actionGetPointsOnSchemaPointControl() {
         $id_file = \Yii::$app->request->get('id_scheme_point_control');
         $is_show_free_points = \Yii::$app->request->get('is_show_free_points');
+        $date_from = \Yii::$app->request->get('date_from');
+        $date_to = \Yii::$app->request->get('date_to');
 
         $is_show_free_points = $is_show_free_points === 'true' ? true : false;
 
@@ -163,7 +166,7 @@ class ManagerController extends Controller {
             throw new InvalidArgumentException();
         }
 
-        $my_data = FileCustomer::getSchemeForEdit($id_file, $is_show_free_points);
+        $my_data = FileCustomer::getSchemeForEdit($id_file, $is_show_free_points, $date_from, $date_to);
         \Yii::$app->response->format = Response::FORMAT_JSON;
         return $my_data;
     }

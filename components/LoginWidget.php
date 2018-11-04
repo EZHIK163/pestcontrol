@@ -75,6 +75,15 @@ class LoginWidget extends Widget {
         }
         echo '<div class="well">';
         echo '<h3 class="page-header">Вход на сайт</h3>';
+        if ($this->model->hasErrors()) {
+            //echo $this->model->getErrors()['password'][0];
+            echo '
+            <div class="alert "><a class="close" data-dismiss="alert">×</a><h4 class="alert-heading">Предупреждение</h4>
+			    <div>
+			        <p class="alert-message">Имя пользователя и пароль не совпадают или у вас еще нет учетной записи на сайте</p>
+			    </div>
+			</div>';
+        }
         $form = ActiveForm::begin($params);
         echo '<div class="userdata">';
         echo '<div class="controls"><div class="input-prepend"><span class="add-on"><span class="icon-user hasTooltip" title="" data-original-title="Логин"></span><label for="modlgn-username" class="element-invisible">Логин</label></span>';

@@ -3,6 +3,7 @@
 namespace app\models\customer;
 
 use app\models\file\Files;
+use PhpOffice\PhpSpreadsheet\Calculation\DateTime;
 use Yii;
 use yii\helpers\ArrayHelper;
 
@@ -113,7 +114,8 @@ class FileCustomer extends \yii\db\ActiveRecord
 
     public function getPoints()
     {
-        return $this->hasMany(Points::class, ['id_file_customer' => 'id'])->where(['is_active'  => true]);
+        return $this->hasMany(Points::class, ['id_file_customer' => 'id'])
+            ->where(['is_active'  => true]);
     }
 
     public function getDateTimeCreatedAt() {
@@ -206,7 +208,7 @@ class FileCustomer extends \yii\db\ActiveRecord
         return $result;
     }
 
-    public static function getSchemeForEdit($id, $is_add_free_points = false) {
+    public static function getSchemeForEdit($id, $is_add_free_points = false, $date_from = null, $date_to = null) {
         $file_customer = self::findOne(['id_file'   => $id]);
         $file = $file_customer->file;
         $action_download = \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'site/download?id=';
@@ -216,13 +218,31 @@ class FileCustomer extends \yii\db\ActiveRecord
         $finish_points = [];
         $max_id_internal_in_customer = self::getMaxIdInternal($id_customer);
         $ids_points = [];
+
+        $datetime_from = new \DateTime($date_from);
+        $datetime_to = new \DateTime($date_to);
+
+        $interval_days = (int)$datetime_to->diff($datetime_from)->format('%a');
+
+        $mode = null;
+        if ($interval_days > 0 && $interval_days <= 31) {
+            $mode = 'month';
+        } else if ($interval_days >= 32 && $interval_days <= 93) {
+            $mode = 'quarter';
+        } else if ($interval_days >= 94) {
+            $mode = 'year';
+        }
+
         foreach ($points as $point) {
             if (!$is_add_free_points && ($point->x_coordinate <= 0 or $point->y_coordinate <= 0)) {
                 continue;
             }
             $events = $point->events;
+
+            $type_marker = self::getTypeMarker($events, $mode);
+
             //TODO MSMR На основании событий менять цвет маркера
-            $img_src = \Yii::$app->urlManager->createAbsoluteUrl(['/']). 'blue_marker.png';
+            $img_src = \Yii::$app->urlManager->createAbsoluteUrl(['/']). $type_marker.'.png';
             $finish_points [] = [
                 'x'                 => $point->x_coordinate,
                 'y'                 => $point->y_coordinate,
@@ -259,6 +279,52 @@ class FileCustomer extends \yii\db\ActiveRecord
             ];
 
         return $result;
+    }
+
+    static function getTypeMarker($events, $mode) {
+
+        $count_red_events = 0;
+        $count_green_events = 0;
+        foreach ($events as $event) {
+            switch($event->id_point_status) {
+                case 1:
+                case 2:
+                case 3:
+                $count_green_events++;
+                    break;
+                case 4:
+                case 5:
+                case 6:
+                $count_red_events++;
+                    break;
+            }
+        }
+
+        $marker = 'blue_marker';
+        switch ($mode) {
+            case 'month':
+                if ($count_red_events > 3) {
+                    $marker = 'red_marker';
+                } else if ($count_green_events > 3) {
+                    $marker = 'green_marker';
+                }
+                break;
+            case 'quarter':
+                if ($count_red_events > 6) {
+                    $marker = 'red_marker';
+                } else if ($count_green_events > 6) {
+                    $marker = 'green_marker';
+                }
+                break;
+            case 'year':
+                if ($count_red_events > 20) {
+                    $marker = 'red_marker';
+                } else if ($count_green_events > 20) {
+                    $marker = 'green_marker';
+                }
+                break;
+        }
+        return $marker; //blue_marker, red_marker, green_marker
     }
 
     static function getItem($id) {
@@ -317,6 +383,15 @@ class FileCustomer extends \yii\db\ActiveRecord
     static function getSchemeForStat($id, $from_datetime, $to_datetime) {
 
         $scheme = self::findOne(compact('id'));
+
+//        $events = self::find()
+//            ->select('events.id_external, point_status.code, events.created_at, events.count')
+//            ->join('inner join', 'public.point_status', 'point_status.id = events.id_point_status')
+//            ->where(compact('id_customer'))
+//            ->andWhere(['>=', 'events.created_at', $start_timestamp])
+//            ->orderBy('events.created_at ASC')
+//            ->asArray()
+//            ->all();
 
 
         $action_download = \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'site/download?id=';

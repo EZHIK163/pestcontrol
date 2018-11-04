@@ -90,6 +90,65 @@ async function getData(id_scheme_point_control, is_show_free_points) {
     return response.data;
  }
 
+var showPointsWithMark = async function showPointsWithMark(id, id_scheme_point_control_local, date_from, date_to) {
+    setIdSchemaPointControl(id_scheme_point_control_local);
+    var element = document.getElementById(id);
+    //var position = element.getBoundingClientRect();
+    //console.log(id);
+    //console.log(id_scheme_point_control);
+
+
+    position_root_element = getCoords(element);
+
+    const json = await  getDataWithMark(id_scheme_point_control, date_from, date_to);
+
+
+    points = json.points;
+
+    coefficient_x = $('#' + id).width() / 100;
+    coefficient_y = $('#' + id).height() / 100;
+
+    var outer_element = document.getElementById('outer-dropzone2');
+    var style = window.getComputedStyle(outer_element);
+
+    var padding_left = Number(style.getPropertyValue('padding-left').replace('px', ''));
+    var padding_top = Number(style.getPropertyValue('padding-top').replace('px', ''));
+
+    //console.log(coefficient_x); console.log(coefficient_y);
+    if (points.length > 0) {
+        points.forEach(function (point, i, points) {
+            var element = document.getElementById(prefix_point_id + id_scheme_point_control + point.id_internal);
+            if (element == null) {
+                $('#' + id).append('<div data-toggle="tooltip" data-placement="top" title="' + point.id_internal + '" class="drag-drop" id="' + prefix_point_id + id_scheme_point_control + point.id_internal + '"><img src="' + point.img_src + '"/><p class="text_in_marker">' + point.id_internal + '</p></div>');
+
+                var temp = document.getElementById(prefix_point_id + id_scheme_point_control + point.id_internal);
+                //temp.style.left = position_root_element[0] + (point.x * coefficient_x) + 'px'
+                //temp.style.top = position_root_element[1] + (point.y * coefficient_y) + 'px';
+
+                temp.style.left = (point.x * coefficient_x)  + 'px';
+                temp.style.top =  (point.y * coefficient_y)  + 'px';
+            } else {
+                element.remove();
+            }
+        });
+    }
+
+}
+
+//window.showPoints = showPoints;
+
+async function getDataWithMark(id_scheme_point_control, date_from, date_to) {
+    var params = jQuery.param({
+        id_scheme_point_control: id_scheme_point_control,
+        date_from: date_from,
+        date_to: date_to
+    });
+
+    const response = await axios.get(base_url + '/manager/get-points-on-schema-point-control/?' + params);
+
+    return response.data;
+}
+
 
 async function getPoints() {
     var is_show_free_points = true;

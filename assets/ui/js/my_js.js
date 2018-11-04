@@ -88,6 +88,7 @@ async function getData(id_scheme_point_control) {
 
 
 
+
 async function getPoints() {
     const json = await getData(id_scheme_point_control);
     //console.log(json);

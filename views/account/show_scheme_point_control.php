@@ -70,7 +70,7 @@ $this->title = "Статистика по схеме точек котроля: 
                         <div id="inner-dropzone_<?=$model['id_file_customer']?>" class="dropzone">
                             <?= Html::img($model['url'], [
                                 'alt' => $model['title'],
-                                'onload'    => 'showPoints("inner-dropzone_'.$model['id_file_customer'].'", '.$model['id_file_customer'].');'
+                                'onload'    => 'showPointsWithMark("inner-dropzone_'.$model['id_file_customer'].'", '.$model['id_file_customer'].', \''.$model_calendar['date_from'].'\', \''.$model_calendar['date_to'].'\');'
                             ]) ?>
                         </div>
                     </div>
