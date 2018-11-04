@@ -1,6 +1,6 @@
 web/assets/*
 web/reports/*
-.idea
+.idea*
 .idea/*
 .idea/workspace.xml
 temp/*
