@@ -9,6 +9,7 @@ use app\models\customer\CalendarForm;
 use app\models\customer\SearchForm;
 use app\models\tools\Tools;
 use app\models\widget\Widget;
+use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
@@ -40,6 +41,44 @@ class AccountController extends Controller {
         return $this->render('scheme', compact('data_provider', 'model'));
     }
 
+    public function actionShowSchemePointControl() {
+
+        $id = \Yii::$app->user->id;
+        $customer = Customer::getCustomerByIdUser($id);
+        if (is_null($customer)) {
+            $this->redirect('index');
+            return;
+        }
+
+        $model_calendar = new CalendarForm();
+
+        if ($model_calendar->load(\Yii::$app->request->post()) && $model_calendar->validate()) {
+            $from_datetime = $model_calendar->date_from;
+            $to_datetime = $model_calendar->date_to;
+            $_SESSION['from_datetime'] = $from_datetime;
+            $_SESSION['to_datetime'] = $to_datetime;
+        } else if (\Yii::$app->request->isGet
+            && isset($_SESSION['from_datetime'])
+            && isset($_SESSION['to_datetime'])) {
+            $model_calendar->date_from = $from_datetime = $_SESSION['from_datetime'];
+            $model_calendar->date_to = $to_datetime = $_SESSION['to_datetime'];
+        } else {
+            $model_calendar->date_from = $from_datetime = (new \DateTime())->format('01.m.Y');
+            $model_calendar->date_to = $to_datetime = (new \DateTime())->format('d.m.Y');
+        }
+
+        $id_scheme = (int)\Yii::$app->request->get('id');
+
+
+        //$scheme_point_control = $model->getResultsForAccount($customer->id);
+
+        //$data_provider = Tools::wrapIntoDataProvider($scheme_point_control);
+
+        $model = FileCustomer::getSchemeForStat($id_scheme, $from_datetime, $to_datetime);
+
+        return $this->render('show_scheme_point_control', compact('model', 'model_calendar'));
+    }
+
     public function actionInfoOnMonitoring() {
 
         $id = \Yii::$app->user->id;
@@ -54,6 +93,13 @@ class AccountController extends Controller {
         if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
             $from_datetime = $model->date_from;
             $to_datetime = $model->date_to;
+            $_SESSION['from_datetime'] = $from_datetime;
+            $_SESSION['to_datetime'] = $to_datetime;
+        } else if (\Yii::$app->request->isGet
+            && isset($_SESSION['from_datetime'])
+            && isset($_SESSION['to_datetime'])) {
+            $model->date_from = $from_datetime = $_SESSION['from_datetime'];
+            $model->date_to = $to_datetime = $_SESSION['to_datetime'];
         } else {
             $model->date_from = $from_datetime = (new \DateTime())->format('01.m.Y');
             $model->date_to = $to_datetime = (new \DateTime())->format('d.m.Y');
@@ -61,7 +107,7 @@ class AccountController extends Controller {
 
         $events = Events::getEventsFromPeriod($customer->id, $from_datetime, $to_datetime);
 
-        $data_provider = Tools::wrapIntoDataProvider($events, false);
+        $data_provider = Tools::wrapIntoDataProvider($events, false, ['full_name', 'n_point', 'status', 'date_check']);
 
         return $this->render('info_on_monitoring', compact('model', 'data_provider'));
     }
@@ -240,7 +286,7 @@ class AccountController extends Controller {
                     [
                         'actions'   => ['index', 'call-employee', 'general-report',
                             'recommendations', 'occupancy-schedule', 'risk-assessment', 'report-on-material',
-                            'report-on-point', 'info-on-monitoring', 'scheme'],
+                            'report-on-point', 'info-on-monitoring', 'scheme', 'show-scheme-point-control'],
                         'roles'     => ['customer'],
                         'allow'     => true
                     ]

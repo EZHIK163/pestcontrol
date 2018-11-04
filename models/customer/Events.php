@@ -93,9 +93,10 @@ class Events extends \yii\db\ActiveRecord
 
     public static function getEventsStartFromTime($start_timestamp, $end_timestamp, $id_customer) {
         $events = self::find()
-            ->select('disinfectors.full_name, point_status.description as status, events.created_at')
+            ->select('disinfectors.full_name, point_status.description as status, events.created_at, points.id_internal, events.id_external, points.id_file_customer')
             ->join('inner join', 'public.disinfectors', 'disinfectors.id = events.id_disinfector')
             ->join('inner join', 'public.point_status', 'point_status.id = events.id_point_status')
+            ->join('left join', 'public.points', 'points.id = events.id_point')
             ->where(['events.id_customer'  => $id_customer])
             ->andWhere(['>=', 'events.created_at', $start_timestamp])
             ->andWhere(['<', 'events.created_at', $end_timestamp])
@@ -106,10 +107,16 @@ class Events extends \yii\db\ActiveRecord
         foreach ($events as &$event) {
             $created_at = ((new \DateTime(date('Y-m-d H:i:s', $event['created_at'] )))
                 ->format('d.m.Y'));
+            $url = '';
+            if (!is_null($event['id_file_customer'])) {
+                $url = \Yii::$app->urlManager->createAbsoluteUrl(['/']). 'account/show-scheme-point-control?id='.$event['id_file_customer'];
+            }
             $finish_events [] = [
+                'n_point'       => !is_null($event['id_internal']) ? $event['id_internal'] : $event['id_external'],
                 'full_name'     => $event['full_name'],
                 'date_check'    => $created_at,
-                'status'        => $event['status']
+                'status'        => $event['status'],
+                'url'           => $url
             ];
         }
 
@@ -353,6 +360,8 @@ class Events extends \yii\db\ActiveRecord
         $events_not_touch = 0;
         $events_full_replace = 0;
         $events_caught = 0;
+        $events_caught_insekt = 0;
+        $events_caught_nagetier = 0;
         foreach ($events as $item) {
             switch($item['code']) {
                 case 'part_replace':
@@ -367,21 +376,30 @@ class Events extends \yii\db\ActiveRecord
                 case 'caught':
                     $events_caught++;
                     break;
+                case 'caught_insekt':
+                    $events_caught_insekt++;
+                    break;
+                case 'caught_nagetier':
+                    $events_caught_nagetier++;
+                    break;
             }
         }
         $datasets[0] = [
             'label' => 'Отчет по точкам контроля за месяц',
-            'data'  => [$events_not_touch, $events_part_replace, $events_full_replace, $events_caught],
-            'backgroundColor'   => ["#3e95cd", "#3463a2", "#894ea2", "green"]
+            'data'  => [$events_not_touch, $events_part_replace, $events_full_replace, $events_caught, $events_caught_insekt, $events_caught_nagetier],
+            'backgroundColor'   => ["yellow", "red", "green", "blue", "gray", "#894ea2"]
         ];
 
+        $statuses = PointStatus::getStatusesForApplication();
+
+        $labels = [];
+
+        foreach ($statuses as $status) {
+            $labels [] = $status['description'];
+        }
 
         return [
-            'labels'    => [
-                "Приманка целая/клеевая подложка чистая",
-                "Замена приманки/Клеевой подложки-следов вредителей нет",
-                "Замена приманки/Клеевой подложки-следы вредителей",
-                "Пойман вредитель"],
+            'labels'    => $labels,
             'datasets'  => $datasets,
             'is_view'   => true
         ];
@@ -474,6 +492,12 @@ class Events extends \yii\db\ActiveRecord
                         case 'caught':
                             $statistics [] = 3;
                             break;
+                        case 'caught_insekt':
+                            $statistics [] = 4;
+                            break;
+                        case 'caught_nagetier':
+                            $statistics [] = 5;
+                            break;
                     }
                 }
                 $data[$id_external][$my_month] = implode(' | ', $statistics);
@@ -550,6 +574,20 @@ class Events extends \yii\db\ActiveRecord
     static function saveItem($id, $id_point_status) {
         $event = self::findOne($id);
         $event->id_point_status = $id_point_status;
+        $event->save();
+    }
+
+    static function addEvent2($id_customer, $id_desinector, $id_external, $id_status) {
+
+        $id_point = Points::getPointByIdInternal($id_external, $id_customer);
+        $event = new Events();
+
+        $event->id_customer = $id_customer;
+        $event->id_disinfector = $id_desinector;
+        $event->id_external = $id_external;
+        $event->id_point = $id_point;
+        $event->id_point_status = $id_status;
+
         $event->save();
     }
 }

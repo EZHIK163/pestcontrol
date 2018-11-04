@@ -48,22 +48,12 @@ class ConsoleController extends Controller
         $count_sync_row = 0;
         foreach ($companies as $company) {
             $name_table = $company['tbl_names'];
-            if ($name_table == "PepsiCo_Sam") {
-                $name_table = "\"PepsiCo_Sam\"";
-            }
-            if ($name_table == "Alpla_spb") {
-                $name_table = "\"Alpla_spb\"";
-            }
-            if ($name_table == "Baltika_Spb") {
-                $name_table = "\"Baltika_Spb\"";
-            }
-            if ($name_table == "Globus") {
-                $name_table = "\"Globus\"";
-            }
+            
             $sql = "
             SELECT * FROM {$name_table}
             WHERE created > :last_time_sync";
-            $events = $db_old->createCommand($sql)
+
+	    $events = $db_old->createCommand($sql)
                 ->bindValue(':last_time_sync', $time_last_sync)
                 ->queryAll();
 
@@ -92,7 +82,7 @@ class ConsoleController extends Controller
                     ->bindValue(':created_at', $created_at)
                     ->bindValue(':created_by', $created_by)
                     ->bindValue(':updated_at', $updated_at)
-                    ->bindValue(':updated_by', $updated_by)
+                   ->bindValue(':updated_by', $updated_by)
                     ->query();
 
                 $count_sync_row++;

@@ -222,9 +222,14 @@ class Points extends \yii\db\ActiveRecord
         ;
 
         if (count($point) != 0) {
-            return $point->id;
+            return $point[0]['id'];
         } else {
             return null;
         }
+    }
+
+    public function getEvents()
+    {
+        return $this->hasMany(Events::class, ['id_point' => 'id'])->where(['is_active'  => true]);
     }
 }

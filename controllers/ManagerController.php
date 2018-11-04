@@ -34,7 +34,7 @@ class ManagerController extends Controller {
 
     public function beforeAction($action)
     {
-        if (in_array($action->id , ['save-point', 'new-point'])) {
+        if (in_array($action->id , ['save-point', 'new-point', 'new-event', 'get-statuses'])) {
             $this->enableCsrfValidation = false;
         }
 
@@ -57,6 +57,35 @@ class ManagerController extends Controller {
         $my_data = [
             'success'   => 1,
             'message'   => 'Product successfully created'
+        ];
+        return $my_data;
+    }
+
+    public function actionNewEvent() {
+
+        $id_company = \Yii::$app->request->post('id_company');
+        $id_desinector = \Yii::$app->request->post('id_desinector');
+        $id_point = \Yii::$app->request->post('id_point');
+        $id_status = \Yii::$app->request->post('id_status');
+
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+
+        Events::addEvent2($id_company, $id_desinector, $id_point, $id_status);
+
+        $my_data = [
+            'status'   => true
+        ];
+        return $my_data;
+    }
+
+    public function actionGetStatuses() {
+
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $statuses = PointStatus::getStatusesForApplication();
+
+        $my_data = [
+            'statuses'   => $statuses
         ];
         return $my_data;
     }
@@ -392,7 +421,8 @@ class ManagerController extends Controller {
                         'allow'     => true
                     ],
                     [
-                        'actions'=> ['get-points-on-schema-point-control','save-point', 'new-point'],
+                        'actions'=> ['get-points-on-schema-point-control','save-point', 'new-point',
+                            'new-event', 'get-statuses'],
                         'roles'     => [],
                         'allow'     => true
                     ]

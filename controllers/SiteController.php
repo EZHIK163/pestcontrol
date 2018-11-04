@@ -43,6 +43,10 @@ class SiteController extends Controller {
         $url = $file['url'];
         $name = $file['name'];
 
+        if (ob_get_level()) {
+             ob_end_clean();
+        }
+
         \Yii::$app->response->sendFile($url, $name);
         \Yii::$app->response->send();
 //

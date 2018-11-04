@@ -117,6 +117,12 @@ class ReportController extends Controller {
         $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
         $writer->save(\Yii::$app->basePath.'/temp/temp.xlsx');
 
+        // сбрасываем буфер вывода PHP, чтобы избежать переполнения памяти выделенной под скрипт
+        // если этого не сделать файл будет читаться в память полностью!
+        if (ob_get_level()) {
+            ob_end_clean();
+        }
+
         return \Yii::$app->response->sendFile(
             \Yii::$app->basePath.'/temp/temp.xlsx',
             $name_file,
@@ -171,6 +177,12 @@ class ReportController extends Controller {
 
         $name_file = 'Отчет по дезсредствам.docx';
         $templateProcessor->saveAs(\Yii::$app->basePath.'/temp/temp.docx');
+
+        // сбрасываем буфер вывода PHP, чтобы избежать переполнения памяти выделенной под скрипт
+        // если этого не сделать файл будет читаться в память полностью!
+        if (ob_get_level()) {
+            ob_end_clean();
+        }
 
         return \Yii::$app->response->sendFile(
             \Yii::$app->basePath.'/temp/temp.docx',
@@ -233,6 +245,12 @@ class ReportController extends Controller {
 
         $name_file = 'Отчет по точкам.docx';
         $templateProcessor->saveAs(\Yii::$app->basePath.'/temp/temp.docx');
+
+        // сбрасываем буфер вывода PHP, чтобы избежать переполнения памяти выделенной под скрипт
+        // если этого не сделать файл будет читаться в память полностью!
+        if (ob_get_level()) {
+            ob_end_clean();
+        }
 
         return \Yii::$app->response->sendFile(
             \Yii::$app->basePath.'/temp/temp.docx',
@@ -335,10 +353,17 @@ class ReportController extends Controller {
         $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
         $writer->save(\Yii::$app->basePath.'/temp/temp.xlsx');
 
+        // сбрасываем буфер вывода PHP, чтобы избежать переполнения памяти выделенной под скрипт
+        // если этого не сделать файл будет читаться в память полностью!
+        if (ob_get_level()) {
+            ob_end_clean();
+        }
+
         return \Yii::$app->response->sendFile(
             \Yii::$app->basePath.'/temp/temp.xlsx',
             $name_file,
             ['mimeType'=>'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet']
+            //['mimeType' => 'application/vnd.ms-excel']
         );
     }
 

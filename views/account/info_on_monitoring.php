@@ -2,6 +2,7 @@
 use dosamigos\chartjs\ChartJs;
 use dosamigos\datepicker\DatePicker;
 use yii\grid\GridView;
+use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 $this->title = "Информация по мониторингу {$name_customer}"; ?>
@@ -62,19 +63,40 @@ $this->title = "Информация по мониторингу {$name_customer
                             <?= GridView::widget([
                                 'dataProvider' => $data_provider,
                                 'columns' => [
-                                    ['class' => 'yii\grid\SerialColumn'],
+                                    [
+                                        'attribute' => 'n_point',
+                                        'label'     => '№ точки'
+                                        //'header'    => '№ точки',
+                                    ],
                                     [
                                         'attribute' => 'full_name',
-                                        'header'    => 'Дезинфектор'
+                                        'label'     => 'Дезинфектор'
+                                        //'header'    => 'Дезинфектор'
                                     ],
                                     [
                                         'attribute' => 'status',
-                                        'header'    => 'Статус'
+                                        'label'     => 'Статус'
+                                       // 'header'    => 'Статус'
                                     ],
                                     [
                                         'attribute' => 'date_check',
-                                        'header'    => 'Дата проверки'
-                                    ]
+                                        'label'     => 'Дата проверки'
+                                        //'header'    => 'Дата проверки',
+                                    ],
+                                    [
+                                        'label'     => 'Ссылка на схему',
+                                        'format'    => 'html',
+                                        'value'     => function ($model, $key, $index, $column){
+                                            if (!empty($model['url'])) {
+                                                return
+                                                    Html::tag('a', 'Перейти к схеме',
+                                                        ['href'  => $model['url']]);
+                                            }
+                                            return
+                                                'нет';
+
+                                        }
+                                    ],
                                 ]
                             ]); ?>
                 </div>
