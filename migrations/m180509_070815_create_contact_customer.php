@@ -44,7 +44,7 @@ class m180509_070815_create_contact_customer extends Migration
     {
         $this->dropTable('customer_contact');
 
-        $this->dropForeignKey('customer_contact_id_customer', 'customer_contact');
+        $this->dropForeignKey('customer_contact_id_file_customer', 'customer_contact');
 
         $this->dropForeignKey('customer_contact_created_by', 'customer_contact');
 

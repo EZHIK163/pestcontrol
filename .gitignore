@@ -3,6 +3,7 @@ web/reports/*
 .idea*
 .idea/*
 .idea/workspace.xml
+.idea/
 temp/*
 config/*
 web/uploads/*
