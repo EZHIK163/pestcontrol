@@ -21,21 +21,6 @@ class CalendarForm extends Model
         ];
     }
 
-
-
-    /**
-     * @return array|bool
-     */
-//    public function getDate()
-//    {
-//        if (!$this->validate()) {
-//            return [];
-//        }
-//
-//        $scheme_point_control = FileCustomer::getSchemePointControlForAdmin($this->query);
-//        return $scheme_point_control;
-//    }
-
     public function attributeLabels()
     {
         return [

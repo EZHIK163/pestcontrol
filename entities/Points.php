@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models\customer;
+namespace app\entities;
 
 use Yii;
 use yii\base\ErrorException;

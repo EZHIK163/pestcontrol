@@ -23,7 +23,7 @@ use Yii;
  * @property string $terms_of_use
  * @property string $place_of_application
  */
-class Disinfectant extends \yii\db\ActiveRecord
+class DisinfectantRecord extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -199,7 +199,7 @@ class Disinfectant extends \yii\db\ActiveRecord
     static function addItem($title, $value, $form_of_facility, $active_substance,
                             $concentration_of_substance, $manufacturer,
                             $terms_of_use, $place_of_application) {
-        $item = new Disinfectant();
+        $item = new DisinfectantRecord();
 
         $item->value = $value;
         $item->description = $title;

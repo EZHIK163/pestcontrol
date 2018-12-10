@@ -2,7 +2,7 @@
 
 namespace app\models\user;
 
-use app\models\customer\Customer;
+use app\entities\CustomerRecord;
 use yii\base\NotSupportedException;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
@@ -177,27 +177,13 @@ class UserRecord extends ActiveRecord implements IdentityInterface {
 
     public function getCustomer()
     {
-        return $this->hasOne(Customer::class, ['id_user_owner' => 'id']);
+        return $this->hasOne(CustomerRecord::class, ['id_user_owner' => 'id']);
     }
 
 
 
-//    public function editUser($id) {
-//        $user = self::getUserById($id);
-//        $user->username = $this->username;
-//        //$code_role = $post['UserRecord']['role'];
-//        //$id_customer = $post['UserRecord']['id_customer'];
-//
-//        Customer::setIdUserOwner($this->id_customer, $id);
-//
-//        $rbac = \Yii::$app->authManager;
-//        //$role = $rbac->getRole($code_role);
-//        //$rbac->assign($role, $this->id);
-//        $this->save();
-//    }
-
     public static function deleteUser($id) {
-        Customer::clearCustomerOnIdOwner($id);
+        CustomerRecord::clearCustomerOnIdOwner($id);
         $user = UserRecord::findOne($id);
         $user->delete();
     }

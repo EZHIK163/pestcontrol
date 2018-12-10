@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models\customer;
+namespace app\entities;
 
 use ErrorException;
 use Yii;
@@ -44,7 +44,7 @@ class Events extends \yii\db\ActiveRecord
             [['id_customer', 'id_disinfector', 'id_external', 'id_point_status', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\user\UserRecord::class, 'targetAttribute' => ['created_by' => 'id']],
             [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\user\UserRecord::class, 'targetAttribute' => ['updated_by' => 'id']],
-            [['id_customer'], 'exist', 'skipOnError' => true, 'targetClass' => Customer::class, 'targetAttribute' => ['id_customer' => 'id']],
+            [['id_customer'], 'exist', 'skipOnError' => true, 'targetClass' => CustomerRecord::class, 'targetAttribute' => ['id_customer' => 'id']],
             [['id_disinfector'], 'exist', 'skipOnError' => true, 'targetClass' => Disinfector::class, 'targetAttribute' => ['id_disinfector' => 'id']],
             [['id_point_status'], 'exist', 'skipOnError' => true, 'targetClass' => PointStatus::class, 'targetAttribute' => ['id_point_status' => 'id']],
         ];
@@ -477,7 +477,7 @@ class Events extends \yii\db\ActiveRecord
 
     static function addEvent($code_company, $id_disinfector, $id_external, $id_point_status) {
 
-        $id_customer = Customer::getIdCustomerByCode($code_company);
+        $id_customer = CustomerRecord::getIdCustomerByCode($code_company);
 
         $id_point = Points::getPointByIdInternal($id_external, $id_customer);
         $event = new Events();

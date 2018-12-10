@@ -1,8 +1,6 @@
 <?php
 
-namespace app\models\customer;
-
-use Yii;
+namespace app\entities;
 
 /**
  * This is the model class for table "public.customer_contact".
@@ -40,7 +38,7 @@ class CustomerContact extends \yii\db\ActiveRecord
             [['name', 'email', 'phone'], 'string', 'max' => 255],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\user\UserRecord::class, 'targetAttribute' => ['created_by' => 'id']],
             [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\user\UserRecord::class, 'targetAttribute' => ['updated_by' => 'id']],
-            [['id_customer'], 'exist', 'skipOnError' => true, 'targetClass' => Customer::class, 'targetAttribute' => ['id_customer' => 'id']],
+            [['id_customer'], 'exist', 'skipOnError' => true, 'targetClass' => CustomerRecord::class, 'targetAttribute' => ['id_customer' => 'id']],
         ];
     }
 

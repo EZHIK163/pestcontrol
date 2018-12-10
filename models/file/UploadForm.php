@@ -1,7 +1,7 @@
 <?php
 namespace app\models\file;
 
-use app\models\customer\FileCustomerType;
+use app\entities\FileCustomerType;
 use yii\base\Model;
 use yii\web\UploadedFile;
 

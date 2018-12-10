@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models\customer;
+namespace app\entities;
 
 use Yii;
 
@@ -19,7 +19,7 @@ use Yii;
  * @property AuthUsers $createdBy
  * @property AuthUsers $updatedBy
  * @property Customers $customer
- * @property Disinfectant $disinfectant
+ * @property DisinfectantRecord $disinfectant
  */
 class CustomerDisinfectant extends \yii\db\ActiveRecord
 {
@@ -42,8 +42,8 @@ class CustomerDisinfectant extends \yii\db\ActiveRecord
             [['id_customer', 'id_disinfectant', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\user\UserRecord::class, 'targetAttribute' => ['created_by' => 'id']],
             [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\user\UserRecord::class, 'targetAttribute' => ['updated_by' => 'id']],
-            [['id_customer'], 'exist', 'skipOnError' => true, 'targetClass' =>  Customer::class, 'targetAttribute' => ['id_customer' => 'id']],
-            [['id_disinfectant'], 'exist', 'skipOnError' => true, 'targetClass' => Disinfectant::class, 'targetAttribute' => ['id_disinfectant' => 'id']],
+            [['id_customer'], 'exist', 'skipOnError' => true, 'targetClass' =>  CustomerRecord::class, 'targetAttribute' => ['id_customer' => 'id']],
+            [['id_disinfectant'], 'exist', 'skipOnError' => true, 'targetClass' => DisinfectantRecord::class, 'targetAttribute' => ['id_disinfectant' => 'id']],
         ];
     }
 
@@ -93,7 +93,7 @@ class CustomerDisinfectant extends \yii\db\ActiveRecord
      */
     public function getDisinfectant()
     {
-        return $this->hasOne(Disinfectant::className(), ['id' => 'id_disinfectant']);
+        return $this->hasOne(DisinfectantRecord::className(), ['id' => 'id_disinfectant']);
     }
 
     public function behaviors()

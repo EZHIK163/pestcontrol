@@ -1,21 +1,34 @@
 <?php
 namespace app\controllers;
 
-use app\models\customer\Customer;
-use app\models\customer\Disinfectant;
-use app\models\customer\Events;
-use app\models\customer\FileCustomer;
+use app\entities\DisinfectantRecord;
+use app\entities\Events;
+use app\entities\FileCustomer;
 use app\models\customer\CalendarForm;
 use app\models\customer\SearchForm;
 use app\models\tools\Tools;
 use app\models\widget\Widget;
-use yii\data\ActiveDataProvider;
+use app\services\CustomerService;
+use yii\base\Module;
 use yii\filters\AccessControl;
 use yii\web\Controller;
-use yii\web\Response;
 
-class AccountController extends Controller {
+class AccountController extends Controller
+{
+    private $customerService;
 
+    /**
+     * AccountController constructor.
+     * @param $id
+     * @param Module $module
+     * @param CustomerService $customerService
+     * @param array $config
+     */
+    public function __construct($id, Module $module, CustomerService $customerService, array $config = [])
+    {
+        $this->customerService = $customerService;
+        parent::__construct($id, $module, $config);
+    }
 
     public function actionIndex() {
         return $this->render('index');
@@ -23,7 +36,7 @@ class AccountController extends Controller {
 
     public function actionScheme() {
         $id = \Yii::$app->user->id;
-        $customer = Customer::getCustomerByIdUser($id);
+        $customer = $this->customerService->getCustomerByIdUser($id);
         if (is_null($customer)) {
             $this->redirect('index');
             return;
@@ -35,7 +48,7 @@ class AccountController extends Controller {
             $model->query = \Yii::$app->request->post('SearchForm')['query'];
         }
 
-        $scheme_point_control = $model->getResultsForAccount($customer->id);
+        $scheme_point_control = $model->getResultsForAccount($customer->getId());
 
         $data_provider = Tools::wrapIntoDataProvider($scheme_point_control);
         return $this->render('scheme', compact('data_provider', 'model'));
@@ -44,7 +57,7 @@ class AccountController extends Controller {
     public function actionShowSchemePointControl() {
 
         $id = \Yii::$app->user->id;
-        $customer = Customer::getCustomerByIdUser($id);
+        $customer = $this->customerService->getCustomerByIdUser($id);
         if (is_null($customer)) {
             $this->redirect('index');
             return;
@@ -82,7 +95,7 @@ class AccountController extends Controller {
     public function actionInfoOnMonitoring() {
 
         $id = \Yii::$app->user->id;
-        $customer = Customer::getCustomerByIdUser($id);
+        $customer = $this->customerService->getCustomerByIdUser($id);
         if (is_null($customer)) {
             $this->redirect('index');
             return;
@@ -105,7 +118,7 @@ class AccountController extends Controller {
             $model->date_to = $to_datetime = (new \DateTime())->format('d.m.Y');
         }
 
-        $events = Events::getEventsFromPeriod($customer->id, $from_datetime, $to_datetime);
+        $events = Events::getEventsFromPeriod($customer->getId(), $from_datetime, $to_datetime);
 
         $data_provider = Tools::wrapIntoDataProvider($events, false, ['full_name', 'n_point', 'status', 'date_check']);
 
@@ -114,7 +127,7 @@ class AccountController extends Controller {
 
     public function actionReportOnPoint() {
         $id = \Yii::$app->user->id;
-        $customer = Customer::getCustomerByIdUser($id);
+        $customer = $this->customerService->getCustomerByIdUser($id);
 
         if (is_null($customer)) {
             $this->redirect('index');
@@ -131,14 +144,14 @@ class AccountController extends Controller {
             $model->date_to = $to_datetime = (new \DateTime())->format('d.m.Y');
         }
 
-        $data = Events::getPointReportFromPeriod($customer->id, $from_datetime, $to_datetime);
+        $data = Events::getPointReportFromPeriod($customer->getId(), $from_datetime, $to_datetime);
 
         return $this->render('report_on_point', compact('data', 'model'));
     }
 
     public function actionReportOnMaterial() {
         $id = \Yii::$app->user->id;
-        $customer = Customer::getCustomerByIdUser($id);
+        $customer = $this->customerService->getCustomerByIdUser($id);
         if (is_null($customer)) {
             $this->redirect('index');
             return;
@@ -154,7 +167,7 @@ class AccountController extends Controller {
             $model->date_to = $to_datetime = (new \DateTime())->format('d.m.Y');
         }
 
-        $disinfectant = Disinfectant::getFromPeriod($customer->id, $from_datetime, $to_datetime);
+        $disinfectant = DisinfectantRecord::getFromPeriod($customer->getId(), $from_datetime, $to_datetime);
 
         $setting_column = $disinfectant['setting_column'];
 
@@ -167,7 +180,7 @@ class AccountController extends Controller {
 
     public function actionRiskAssessment() {
         $id = \Yii::$app->user->id;
-        $customer = Customer::getCustomerByIdUser($id);
+        $customer = $this->customerService->getCustomerByIdUser($id);
         if (is_null($customer)) {
             $this->redirect('index');
             return;
@@ -183,11 +196,11 @@ class AccountController extends Controller {
             $model->date_to = $to_datetime = (new \DateTime())->format('d.m.Y');
         }
 
-        $green_risk = Events::getGreenRisk($customer->id, $from_datetime, $to_datetime);
+        $green_risk = Events::getGreenRisk($customer->getId(), $from_datetime, $to_datetime);
 
         $data_provider_green = Tools::wrapIntoDataProvider($green_risk, false);
 
-        $red_risk = Events::getRedRisk($customer->id, $from_datetime, $to_datetime);
+        $red_risk = Events::getRedRisk($customer->getId(), $from_datetime, $to_datetime);
 
         $data_provider_red = Tools::wrapIntoDataProvider($red_risk, false);
 
@@ -197,7 +210,7 @@ class AccountController extends Controller {
     public function actionOccupancySchedule() {
 
         $id = \Yii::$app->user->id;
-        $customer = Customer::getCustomerByIdUser($id);
+        $customer = $this->customerService->getCustomerByIdUser($id);
         if (is_null($customer)) {
             $this->redirect('index');
             return;
@@ -213,7 +226,7 @@ class AccountController extends Controller {
             $model->date_to = $to_datetime = (new \DateTime())->format('d.m.Y');
         }
 
-        $data = Events::getOccupancyScheduleFromPeriod($customer->id, $from_datetime, $to_datetime);
+        $data = Events::getOccupancyScheduleFromPeriod($customer->getId(), $from_datetime, $to_datetime);
         //$previous_year = Events::getOccupancySchedulePreviousYear($customer->id);
         //$previous_previous_year = Events::getOccupancySchedulePreviousPreviousYear($customer->id);
         return $this->render('occupancy_schedule', compact('data', 'model'));
@@ -228,13 +241,13 @@ class AccountController extends Controller {
     public function actionGeneralReport() {
 
         $id = \Yii::$app->user->id;
-        $customer = Customer::getCustomerByIdUser($id);
+        $customer = $this->customerService->getCustomerByIdUser($id);
         if (is_null($customer)) {
             $this->redirect('index');
             return;
         }
 
-        $data_current_month = Events::getGeneralReportCurrentMonth($customer->id);
+        $data_current_month = Events::getGeneralReportCurrentMonth($customer->getId());
 
         return $this->render('general_report', compact('data_current_month'));
     }
@@ -246,10 +259,10 @@ class AccountController extends Controller {
     public function render($view, $params = [])
     {
         $id = \Yii::$app->user->id;
-        $customer = Customer::getCustomerByIdUser($id);
+        $customer = $this->customerService->getCustomerByIdUser($id);
 
         if ($customer) {
-            $name_customer = $customer->name;
+            $name_customer = $customer->getName();
         } else {
             $name_customer = '';
         }

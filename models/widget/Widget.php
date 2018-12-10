@@ -41,19 +41,19 @@ class Widget {
             $widget_manager->class_ul = "nav menu";
             $widget_manager->items = [
                 [
-                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/customers',
+                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager-customer/customers',
                     'name' => 'Клиенты'
                 ],
                 [
-                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/upload-files',
+                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager-file/upload-files',
                     'name' => 'Загрузка файлов'
                 ],
                 [
-                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/recommendations',
+                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager-file/recommendations',
                     'name' => 'Рекомендации'
                 ],
                 [
-                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/scheme-point-control',
+                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager-file/scheme-point-control',
                     'name' => 'Схемы точек контроля'
                 ],
                 [
@@ -61,21 +61,21 @@ class Widget {
                     'name' => 'Управление точками'
                 ],
                 [
-                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/manage-disinfectants',
+                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager-disinfectant/manage-disinfectants',
                     'name' => 'Управление дезсредствами'
                 ],
                 [
-                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/manage-disinfectants-on-customers',
+                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager-disinfectant/manage-disinfectants-on-customers',
                     'name' => 'Дезсредства клиентов'
                 ],
                 [
                     'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/manage-events',
                     'name' => 'Управление событиями'
                 ],
-                [
-                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/manage-events',
-                    'name' => 'Управление событиями'
-                ],
+//                [
+//                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/manage-events',
+//                    'name' => 'Управление событиями'
+//                ],
                 [
                     'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/manage-disinfectors',
                     'name' => 'Управление дезинфекторами'

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models\customer;
+namespace app\entities;
 
 use app\models\file\Files;
 use PhpOffice\PhpSpreadsheet\Calculation\DateTime;
@@ -104,7 +104,7 @@ class FileCustomer extends \yii\db\ActiveRecord
 
     public function getCustomer()
     {
-        return $this->hasOne(Customer::class, ['id' => 'id_customer']);
+        return $this->hasOne(CustomerRecord::class, ['id' => 'id_customer']);
     }
 
     public function getFile()

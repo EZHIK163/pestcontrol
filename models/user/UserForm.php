@@ -1,7 +1,7 @@
 <?php
 namespace app\models\user;
 
-use app\models\customer\Customer;
+use app\entities\CustomerRecord;
 use app\models\user\UserRecord;
 use yii\base\Model;
 
@@ -41,7 +41,7 @@ class UserForm extends Model {
         $user = UserRecord::getUserById($this->id);
         $user->username = $this->username;
 
-        Customer::setIdUserOwner($this->id_customer, $this->id);
+        CustomerRecord::setIdUserOwner($this->id_customer, $this->id);
 
         $rbac = \Yii::$app->authManager;
         $current_role = $rbac->getRoleByUser($user->id)->name;
@@ -60,7 +60,7 @@ class UserForm extends Model {
         $user->password = $this->password;
         $user->save();
 
-        Customer::setIdUserOwner($this->id_customer, $user->id);
+        CustomerRecord::setIdUserOwner($this->id_customer, $user->id);
 
         $rbac = \Yii::$app->authManager;
         $role = $rbac->getRole($this->role);

@@ -2,7 +2,7 @@
 
 namespace app\models\file;
 
-use app\models\customer\FileCustomer;
+use app\entities\FileCustomer;
 use Yii;
 use yii\web\NotFoundHttpException;
 

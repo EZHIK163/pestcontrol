@@ -11,13 +11,17 @@ use yii\helpers\ArrayHelper;
  * @property int $id
  * @property bool $is_active
  * @property string $name
+ * @property string $code
  * @property int $id_user_owner
  * @property int $created_at
  * @property int $created_by
  * @property int $updated_at
  * @property int $updated_by
+ * @property DisinfectantRecord[] $disinfectants
+ * @property UserRecord $owner
+ * @property CustomerContact $contacts
  */
-class Customer extends \yii\db\ActiveRecord
+class CustomerRecord extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -27,25 +31,6 @@ class Customer extends \yii\db\ActiveRecord
         return 'public.customers';
     }
 
-    public function getOwner() {
-        return $this->hasOne(UserRecord::class, ['id' => 'id_user_owner']);
-    }
-
-    public function getContacts() {
-        return $this->hasMany(CustomerContact::class, ['id_customer' => 'id'])
-            ->where(['is_active'   => true]);
-    }
-
-    public function getDisinfectants() {
-        return $this->hasMany(Disinfectant::class, ['id' => 'id_disinfectant'])
-            ->viaTable('customer_disinfectant', ['id_customer' => 'id'],
-                function ($query) {
-                    /* @var $query \yii\db\ActiveQuery */
-
-                    $query->andWhere(['is_active' => true]);
-                })
-            ->andWhere(['is_active' => true]);
-    }
     /**
      * @inheritdoc
      */
@@ -86,6 +71,26 @@ class Customer extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getOwner()
+    {
+        return $this->hasOne(UserRecord::class, ['id' => 'id_user_owner']);
+    }
+
+    public function getContacts()
+    {
+        return $this->hasMany(CustomerContact::class, ['id_customer' => 'id'])
+            ->where(['is_active'   => true]);
+    }
+
+    public function getDisinfectants()
+    {
+        return $this->hasMany(DisinfectantRecord::class, ['id' => 'id_disinfectant'])
+            ->viaTable('customer_disinfectant', ['id_customer' => 'id'], function ($query) {
+                    /* @var $query \yii\db\ActiveQuery */
+                    $query->andWhere(['is_active' => true]);
+                })
+            ->andWhere(['is_active' => true]);
+    }
 //    public static function getCustomers() {
 //        return Customer::find()
 //            ->where(['is_active'    => true])

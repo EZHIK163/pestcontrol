@@ -2,25 +2,47 @@
 namespace app\controllers;
 
 use app\components\MyReadFilter;
-use app\models\customer\Customer;
-use app\models\customer\Disinfectant;
-use app\models\customer\Events;
+use app\entities\DisinfectantRecord;
+use app\entities\Events;
+use app\services\CustomerService;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\TemplateProcessor;
+use yii\base\Module;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 
 
-class ReportController extends Controller {
+class ReportController extends Controller
+{
+    private $customerService;
 
+    /**
+     * ReportController constructor.
+     * @param $id
+     * @param Module $module
+     * @param CustomerService $customerService
+     * @param array $config
+     */
+    public function __construct($id, Module $module, CustomerService $customerService, array $config = [])
+    {
+        $this->customerService = $customerService;
+        parent::__construct($id, $module, $config);
+    }
+
+    /**
+     * @return \yii\console\Response|\yii\web\Response
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
+     */
     public function actionReportDisinfectantToExcel() {
 
         $id = \Yii::$app->user->id;
-        $customer = Customer::getCustomerByIdUser($id);
+        $customer = $this->customerService->getCustomerByIdUser($id);
 
         $from_datetime = \Yii::$app->request->get('from_datetime');
         $to_datetime = \Yii::$app->request->get('to_datetime');
@@ -28,7 +50,7 @@ class ReportController extends Controller {
         //$from_datetime = (new \DateTime($from_datetime))->format('01.01.Y');
         //$to_datetime = (new \DateTime($to_datetime))->format('d.m.Y');;
 
-        $data = Disinfectant::getDataForReport($customer->id, $from_datetime, $to_datetime) ;
+        $data = DisinfectantRecord::getDataForReport($customer->getId(), $from_datetime, $to_datetime) ;
 
         $filterSubset = new MyReadFilter();
 
@@ -46,7 +68,7 @@ class ReportController extends Controller {
         $sheet->setCellValue('C2', '-');
         $sheet->setCellValue('D2', $to_datetime);
 
-        $sheet->setCellValue('I1', $customer->name);
+        $sheet->setCellValue('I1', $customer->getName());
 
         $index = 1;
         $row = 6;
@@ -133,12 +155,12 @@ class ReportController extends Controller {
     public function actionReportDisinfectantToWord() {
 
         $id = \Yii::$app->user->id;
-        $customer = Customer::getCustomerByIdUser($id);
+        $customer = $this->customerService->getCustomerByIdUser($id);
 
         $from_datetime = \Yii::$app->request->get('from_datetime');
         $to_datetime = \Yii::$app->request->get('to_datetime');
 
-        $data = Disinfectant::getDataForReport($customer->id, $from_datetime, $to_datetime) ;
+        $data = DisinfectantRecord::getDataForReport($customer->getId(), $from_datetime, $to_datetime) ;
 
         $phpWord = new PhpWord();
 
@@ -149,7 +171,7 @@ class ReportController extends Controller {
         //$targetFile = \Yii::$app->basePath;
        // $filename = 'test.docx';
 
-        $templateProcessor->setValue('client_name', $customer->name);
+        $templateProcessor->setValue('client_name', $customer->getName());
         $templateProcessor->setValue('start_period', $from_datetime);
         $templateProcessor->setValue('end_period', $to_datetime);
 
@@ -195,9 +217,9 @@ class ReportController extends Controller {
     public function actionReportPointsToWord() {
 
         $id = \Yii::$app->user->id;
-        $customer = Customer::getCustomerByIdUser($id);
+        $customer = $this->customerService->getCustomerByIdUser($id);
 
-        $data = Events::getDataForReport($customer->id) ;
+        $data = Events::getDataForReport($customer->getId()) ;
 
         $phpWord = new PhpWord();
 
@@ -206,7 +228,7 @@ class ReportController extends Controller {
 
         $templateProcessor = new TemplateProcessor(\Yii::$app->basePath.'/templates/report-points.docx');
 
-        $templateProcessor->setValue('client_name', $customer->name);
+        $templateProcessor->setValue('client_name', $customer->getName());
 
         $templateProcessor->cloneRow('n_', count($data));
 
@@ -263,9 +285,9 @@ class ReportController extends Controller {
     public function actionReportPointsToExcel() {
 
         $id = \Yii::$app->user->id;
-        $customer = Customer::getCustomerByIdUser($id);
+        $customer = $this->customerService->getCustomerByIdUser($id);
 
-        $data = Events::getDataForReport($customer->id) ;
+        $data = Events::getDataForReport($customer->getId()) ;
 
         $inputFileType = 'Xlsx';
         $inputFileName = \Yii::$app->basePath.'/templates/report-points.xlsx';
@@ -277,7 +299,7 @@ class ReportController extends Controller {
         $spreadsheet = $reader->load($inputFileName);
         $sheet = $spreadsheet->getActiveSheet();
 
-        $sheet->setCellValue('B3', $customer->name);
+        $sheet->setCellValue('B3', $customer->getName());
 
         $spreadsheet->getActiveSheet()->insertNewRowBefore(7, count($data));
 

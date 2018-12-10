@@ -1,15 +1,32 @@
 <?php
 namespace app\models\customer;
 
-use app\models\customer\Customer;
-use app\models\user\UserRecord;
+use app\services\CustomerService;
 use yii\base\Model;
 
-class CustomerForm extends Model {
+/**
+ * Class CustomerForm
+ * @package app\models\customer
+ */
+class CustomerForm extends Model
+{
     public $id;
     public $name;
     public $id_owner;
     public $contacts;
+
+    private $service;
+
+    /**
+     * CustomerForm constructor.
+     * @param CustomerService $service
+     * @param array $config
+     */
+    public function __construct(CustomerService $service, array $config = [])
+    {
+        $this->service = $service;
+        parent::__construct($config);
+    }
 
     public function rules()
     {
@@ -20,42 +37,38 @@ class CustomerForm extends Model {
         ];
     }
 
-    public function fetchCustomer($id) {
-        $customer = Customer::getCustomer($id);
-        $this->name = $customer->name;
-        $id_owner = isset($customer->id_user_owner) ? $customer->id_user_owner : null;
-        $this->id_owner = $id_owner;
-        $this->id = $customer->id;
-        $this->contacts = CustomerContact::getContacts($id);
-
+    /**
+     * @param $id
+     */
+    public function fetchCustomer($id)
+    {
+        $data = $this->service->getInfoForCustomerForm($id);
+        $this->id = $id;
+        $this->name = $data['name'];
+        $this->contacts = $data['contacts'];
+        $this->id_owner = $data['id_owner'];
     }
 
-    public function saveCustomer() {
-        $customer = Customer::getCustomer($this->id);
-        $customer->name = $this->name;
-
-        Customer::setIdUserOwner($this->id, $this->id_owner);
-
-        CustomerContact::updateContacts($this->contacts, $this->id);
-
-        $customer->save();
+    public function saveCustomer()
+    {
+        $this->service->changeCustomer($this->id, $this->name, $this->id_owner, $this->contacts);
     }
 
-    public function addCustomer() {
-        $customer = new Customer();
-        $customer->name = $this->name;
-        $customer->save();
-
-        Customer::setIdUserOwner($customer->id, $this->id_owner);
+    public function addCustomer()
+    {
+        $this->service->addCustomer($this->name, $this->id_owner, $this->contacts);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function attributeLabels()
     {
         return [
-            'id' => 'Номер',
-            'name' => 'Наименование',
-            'id_owner' => 'Владелец',
-            'contacts' => 'Контакты',
+            'id'        => 'Номер',
+            'name'      => 'Наименование',
+            'id_owner'  => 'Владелец',
+            'contacts'  => 'Контакты',
         ];
     }
 }
