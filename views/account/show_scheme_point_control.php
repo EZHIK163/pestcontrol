@@ -34,7 +34,7 @@ $this->title = "Статистика по схеме точек котроля: 
 
                 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
                 <div class="datepicker" style="display: flex; text-align: center; justify-content: space-around;">
-                    <?= $form->field($model_calendar, 'date_from')->widget(
+                    <?= $form->field($model_calendar, 'dateFrom')->widget(
                         DatePicker::class,
     [
                         // inline too, not bad
@@ -49,7 +49,7 @@ $this->title = "Статистика по схеме точек котроля: 
                     ]
 );?>
 
-                    <?= $form->field($model_calendar, 'date_to')->widget(
+                    <?= $form->field($model_calendar, 'dateTo')->widget(
                         DatePicker::class,
                         [
                         // inline too, not bad
@@ -74,7 +74,7 @@ $this->title = "Статистика по схеме точек котроля: 
                         <div id="inner-dropzone_<?=$model['id_file_customer']?>" class="dropzone">
                             <?= Html::img($model['url'], [
                                 'alt' => $model['title'],
-                                'onload'    => 'showPointsWithMark("inner-dropzone_'.$model['id_file_customer'].'", '.$model['id_file_customer'].', \''.$model_calendar['date_from'].'\', \''.$model_calendar['date_to'].'\');'
+                                'onload'    => 'showPointsWithMark("inner-dropzone_'.$model['id_file_customer'].'", '.$model['id_file_customer'].', \''.$model_calendar['dateFrom'].'\', \''.$model_calendar['dateTo'].'\');'
                             ]) ?>
                         </div>
                     </div>

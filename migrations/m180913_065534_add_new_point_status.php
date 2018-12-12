@@ -1,6 +1,6 @@
 <?php
 
-use app\models\user\UserRecord;
+use app\entities\UserRecord;
 use yii\db\Migration;
 
 /**

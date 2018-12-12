@@ -1,8 +1,12 @@
 <?php
-namespace app\models\tools;
+namespace app\tools;
 
 use yii\data\ArrayDataProvider;
 
+/**
+ * Class Tools
+ * @package app\tools
+ */
 class Tools
 {
     public static function wrapIntoDataProvider($data, $is_need_pagination = true, $sort_column = [])

@@ -4,6 +4,7 @@ namespace app\services;
 use app\dto\Contact;
 use app\dto\Customer;
 use app\dto\Disinfectant;
+use app\dto\DisinfectantSelect;
 use app\repositories\CustomerRepositoryInterface;
 use yii\helpers\ArrayHelper;
 
@@ -156,41 +157,37 @@ class CustomerService
 
     /**
      * @param $id
-     * @return array
+     * @return Disinfectant[]
      */
     public function getDisinfectantsCustomer($id)
     {
         $customer = $this->getCustomer($id);
         $disinfectants = $customer->getDisinfectants();
 
-        foreach ($disinfectants as &$disinfectant) {
-            $disinfectant = $disinfectant->toArray();
-        }
-
         return $disinfectants;
     }
 
     /**
      * @param $id
-     * @param $disinfectants
+     * @param DisinfectantSelect[] $disinfectantSelects
      */
-    public function setDisinfectantsCustomer($id, $disinfectants)
+    public function setDisinfectantsCustomer($id, $disinfectantSelects)
     {
         $customer = $this->getCustomer($id);
         $existDisinfectants = $customer->getDisinfectants();
-        foreach ($disinfectants as $disinfectant) {
+        foreach ($disinfectantSelects as $disinfectantSelect) {
             $existDisinfectant = null;
             foreach ($existDisinfectants as $disinfectantCustomer) {
-                if ($disinfectantCustomer->getId() == $disinfectant['id']) {
+                if ($disinfectantCustomer->getId() == $disinfectantSelect->getId()) {
                     $existDisinfectant = $disinfectantCustomer;
                     break;
                 }
             }
 
-            if ($disinfectant['is_set'] == true) {
+            if ($disinfectantSelect->isSelect() == true) {
                 if ($existDisinfectant === null) {
                     $existDisinfectants [] = (new Disinfectant())
-                        ->setId($disinfectant['id']);
+                        ->setId($disinfectantSelect->getId());
                 }
             } else {
                 $existDisinfectant && $existDisinfectant->setIsActive(false);
@@ -198,28 +195,6 @@ class CustomerService
         }
         $customer->setDisinfectants($existDisinfectants);
         $this->repository->save($customer);
-    }
-
-    /**
-     * @param $id
-     * @return array
-     */
-    public function getInfoForCustomerForm($id)
-    {
-        $customer = $this->getCustomer($id);
-        $name = $customer->getName();
-        $idOwner = $customer->getIdUserOwner();
-        $contacts = $customer->getContacts();
-
-        foreach ($contacts as &$contact) {
-            $contact = $contact->toArray();
-        }
-
-        return [
-            'id_owner'  => $idOwner,
-            'contacts'  => $contacts,
-            'name'      => $name,
-        ];
     }
 
     /**

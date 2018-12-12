@@ -4,6 +4,7 @@ namespace app\repositories;
 use app\dto\Event;
 use app\dto\EventFileReport;
 use app\dto\EventGeneralReport;
+use app\dto\EventSynchronize;
 
 /**
  * Interface EventRepositoryInterface
@@ -91,4 +92,10 @@ interface EventRepositoryInterface
      * @return EventFileReport[]
      */
     public function getEventFileReport($idCustomer, $fromTimestamp);
+
+    /**
+     * @param EventSynchronize[] $events
+     * @return void
+     */
+    public function addEventFromOldDb($events);
 }

@@ -29,14 +29,14 @@ $this->title = "Загрузка файлов"; ?>
                         <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
 
                         <?php
-                        echo $form->field($model, 'id_file_customer_type')
+                        echo $form->field($model, 'idFileCustomerType')
                             ->dropDownList($file_customer_types, [
                             'prompt' => 'Выберите тип файла...'
                         ])->label('Выберите тип файла');
                         ?>
 
                         <?php
-                        echo $form->field($model, 'id_customer')->dropDownList($customers, [
+                        echo $form->field($model, 'idCustomer')->dropDownList($customers, [
                             'prompt' => 'Выберите клиента...'
                         ])->label('Выберите клиента');
                         ?>

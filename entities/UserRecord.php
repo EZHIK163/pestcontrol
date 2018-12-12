@@ -1,11 +1,12 @@
 <?php
 
-namespace app\models\user;
+namespace app\entities;
 
-use app\entities\CustomerRecord;
+use Yii;
 use yii\base\NotSupportedException;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
-use yii\helpers\ArrayHelper;
 use yii\web\IdentityInterface;
 
 /**
@@ -19,11 +20,17 @@ use yii\web\IdentityInterface;
  */
 class UserRecord extends ActiveRecord implements IdentityInterface
 {
+    /**
+     * @inheritdoc
+     */
     public static function tableName()
     {
         return 'auth.users';
     }
 
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [
@@ -35,14 +42,19 @@ class UserRecord extends ActiveRecord implements IdentityInterface
         ];
     }
 
+    /**
+     * @param bool $insert
+     * @return bool
+     * @throws \yii\base\Exception
+     */
     public function beforeSave($insert)
     {
         $return = parent::beforeSave($insert);
         if ($this->isAttributeChanged('password')) {
-            $this->password = \Yii::$app->security->generatePasswordHash($this->password);
+            $this->password = Yii::$app->security->generatePasswordHash($this->password);
         }
         if ($this->isNewRecord) {
-            $this->auth_key = \Yii::$app->security->generateRandomString($length = 255);
+            $this->auth_key = Yii::$app->security->generateRandomString($length = 255);
         }
         return $return;
     }
@@ -67,6 +79,7 @@ class UserRecord extends ActiveRecord implements IdentityInterface
      * @return IdentityInterface the identity object that matches the given token.
      * Null should be returned if such an identity cannot be found
      * or the identity is not in an active state (disabled, deleted, etc.)
+     * @throws NotSupportedException
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
@@ -112,51 +125,20 @@ class UserRecord extends ActiveRecord implements IdentityInterface
         return $this->getAuthKey() == $authKey;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [
-            'timestamp' =>  \yii\behaviors\TimestampBehavior::class,
-            'blame'     => \yii\behaviors\BlameableBehavior::class
+            'timestamp' =>  TimestampBehavior::class,
+            'blame'     => BlameableBehavior::class
         ];
     }
 
-    public static function getUsers()
-    {
-        return UserRecord::find()
-            ->where(['is_active'    => true])
-            ->all();
-    }
-    public static function getUsersForAdmin()
-    {
-        $users = self::getUsers();
-        $users_with_customer = [];
-        $rbac = \Yii::$app->authManager;
-        foreach ($users as $user) {
-            $customer = isset($user->customer->name) ? $user->customer->name : '';
-            $role = $rbac->getRoleByUser($user->id)->description;
-            $users_with_customer [] = [
-                'id'        => $user->id,
-                'username'  => $user->username,
-                'customer'  => $customer,
-                'role'      => $role
-            ];
-        }
-        return $users_with_customer;
-    }
-
-    public static function getUsersForDropDownList()
-    {
-        $users = self::getUsers();
-        return ArrayHelper::map($users, 'id', 'username');
-    }
-
-    public static function getUserById($id)
-    {
-        $user = UserRecord::findOne($id);
-        return $user;
-    }
-
-
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getCustomer()
     {
         return $this->hasOne(CustomerRecord::class, ['id_user_owner' => 'id']);

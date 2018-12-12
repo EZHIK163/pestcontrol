@@ -1,8 +1,8 @@
 <?php
 
-namespace app\models\user;
+namespace app\entities;
 
-use Yii;
+use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -16,7 +16,7 @@ use yii\helpers\ArrayHelper;
  * @property int $created_at
  * @property int $updated_at
  */
-class Role extends \yii\db\ActiveRecord
+class RoleRecord extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -64,17 +64,5 @@ class Role extends \yii\db\ActiveRecord
             'timestamp' =>  \yii\behaviors\TimestampBehavior::class,
             'blame'     => \yii\behaviors\BlameableBehavior::class
         ];
-    }
-
-    public function getRoles()
-    {
-        return Role::find()
-            ->all();
-    }
-
-    public static function getRolesForDropDownList()
-    {
-        $roles = self::getRoles();
-        return ArrayHelper::map($roles, 'name', 'description');
     }
 }

@@ -1,15 +1,14 @@
 <?php
-namespace app\models\customer;
+namespace app\forms;
 
 use app\dto\Disinfectant;
-use app\services\DisinfectantService;
 use yii\base\Model;
 
 /**
- * Class ManageDisinfectantForm
- * @package app\models\customer
+ * Class DisinfectantForm
+ * @package app\forms
  */
-class ManageDisinfectantForm extends Model
+class DisinfectantForm extends Model
 {
     public $value;
     public $title;
@@ -21,8 +20,9 @@ class ManageDisinfectantForm extends Model
     public $termsOfUse;
     public $placeOfApplication;
 
-    private $disinfectantService;
-
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [
@@ -30,18 +30,6 @@ class ManageDisinfectantForm extends Model
                 'activeSubstance', 'manufacturer',
                 'termsOfUse', 'placeOfApplication', 'concentrationOfSubstance'], 'required']
         ];
-    }
-
-    /**
-     * ManageDisinfectantForm constructor.
-     * @param DisinfectantService $disinfectantService
-     * @param array $config
-     */
-    public function __construct(DisinfectantService $disinfectantService, array $config = [])
-    {
-        $this->disinfectantService = $disinfectantService;
-
-        parent::__construct($config);
     }
 
     /**
@@ -58,24 +46,6 @@ class ManageDisinfectantForm extends Model
         $this->manufacturer = $disinfectant->getManufacturer();
         $this->termsOfUse = $disinfectant->getTermsOfUse();
         $this->placeOfApplication = $disinfectant->getPlaceOfApplication();
-    }
-
-    /**
-     * @param $id
-     */
-    public function saveDisinfectant($id)
-    {
-        $disinfectant = $this->fillDisinfectant();
-        $disinfectant->setId($id);
-        $this->disinfectantService->saveDisinfectant($disinfectant);
-    }
-
-    /**
-     *
-     */
-    public function addDisinfectant()
-    {
-        $this->disinfectantService->addDisinfectant($this->fillDisinfectant());
     }
 
     /**

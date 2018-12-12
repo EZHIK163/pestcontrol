@@ -31,7 +31,7 @@ $this->title = "Управление событием"; ?>
                 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
 
                 <?php
-                echo $form->field($model, 'id_point_status')->dropDownList($point_status, [
+                echo $form->field($model, 'idPointStatus')->dropDownList($point_status, [
                     'prompt' => 'Выберите статус...'
                 ])->label('Выберите статус');
                 ?>

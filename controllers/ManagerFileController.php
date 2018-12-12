@@ -1,22 +1,19 @@
 <?php
 namespace app\controllers;
 
-use app\models\customer\SearchForm;
-use app\models\file\Files;
-use app\models\file\UploadForm;
-use app\models\tools\Tools;
-use app\models\user\User;
-use app\models\widget\Widget;
+use app\forms\SearchSchemeForm;
+use app\components\Widget;
+use app\forms\UploadFileForm;
 use app\services\CustomerService;
 use app\services\FileCustomerService;
 use app\services\FileService;
+use app\tools\Tools;
 use InvalidArgumentException;
 use Yii;
 use yii\base\Module;
 use yii\web\Controller;
 use yii\filters\AccessControl;
 use yii\web\Response;
-use yii\web\UploadedFile;
 
 /**
  * Class ManagerController
@@ -27,7 +24,6 @@ class ManagerFileController extends Controller
     private $customerService;
     private $fileService;
     private $fileCustomerService;
-    private $uploadForm;
     private $searchForm;
 
     /**
@@ -37,8 +33,8 @@ class ManagerFileController extends Controller
      * @param CustomerService $customerService
      * @param FileService $fileService
      * @param FileCustomerService $fileCustomerService
-     * @param UploadForm $uploadForm
-     * @param SearchForm $searchForm
+     * @param UploadFileForm $uploadForm
+     * @param SearchSchemeForm $searchForm
      * @param array $config
      */
     public function __construct(
@@ -47,14 +43,12 @@ class ManagerFileController extends Controller
         CustomerService $customerService,
         FileService $fileService,
         FileCustomerService $fileCustomerService,
-        UploadForm $uploadForm,
-        SearchForm $searchForm,
+        SearchSchemeForm $searchForm,
         array $config = []
     ) {
         $this->customerService = $customerService;
         $this->fileService = $fileService;
         $this->fileCustomerService = $fileCustomerService;
-        $this->uploadForm = $uploadForm;
         $this->searchForm = $searchForm;
         parent::__construct($id, $module, $config);
     }
@@ -64,23 +58,41 @@ class ManagerFileController extends Controller
      */
     public function actionUploadFiles()
     {
-        $model = $this->uploadForm;
+        $model = new UploadFileForm();
 
-        if (Yii::$app->request->isPost) {
-            $model->uploadedFiles = UploadedFile::getInstances($model, 'uploadedFiles');
-            $model->id_customer = Yii::$app->request->post('UploadForm')['id_customer'];
-            $model->id_file_customer_type = Yii::$app->request->post('UploadForm')['id_file_customer_type'];
-            if ($model->upload()) {
-                $action = $model->getViewAfterUpload();
+        $supportExtensions = $this->fileService->getSupportExtensions();
+        $model->setSupportExtension($supportExtensions);
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $result = $this->fileService->saveFilesFromUpload($model->uploadedFiles, $model->idCustomer, $model->idFileCustomerType);
+
+            if ($result) {
+                $code = $this->fileCustomerService->getCodeById($model->idFileCustomerType);
+                $action = null;
+                switch ($code) {
+                    case 'recommendations':
+                        $action = 'recommendations';
+                        break;
+                    case 'scheme_point_control':
+                        $action = 'scheme-point-control';
+                        break;
+                }
                 $this->redirect($action);
             }
         }
 
-        $file_customer_types = $this->fileCustomerService->getFileCustomerTypesForDropDownList();
+        $types = $this->fileCustomerService->getFileCustomerTypesForDropDownList();
 
         $customers = $this->customerService->getCustomerForDropDownList();
 
-        return $this->render('upload_files', compact('model', 'file_customer_types', 'customers'));
+        return $this->render(
+            'upload_files',
+            [
+                'model'                 => $model,
+                'file_customer_types'   => $types,
+                'customers'             => $customers
+            ]
+        );
     }
 
     /**
@@ -94,7 +106,9 @@ class ManagerFileController extends Controller
     }
 
     /**
-     *
+     * @throws \Throwable
+     * @throws \app\exceptions\FileCustomerNotFound
+     * @throws \yii\db\StaleObjectException
      */
     public function actionDeleteRecommendation()
     {
@@ -112,16 +126,15 @@ class ManagerFileController extends Controller
      */
     public function actionSchemePointControl()
     {
-        $model = $this->searchForm;
+        $model = new SearchSchemeForm();
 
-        if (Yii::$app->request->isPost) {
-            $model->query = Yii::$app->request->post('SearchForm')['query'];
-        }
+        $model->load(Yii::$app->request->post());
+        $model->validate();
 
-        $scheme_point_control = $model->getResultsForAdmin();
+        $schemePointControl = $this->fileCustomerService->getSchemePointControlForAdmin($model->query);
 
-        $data_provider = Tools::wrapIntoDataProvider($scheme_point_control);
-        return $this->render('scheme-point-control', compact('data_provider', 'model'));
+        $dataProvider = Tools::wrapIntoDataProvider($schemePointControl);
+        return $this->render('scheme-point-control', ['data_provider'   => $dataProvider, 'model'  => $model]);
     }
 
     /**
@@ -169,6 +182,9 @@ class ManagerFileController extends Controller
         return parent::render($view, $params);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [

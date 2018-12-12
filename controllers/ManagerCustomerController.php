@@ -1,11 +1,11 @@
 <?php
 namespace app\controllers;
 
-use app\models\customer\CustomerForm;
-use app\models\tools\Tools;
-use app\models\user\User;
-use app\models\user\UserRecord;
-use app\models\widget\Widget;
+use app\components\Widget;
+use app\forms\CustomerForm;
+use app\services\UserService;
+use app\tools\Tools;
+use app\entities\UserRecord;
 use app\services\CustomerService;
 use InvalidArgumentException;
 use Yii;
@@ -20,25 +20,24 @@ use yii\filters\AccessControl;
 class ManagerCustomerController extends Controller
 {
     private $customerService;
-
-    private $customerForm;
+    private $userService;
 
     /**
      * ManagerController constructor.
      * @param $id
      * @param Module $module
      * @param CustomerService $customerService
-     * @param CustomerForm $customerForm
+     * @param UserService $userService
      * @param array $config
      */
     public function __construct(
         $id,
         Module $module,
         CustomerService $customerService,
-        CustomerForm $customerForm,
+        UserService $userService,
         array $config = []
     ) {
-        $this->customerForm = $customerForm;
+        $this->userService = $userService;
         $this->customerService = $customerService;
         parent::__construct($id, $module, $config);
     }
@@ -69,14 +68,14 @@ class ManagerCustomerController extends Controller
      */
     public function actionAddCustomer()
     {
-        $model = $this->customerForm;
+        $model = new CustomerForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $model->addCustomer();
+            $this->customerService->addCustomer($model->name, $model->idOwner, $model->contacts);
             $this->redirect('customers');
         }
 
-        $users = UserRecord::getUsersForDropDownList();
+        $users = $this->userService->getUsersForDropDownList();
         return $this->render('add-customer', compact('model', 'users'));
     }
 
@@ -102,19 +101,22 @@ class ManagerCustomerController extends Controller
             throw new InvalidArgumentException();
         }
 
-        $model = $this->customerForm;
+        $model = new CustomerForm();
+
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $model->saveCustomer();
+            $this->customerService->changeCustomer($model->id, $model->name, $model->idOwner, $model->contacts);
             $this->redirect('customers');
         }
 
-        $model->fetchCustomer($id);
-        $users = UserRecord::getUsersForDropDownList();
+        $customer = $this->customerService->getCustomer($id);
+        $model->fetchCustomer($customer);
+        $users = $this->userService->getUsersForDropDownList();
+
         return $this->render('edit-customer', compact('model', 'users'));
     }
 
     /**
-     * @return array
+     * @inheritdoc
      */
     public function behaviors()
     {
@@ -124,8 +126,7 @@ class ManagerCustomerController extends Controller
                 'only'  => ['*'],
                 'rules' => [
                     [
-                        'actions'=> ['customers', 'add-customer',
-                            'delete-customer', 'edit-customer'],
+                        'actions'=> ['customers', 'add-customer', 'delete-customer', 'edit-customer'],
                         'roles'     => ['manager'],
                         'allow'     => true
                     ],

@@ -31,7 +31,7 @@ $this->title = "Отчет по дезсредствам  {$name_customer}"; ?>
 
                         <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
                         <div class="datepicker" style="display: flex; text-align: center; justify-content: space-around;">
-                            <?= $form->field($model, 'date_from')->widget(
+                            <?= $form->field($model, 'dateFrom')->widget(
                                 DatePicker::class,
     [
                                 // inline too, not bad
@@ -46,7 +46,7 @@ $this->title = "Отчет по дезсредствам  {$name_customer}"; ?>
                             ]
 );?>
 
-                            <?= $form->field($model, 'date_to')->widget(
+                            <?= $form->field($model, 'dateTo')->widget(
                                 DatePicker::class,
                                 [
                                 // inline too, not bad
@@ -73,8 +73,8 @@ $this->title = "Отчет по дезсредствам  {$name_customer}"; ?>
                             ], $setting_column)
                         ]); ?>
 
-                        <a href="<?=\Yii::$app->urlManager->createAbsoluteUrl(['/'])?>report/report-disinfectant-to-excel?from_datetime=<?=$model->date_from?>&to_datetime=<?=$model->date_to?>">Экспорт в Excel</a><br/>
-                        <a href="<?=\Yii::$app->urlManager->createAbsoluteUrl(['/'])?>report/report-disinfectant-to-word?from_datetime=<?=$model->date_from?>&to_datetime=<?=$model->date_to?>">Экспорт в Word</a>
+                        <a href="<?=\Yii::$app->urlManager->createAbsoluteUrl(['/'])?>report/report-disinfectant-to-excel?from_datetime=<?=$model->dateFrom?>&to_datetime=<?=$model->dateTo?>">Экспорт в Excel</a><br/>
+                        <a href="<?=\Yii::$app->urlManager->createAbsoluteUrl(['/'])?>report/report-disinfectant-to-word?from_datetime=<?=$model->dateFrom?>&to_datetime=<?=$model->dateTo?>">Экспорт в Word</a>
 
                     </div>
                     </div>

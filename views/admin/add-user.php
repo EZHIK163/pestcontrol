@@ -44,7 +44,7 @@ $this->title = "Добавления пользователя"; ?>
                     ]
                 ); ?>
 
-                <?php echo $form->field($model, 'id_customer')
+                <?php echo $form->field($model, 'idCustomer')
                 ->dropDownList(
                     $customers,
                     [

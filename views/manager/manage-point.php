@@ -31,16 +31,16 @@ $this->title = "Управление точкой на схеме точек к�
                 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
 
                 <?php
-                echo $form->field($model, 'id_scheme_point_control')->dropDownList($scheme_point_control, [
+                echo $form->field($model, 'idSchemePointControl')->dropDownList($scheme_point_control, [
                     'prompt' => 'Выберите схему...'
                 ])->label('Выберите схему');
                 ?>
 
-                <?php echo $form->field($model, 'x_coordinate')
+                <?php echo $form->field($model, 'xCoordinate')
                     ->textInput()
                     ->label('Кордината по X'); ?>
 
-                <?php echo $form->field($model, 'y_coordinate')
+                <?php echo $form->field($model, 'yCoordinate')
                     ->textInput()
                     ->label('Кордината по Y'); ?>
 

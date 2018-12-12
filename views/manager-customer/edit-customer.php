@@ -36,7 +36,7 @@ $this->title = "Изменение пользователя"; ?>
                     ->textInput()
                     ->label('Введите наименование клиента'); ?>
 
-                <?php echo $form->field($model, 'id_owner')
+                <?php echo $form->field($model, 'idOwner')
                     ->dropDownList(
                         $users,
                         [

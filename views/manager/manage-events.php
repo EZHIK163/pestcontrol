@@ -31,7 +31,7 @@ $this->title = "Управление событиями"; ?>
                 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
 
                 <?php
-                echo $form->field($model, 'id_customer')->dropDownList($customers, [
+                echo $form->field($model, 'idCustomer')->dropDownList($customers, [
                     'prompt' => 'Выберите клиента...'
                 ])->label('Выберите клиента');
                 ?>

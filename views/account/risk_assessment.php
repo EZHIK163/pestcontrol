@@ -29,7 +29,7 @@ $this->title = "Оценка рисков по точкам контроля {$n
 
                         <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
                         <div class="datepicker" style="display: flex; text-align: center; justify-content: space-around;">
-                        <?= $form->field($model, 'date_from')->widget(
+                        <?= $form->field($model, 'dateFrom')->widget(
                             DatePicker::class,
     [
                             // inline too, not bad
@@ -44,7 +44,7 @@ $this->title = "Оценка рисков по точкам контроля {$n
                         ]
 );?>
 
-                            <?= $form->field($model, 'date_to')->widget(
+                            <?= $form->field($model, 'dateTo')->widget(
                                 DatePicker::class,
                             [
                                 // inline too, not bad
@@ -64,7 +64,7 @@ $this->title = "Оценка рисков по точкам контроля {$n
                         <?php ActiveForm::end() ?>
 
                         <?= GridView::widget([
-                            'dataProvider' => $dataProviderGreen,
+                            'dataProvider' => $data_provider_green,
                             'columns' => [
                                 [
                                     'attribute' => 'id_external',
@@ -74,7 +74,7 @@ $this->title = "Оценка рисков по точкам контроля {$n
                         ]); ?>
 
                         <?= GridView::widget([
-                            'dataProvider' => $dataProviderRed,
+                            'dataProvider' => $data_provider_red,
                             'columns' => [
                                 [
                                     'attribute' => 'id_external',

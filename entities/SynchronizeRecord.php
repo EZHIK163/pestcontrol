@@ -1,8 +1,10 @@
 <?php
 
-namespace app\models\service;
+namespace app\entities;
 
-use Yii;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "public.synchronize_history".
@@ -15,7 +17,7 @@ use Yii;
  * @property int $updated_at
  * @property int $updated_by
  */
-class SynchronizeHistory extends \yii\db\ActiveRecord
+class SynchronizeRecord extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -56,36 +58,9 @@ class SynchronizeHistory extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
-            'timestamp' =>  \yii\behaviors\TimestampBehavior::class,
-            'blame'     => \yii\behaviors\BlameableBehavior::class
+            'timestamp' =>  TimestampBehavior::class,
+            'blame'     => BlameableBehavior::class
         ];
     }
 
-    public static function getLastSynchronize()
-    {
-        $last_sync = self::find()->select('created_at')
-            ->orderBy('created_at DESC')
-            ->limit(1)
-            ->asArray()
-            ->all();
-
-        $datetime = new \DateTime();
-
-        if (!isset($last_sync[0]['created_at'])) {
-            $last_sync['created_at'] = 0;
-        }
-
-        $datetime->setTimestamp($last_sync[0]['created_at']);
-
-        return $datetime->format('Y-m-d H:i:s');
-    }
-
-    public static function addSynchronize($count_sync_row)
-    {
-        $sync = new self();
-
-        $sync->count_sync_row = $count_sync_row;
-
-        $sync->save();
-    }
 }

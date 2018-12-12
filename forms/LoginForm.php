@@ -1,9 +1,14 @@
 <?php
-namespace app\models\user;
+namespace app\forms;
 
-use app\models\user\UserRecord;
+use app\entities\UserRecord;
+use Yii;
 use yii\base\Model;
 
+/**
+ * Class LoginForm
+ * @package app\forms
+ */
 class LoginForm extends Model
 {
     public $username;
@@ -11,6 +16,9 @@ class LoginForm extends Model
     public $rememberMe;
     public $user;
 
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [
@@ -20,6 +28,9 @@ class LoginForm extends Model
         ];
     }
 
+    /**
+     * @param $attributeName
+     */
     public function validatePassword($attributeName)
     {
         if ($this->hasErrors()) {
@@ -32,6 +43,9 @@ class LoginForm extends Model
         }
     }
 
+    /**
+     * @return bool
+     */
     public function login()
     {
         if (!$this->validate()) {
@@ -42,12 +56,16 @@ class LoginForm extends Model
         if (!$user) {
             return false;
         }
-        return \Yii::$app->user->login(
+        return Yii::$app->user->login(
             $user,
             $this->rememberMe ? 3600 * 24 * 30 : 0
         );
     }
 
+    /**
+     * @param $username
+     * @return UserRecord|null
+     */
     private function getUser($username)
     {
         if (!$this->user) {
@@ -57,13 +75,22 @@ class LoginForm extends Model
         return $this->user;
     }
 
+    /**
+     * @param $username
+     * @return UserRecord|null
+     */
     private function fetchUser($username)
     {
         return UserRecord::findOne(compact('username'));
     }
 
+    /**
+     * @param $plaintext
+     * @param $hash
+     * @return bool
+     */
     private function isCorrectHash($plaintext, $hash)
     {
-        return \Yii::$app->security->validatePassword($plaintext, $hash);
+        return Yii::$app->security->validatePassword($plaintext, $hash);
     }
 }

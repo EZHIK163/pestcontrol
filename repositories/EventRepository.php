@@ -6,6 +6,7 @@ use app\dto\EventFileReport;
 use app\dto\EventGeneralReport;
 use app\dto\EventOccupancySchedule;
 use app\dto\EventRisk;
+use app\dto\EventSynchronize;
 use app\entities\EventRecord;
 use app\exceptions\EventNotFound;
 use DateTime;
@@ -402,5 +403,28 @@ class EventRepository implements EventRepositoryInterface
         }
 
         return $events;
+    }
+
+    /**
+     * @param EventSynchronize[] $events
+     * @return void
+     * @throws \Throwable
+     */
+    public function addEventFromOldDb($events)
+    {
+        foreach ($events as $event) {
+            $eventRecord = new EventRecord();
+
+            $eventRecord->id_disinfector = $event->getIdDisinfector();
+            $eventRecord->id_customer = $event->getIdCustomer();
+            $eventRecord->id_external = $event->getIdExternal();
+            $eventRecord->id_point_status = $event->getIdPointStatus();
+            $eventRecord->created_at = $event->getCreatedAt();
+            $eventRecord->created_by = $event->getCreatedBy();
+            $eventRecord->updated_at = $event->getUpdatedAt();
+            $eventRecord->updated_by = $event->getUpdatedBy();
+
+            $eventRecord->insert();
+        }
     }
 }

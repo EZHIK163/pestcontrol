@@ -1,9 +1,8 @@
 <?php
 namespace app\controllers;
 
-use app\models\file\Files;
-use app\models\user\LoginForm;
-use app\models\widget\Widget;
+use app\forms\LoginForm;
+use app\components\Widget;
 use app\services\FileService;
 use Yii;
 use yii\base\Module;

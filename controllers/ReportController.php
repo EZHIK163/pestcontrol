@@ -58,9 +58,6 @@ class ReportController extends Controller
         $from_datetime = Yii::$app->request->get('from_datetime');
         $to_datetime = Yii::$app->request->get('to_datetime');
 
-        //$from_datetime = (new \DateTime($from_datetime))->format('01.01.Y');
-        //$to_datetime = (new \DateTime($to_datetime))->format('d.m.Y');;
-
         $data = $this->reportService->getDataForFileReport($customer->getId(), $from_datetime, $to_datetime) ;
 
         $filterSubset = new MyReadFilter();
@@ -199,14 +196,14 @@ class ReportController extends Controller
         $index = 1;
         foreach ($data as $disinfectant) {
             if (empty($disinfectant['concentration_of_substance'])) {
-                $active_substance_concentration_of_substance = $disinfectant['form_of_facility'];
+                $activeSubstanceConcentrationOfSubstance = $disinfectant['form_of_facility'];
             } else {
-                $active_substance_concentration_of_substance = $disinfectant['form_of_facility'].', '.$disinfectant['concentration_of_substance'];
+                $activeSubstanceConcentrationOfSubstance = $disinfectant['form_of_facility'].', '.$disinfectant['concentration_of_substance'];
             }
             $templateProcessor->setValue('index#'.$index, $index);
             $templateProcessor->setValue('name#'.$index, $disinfectant['name']);
             $templateProcessor->setValue('form_of_facility#'.$index, $disinfectant['name']);
-            $templateProcessor->setValue('active_substance_concentration_of_substance#'.$index, $active_substance_concentration_of_substance);
+            $templateProcessor->setValue('active_substance_concentration_of_substance#'.$index, $activeSubstanceConcentrationOfSubstance);
             $templateProcessor->setValue('manufacturer#'.$index, $disinfectant['manufacturer']);
             $templateProcessor->setValue('terms_of_use#'.$index, $disinfectant['terms_of_use']);
             $templateProcessor->setValue('place_of_application#'.$index, $disinfectant['place_of_application']);
@@ -236,6 +233,7 @@ class ReportController extends Controller
      * @throws \PhpOffice\PhpWord\Exception\CopyFileException
      * @throws \PhpOffice\PhpWord\Exception\CreateTemporaryFileException
      * @throws \PhpOffice\PhpWord\Exception\Exception
+     * @throws \Exception
      */
     public function actionReportPointsToWord()
     {

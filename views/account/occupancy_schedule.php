@@ -30,7 +30,7 @@ $this->title = "График заселенности объекта {$name_cust
 
                         <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
                         <div class="datepicker" style="display: flex; text-align: center; justify-content: space-around;">
-                            <?= $form->field($model, 'date_from')->widget(
+                            <?= $form->field($model, 'dateFrom')->widget(
                                 DatePicker::class,
     [
                                 // inline too, not bad
@@ -45,7 +45,7 @@ $this->title = "График заселенности объекта {$name_cust
                             ]
 );?>
 
-                            <?= $form->field($model, 'date_to')->widget(
+                            <?= $form->field($model, 'dateTo')->widget(
                                 DatePicker::class,
                                 [
                                 // inline too, not bad

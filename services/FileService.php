@@ -2,6 +2,7 @@
 namespace app\services;
 
 use app\dto\File;
+use app\dto\FileExtension;
 use app\repositories\ExtensionRepositoryInterface;
 use app\repositories\FileCustomerRepository;
 use app\repositories\FileCustomerRepositoryInterface;
@@ -77,16 +78,12 @@ class FileService
     }
 
     /**
-     * @return array
+     * @return FileExtension[] array
      */
     public function getSupportExtensions()
     {
         $extensions = $this->extensionRepository->all();
-        $ext = [];
-        foreach ($extensions as $support_extension) {
-            $ext [] = $support_extension->getExtension();
-        }
-        return $ext;
+        return $extensions;
     }
 
     /**

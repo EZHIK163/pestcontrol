@@ -47,13 +47,13 @@ $this->title = "Изменение пользователя"; ?>
                     ]
                 )->label('Выберите роль'); ?>
 
-                <?php echo $form->field($model, 'id_customer')
+                <?php echo $form->field($model, 'idCustomer')
                 ->dropDownList(
                     $customers,
                     [
                         'prompt' => 'Выберите клиента, к которому будет привязн пользователь',
                         'options'   => [
-                            $model->id_customer    => ['selected'  => true]
+                            $model->idCustomer    => ['selected'  => true]
                         ]
                     ]
                 )->label('Выберите клиента'); ?>

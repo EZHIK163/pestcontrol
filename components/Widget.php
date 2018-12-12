@@ -1,9 +1,13 @@
 <?php
 
-namespace app\models\widget;
+namespace app\components;
 
 use stdClass;
 
+/**
+ * Class Widget
+ * @package app\components\widget
+ */
 class Widget
 {
     public static function getWidgetsForAccount()
