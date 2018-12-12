@@ -172,6 +172,16 @@ class PointService
     }
 
     /**
+     * @param $id
+     */
+    public function restorePoint($id)
+    {
+        $point = $this->pointRepository->get($id);
+        $point->setIsActive(true);
+        $this->pointRepository->save($point);
+    }
+
+    /**
      * @return array
      */
     public function getPointStatusesForDropDownList()

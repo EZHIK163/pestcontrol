@@ -192,6 +192,15 @@ class ManagerPointController extends Controller
         }
     }
 
+    public function actionRestorePoint()
+    {
+        $id = Yii::$app->request->get('id');
+        if (isset($id)) {
+            $this->pointService->restorePoint($id);
+            $this->redirect('manage-points');
+        }
+    }
+
     /**
      * @param string $view
      * @param array $params
@@ -214,7 +223,7 @@ class ManagerPointController extends Controller
                 'only'  => ['*'],
                 'rules' => [
                     [
-                        'actions'=> ['manage-points',  'manage-point', 'delete-point'],
+                        'actions'=> ['manage-points',  'manage-point', 'delete-point', 'restore-point'],
                         'roles'     => ['manager'],
                         'allow'     => true
                     ],

@@ -36,6 +36,10 @@ $this->title = "Управление дезинфекторами"; ?>
                             'header'    => 'Наименование'
                         ],
                         [
+                            'attribute' => 'phone',
+                            'header'    => 'Номер телефона'
+                        ],
+                        [
                             'header'    =>  'Действия',
                             'format'    => 'html',
                             'value'     => function ($model, $key, $index, $column) {

@@ -1,6 +1,7 @@
 <?php
 namespace app\services;
 
+use app\dto\Disinfector;
 use app\repositories\DisinfectorRepositoryInterface;
 
 /**
@@ -32,5 +33,33 @@ class DisinfectorService
         }
 
         return $disinfectors;
+    }
+
+    /**
+     * @param Disinfector $disinfector
+     */
+    public function saveDisinfector($disinfector)
+    {
+        $this->repository->save($disinfector);
+    }
+
+    /**
+     * @param $id
+     * @return Disinfector
+     */
+    public function getDisinfector($id)
+    {
+        $disinfector = $this->repository->get($id);
+
+        return $disinfector;
+    }
+
+    /**
+     * @param $id
+     */
+    public function deleteDisinfector($id)
+    {
+        $disinfector = $this->repository->get($id);
+        $this->repository->remove($disinfector);
     }
 }

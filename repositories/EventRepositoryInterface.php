@@ -37,9 +37,10 @@ interface EventRepositoryInterface
     public function remove(Event $event);
 
     /**
+     * @param int $limit
      * @return Event[]
      */
-    public function all();
+    public function all($limit = 100);
 
     /**
      * @param $idCustomer

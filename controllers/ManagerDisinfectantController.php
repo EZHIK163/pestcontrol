@@ -77,6 +77,7 @@ class ManagerDisinfectantController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $this->customerService->setDisinfectantsCustomer($id, $model->fillDisinfectants());
+            $this->redirect('manage-disinfectants-on-customers');
         }
 
         $disinfectantsCustomer = $this->customerService->getDisinfectantsCustomer($id);

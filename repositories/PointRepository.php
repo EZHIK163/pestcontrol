@@ -177,6 +177,7 @@ class PointRepository implements PointRepositoryInterface
         $pointRecord->id_file_customer = $point->getFileCustomer()->getId();
         $pointRecord->x_coordinate = $point->getXCoordinate();
         $pointRecord->y_coordinate = $point->getYCoordinate();
+        $pointRecord->is_active = $point->isActive();
 
         return $pointRecord;
     }

@@ -5,6 +5,6 @@ web/reports/*
 .idea/workspace.xml
 .idea/
 temp/*
-config/*
+config/serv.env
 web/uploads/*
 web/office/*

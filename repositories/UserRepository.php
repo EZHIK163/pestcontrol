@@ -16,6 +16,17 @@ use Yii;
  */
 class UserRepository implements UserRepositoryInterface
 {
+    private $customerRepository;
+
+    /**
+     * UserRepository constructor.
+     * @param CustomerRepositoryInterface $customerRepository
+     */
+    public function __construct(CustomerRepositoryInterface $customerRepository)
+    {
+        $this->customerRepository = $customerRepository;
+    }
+
     /**
      * @param $id
      * @return User
@@ -145,13 +156,18 @@ class UserRepository implements UserRepositoryInterface
          * @var MyRbacManager $authManager
          */
         $authManager = Yii::$app->authManager;
-        $role = $authManager->getRoleByUser($userRecord->id)->description;
+        $role = $authManager->getRoleByUser($userRecord->id)->name;
+
+        $customer = isset($userRecord->customer->id)
+            ? $this->customerRepository->get($userRecord->customer->id)
+            : null;
 
         $user = (new User())
             ->setId($userRecord->id)
             ->setUsername($userRecord->username)
             ->setPassword($userRecord->password)
-            ->setRole($role);
+            ->setRole($role)
+            ->setCustomer($customer);
 
         return $user;
     }
@@ -165,7 +181,9 @@ class UserRepository implements UserRepositoryInterface
     private function fillUserRecord($userRecord, $user)
     {
         $userRecord->username = $user->getUsername();
-        $userRecord->password = $user->getPassword();
+        if (!empty($user->getPassword())) {
+            $userRecord->password = $user->getPassword();
+        }
 
         /**
          * @var MyRbacManager $authManager
@@ -186,7 +204,7 @@ class UserRepository implements UserRepositoryInterface
      */
     public function getRoles()
     {
-        $roleRecords = RoleRecord::findAll([]);
+        $roleRecords = RoleRecord::find()->all();
 
         $roles = [];
         foreach ($roleRecords as $roleRecord) {

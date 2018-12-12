@@ -20,7 +20,7 @@ class EventsForm extends Model
     public function rules()
     {
         return [
-            [['idCustomer',], 'required']
+            [['idCustomer',], 'integer']
         ];
     }
 }

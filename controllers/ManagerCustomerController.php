@@ -85,10 +85,12 @@ class ManagerCustomerController extends Controller
     public function actionDeleteCustomer()
     {
         $id = Yii::$app->request->get('id');
-        if (isset($id)) {
-            $this->customerService->deleteCustomer($id);
-            $this->redirect('customers');
+        if (!isset($id)) {
+            throw new InvalidArgumentException();
         }
+
+        $this->customerService->deleteCustomer($id);
+        $this->redirect('customers');
     }
 
     /**

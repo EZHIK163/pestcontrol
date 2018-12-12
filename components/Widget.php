@@ -64,7 +64,7 @@ class Widget
                     'name' => 'Схемы точек контроля'
                 ],
                 [
-                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/manage-points',
+                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager-point/manage-points',
                     'name' => 'Управление точками'
                 ],
                 [
@@ -76,7 +76,7 @@ class Widget
                     'name' => 'Дезсредства клиентов'
                 ],
                 [
-                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/manage-events',
+                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager-event/manage-events',
                     'name' => 'Управление событиями'
                 ],
 //                [
@@ -84,7 +84,7 @@ class Widget
 //                    'name' => 'Управление событиями'
 //                ],
                 [
-                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/manage-disinfectors',
+                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager-disinfector/manage-disinfectors',
                     'name' => 'Управление дезинфекторами'
                 ],
 //                [

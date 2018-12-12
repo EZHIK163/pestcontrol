@@ -122,13 +122,14 @@ class EventRepository implements EventRepositoryInterface
     }
 
     /**
+     * @param int $limit
      * @return Event[]
      */
-    public function all()
+    public function all($limit = 100)
     {
         $eventRecords = EventRecord::find()
             ->where(['is_active'    => true])
-            ->limit(1000)
+            ->limit($limit)
             ->orderBy('id ASC')
             ->all();
 

@@ -11,7 +11,8 @@
         "phpoffice/phpword": "^0.14.0",
         "phpoffice/phpspreadsheet": "^1.2",
         "mpdf/mpdf": "^7.1",
-        "friendsofphp/php-cs-fixer": "^2.13"
+        "friendsofphp/php-cs-fixer": "^2.13",
+        "symfony/dotenv": "^4.2"
     },
     "repositories": [
         {

@@ -1,10 +1,10 @@
 <?php
 
+use yii\bootstrap\ActiveForm;
 use yii\grid\GridView;
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
 
-$this->title = "Управление точками контроля"; ?>
+$this->title = "Управление событиями"; ?>
 <div class="row-fluid">
     <div id="sidebar" class="span3">
         <div class="sidebar-nav">
@@ -23,7 +23,7 @@ $this->title = "Управление точками контроля"; ?>
 
 
             <div class="page-header">
-                <h2 itemprop="name"><?= $this->title ?></h2>
+                <h2 itemprop="name"><?=$this->title?></h2>
             </div>
 
             <div itemprop="articleBody">
@@ -45,16 +45,24 @@ $this->title = "Управление точками контроля"; ?>
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
                         [
-                            'attribute' => 'title',
-                            'header'    => 'Название схемы'
+                            'attribute' => 'name',
+                            'header'    => 'Клиент'
+                        ],
+                        [
+                            'attribute' => 'point_status',
+                            'header'    => 'Статус точки'
                         ],
                         [
                             'attribute' => 'id_internal',
                             'header'    => 'Номер точки'
                         ],
                         [
-                            'attribute' => 'status',
-                            'header'    => 'Статус'
+                            'attribute' => 'count',
+                            'header'    => 'Кол-во'
+                        ],
+                        [
+                            'attribute' => 'datetime',
+                            'header'    => 'Дата и время'
                         ],
                         [
                             'header'    =>  'Действия',
@@ -64,13 +72,13 @@ $this->title = "Управление точками контроля"; ?>
                                     Html::tag(
                                         'a',
                                         'Изменить',
-                                        ['href'  => 'manage-point?id='.$model['id']]
+                                        ['href'  => 'edit-event?id='.$model['id']]
                                     )
                                     .'<br/>'.
                                     Html::tag(
                                         'a',
                                         'Удалить',
-                                        ['href'  => 'delete-point?id='.$model['id']]
+                                        ['href'  => 'delete-event?id='.$model['id']]
                                     );
                             }
                         ],
@@ -81,8 +89,6 @@ $this->title = "Управление точками контроля"; ?>
                     ]
 
                 ]); ?>
-
-                <?= Html::a('Добавить клиента', ['/manager/add-customer'], ['class'=>'btn btn-primary']) ?>
 
             </div>
 

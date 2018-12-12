@@ -1,0 +1,54 @@
+<?php
+return [
+    'id'            => 'pestcontrol',
+    'basePath'      => realpath(__DIR__.'/../'),
+    'language'      => 'ru',
+    'components'    => [
+        'request'  => [
+            'cookieValidationKey'   => 'sdgsgsdfhsdhdfgsddfgtgadxdfgdf',
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ]
+        ],
+        'db'  => require(__DIR__. '/db.php'),
+        'urlManager'    => [
+            'enablePrettyUrl'   => true,
+            'showScriptName'    => false,
+            'rules' => [
+                'andr/create_point.php'              => 'account/new-point/',
+            ]
+        ],
+        'db_old' => [
+            'class'     => 'yii\db\Connection',
+            'dsn'       => 'pgsql:host=127.0.0.1;port=5432;dbname=old_pestcontrol',
+            'username'  => 'pestcontrol',
+            'password'  => 'pestcontrol'
+        ],
+        'user'  => [
+            'identityClass' => 'app\entities\UserRecord'
+        ],
+        'authManager' => [
+            //'class'         => 'yii\rbac\DbManager',
+            'class'         => 'app\utilities\MyRbacManager',
+            //'defaultRoles'  => ['guest']
+        ]
+    ],
+    'modules'   => [
+        'gii'   => [
+            'class' => 'yii\gii\Module',
+            'allowedIPs'    => ['*']
+        ]
+    ],
+    'extensions' => require(__DIR__. '/../vendor/yiisoft/extensions.php'),
+    'aliases' => [
+        '@bower' => '@vendor/bower-asset',
+        '@npm'   => '@vendor/npm-asset'
+    ],
+    'bootstrap' => [
+        'log',
+        'app\bootstrap\ContainerBootstrap',
+    ],
+    'params'    => [
+        'email_notify'  => getenv('email_notify')
+    ]
+];

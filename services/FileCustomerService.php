@@ -421,4 +421,13 @@ class FileCustomerService
         $fileCustomerType = $this->fileCustomerRepository->getTypeById($id);
         return $fileCustomerType->getCode();
     }
+
+    /**
+     * @param $id
+     */
+    public function deleteFile($id)
+    {
+        $fileCustomer = $this->fileCustomerRepository->get($id);
+        $this->fileCustomerRepository->remove($fileCustomer);
+    }
 }

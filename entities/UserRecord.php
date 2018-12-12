@@ -15,6 +15,7 @@ use yii\web\IdentityInterface;
  * @property int $id
  * @property string $username
  * @property string $password
+ * @property CustomerRecord $customer
  * @property string $auth_key
  * @property bool $is_active
  */

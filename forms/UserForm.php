@@ -27,7 +27,7 @@ class UserForm extends Model
             ['username', 'required'],
             ['username', 'string', 'max' => 20],
             ['password', 'string', 'max' => 256],
-            ['id_customer', 'required'],
+            ['idCustomer', 'required'],
             ['role', 'required']
         ];
     }

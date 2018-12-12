@@ -21,10 +21,18 @@ use yii\web\Response;
  */
 class ManagerFileController extends Controller
 {
+    /**
+     * @var CustomerService
+     */
     private $customerService;
+    /**
+     * @var FileService
+     */
     private $fileService;
+    /**
+     * @var FileCustomerService
+     */
     private $fileCustomerService;
-    private $searchForm;
 
     /**
      * ManagerController constructor.
@@ -33,8 +41,6 @@ class ManagerFileController extends Controller
      * @param CustomerService $customerService
      * @param FileService $fileService
      * @param FileCustomerService $fileCustomerService
-     * @param UploadFileForm $uploadForm
-     * @param SearchSchemeForm $searchForm
      * @param array $config
      */
     public function __construct(
@@ -43,13 +49,11 @@ class ManagerFileController extends Controller
         CustomerService $customerService,
         FileService $fileService,
         FileCustomerService $fileCustomerService,
-        SearchSchemeForm $searchForm,
         array $config = []
     ) {
         $this->customerService = $customerService;
         $this->fileService = $fileService;
         $this->fileCustomerService = $fileCustomerService;
-        $this->searchForm = $searchForm;
         parent::__construct($id, $module, $config);
     }
 
@@ -149,6 +153,20 @@ class ManagerFileController extends Controller
         return $this->render('edit-schema-point-control', compact('id_scheme_point_control'));
     }
 
+    public function actionDeleteSchemaPointControl()
+    {
+        $id = (int)Yii::$app->request->get('id');
+
+        if (!isset($id) or $id === 0) {
+            throw new InvalidArgumentException();
+        }
+
+        $this->fileCustomerService->deleteFile($id);
+
+        $this->redirect('scheme-point-control');
+    }
+
+
     /**
      * @return array
      * @throws \Exception
@@ -194,7 +212,7 @@ class ManagerFileController extends Controller
                 'rules' => [
                     [
                         'actions'=> ['upload-files','recommendations','delete-recommendation',
-                            'scheme-point-control', 'edit-schema-point-control'],
+                            'scheme-point-control', 'edit-schema-point-control', 'delete-schema-point-control'],
                         'roles'     => ['manager'],
                         'allow'     => true
                     ],

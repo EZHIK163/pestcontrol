@@ -6,6 +6,7 @@ use app\dto\Customer;
 use app\dto\Disinfectant;
 use app\dto\DisinfectantSelect;
 use app\repositories\CustomerRepositoryInterface;
+use app\repositories\UserRepositoryInterface;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -17,15 +18,20 @@ class CustomerService
     /**
      * @var CustomerRepositoryInterface $repository
      */
-    private $repository;
+    private $customerRepository;
+    private $userRepository;
 
     /**
      * CustomerService constructor.
-     * @param CustomerRepositoryInterface $repository
+     * @param CustomerRepositoryInterface $customerRepository
+     * @param UserRepositoryInterface $userRepository
      */
-    public function __construct(CustomerRepositoryInterface $repository)
-    {
-        $this->repository = $repository;
+    public function __construct(
+        CustomerRepositoryInterface $customerRepository,
+        UserRepositoryInterface $userRepository
+    ) {
+        $this->customerRepository = $customerRepository;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -34,7 +40,7 @@ class CustomerService
      */
     public function getCustomer($id)
     {
-        $customer = $this->repository->get($id);
+        $customer = $this->customerRepository->get($id);
 
         return $customer;
     }
@@ -44,7 +50,7 @@ class CustomerService
      */
     public function getCustomerForDropDownList()
     {
-        $customers = $this->repository->all();
+        $customers = $this->customerRepository->all();
         foreach ($customers as &$customer) {
             $customer = $customer->toArray();
         }
@@ -60,7 +66,7 @@ class CustomerService
      */
     public function getCustomerByIdUser($idUserOwner)
     {
-        $customer = $this->repository->getByIdUser($idUserOwner);
+        $customer = $this->customerRepository->getByIdUser($idUserOwner);
         return $customer;
     }
 
@@ -70,18 +76,18 @@ class CustomerService
      */
     public function setIdUserOwner($idCustomer, $idUser)
     {
-        $customers = $this->repository->all();
+        $customers = $this->customerRepository->all();
 
         foreach ($customers as $customer) {
             if ($customer->getIdUserOwner() == $idUser) {
                 $customer->setIdUserOwner(null);
-                $this->repository->save($customer);
+                $this->customerRepository->save($customer);
             }
         }
 
-        $customer = $this->repository->get($idCustomer);
+        $customer = $this->customerRepository->get($idCustomer);
         $customer->setIdUserOwner($idUser);
-        $this->repository->save($customer);
+        $this->customerRepository->save($customer);
     }
 
     /**
@@ -89,7 +95,7 @@ class CustomerService
      */
     public function getCustomersWithDisinfectants()
     {
-        $customers = $this->repository->all();
+        $customers = $this->customerRepository->all();
         $finishCustomers = [];
         foreach ($customers as $customer) {
             $nameDisinfectants = [];
@@ -114,14 +120,13 @@ class CustomerService
      */
     public function getCustomersForManager()
     {
-        $customers = $this->repository->all();
+        $customers = $this->customerRepository->all();
         $finish_customers = [];
         foreach ($customers as &$customer) {
             if ($customer->getIdUserOwner() === null) {
                 $nameOwner = '-';
             } else {
-                //TODO Добавить UserRepository и взять оттуда название юзера
-                $nameOwner = $customer->getIdUserOwner();
+                $nameOwner = $this->userRepository->get($customer->getIdUserOwner())->getUsername();
             }
 
             $contacts = $customer->getContacts();
@@ -151,8 +156,10 @@ class CustomerService
     public function deleteCustomer($id)
     {
         $customer = $this->getCustomer($id);
+        $customer->setIdUserOwner(null);
 
-        $this->repository->remove($customer);
+        $this->customerRepository->save($customer);
+        $this->customerRepository->remove($customer);
     }
 
     /**
@@ -194,7 +201,7 @@ class CustomerService
             }
         }
         $customer->setDisinfectants($existDisinfectants);
-        $this->repository->save($customer);
+        $this->customerRepository->save($customer);
     }
 
     /**
@@ -227,7 +234,7 @@ class CustomerService
 
         $customer->setContacts($contactNew);
 
-        $this->repository->save($customer);
+        $this->customerRepository->save($customer);
     }
 
     /**
@@ -251,7 +258,7 @@ class CustomerService
             ->setIdUserOwner($idOwner)
             ->setContacts($preparedContacts);
 
-        $this->repository->add($customer);
+        $this->customerRepository->add($customer);
     }
 
     public function getIdCustomerByCode($code)

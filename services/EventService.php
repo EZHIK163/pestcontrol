@@ -380,28 +380,27 @@ class EventService
      */
     public function getEventsForManager($idCustomer)
     {
-        $events = $this->eventRepository->all();
-        $preparedEvents = [];
-        foreach ($events as &$event) {
-            if (!is_null($idCustomer) && $event->getCustomer()->getId() == $idCustomer or $idCustomer === null) {
-                $preparedEvents [] = $event;
-            }
+        if ($idCustomer === null or empty($idCustomer)) {
+            $events = $this->eventRepository->all();
+        } else {
+            $events = $this->eventRepository->getItemsByIdCustomer($idCustomer);
         }
 
-        $finishEvents = [];
-        foreach ($preparedEvents as $preparedEvent) {
-            $finishEvents [] = [
-                'id'            => $preparedEvent->getId(),
-                'name'          => $preparedEvent->getCustomer()->getName(),
-                'point_status'  => $preparedEvent->getPointStatus()->getDescription(),
-                'id_internal'   => $preparedEvent->getPoint() !== null
-                    ? $preparedEvent->getPoint()->getIdInternal()
+        $preparedEvents = [];
+        foreach ($events as $event) {
+            $preparedEvents [] = [
+                'id'            => $event->getId(),
+                'name'          => $event->getCustomer()->getName(),
+                'point_status'  => $event->getPointStatus()->getDescription(),
+                'id_internal'   => $event->getPoint() !== null
+                    ? $event->getPoint()->getIdInternal()
                     : null,
-                'datetime'      => $preparedEvent->getCreatedAt()->format('d.m.y h:i')
+                'datetime'      => $event->getCreatedAt()->format('d.m.y h:i'),
+                'count'         => $event->getCount()
             ];
         }
 
-        return $finishEvents;
+        return $preparedEvents;
     }
 
     /**

@@ -1,9 +1,12 @@
 <?php
 namespace app\controllers;
 
+use app\forms\DisinfectorForm;
 use app\tools\Tools;
 use app\components\Widget;
 use app\services\DisinfectorService;
+use InvalidArgumentException;
+use Yii;
 use yii\base\Module;
 use yii\web\Controller;
 use yii\filters\AccessControl;
@@ -14,6 +17,9 @@ use yii\filters\AccessControl;
  */
 class ManagerDisinfectorController extends Controller
 {
+    /**
+     * @var DisinfectorService
+     */
     private $disinfectorService;
 
     /**
@@ -45,6 +51,44 @@ class ManagerDisinfectorController extends Controller
     }
 
     /**
+     * @return string
+     */
+    public function actionEditDisinfector()
+    {
+        $id = Yii::$app->request->get('id');
+        if (!isset($id)) {
+            throw new InvalidArgumentException();
+        }
+
+        $model = new DisinfectorForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $this->disinfectorService->saveDisinfector($model->fillDisinfector());
+            $this->redirect('manage-disinfectors');
+        }
+
+        $disinfector = $this->disinfectorService->getDisinfector($id);
+        $model->fillThis($disinfector);
+
+        return $this->render('edit-disinfector', compact('model'));
+    }
+
+    /**
+     *
+     */
+    public function actionDeleteDisinfector()
+    {
+        $id = Yii::$app->request->get('id');
+        if (!isset($id)) {
+            throw new InvalidArgumentException();
+        }
+
+        $this->disinfectorService->deleteDisinfector($id);
+
+        $this->redirect('manage-disinfectors');
+    }
+
+    /**
      * @param string $view
      * @param array $params
      * @return string
@@ -66,7 +110,7 @@ class ManagerDisinfectorController extends Controller
                 'only'  => ['*'],
                 'rules' => [
                     [
-                        'actions'=> ['manage-disinfectors'],
+                        'actions'=> ['manage-disinfectors', 'edit-disinfector', 'delete-disinfector'],
                         'roles'     => ['manager'],
                         'allow'     => true
                     ]
