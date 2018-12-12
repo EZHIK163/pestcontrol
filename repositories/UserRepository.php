@@ -2,6 +2,8 @@
 namespace app\repositories;
 
 use app\dto\User;
+use app\dto\UserRole;
+use app\entities\RoleRecord;
 use app\entities\UserRecord;
 use app\exceptions\UserNotFound;
 use app\utilities\MyRbacManager;
@@ -179,4 +181,20 @@ class UserRepository implements UserRepositoryInterface
         return $userRecord;
     }
 
+    /**
+     * @return UserRole[]
+     */
+    public function getRoles()
+    {
+        $roleRecords = RoleRecord::findAll([]);
+
+        $roles = [];
+        foreach ($roleRecords as $roleRecord) {
+            $roles [] = (new UserRole())
+                ->setDescription($roleRecord->description)
+                ->setName($roleRecord->name);
+        }
+
+        return $roles;
+    }
 }

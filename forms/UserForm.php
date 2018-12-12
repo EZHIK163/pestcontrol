@@ -38,7 +38,9 @@ class UserForm extends Model
     public function fetchUser($user)
     {
         $this->username = $user->getUsername();
-        $this->idCustomer = $user->getCustomer()->getId();
+        $this->idCustomer = $user->getCustomer() !== null
+            ? $user->getCustomer()->getId()
+            : null;
         $this->id = $user->getId();
         $this->role = $user->getRole();
     }

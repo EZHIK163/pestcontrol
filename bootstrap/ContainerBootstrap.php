@@ -19,6 +19,8 @@ use app\repositories\PointRepository;
 use app\repositories\PointRepositoryInterface;
 use app\repositories\PointStatusRepository;
 use app\repositories\PointStatusRepositoryInterface;
+use app\repositories\UserRepository;
+use app\repositories\UserRepositoryInterface;
 use Yii;
 use yii\base\BootstrapInterface;
 
@@ -48,5 +50,6 @@ class ContainerBootstrap implements BootstrapInterface
         $container->setSingleton(FileCustomerRepositoryInterface::class, FileCustomerRepository::class);
         $container->setSingleton(FileRepositoryInterface::class, FileRepository::class);
         $container->setSingleton(ExtensionRepositoryInterface::class, ExtensionRepository::class);
+        $container->setSingleton(UserRepositoryInterface::class, UserRepository::class);
     }
 }

@@ -36,6 +36,10 @@ $this->title = "Изменение пользователя"; ?>
                     ->textInput()
                     ->label('Введите логин пользователя'); ?>
 
+                <?php echo $form->field($model, 'password')
+                    ->textInput()
+                    ->label('Введите новый пароль пользователя'); ?>
+
                 <?php echo $form->field($model, 'role')
                 ->dropDownList(
                     $roles,

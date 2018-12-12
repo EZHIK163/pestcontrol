@@ -2,63 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="06996c03-9cbb-43d1-84b5-d89c73097433" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/forms/SearchSchemeForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.php_cs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.php_cs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/AccountController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/AccountController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/ConsoleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ConsoleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/ManagerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ManagerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/ManagerCustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ManagerCustomerController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/ManagerDisinfectantController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ManagerDisinfectantController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/ManagerFileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ManagerFileController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/ReportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ReportController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/SiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/SiteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dto/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/dto/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entities/CustomerRecord.php" beforeDir="false" afterPath="$PROJECT_DIR$/entities/CustomerRecord.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entities/ExtensionTypeRecord.php" beforeDir="false" afterPath="$PROJECT_DIR$/entities/ExtensionTypeRecord.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/m180225_140413_create_roles.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/m180225_140413_create_roles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/m180227_155122_old_data_to_new_data.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/m180227_155122_old_data_to_new_data.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/m180301_054233_create_file_customer.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/m180301_054233_create_file_customer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/m180713_094743_add_table_for_sychronized_db.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/m180713_094743_add_table_for_sychronized_db.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/m180913_065534_add_new_point_status.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/m180913_065534_add_new_point_status.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/customer/CalendarForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/forms/CalendarForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/customer/CustomerForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/forms/CustomerForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/customer/ManageDisinfectantForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/forms/DisinfectantForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/customer/ManageDisinfectantsForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/forms/DisinfectantsForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/customer/ManageEventForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/forms/EventForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/customer/ManageEventsForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/forms/EventsForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/customer/ManagePointForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/forms/PointForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/customer/ManagePointsForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/forms/PointsForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/customer/SearchForm.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/file/UploadForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/forms/UploadFileForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/service/SynchronizeHistory.php" beforeDir="false" afterPath="$PROJECT_DIR$/entities/SynchronizeRecord.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/tools/Tools.php" beforeDir="false" afterPath="$PROJECT_DIR$/tools/Tools.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/user/LoginForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/forms/LoginForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/user/Role.php" beforeDir="false" afterPath="$PROJECT_DIR$/entities/RoleRecord.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/user/UserForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/forms/UserForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/user/UserRecord.php" beforeDir="false" afterPath="$PROJECT_DIR$/entities/UserRecord.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/widget/Widget.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/Widget.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositories/EventRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/EventRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repositories/EventRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/EventRepositoryInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/CustomerService.php" beforeDir="false" afterPath="$PROJECT_DIR$/services/CustomerService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/FileService.php" beforeDir="false" afterPath="$PROJECT_DIR$/services/FileService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/account/general_report.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/account/general_report.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/account/info_on_monitoring.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/account/info_on_monitoring.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/account/occupancy_schedule.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/account/occupancy_schedule.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/account/report_on_material.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/account/report_on_material.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/account/report_on_point.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/account/report_on_point.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/account/risk_assessment.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/account/risk_assessment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/account/show_scheme_point_control.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/account/show_scheme_point_control.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/add-user.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/add-user.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/ContainerBootstrap.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/ContainerBootstrap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/forms/UserForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/forms/UserForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/UserRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/admin/edit-user.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/edit-user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/manager-customer/add-customer.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/manager-customer/add-customer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/manager-customer/edit-customer.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/manager-customer/edit-customer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/manager-file/upload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/manager-file/upload_files.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/manager/manage-event.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/manager/manage-event.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/manager/manage-events.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/manager/manage-events.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/manager/manage-point.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/manager/manage-point.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/manager/manage-points.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/manager/manage-points.php" afterDir="false" />
     </list>
     <list id="c25cd3dc-568b-41ed-87f9-c75f1e47e11e" name="Revert: add all documents" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -145,7 +92,7 @@
         <entry file="file://$PROJECT_DIR$/controllers/AccountController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
-              <caret line="16" column="30" lean-forward="true" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+              <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -153,8 +100,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/forms/UserForm.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="35">
-              <caret line="44" selection-start-line="44" selection-end-line="44" />
+            <state relative-caret-position="242">
+              <caret line="43" column="35" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
               <folding>
                 <element signature="e#28#49#0#PHP" expanded="true" />
               </folding>
@@ -163,10 +110,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dto/User.php">
+        <entry file="file://$PROJECT_DIR$/views/admin/users.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="159" column="37" selection-start-line="159" selection-start-column="37" selection-end-line="159" selection-end-column="37" />
+            <state relative-caret-position="17">
+              <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/admin/edit-user.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="241">
+              <caret line="39" column="33" lean-forward="true" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -175,7 +131,7 @@
         <entry file="file://$PROJECT_DIR$/services/UserService.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="404">
-              <caret line="115" column="48" lean-forward="true" selection-start-line="115" selection-start-column="48" selection-end-line="115" selection-end-column="48" />
+              <caret line="115" column="48" selection-start-line="115" selection-start-column="48" selection-end-line="115" selection-end-column="48" />
               <folding>
                 <element signature="e#31#48#0#PHP" expanded="true" />
               </folding>
@@ -184,43 +140,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dto/UserRole.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="58" column="7" selection-start-line="58" selection-start-column="7" selection-end-line="58" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/entities/RoleRecord.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="66" column="5" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
-              <folding>
-                <element signature="e#32#56#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/repositories/UserRepositoryInterface.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="41" column="7" selection-start-line="41" selection-start-column="7" selection-end-line="41" selection-end-column="7" />
-              <folding>
-                <element signature="e#35#52#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/repositories/UserRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-271">
-              <caret line="147" column="28" selection-start-line="147" selection-start-column="28" selection-end-line="147" selection-end-column="28" />
+            <state relative-caret-position="336">
+              <caret line="191" column="47" selection-start-line="191" selection-start-column="47" selection-end-line="191" selection-end-column="47" />
               <folding>
                 <element signature="e#35#52#0#PHP" expanded="true" />
               </folding>
@@ -232,7 +155,7 @@
         <entry file="file://$PROJECT_DIR$/controllers/AdminController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-242">
-              <caret line="101" lean-forward="true" selection-start-line="101" selection-end-line="101" />
+              <caret line="101" selection-start-line="101" selection-end-line="101" />
               <folding>
                 <element signature="e#34#63#0#PHP" expanded="true" />
               </folding>
@@ -244,7 +167,7 @@
         <entry file="file://$PROJECT_DIR$/controllers/ManagerController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-650">
-              <caret line="7" column="30" lean-forward="true" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
+              <caret line="7" column="30" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
               <folding>
                 <element signature="e#34#63#0#PHP" expanded="true" />
               </folding>
@@ -256,7 +179,7 @@
         <entry file="file://$PROJECT_DIR$/controllers/ManagerCustomerController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-21">
-              <caret line="108" column="9" lean-forward="true" selection-start-line="108" selection-start-column="9" selection-end-line="108" selection-end-column="9" />
+              <caret line="108" column="9" selection-start-line="108" selection-start-column="9" selection-end-line="108" selection-end-column="9" />
               <folding>
                 <element signature="e#34#60#0#PHP" expanded="true" />
               </folding>
@@ -268,7 +191,7 @@
         <entry file="file://$PROJECT_DIR$/controllers/ManagerDisinfectantController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
-              <caret line="35" column="23" lean-forward="true" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
+              <caret line="35" column="23" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
               <folding>
                 <element signature="e#34#60#0#PHP" expanded="true" />
               </folding>
@@ -280,7 +203,7 @@
         <entry file="file://$PROJECT_DIR$/controllers/ManagerPointController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="442">
-              <caret line="47" column="26" lean-forward="true" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="26" />
+              <caret line="47" column="26" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="26" />
               <folding>
                 <element signature="e#35#59#0#PHP" expanded="true" />
               </folding>
@@ -292,7 +215,7 @@
         <entry file="file://$PROJECT_DIR$/controllers/ManagerDisinfectorController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="680">
-              <caret line="40" column="70" lean-forward="true" selection-start-line="40" selection-start-column="70" selection-end-line="40" selection-end-column="70" />
+              <caret line="40" column="70" selection-start-line="40" selection-start-column="70" selection-end-line="40" selection-end-column="70" />
               <folding>
                 <element signature="e#34#54#0#PHP" expanded="true" />
               </folding>
@@ -300,14 +223,32 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/ReportController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="202" column="42" selection-start-line="202" selection-start-column="42" selection-end-line="202" selection-end-column="42" />
+            <state relative-caret-position="85">
+              <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/SiteController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
               <folding>
-                <element signature="e#34#66#0#PHP" expanded="true" />
+                <element signature="e#34#58#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bootstrap/ContainerBootstrap.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="40" column="35" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -334,7 +275,7 @@
         <entry file="file://$PROJECT_DIR$/controllers/ManagerFileController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="47">
-              <caret line="185" column="18" lean-forward="true" selection-start-line="185" selection-start-column="18" selection-end-line="185" selection-end-column="18" />
+              <caret line="185" column="18" selection-start-line="185" selection-start-column="18" selection-end-line="185" selection-end-column="18" />
               <folding>
                 <element signature="e#34#65#0#PHP" expanded="true" />
               </folding>
@@ -373,7 +314,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>PointForm</find>
       <find>$this-&gt;redirect</find>
       <find>PointsForm</find>
       <find>getResultsForAdmin</find>
@@ -403,6 +343,7 @@
       <find>fileCustomerService</find>
       <find>eventService</find>
       <find>setReadFilter</find>
+      <find>$this-&gt;idCustomer = $user-&gt;getCustomer()-&gt;getId();</find>
     </findStrings>
     <replaceStrings>
       <replace>max_id_internal_in_customer</replace>
@@ -446,14 +387,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/models/user/UserForm.php" />
         <option value="$PROJECT_DIR$/services/SynchronizeService.php" />
         <option value="$PROJECT_DIR$/forms/CalendarForm.php" />
         <option value="$PROJECT_DIR$/forms/CustomerForm.php" />
         <option value="$PROJECT_DIR$/tools/Tools.php" />
         <option value="$PROJECT_DIR$/components/Widget.php" />
         <option value="$PROJECT_DIR$/forms/LoginForm.php" />
-        <option value="$PROJECT_DIR$/controllers/SiteController.php" />
         <option value="$PROJECT_DIR$/forms/ManageDisinfectantForm.php" />
         <option value="$PROJECT_DIR$/services/DisinfectantService.php" />
         <option value="$PROJECT_DIR$/services/CustomerService.php" />
@@ -476,15 +415,12 @@
         <option value="$PROJECT_DIR$/forms/UploadFileForm.php" />
         <option value="$PROJECT_DIR$/services/FileService.php" />
         <option value="$PROJECT_DIR$/exceptions/UserNotFound.php" />
-        <option value="$PROJECT_DIR$/forms/UserForm.php" />
-        <option value="$PROJECT_DIR$/views/admin/edit-user.php" />
         <option value="$PROJECT_DIR$/views/admin/add-user.php" />
         <option value="$PROJECT_DIR$/entities/RoleRecord.php" />
         <option value="$PROJECT_DIR$/entities/UserRecord.php" />
         <option value="$PROJECT_DIR$/dto/User.php" />
         <option value="$PROJECT_DIR$/repositories/UserRepositoryInterface.php" />
         <option value="$PROJECT_DIR$/dto/UserRole.php" />
-        <option value="$PROJECT_DIR$/repositories/UserRepository.php" />
         <option value="$PROJECT_DIR$/views/account/risk_assessment.php" />
         <option value="$PROJECT_DIR$/views/account/general_report.php" />
         <option value="$PROJECT_DIR$/controllers/AccountController.php" />
@@ -497,6 +433,11 @@
         <option value="$PROJECT_DIR$/controllers/ManagerEventController.php" />
         <option value="$PROJECT_DIR$/controllers/ManagerFileController.php" />
         <option value="$PROJECT_DIR$/controllers/ReportController.php" />
+        <option value="$PROJECT_DIR$/controllers/SiteController.php" />
+        <option value="$PROJECT_DIR$/bootstrap/ContainerBootstrap.php" />
+        <option value="$PROJECT_DIR$/repositories/UserRepository.php" />
+        <option value="$PROJECT_DIR$/forms/UserForm.php" />
+        <option value="$PROJECT_DIR$/views/admin/edit-user.php" />
       </list>
     </option>
   </component>
@@ -708,7 +649,23 @@
             <path>
               <item name="pestcontrol" type="b2602c69:ProjectViewProjectNode" />
               <item name="pestcontrol" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="bootstrap" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pestcontrol" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pestcontrol" type="462c0819:PsiDirectoryNode" />
+              <item name="repositories" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pestcontrol" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pestcontrol" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pestcontrol" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pestcontrol" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -818,6 +775,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-3" width="1920" height="1052" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" internal_type="SLIDING" order="0" type="SLIDING" weight="0.26677316" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1014,23 +972,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/services/DisinfectantService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/forms/DisinfectantsForm.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="38" />
-          <folding>
-            <element signature="e#28#53#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dto/Disinfector.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1253,24 +1194,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/admin/edit-user.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="53" column="39" selection-start-line="53" selection-start-column="39" selection-end-line="53" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/admin/add-user.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="44" column="21" selection-start-line="44" selection-start-column="21" selection-end-line="44" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/admin/users.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-510">
-          <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
         </state>
       </provider>
     </entry>
@@ -1315,30 +1242,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/forms/UserForm.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="35">
-          <caret line="44" selection-start-line="44" selection-end-line="44" />
-          <folding>
-            <element signature="e#28#49#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/repositories/UserRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-271">
-          <caret line="147" column="28" selection-start-line="147" selection-start-column="28" selection-end-line="147" selection-end-column="28" />
-          <folding>
-            <element signature="e#35#52#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/services/UserService.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="404">
-          <caret line="115" column="48" lean-forward="true" selection-start-line="115" selection-start-column="48" selection-end-line="115" selection-end-column="48" />
+          <caret line="115" column="48" selection-start-line="115" selection-start-column="48" selection-end-line="115" selection-end-column="48" />
           <folding>
             <element signature="e#31#48#0#PHP" expanded="true" />
           </folding>
@@ -1348,14 +1255,14 @@
     <entry file="file://$PROJECT_DIR$/controllers/AccountController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
-          <caret line="16" column="30" lean-forward="true" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+          <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/AdminController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-242">
-          <caret line="101" lean-forward="true" selection-start-line="101" selection-end-line="101" />
+          <caret line="101" selection-start-line="101" selection-end-line="101" />
           <folding>
             <element signature="e#34#63#0#PHP" expanded="true" />
           </folding>
@@ -1374,7 +1281,7 @@
     <entry file="file://$PROJECT_DIR$/controllers/ManagerController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-650">
-          <caret line="7" column="30" lean-forward="true" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
+          <caret line="7" column="30" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
           <folding>
             <element signature="e#34#63#0#PHP" expanded="true" />
           </folding>
@@ -1384,7 +1291,7 @@
     <entry file="file://$PROJECT_DIR$/controllers/ManagerCustomerController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-21">
-          <caret line="108" column="9" lean-forward="true" selection-start-line="108" selection-start-column="9" selection-end-line="108" selection-end-column="9" />
+          <caret line="108" column="9" selection-start-line="108" selection-start-column="9" selection-end-line="108" selection-end-column="9" />
           <folding>
             <element signature="e#34#60#0#PHP" expanded="true" />
           </folding>
@@ -1394,7 +1301,7 @@
     <entry file="file://$PROJECT_DIR$/controllers/ManagerDisinfectantController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="35" column="23" lean-forward="true" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
+          <caret line="35" column="23" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
           <folding>
             <element signature="e#34#60#0#PHP" expanded="true" />
           </folding>
@@ -1404,7 +1311,7 @@
     <entry file="file://$PROJECT_DIR$/controllers/ManagerDisinfectorController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
-          <caret line="40" column="70" lean-forward="true" selection-start-line="40" selection-start-column="70" selection-end-line="40" selection-end-column="70" />
+          <caret line="40" column="70" selection-start-line="40" selection-start-column="70" selection-end-line="40" selection-end-column="70" />
           <folding>
             <element signature="e#34#54#0#PHP" expanded="true" />
           </folding>
@@ -1421,7 +1328,7 @@
     <entry file="file://$PROJECT_DIR$/controllers/ManagerFileController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="47">
-          <caret line="185" column="18" lean-forward="true" selection-start-line="185" selection-start-column="18" selection-end-line="185" selection-end-column="18" />
+          <caret line="185" column="18" selection-start-line="185" selection-start-column="18" selection-end-line="185" selection-end-column="18" />
           <folding>
             <element signature="e#34#65#0#PHP" expanded="true" />
           </folding>
@@ -1431,7 +1338,7 @@
     <entry file="file://$PROJECT_DIR$/controllers/ManagerPointController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
-          <caret line="47" column="26" lean-forward="true" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="26" />
+          <caret line="47" column="26" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="26" />
           <folding>
             <element signature="e#35#59#0#PHP" expanded="true" />
           </folding>
@@ -1447,11 +1354,59 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/ReportController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="202" column="42" selection-start-line="202" selection-start-column="42" selection-end-line="202" selection-end-column="42" />
+        <state relative-caret-position="85">
+          <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/SiteController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
           <folding>
-            <element signature="e#34#66#0#PHP" expanded="true" />
+            <element signature="e#34#58#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bootstrap/ContainerBootstrap.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="40" column="35" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/repositories/UserRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="191" column="47" selection-start-line="191" selection-start-column="47" selection-end-line="191" selection-end-column="47" />
+          <folding>
+            <element signature="e#35#52#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/forms/UserForm.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="43" column="35" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
+          <folding>
+            <element signature="e#28#49#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/admin/users.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/admin/edit-user.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="39" column="33" lean-forward="true" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
         </state>
       </provider>
     </entry>
