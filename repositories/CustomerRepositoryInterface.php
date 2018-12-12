@@ -43,4 +43,10 @@ interface CustomerRepositoryInterface
      * @return Customer
      */
     public function getByIdUser($idUserOwner);
+
+    /**
+     * @param $code
+     * @return Customer
+     */
+    public function getByByCode($code);
 }

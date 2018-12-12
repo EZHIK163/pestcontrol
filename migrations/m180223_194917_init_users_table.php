@@ -12,7 +12,8 @@ class m180223_194917_init_users_table extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('users',
+        $this->createTable(
+            'users',
             [
                 'id'        => 'pk',
                 'is_active' => 'boolean DEFAULT true',
@@ -53,5 +54,4 @@ class m180223_194917_init_users_table extends Migration
 //
 //        return false;
 //    }
-
 }

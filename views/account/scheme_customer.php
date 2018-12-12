@@ -1,24 +1,31 @@
 <div id="spoiler1" class="spoilers">
     <?php
     use yii\helpers\Html;
-    $schema = $model;
+
+$schema = $model;
     $base_url = \Yii::$app->urlManager->createAbsoluteUrl(['/']);
     ?>
     <div  class="title">
         <div class="scheme_title"><?php echo $schema['title']; ?>
             <div class="scheme_manage">
             |
-            <?=Html::tag('a', 'Выгрузить отчет',
+            <?=Html::tag(
+        'a',
+        'Выгрузить отчет',
                 [
                     'href'  => $base_url.'account/generate-report-schema-point-control?id='.$schema['id_file_customer'],
                     'target'    => '_blank',
-                ])?>
+                ]
+    )?>
             |
-            <?=Html::tag('a', 'Печать',
+            <?=Html::tag(
+                    'a',
+                    'Печать',
                 [
                     'href'  => $base_url.'account/print-schema-point-control?id='.$schema['id_file_customer'],
                     'target'    => '_blank',
-                ])?>
+                ]
+                )?>
             </div>
         </div>
     </div>

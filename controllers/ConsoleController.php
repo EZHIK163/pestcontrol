@@ -8,7 +8,6 @@
 
 namespace app\controllers;
 
-
 use app\models\service\SynchronizeHistory;
 use app\models\user\UserRecord;
 use yii\console\Controller;
@@ -17,8 +16,8 @@ use yii\di\Instance;
 
 class ConsoleController extends Controller
 {
-    public function actionSynchronizeDataBase() {
-
+    public function actionSynchronizeDataBase()
+    {
         $time_last_sync = SynchronizeHistory::getLastSynchronize();
 
         $updated_by = $created_by = UserRecord::findOne(['username'    => 'admin'])->id;
@@ -53,7 +52,7 @@ class ConsoleController extends Controller
             SELECT * FROM {$name_table}
             WHERE created > :last_time_sync";
 
-	    $events = $db_old->createCommand($sql)
+            $events = $db_old->createCommand($sql)
                 ->bindValue(':last_time_sync', $time_last_sync)
                 ->queryAll();
 

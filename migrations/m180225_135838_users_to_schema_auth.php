@@ -15,11 +15,21 @@ class m180225_135838_users_to_schema_auth extends Migration
         $sql = "ALTER TABLE public.users SET SCHEMA auth";
         $this->execute($sql);
 
-        $this->addForeignKey('users_created_by', 'auth.users',
-            'created_by', 'auth.users', 'id');
+        $this->addForeignKey(
+            'users_created_by',
+            'auth.users',
+            'created_by',
+            'auth.users',
+            'id'
+        );
 
-        $this->addForeignKey('users_updated_by', 'auth.users',
-            'updated_by', 'auth.users', 'id');
+        $this->addForeignKey(
+            'users_updated_by',
+            'auth.users',
+            'updated_by',
+            'auth.users',
+            'id'
+        );
 
         return true;
     }

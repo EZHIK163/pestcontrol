@@ -37,22 +37,26 @@ $this->title = "Изменение пользователя"; ?>
                     ->label('Введите логин пользователя'); ?>
 
                 <?php echo $form->field($model, 'role')
-                ->dropDownList($roles,
+                ->dropDownList(
+                    $roles,
                     [
                         'prompt' => 'Выберите роль',
                         'options'   => [
                                 $model->role    => ['selected'  => true]
                         ]
-                    ])->label('Выберите роль'); ?>
+                    ]
+                )->label('Выберите роль'); ?>
 
                 <?php echo $form->field($model, 'id_customer')
-                ->dropDownList($customers,
+                ->dropDownList(
+                    $customers,
                     [
                         'prompt' => 'Выберите клиента, к которому будет привязн пользователь',
                         'options'   => [
                             $model->id_customer    => ['selected'  => true]
                         ]
-                    ])->label('Выберите клиента'); ?>
+                    ]
+                )->label('Выберите клиента'); ?>
 
                 <?php echo Html::submitButton('Изменить', ['class' => 'btn btn-primary']); ?>
                 <?php ActiveForm::end(); ?>

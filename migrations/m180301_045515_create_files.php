@@ -41,17 +41,37 @@ class m180301_045515_create_files extends Migration
             'updated_by'                => 'integer'
         ]);
 
-        $this->addForeignKey('files_created_by', 'files.files',
-            'created_by', 'auth.users', 'id');
+        $this->addForeignKey(
+            'files_created_by',
+            'files.files',
+            'created_by',
+            'auth.users',
+            'id'
+        );
 
-        $this->addForeignKey('files_updated_by', 'files.files',
-            'updated_by', 'auth.users', 'id');
+        $this->addForeignKey(
+            'files_updated_by',
+            'files.files',
+            'updated_by',
+            'auth.users',
+            'id'
+        );
 
-        $this->addForeignKey('types_created_by', 'files.types',
-            'created_by', 'auth.users', 'id');
+        $this->addForeignKey(
+            'types_created_by',
+            'files.types',
+            'created_by',
+            'auth.users',
+            'id'
+        );
 
-        $this->addForeignKey('types_updated_by', 'files.types',
-            'updated_by', 'auth.users', 'id');
+        $this->addForeignKey(
+            'types_updated_by',
+            'files.types',
+            'updated_by',
+            'auth.users',
+            'id'
+        );
 
         $this->createTable('files.extension', [
             'id'                        => 'pk',
@@ -65,19 +85,38 @@ class m180301_045515_create_files extends Migration
             'updated_by'                => 'integer'
         ]);
 
-        $this->addForeignKey('extension_created_by', 'files.extension',
-            'created_by', 'auth.users', 'id');
+        $this->addForeignKey(
+            'extension_created_by',
+            'files.extension',
+            'created_by',
+            'auth.users',
+            'id'
+        );
 
-        $this->addForeignKey('extension_updated_by', 'files.extension',
-            'updated_by', 'auth.users', 'id');
+        $this->addForeignKey(
+            'extension_updated_by',
+            'files.extension',
+            'updated_by',
+            'auth.users',
+            'id'
+        );
 
-        $this->addForeignKey('extension_id_type', 'files.extension',
-            'id_type', 'files.types', 'id');
+        $this->addForeignKey(
+            'extension_id_type',
+            'files.extension',
+            'id_type',
+            'files.types',
+            'id'
+        );
 
-        $this->addForeignKey('files_id_extension', 'files.files',
-            'id_extension', 'files.extension', 'id');
+        $this->addForeignKey(
+            'files_id_extension',
+            'files.files',
+            'id_extension',
+            'files.extension',
+            'id'
+        );
         return true;
-
     }
 
     /**

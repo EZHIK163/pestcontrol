@@ -31,7 +31,8 @@ $this->title = "Информация по мониторингу {$name_customer
                         <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
                         <div class="datepicker" style="display: flex; text-align: center; justify-content: space-around;">
                             <?= $form->field($model, 'date_from')->widget(
-                                DatePicker::class, [
+                                DatePicker::class,
+    [
                                 // inline too, not bad
                                 'inline' => true,
                                 'language'  => 'ru',
@@ -41,10 +42,12 @@ $this->title = "Информация по мониторингу {$name_customer
                                     'autoclose' => true,
                                     'format' => 'dd.mm.yyyy',
                                 ]
-                            ]);?>
+                            ]
+);?>
 
                             <?= $form->field($model, 'date_to')->widget(
-                                DatePicker::class, [
+                                DatePicker::class,
+                                [
                                 // inline too, not bad
                                 'inline' => true,
                                 'language'  => 'ru',
@@ -54,14 +57,15 @@ $this->title = "Информация по мониторингу {$name_customer
                                     'autoclose' => true,
                                     'format' => 'dd.mm.yyyy',
                                 ]
-                            ]);?>
+                            ]
+                            );?>
                         </div>
                         <button>Обновить</button>
 
                         <?php ActiveForm::end() ?>
 
                             <?= GridView::widget([
-                                'dataProvider' => $data_provider,
+                                'dataProvider' => $dataProvider,
                                 'columns' => [
                                     [
                                         'attribute' => 'n_point',
@@ -86,15 +90,17 @@ $this->title = "Информация по мониторингу {$name_customer
                                     [
                                         'label'     => 'Ссылка на схему',
                                         'format'    => 'html',
-                                        'value'     => function ($model, $key, $index, $column){
+                                        'value'     => function ($model, $key, $index, $column) {
                                             if (!empty($model['url'])) {
                                                 return
-                                                    Html::tag('a', 'Перейти к схеме',
-                                                        ['href'  => $model['url']]);
+                                                    Html::tag(
+                                                        'a',
+                                                        'Перейти к схеме',
+                                                        ['href'  => $model['url']]
+                                                    );
                                             }
                                             return
                                                 'нет';
-
                                         }
                                     ],
                                 ]

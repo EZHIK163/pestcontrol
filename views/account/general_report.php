@@ -26,7 +26,7 @@ $this->title = "Отчет общей заселенности объекта в
                     <div itemprop="articleBody">
                         <?= ChartJs::widget([
                             'type' => 'doughnut',
-                            'data' =>  $data_current_month
+                            'data' =>  $currentMonth
                         ]);
                         ?>
                     </div>

@@ -1,12 +1,16 @@
 <?php
 namespace app\models\customer;
 
+use app\dto\Event;
+use app\services\EventService;
 use yii\base\Model;
 
-class ManageEventForm extends Model {
-
+class ManageEventForm extends Model
+{
     public $id_event;
     public $id_point_status;
+
+    private $eventService;
 
     public function rules()
     {
@@ -15,15 +19,24 @@ class ManageEventForm extends Model {
         ];
     }
 
-    function __construct($id_event)
+    /**
+     * ManageEventForm constructor.
+     * @param EventService $eventService
+     * @param array $config
+     */
+    public function __construct(EventService $eventService, array $config = [])
     {
-        $this->id_event = $id_event;
-        $event = Events::getItemForEditing($id_event);
-        $this->id_point_status = $event['id_point_status'];
+        $this->eventService = $eventService;
+        parent::__construct($config);
     }
 
-    public function saveEvent() {
-        Events::saveItem($this->id_event, $this->id_point_status);
+    /**
+     * @param Event $event
+     */
+    public function fillThis($event)
+    {
+        $this->id_event = $event->getId();
+        $this->id_point_status = $event->getPointStatus()->getId();
     }
 
     public function attributeLabels()

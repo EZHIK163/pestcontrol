@@ -43,10 +43,13 @@ $this->title = "Управление дезсредствами клиентов
                         [
                             'header'    =>  'Действия',
                             'format'    => 'html',
-                            'value'     => function ($model, $key, $index, $column){
+                            'value'     => function ($model, $key, $index, $column) {
                                 return
-                                    Html::tag('a', 'Изменить',
-                                        ['href'  => 'manage-customer-disinfectant?id='.$model['id']]);
+                                    Html::tag(
+                                        'a',
+                                        'Изменить',
+                                        ['href'  => 'manage-customer-disinfectant?id='.$model['id']]
+                                    );
                             }
                         ],
 

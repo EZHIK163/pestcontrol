@@ -46,13 +46,19 @@ $this->title = "Управление клиентами"; ?>
                         [
                             'header'    =>  'Действия',
                             'format'    => 'html',
-                            'value'     => function ($model, $key, $index, $column){
+                            'value'     => function ($model, $key, $index, $column) {
                                 return
-                                    Html::tag('a', 'Изменить',
-                                        ['href'  => 'edit-customer?id='.$model['id']])
+                                    Html::tag(
+                                        'a',
+                                        'Изменить',
+                                        ['href'  => 'edit-customer?id='.$model['id']]
+                                    )
                                     .'<br/>'.
-                                    Html::tag('a', 'Удалить',
-                                        ['href'  => 'delete-customer?id='.$model['id']]);
+                                    Html::tag(
+                                        'a',
+                                        'Удалить',
+                                        ['href'  => 'delete-customer?id='.$model['id']]
+                                    );
                             }
                         ],
 

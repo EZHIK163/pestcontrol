@@ -61,7 +61,8 @@ class SynchronizeHistory extends \yii\db\ActiveRecord
         ];
     }
 
-    static function getLastSynchronize() {
+    public static function getLastSynchronize()
+    {
         $last_sync = self::find()->select('created_at')
             ->orderBy('created_at DESC')
             ->limit(1)
@@ -79,8 +80,8 @@ class SynchronizeHistory extends \yii\db\ActiveRecord
         return $datetime->format('Y-m-d H:i:s');
     }
 
-    static function addSynchronize($count_sync_row) {
-
+    public static function addSynchronize($count_sync_row)
+    {
         $sync = new self();
 
         $sync->count_sync_row = $count_sync_row;

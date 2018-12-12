@@ -38,13 +38,19 @@ $this->title = "Управление дезинфекторами"; ?>
                         [
                             'header'    =>  'Действия',
                             'format'    => 'html',
-                            'value'     => function ($model, $key, $index, $column){
+                            'value'     => function ($model, $key, $index, $column) {
                                 return
-                                    Html::tag('a', 'Изменить',
-                                        ['href'  => 'edit-disinfector?id='.$model['id']])
+                                    Html::tag(
+                                        'a',
+                                        'Изменить',
+                                        ['href'  => 'edit-disinfector?id='.$model['id']]
+                                    )
                                     .'<br/>'.
-                                    Html::tag('a', 'Удалить',
-                                        ['href'  => 'delete-disinfector?id='.$model['id']]);
+                                    Html::tag(
+                                        'a',
+                                        'Удалить',
+                                        ['href'  => 'delete-disinfector?id='.$model['id']]
+                                    );
                             }
                         ],
 

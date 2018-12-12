@@ -1,10 +1,14 @@
 <?php
 namespace app\models\customer;
 
-use app\entities\FileCustomer;
+use app\services\FileCustomerService;
 use yii\base\Model;
 use yii\web\UploadedFile;
 
+/**
+ * Class SearchForm
+ * @package app\models\customer
+ */
 class SearchForm extends Model
 {
 
@@ -12,6 +16,19 @@ class SearchForm extends Model
      * @var UploadedFile
      */
     public $query;
+
+    private $fileCustomerService;
+
+    /**
+     * SearchForm constructor.
+     * @param FileCustomerService $fileCustomerService
+     * @param array $config
+     */
+    public function __construct(FileCustomerService $fileCustomerService, array $config = [])
+    {
+        $this->fileCustomerService = $fileCustomerService;
+        parent::__construct($config);
+    }
 
     public function rules()
     {
@@ -29,7 +46,7 @@ class SearchForm extends Model
             return [];
         }
 
-        $scheme_point_control = FileCustomer::getSchemePointControlForAdmin($this->query);
+        $scheme_point_control = $this->fileCustomerService->getSchemePointControlForAdmin($this->query);
         return $scheme_point_control;
     }
 
@@ -39,8 +56,7 @@ class SearchForm extends Model
             return [];
         }
 
-        $scheme_point_control = FileCustomer::getSchemePointControlCustomer($id_customer, $this->query);
+        $scheme_point_control = $this->fileCustomerService->getSchemePointControlCustomer($id_customer, $this->query);
         return $scheme_point_control;
     }
-
 }

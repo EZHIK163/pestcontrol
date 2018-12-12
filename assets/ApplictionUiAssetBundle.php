@@ -3,7 +3,8 @@ namespace app\assets;
 
 use yii\web\AssetBundle;
 
-class ApplictionUiAssetBundle extends AssetBundle {
+class ApplictionUiAssetBundle extends AssetBundle
+{
     public $sourcePath = '@app/assets/ui';
     public $css = [
         'css/css.css',

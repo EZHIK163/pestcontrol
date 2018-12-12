@@ -24,7 +24,6 @@ class m180225_133446_create_rbac_tables extends Migration
      */
     public function safeDown()
     {
-
         return true;
     }
 
@@ -41,5 +40,4 @@ class m180225_133446_create_rbac_tables extends Migration
 //
 //        return false;
 //    }
-
 }

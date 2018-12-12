@@ -19,12 +19,12 @@ class CustomerForm extends Model
 
     /**
      * CustomerForm constructor.
-     * @param CustomerService $service
+     * @param CustomerService $customerService
      * @param array $config
      */
-    public function __construct(CustomerService $service, array $config = [])
+    public function __construct(CustomerService $customerService, array $config = [])
     {
-        $this->service = $service;
+        $this->service = $customerService;
         parent::__construct($config);
     }
 

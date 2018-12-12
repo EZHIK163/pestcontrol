@@ -37,10 +37,12 @@ $this->title = "Изменение пользователя"; ?>
                     ->label('Введите наименование клиента'); ?>
 
                 <?php echo $form->field($model, 'id_owner')
-                    ->dropDownList($users,
+                    ->dropDownList(
+                        $users,
                         [
                             'prompt' => 'Выберите пользователя владельца'
-                        ]); ?>
+                        ]
+                    ); ?>
                 <?php
                     echo 'Управление контактами<br/>';
                     echo $form->field($model, 'contacts')->widget(MultipleInput::class, [

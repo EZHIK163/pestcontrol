@@ -492,7 +492,7 @@ class MyRbacManager extends DbManager
             ->where('{{a}}.[[item_name]]={{b}}.[[name]]')
             ->andWhere(['a.user_id' => (string) $userId])
             ->andWhere(['b.type' => Item::TYPE_ROLE])
-            ->limit(1   );
+            ->limit(1);
 
         foreach ($query->all($this->db) as $row) {
             $role = $this->populateItem($row);

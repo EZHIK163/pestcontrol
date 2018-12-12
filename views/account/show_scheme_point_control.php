@@ -35,7 +35,8 @@ $this->title = "Статистика по схеме точек котроля: 
                 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
                 <div class="datepicker" style="display: flex; text-align: center; justify-content: space-around;">
                     <?= $form->field($model_calendar, 'date_from')->widget(
-                        DatePicker::class, [
+                        DatePicker::class,
+    [
                         // inline too, not bad
                         'inline' => true,
                         'language'  => 'ru',
@@ -45,10 +46,12 @@ $this->title = "Статистика по схеме точек котроля: 
                             'autoclose' => true,
                             'format' => 'dd.mm.yyyy',
                         ]
-                    ]);?>
+                    ]
+);?>
 
                     <?= $form->field($model_calendar, 'date_to')->widget(
-                        DatePicker::class, [
+                        DatePicker::class,
+                        [
                         // inline too, not bad
                         'inline' => true,
                         'language'  => 'ru',
@@ -58,7 +61,8 @@ $this->title = "Статистика по схеме точек котроля: 
                             'autoclose' => true,
                             'format' => 'dd.mm.yyyy',
                         ]
-                    ]);?>
+                    ]
+                    );?>
                 </div>
                 <button>Обновить</button>
 

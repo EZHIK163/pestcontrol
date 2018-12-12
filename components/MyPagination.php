@@ -42,4 +42,3 @@ class MyPagination extends \yii\widgets\LinkPager
         return Html::tag($linkWrapTag, Html::a($label, $this->pagination->createUrl($page), $linkOptions), $options);
     }
 }
-?>

@@ -28,6 +28,4 @@ class CalendarForm extends Model
             'date_to' => 'Дата окончания отчета'
         ];
     }
-
-
 }

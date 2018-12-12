@@ -2,8 +2,9 @@
 
 namespace app\entities;
 
-use Yii;
-use yii\helpers\ArrayHelper;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "public.point_status".
@@ -17,7 +18,7 @@ use yii\helpers\ArrayHelper;
  * @property int $updated_at
  * @property int $updated_by
  */
-class PointStatus extends \yii\db\ActiveRecord
+class PointStatusRecord extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -37,8 +38,6 @@ class PointStatus extends \yii\db\ActiveRecord
             [['created_at', 'created_by', 'updated_at', 'updated_by'], 'default', 'value' => null],
             [['created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
             [['description', 'code'], 'string', 'max' => 255],
-            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\user\UserRecord::class, 'targetAttribute' => ['created_by' => 'id']],
-            [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\user\UserRecord::class, 'targetAttribute' => ['updated_by' => 'id']],
         ];
     }
 
@@ -59,33 +58,14 @@ class PointStatus extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [
-            'timestamp' =>  \yii\behaviors\TimestampBehavior::class,
-            'blame'     => \yii\behaviors\BlameableBehavior::class
+            'timestamp' =>  TimestampBehavior::class,
+            'blame'     => BlameableBehavior::class
         ];
-    }
-
-    public static function getIdItemByCode($code) {
-        return self::findOne(['code'    => $code])->id;
-    }
-
-    public function getPointStatuses() {
-        $statuses = self::find()
-            ->orderBy('id')
-            ->asArray()
-            ->all();
-        return $statuses;
-    }
-    static function getPointStatusesForDropDownList() {
-        $statuses = self::getPointStatuses();
-
-        return ArrayHelper::map($statuses, 'id', 'description');
-    }
-
-    static function getStatusesForApplication() {
-        $statuses = self::getPointStatuses();
-        return $statuses;
     }
 }

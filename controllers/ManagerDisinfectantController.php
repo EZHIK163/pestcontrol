@@ -3,18 +3,18 @@ namespace app\controllers;
 
 use app\entities\CustomerRecord;
 use app\entities\DisinfectantRecord;
-use app\entities\Disinfector;
-use app\entities\Events;
-use app\entities\FileCustomer;
-use app\entities\FileCustomerType;
+use app\entities\DisinfectorRecord;
+use app\entities\EventRecord;
+use app\entities\FileCustomerRecord;
+use app\entities\FileCustomerTypeRecord;
 use app\models\customer\ManageDisinfectantForm;
 use app\models\customer\ManageDisinfectantsForm;
 use app\models\customer\ManageEventForm;
 use app\models\customer\ManageEventsForm;
 use app\models\customer\ManagePointForm;
 use app\models\customer\ManagePointsForm;
-use app\entities\Points;
-use app\entities\PointStatus;
+use app\entities\PointRecord;
+use app\entities\PointStatusRecord;
 use app\models\customer\SearchForm;
 use app\models\file\Files;
 use app\models\file\UploadForm;
@@ -22,6 +22,7 @@ use app\models\tools\Tools;
 use app\models\user\User;
 use app\models\widget\Widget;
 use app\services\CustomerService;
+use app\services\DisinfectantService;
 use InvalidArgumentException;
 use Yii;
 use yii\base\Module;
@@ -39,6 +40,8 @@ class ManagerDisinfectantController extends Controller
 {
     private $manageDisinfectantsForm;
     private $customerService;
+    private $manageDisinfectantForm;
+    private $disinfectantService;
 
     /**
      * {@inheritdoc}
@@ -57,19 +60,25 @@ class ManagerDisinfectantController extends Controller
      * ManagerController constructor.
      * @param $id
      * @param Module $module
-     * @param CustomerService $customerService
      * @param ManageDisinfectantsForm $manageDisinfectantsForm
+     * @param ManageDisinfectantForm $manageDisinfectantForm
+     * @param CustomerService $customerService
+     * @param DisinfectantService $disinfectantService
      * @param array $config
      */
     public function __construct(
         $id,
         Module $module,
         ManageDisinfectantsForm $manageDisinfectantsForm,
+        ManageDisinfectantForm $manageDisinfectantForm,
         CustomerService $customerService,
+        DisinfectantService $disinfectantService,
         array $config = []
     ) {
         $this->customerService = $customerService;
         $this->manageDisinfectantsForm = $manageDisinfectantsForm;
+        $this->manageDisinfectantForm = $manageDisinfectantForm;
+        $this->disinfectantService = $disinfectantService;
         parent::__construct($id, $module, $config);
     }
 
@@ -90,7 +99,7 @@ class ManagerDisinfectantController extends Controller
      */
     public function actionManageDisinfectants()
     {
-        $disinfectants = DisinfectantRecord::getDisinfectants();
+        $disinfectants = $this->disinfectantService->getDisinfectants();
         $data_provider = Tools::wrapIntoDataProvider($disinfectants);
         return $this->render('disinfectants', compact('data_provider'));
     }
@@ -115,13 +124,13 @@ class ManagerDisinfectantController extends Controller
             throw new InvalidArgumentException();
         }
 
-        if ($this->manageDisinfectantsForm->load(Yii::$app->request->post()) && $this->manageDisinfectantsForm->validate()) {
-            $this->manageDisinfectantsForm->updateDisinfectants($id);
+        $model = $this->manageDisinfectantsForm;
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $model->updateDisinfectants($id);
         }
 
-        $this->manageDisinfectantsForm->fetchDisinfectants($id);
-
-        $model = $this->manageDisinfectantsForm;
+        $model->fetchDisinfectants($id);
 
         return $this->render('manage-customer-disinfectant', compact('model'));
     }
@@ -137,15 +146,21 @@ class ManagerDisinfectantController extends Controller
             throw new InvalidArgumentException();
         }
 
-        $model = new ManageDisinfectantForm($id);
+        $model = $this->manageDisinfectantForm;
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $model->saveDisinfectant();
+            $model->saveDisinfectant($id);
         }
 
-        return $this->render('manage-disinfectant', compact( 'model'));
+        $disinfectant = $this->disinfectantService->getDisinfectant($id);
+        $model->fillThis($disinfectant);
+
+        return $this->render('manage-disinfectant', compact('model'));
     }
 
+    /**
+     * @return Response
+     */
     public function actionDeleteDisinfectant()
     {
         $id = Yii::$app->request->get('id');
@@ -154,9 +169,9 @@ class ManagerDisinfectantController extends Controller
             throw new InvalidArgumentException();
         }
 
-        DisinfectantRecord::deleteDisinfectant($id);
+        $this->disinfectantService->deleteDisinfectant($id);
 
-        $this->redirect('manage-disinfectants');
+        return $this->redirect('manage-disinfectants');
     }
 
     /**
@@ -164,9 +179,7 @@ class ManagerDisinfectantController extends Controller
      */
     public function actionAddDisinfectant()
     {
-        $id = null;
-
-        $model = new ManageDisinfectantForm($id);
+        $model = $this->manageDisinfectantForm;
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $model->addDisinfectant();
@@ -174,7 +187,7 @@ class ManagerDisinfectantController extends Controller
             $this->redirect('manage-disinfectants');
         }
 
-        return $this->render('add-disinfectant', compact( 'model'));
+        return $this->render('add-disinfectant', compact('model'));
     }
 
     public function behaviors()
@@ -195,5 +208,4 @@ class ManagerDisinfectantController extends Controller
             ],
         ];
     }
-
 }

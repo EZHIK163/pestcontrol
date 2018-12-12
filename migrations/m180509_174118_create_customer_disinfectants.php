@@ -23,41 +23,61 @@ class m180509_174118_create_customer_disinfectants extends Migration
             'updated_by'        => 'integer'
         ]);
 
-        $this->addForeignKey('customer_disinfectant_id_customer', 'customer_disinfectant',
-            'id_customer', 'customers', 'id');
+        $this->addForeignKey(
+            'customer_disinfectant_id_customer',
+            'customer_disinfectant',
+            'id_customer',
+            'customers',
+            'id'
+        );
 
-        $this->addForeignKey('customer_disinfectant_id_disinfectant', 'customer_disinfectant',
-            'id_disinfectant', 'disinfectant', 'id');
+        $this->addForeignKey(
+            'customer_disinfectant_id_disinfectant',
+            'customer_disinfectant',
+            'id_disinfectant',
+            'disinfectant',
+            'id'
+        );
 
-        $this->addForeignKey('customer_disinfectant_contact_created_by', 'customer_disinfectant',
-            'created_by', 'auth.users', 'id');
+        $this->addForeignKey(
+            'customer_disinfectant_contact_created_by',
+            'customer_disinfectant',
+            'created_by',
+            'auth.users',
+            'id'
+        );
 
-        $this->addForeignKey('customer_disinfectant_updated_by', 'customer_disinfectant',
-            'updated_by', 'auth.users', 'id');
+        $this->addForeignKey(
+            'customer_disinfectant_updated_by',
+            'customer_disinfectant',
+            'updated_by',
+            'auth.users',
+            'id'
+        );
 
         $customers = \app\entities\CustomerRecord::find()->asArray()->all();
         foreach ($customers as $customer) {
-            $c_d = new \app\entities\CustomerDisinfectant();
+            $c_d = new \app\entities\CustomerDisinfectantRecord();
             $c_d->id_customer = $customer['id'];
             $c_d->id_disinfectant = 1;
             $c_d->save();
 
-            $c_d = new \app\entities\CustomerDisinfectant();
+            $c_d = new \app\entities\CustomerDisinfectantRecord();
             $c_d->id_customer = $customer['id'];
             $c_d->id_disinfectant = 2;
             $c_d->save();
 
-            $c_d = new \app\entities\CustomerDisinfectant();
+            $c_d = new \app\entities\CustomerDisinfectantRecord();
             $c_d->id_customer = $customer['id'];
             $c_d->id_disinfectant = 3;
             $c_d->save();
 
-            $c_d = new \app\entities\CustomerDisinfectant();
+            $c_d = new \app\entities\CustomerDisinfectantRecord();
             $c_d->id_customer = $customer['id'];
             $c_d->id_disinfectant = 4;
             $c_d->save();
 
-            $c_d = new \app\entities\CustomerDisinfectant();
+            $c_d = new \app\entities\CustomerDisinfectantRecord();
             $c_d->id_customer = $customer['id'];
             $c_d->id_disinfectant = 5;
             $c_d->save();

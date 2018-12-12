@@ -42,13 +42,19 @@ $this->title = "Управление дезсредствами"; ?>
                         [
                             'header'    =>  'Действия',
                             'format'    => 'html',
-                            'value'     => function ($model, $key, $index, $column){
+                            'value'     => function ($model, $key, $index, $column) {
                                 return
-                                    Html::tag('a', 'Изменить',
-                                        ['href'  => 'edit-disinfectant?id='.$model['id']])
+                                    Html::tag(
+                                        'a',
+                                        'Изменить',
+                                        ['href'  => 'edit-disinfectant?id='.$model['id']]
+                                    )
                                     .'<br/>'.
-                                    Html::tag('a', 'Удалить',
-                                        ['href'  => 'delete-disinfectant?id='.$model['id']]);
+                                    Html::tag(
+                                        'a',
+                                        'Удалить',
+                                        ['href'  => 'delete-disinfectant?id='.$model['id']]
+                                    );
                             }
                         ],
 

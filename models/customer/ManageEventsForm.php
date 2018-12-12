@@ -3,8 +3,8 @@ namespace app\models\customer;
 
 use yii\base\Model;
 
-class ManageEventsForm extends Model {
-
+class ManageEventsForm extends Model
+{
     public $id_customer;
 
     public function rules()
@@ -13,5 +13,4 @@ class ManageEventsForm extends Model {
             [['id_customer',], 'required']
         ];
     }
-
 }

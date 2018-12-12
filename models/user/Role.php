@@ -66,13 +66,15 @@ class Role extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getRoles() {
+    public function getRoles()
+    {
         return Role::find()
             ->all();
     }
 
-    public static function getRolesForDropDownList() {
+    public static function getRolesForDropDownList()
+    {
         $roles = self::getRoles();
-        return ArrayHelper::map($roles,'name', 'description');
+        return ArrayHelper::map($roles, 'name', 'description');
     }
 }

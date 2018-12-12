@@ -3,6 +3,7 @@ namespace app\models\customer;
 
 use app\entities\DisinfectantRecord;
 use app\services\CustomerService;
+use app\services\DisinfectantService;
 use yii\base\Model;
 use yii\helpers\ArrayHelper;
 
@@ -12,19 +13,22 @@ use yii\helpers\ArrayHelper;
  */
 class ManageDisinfectantsForm extends Model
 {
-
     public $disinfectants;
 
-    private $service;
+    private $customerService;
+
+    private $disinfectantService;
 
     /**
      * ManageDisinfectantsForm constructor.
-     * @param CustomerService $service
+     * @param CustomerService $customerService
+     * @param DisinfectantService $disinfectantService
      * @param array $config
      */
-    public function __construct(CustomerService $service, array $config = [])
+    public function __construct(CustomerService $customerService, DisinfectantService $disinfectantService, array $config = [])
     {
-        $this->service = $service;
+        $this->customerService = $customerService;
+        $this->disinfectantService = $disinfectantService;
         parent::__construct($config);
     }
 
@@ -43,7 +47,7 @@ class ManageDisinfectantsForm extends Model
      */
     public function updateDisinfectants($id_customer)
     {
-        $this->service->setDisinfectantsCustomer($id_customer, $this->disinfectants);
+        $this->customerService->setDisinfectantsCustomer($id_customer, $this->disinfectants);
     }
 
     /**
@@ -51,13 +55,12 @@ class ManageDisinfectantsForm extends Model
      */
     public function fetchDisinfectants($id_customer)
     {
-        $disinfectants_customer = $this->service->getDisinfectantsCustomer($id_customer);
+        $disinfectants_customer = $this->customerService->getDisinfectantsCustomer($id_customer);
         $disinfectants_customer = ArrayHelper::index($disinfectants_customer, 'id');
 
-        $disinfectants = DisinfectantRecord::getDisinfectants();
+        $disinfectants = $this->disinfectantService->getDisinfectants();
 
         foreach ($disinfectants as &$disinfectant) {
-
             $is_set = isset($disinfectants_customer[$disinfectant['id']]);
             $disinfectant['disinfectant'] = $disinfectant['description'];
             $disinfectant['is_set'] = $is_set;

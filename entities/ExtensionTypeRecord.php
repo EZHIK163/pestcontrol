@@ -1,9 +1,10 @@
 <?php
 
-namespace app\models\file;
+namespace app\entities;
 
 use app\models\user\UserRecord;
-use Yii;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "files.types".
@@ -18,7 +19,7 @@ use Yii;
  * @property int $updated_at
  * @property int $updated_by
  */
-class Types extends \yii\db\ActiveRecord
+class ExtensionTypeRecord extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -38,8 +39,6 @@ class Types extends \yii\db\ActiveRecord
             [['created_at', 'created_by', 'updated_at', 'updated_by'], 'default', 'value' => null],
             [['created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
             [['description', 'code', 'path_to_folder'], 'string', 'max' => 255],
-            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => UserRecord::class, 'targetAttribute' => ['created_by' => 'id']],
-            [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => UserRecord::class, 'targetAttribute' => ['updated_by' => 'id']],
         ];
     }
 
@@ -64,8 +63,8 @@ class Types extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
-            'timestamp' =>  \yii\behaviors\TimestampBehavior::class,
-            'blame'     => \yii\behaviors\BlameableBehavior::class
+            'timestamp' =>  TimestampBehavior::class,
+            'blame'     => BlameableBehavior::class
         ];
     }
 }

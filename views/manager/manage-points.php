@@ -59,13 +59,19 @@ $this->title = "Управление точками контроля"; ?>
                         [
                             'header'    =>  'Действия',
                             'format'    => 'html',
-                            'value'     => function ($model, $key, $index, $column){
+                            'value'     => function ($model, $key, $index, $column) {
                                 return
-                                    Html::tag('a', 'Изменить',
-                                        ['href'  => 'manage-point?id='.$model['id']])
+                                    Html::tag(
+                                        'a',
+                                        'Изменить',
+                                        ['href'  => 'manage-point?id='.$model['id']]
+                                    )
                                     .'<br/>'.
-                                    Html::tag('a', 'Удалить',
-                                        ['href'  => 'delete-point?id='.$model['id']]);
+                                    Html::tag(
+                                        'a',
+                                        'Удалить',
+                                        ['href'  => 'delete-point?id='.$model['id']]
+                                    );
                             }
                         ],
 

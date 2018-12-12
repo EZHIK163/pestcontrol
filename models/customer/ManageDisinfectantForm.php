@@ -1,69 +1,105 @@
 <?php
 namespace app\models\customer;
 
+use app\dto\Disinfectant;
+use app\services\DisinfectantService;
 use yii\base\Model;
 
-class ManageDisinfectantForm extends Model {
-
+/**
+ * Class ManageDisinfectantForm
+ * @package app\models\customer
+ */
+class ManageDisinfectantForm extends Model
+{
     public $value;
     public $title;
-    public $id_disinfectant;
-
-    public $form_of_facility;
-    public $active_substance;
-    public $concentration_of_substance;
+    public $idDisinfectant;
+    public $formOfFacility;
+    public $activeSubstance;
+    public $concentrationOfSubstance;
     public $manufacturer;
-    public $terms_of_use;
-    public $place_of_application;
+    public $termsOfUse;
+    public $placeOfApplication;
+
+    private $disinfectantService;
 
     public function rules()
     {
         return [
-            [['value', 'title', 'form_of_facility',
-                'active_substance', 'manufacturer',
-                'terms_of_use', 'place_of_application'], 'required']
+            [['value', 'title', 'formOfFacility',
+                'activeSubstance', 'manufacturer',
+                'termsOfUse', 'placeOfApplication', 'concentrationOfSubstance'], 'required']
         ];
     }
 
-    function __construct($id_disinfectant)
+    /**
+     * ManageDisinfectantForm constructor.
+     * @param DisinfectantService $disinfectantService
+     * @param array $config
+     */
+    public function __construct(DisinfectantService $disinfectantService, array $config = [])
     {
-        if (!is_null($id_disinfectant)) {
-            $this->id_disinfectant = $id_disinfectant;
-            $disinfectant = Disinfectant::getItem($id_disinfectant);
-            $this->value = $disinfectant['value'];
-            $this->title = $disinfectant['description'];
-            $this->form_of_facility = $disinfectant['form_of_facility'];
-            $this->active_substance = $disinfectant['active_substance'];
-            $this->concentration_of_substance = $disinfectant['concentration_of_substance'];
-            $this->manufacturer = $disinfectant['manufacturer'];
-            $this->terms_of_use = $disinfectant['terms_of_use'];
-            $this->place_of_application = $disinfectant['place_of_application'];
+        $this->disinfectantService = $disinfectantService;
 
-        } else {
-            $this->value = '';
-            $this->title = '';
-            $this->form_of_facility = '';
-            $this->active_substance = '';
-            $this->concentration_of_substance = '';
-            $this->manufacturer = '';
-            $this->terms_of_use = '';
-            $this->place_of_application = '';
-        }
+        parent::__construct($config);
     }
 
-    public function saveDisinfectant() {
-        Disinfectant::saveItem($this->id_disinfectant, $this->title, $this->value,
-            $this->form_of_facility, $this->active_substance,
-            $this->concentration_of_substance, $this->manufacturer,
-            $this->terms_of_use, $this->place_of_application);
+    /**
+     * @param Disinfectant $disinfectant
+     */
+    public function fillThis($disinfectant)
+    {
+        $this->idDisinfectant = $disinfectant->getId();
+        $this->value = $disinfectant->getValue();
+        $this->title = $disinfectant->getDescription();
+        $this->formOfFacility = $disinfectant->getFormOfFacility();
+        $this->activeSubstance = $disinfectant->getActiveSubstance();
+        $this->concentrationOfSubstance = $disinfectant->getConcentrationOfSubstance();
+        $this->manufacturer = $disinfectant->getManufacturer();
+        $this->termsOfUse = $disinfectant->getTermsOfUse();
+        $this->placeOfApplication = $disinfectant->getPlaceOfApplication();
     }
 
-    public function addDisinfectant() {
-        Disinfectant::addItem($this->title, $this->value, $this->form_of_facility, $this->active_substance,
-            $this->concentration_of_substance, $this->manufacturer,
-            $this->terms_of_use, $this->place_of_application);
+    /**
+     * @param $id
+     */
+    public function saveDisinfectant($id)
+    {
+        $disinfectant = $this->fillDisinfectant();
+        $disinfectant->setId($id);
+        $this->disinfectantService->saveDisinfectant($disinfectant);
     }
 
+    /**
+     *
+     */
+    public function addDisinfectant()
+    {
+        $this->disinfectantService->addDisinfectant($this->fillDisinfectant());
+    }
+
+    /**
+     * @return Disinfectant
+     */
+    public function fillDisinfectant()
+    {
+        $disinfectant = (new Disinfectant())
+            ->setId($this->idDisinfectant)
+            ->setValue($this->value)
+            ->setDescription($this->title)
+            ->setFromOfFacility($this->formOfFacility)
+            ->setActiveSubstance($this->activeSubstance)
+            ->setConcentrationOfSubstance($this->concentrationOfSubstance)
+            ->setManufacturer($this->manufacturer)
+            ->setTermsOfUse($this->termsOfUse)
+            ->setPlaceOfApplication($this->placeOfApplication);
+
+        return $disinfectant;
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function attributeLabels()
     {
         return [

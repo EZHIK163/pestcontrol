@@ -4,10 +4,11 @@ namespace app\components;
 use Ghunti\HighchartsPHP\Highchart;
 use yii\base\Widget;
 
-class GraphWidget extends Widget {
-
+class GraphWidget extends Widget
+{
     public $data;
-    public function run() {
+    public function run()
+    {
         $chart = new Highchart();
         $chart->title->text = 'Monthly Average Temperature';
         $chart->title->x = -20;

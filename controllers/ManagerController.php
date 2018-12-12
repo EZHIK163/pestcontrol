@@ -1,19 +1,23 @@
 <?php
 namespace app\controllers;
 
-use app\entities\Disinfector;
-use app\entities\Events;
-use app\entities\FileCustomer;
+use app\entities\DisinfectorRecord;
+use app\entities\EventRecord;
+use app\entities\FileCustomerRecord;
 use app\models\customer\ManageEventForm;
 use app\models\customer\ManageEventsForm;
 use app\models\customer\ManagePointForm;
 use app\models\customer\ManagePointsForm;
-use app\entities\Points;
-use app\entities\PointStatus;
+use app\entities\PointRecord;
+use app\entities\PointStatusRecord;
 use app\models\tools\Tools;
 use app\models\user\User;
 use app\models\widget\Widget;
 use app\services\CustomerService;
+use app\services\DisinfectorService;
+use app\services\EventService;
+use app\services\FileCustomerService;
+use app\services\PointService;
 use InvalidArgumentException;
 use Yii;
 use yii\base\Module;
@@ -29,6 +33,11 @@ use yii\web\Response;
 class ManagerController extends Controller
 {
     private $customerService;
+    private $disinfectorService;
+    private $eventService;
+    private $manageEventForm;
+    private $pointService;
+    private $fileCustomerService;
 
     /**
      * {@inheritdoc}
@@ -48,15 +57,30 @@ class ManagerController extends Controller
      * @param $id
      * @param Module $module
      * @param CustomerService $customerService
+     * @param DisinfectorService $disinfectorService
+     * @param EventService $eventService
+     * @param ManageEventForm $manageEventForm
+     * @param PointService $pointService
+     * @param FileCustomerService $fileCustomerService
      * @param array $config
      */
     public function __construct(
         $id,
         Module $module,
         CustomerService $customerService,
+        DisinfectorService $disinfectorService,
+        EventService $eventService,
+        ManageEventForm $manageEventForm,
+        PointService $pointService,
+        FileCustomerService $fileCustomerService,
         array $config = []
     ) {
         $this->customerService = $customerService;
+        $this->disinfectorService = $disinfectorService;
+        $this->eventService = $eventService;
+        $this->manageEventForm = $manageEventForm;
+        $this->pointService = $pointService;
+        $this->fileCustomerService = $fileCustomerService;
         parent::__construct($id, $module, $config);
     }
 
@@ -64,18 +88,18 @@ class ManagerController extends Controller
      * @param null $version
      * @return array
      */
-    public function actionNewPoint($version = null)
+    public function actionNewPoint()
     {
-        $code_company = Yii::$app->request->post('company');
-        $id_disinfector = Yii::$app->request->post('executor');
-        $id_external = Yii::$app->request->post('pointNum');
-        $id_point_status = Yii::$app->request->post('pointProp');
+        $codeCompany = Yii::$app->request->post('company');
+        $idDisinfector = Yii::$app->request->post('executor');
+        $idInternal = Yii::$app->request->post('pointNum');
+        $idPointStatus = Yii::$app->request->post('pointProp');
 
-        $id_point_status++;
+        $idPointStatus++;
 
         Yii::$app->response->format = Response::FORMAT_JSON;
 
-        Events::addEvent($code_company, $id_disinfector, $id_external, $id_point_status);
+        $this->eventService->addEventFromOldAndroidApplication($codeCompany, $idDisinfector, $idInternal, $idPointStatus);
 
         $my_data = [
             'success'   => 1,
@@ -97,7 +121,7 @@ class ManagerController extends Controller
 
         Yii::$app->response->format = Response::FORMAT_JSON;
 
-        Events::addEvent2($id_company, $id_desinector, $id_point, $id_status, $count);
+        $this->eventService->addEventFromNewAndroidApplication($id_company, $id_desinector, $id_point, $id_status, $count);
 
         $my_data = [
             'status'   => true
@@ -112,7 +136,7 @@ class ManagerController extends Controller
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
-        $statuses = PointStatus::getStatusesForApplication();
+        $statuses = $this->pointService->getStatusesForApplication();
 
         $my_data = [
             'statuses'   => $statuses
@@ -139,7 +163,7 @@ class ManagerController extends Controller
             throw new \yii\base\InvalidArgumentException();
         }
 
-        FileCustomer::savePoints($id_file_customer, $points);
+        $this->pointService->savePoints($id_file_customer, $points);
 
         $data = ['status'   => true];
         Yii::$app->response->format = Response::FORMAT_JSON;
@@ -171,7 +195,7 @@ class ManagerController extends Controller
 
         $customers = $this->customerService->getCustomerForDropDownList();
 
-        $points = Points::getPointsForManager($id_customer);
+        $points = $this->pointService->getPointsForManager($id_customer);
         $data_provider = Tools::wrapIntoDataProvider($points);
         return $this->render('manage-points', compact('data_provider', 'model', 'customers'));
     }
@@ -187,15 +211,23 @@ class ManagerController extends Controller
             throw new InvalidArgumentException();
         }
 
-        $model = new ManagePointForm($id_point);
+        $model = new ManagePointForm();
+        $point = $this->pointService->getItemForEditing($id_point);
+        $model->fillThis($point);
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $model->savePoint();
+            $this->pointService->saveItem(
+                $model->id_point,
+                $model->x_coordinate,
+                $model->y_coordinate,
+                $model->title,
+                $model->id_scheme_point_control
+            );
         }
 
-        $id_customer = Points::getIdCustomerPoint($id_point);
+        $idCustomer = $this->pointService->getIdCustomerPoint($id_point);
 
-        $scheme_point_control = FileCustomer::getSchemePointControlForDropDownList($id_customer);
+        $scheme_point_control = $this->fileCustomerService->getSchemePointControlForDropDownList($idCustomer);
 
         return $this->render('manage-point', compact('scheme_point_control', 'model'));
     }
@@ -207,7 +239,7 @@ class ManagerController extends Controller
     {
         $id = Yii::$app->request->get('id');
         if (isset($id)) {
-            Points::deletePoint($id);
+            $this->pointService->deletePoint($id);
             $this->redirect('manage-points');
         }
     }
@@ -226,7 +258,7 @@ class ManagerController extends Controller
 
         $customers = $this->customerService->getCustomerForDropDownList();
 
-        $points = Events::getEventsForManager($id_customer);
+        $points = $this->eventService->getEventsForManager($id_customer);
 
         $data_provider = Tools::wrapIntoDataProvider($points);
         return $this->render('manage-events', compact('data_provider', 'model', 'customers'));
@@ -238,10 +270,11 @@ class ManagerController extends Controller
     public function actionDeleteEvent()
     {
         $id = Yii::$app->request->get('id');
-        if (isset($id)) {
-            Events::deleteEvent($id);
-            $this->redirect('manage-events');
+        if (!isset($id)) {
+            throw new InvalidArgumentException();
         }
+        $this->eventService->deleteEvent($id);
+        $this->redirect('manage-events');
     }
 
     /**
@@ -255,15 +288,18 @@ class ManagerController extends Controller
             throw new InvalidArgumentException();
         }
 
-        $model = new ManageEventForm($id);
+        $model = $this->manageEventForm;
+
+        $event = $this->eventService->getItemForEditing($id);
+        $model->fillThis($event);
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $model->saveEvent();
+            $this->eventService->saveItem($model->id_event, $model->id_point_status);
         }
 
-        $point_status = PointStatus::getPointStatusesForDropDownList();
+        $point_status = $this->pointService->getPointStatusesForDropDownList();
 
-        return $this->render('manage-event', compact( 'model', 'point_status'));
+        return $this->render('manage-event', compact('model', 'point_status'));
     }
 
     /**
@@ -271,9 +307,9 @@ class ManagerController extends Controller
      */
     public function actionManageDisinfectors()
     {
-        $disinfectors = Disinfector::getAllForManager();
-
+        $disinfectors = $this->disinfectorService->getAllForManager();
         $data_provider = Tools::wrapIntoDataProvider($disinfectors);
+
         return $this->render('manage-disinfectors', compact('data_provider'));
     }
 
@@ -291,7 +327,7 @@ class ManagerController extends Controller
                         'allow'     => true
                     ],
                     [
-                        'actions'=> ['get-points-on-schema-point-control','save-point', 'new-point',
+                        'actions'=> ['save-point', 'new-point',
                             'new-event', 'get-statuses'],
                         'roles'     => [],
                         'allow'     => true
@@ -307,5 +343,4 @@ class ManagerController extends Controller
 
         ];
     }
-
 }

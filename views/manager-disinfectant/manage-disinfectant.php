@@ -38,15 +38,15 @@ $this->title = "Изменение дезсредства"; ?>
                     ->textInput()
                     ->label('Значение'); ?>
 
-                <?php echo $form->field($model, 'form_of_facility')
+                <?php echo $form->field($model, 'formOfFacility')
                     ->textInput()
                     ->label('Форма средства'); ?>
 
-                <?php echo $form->field($model, 'active_substance')
+                <?php echo $form->field($model, 'activeSubstance')
                     ->textInput()
                     ->label('Действующее вещество'); ?>
 
-                <?php echo $form->field($model, 'concentration_of_substance')
+                <?php echo $form->field($model, 'concentrationOfSubstance')
                     ->textInput()
                     ->label('Концетрация вещества'); ?>
 
@@ -54,11 +54,11 @@ $this->title = "Изменение дезсредства"; ?>
                     ->textInput()
                     ->label('Производитель'); ?>
 
-                <?php echo $form->field($model, 'terms_of_use')
+                <?php echo $form->field($model, 'termsOfUse')
                     ->textInput()
                     ->label('Условия применения'); ?>
 
-                <?php echo $form->field($model, 'place_of_application')
+                <?php echo $form->field($model, 'placeOfApplication')
                     ->textInput()
                     ->label('Место применения'); ?>
 

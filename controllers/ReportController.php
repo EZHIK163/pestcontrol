@@ -2,34 +2,45 @@
 namespace app\controllers;
 
 use app\components\MyReadFilter;
-use app\entities\DisinfectantRecord;
-use app\entities\Events;
 use app\services\CustomerService;
+use app\services\ReportService;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\TemplateProcessor;
+use Yii;
 use yii\base\Module;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 
-
+/**
+ * Class ReportController
+ * @package app\controllers
+ */
 class ReportController extends Controller
 {
     private $customerService;
+    private $reportService;
 
     /**
      * ReportController constructor.
      * @param $id
      * @param Module $module
      * @param CustomerService $customerService
+     * @param ReportService $reportService
      * @param array $config
      */
-    public function __construct($id, Module $module, CustomerService $customerService, array $config = [])
-    {
+    public function __construct(
+        $id,
+        Module $module,
+        CustomerService $customerService,
+        ReportService $reportService,
+        array $config = []
+    ) {
         $this->customerService = $customerService;
+        $this->reportService = $reportService;
         parent::__construct($id, $module, $config);
     }
 
@@ -39,23 +50,23 @@ class ReportController extends Controller
      * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
      * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
      */
-    public function actionReportDisinfectantToExcel() {
-
-        $id = \Yii::$app->user->id;
+    public function actionReportDisinfectantToExcel()
+    {
+        $id = Yii::$app->user->id;
         $customer = $this->customerService->getCustomerByIdUser($id);
 
-        $from_datetime = \Yii::$app->request->get('from_datetime');
-        $to_datetime = \Yii::$app->request->get('to_datetime');
+        $from_datetime = Yii::$app->request->get('from_datetime');
+        $to_datetime = Yii::$app->request->get('to_datetime');
 
         //$from_datetime = (new \DateTime($from_datetime))->format('01.01.Y');
         //$to_datetime = (new \DateTime($to_datetime))->format('d.m.Y');;
 
-        $data = DisinfectantRecord::getDataForReport($customer->getId(), $from_datetime, $to_datetime) ;
+        $data = $this->reportService->getDataForFileReport($customer->getId(), $from_datetime, $to_datetime) ;
 
         $filterSubset = new MyReadFilter();
 
         $inputFileType = 'Xlsx';
-        $inputFileName = \Yii::$app->basePath.'/templates/report-disinfectant.xlsx';
+        $inputFileName = Yii::$app->basePath.'/templates/report-disinfectant.xlsx';
 
         $reader = IOFactory::createReader($inputFileType);
 
@@ -82,8 +93,10 @@ class ReportController extends Controller
             $sheet
                 ->setCellValue('D'.$row, $item['form_of_facility']);
             $sheet
-                ->setCellValue('E'.$row,
-                    $item['active_substance'].', '.$item['concentration_of_substance']);
+                ->setCellValue(
+                    'E'.$row,
+                    $item['active_substance'].', '.$item['concentration_of_substance']
+                );
             $sheet
                 ->setCellValue('F'.$row, $item['manufacturer']);
             $sheet
@@ -137,7 +150,7 @@ class ReportController extends Controller
         $name_file = 'Отчет по дезсредствам.xlsx';
 
         $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
-        $writer->save(\Yii::$app->basePath.'/temp/temp.xlsx');
+        $writer->save(Yii::$app->basePath.'/temp/temp.xlsx');
 
         // сбрасываем буфер вывода PHP, чтобы избежать переполнения памяти выделенной под скрипт
         // если этого не сделать файл будет читаться в память полностью!
@@ -145,31 +158,37 @@ class ReportController extends Controller
             ob_end_clean();
         }
 
-        return \Yii::$app->response->sendFile(
-            \Yii::$app->basePath.'/temp/temp.xlsx',
+        return Yii::$app->response->sendFile(
+            Yii::$app->basePath.'/temp/temp.xlsx',
             $name_file,
             ['mimeType'=>'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet']
         );
     }
 
-    public function actionReportDisinfectantToWord() {
-
-        $id = \Yii::$app->user->id;
+    /**
+     * @return \yii\console\Response|\yii\web\Response
+     * @throws \PhpOffice\PhpWord\Exception\CopyFileException
+     * @throws \PhpOffice\PhpWord\Exception\CreateTemporaryFileException
+     * @throws \PhpOffice\PhpWord\Exception\Exception
+     */
+    public function actionReportDisinfectantToWord()
+    {
+        $id = Yii::$app->user->id;
         $customer = $this->customerService->getCustomerByIdUser($id);
 
-        $from_datetime = \Yii::$app->request->get('from_datetime');
-        $to_datetime = \Yii::$app->request->get('to_datetime');
+        $from_datetime = Yii::$app->request->get('from_datetime');
+        $to_datetime = Yii::$app->request->get('to_datetime');
 
-        $data = DisinfectantRecord::getDataForReport($customer->getId(), $from_datetime, $to_datetime) ;
+        $data = $this->reportService->getDataForFileReport($customer->getId(), $from_datetime, $to_datetime) ;
 
         $phpWord = new PhpWord();
 
         $phpWord->getCompatibility()->setOoxmlVersion(14);
         $phpWord->getCompatibility()->setOoxmlVersion(15);
 
-        $templateProcessor = new TemplateProcessor(\Yii::$app->basePath.'/templates/report-disinfectant.docx');
+        $templateProcessor = new TemplateProcessor(Yii::$app->basePath.'/templates/report-disinfectant.docx');
         //$targetFile = \Yii::$app->basePath;
-       // $filename = 'test.docx';
+        // $filename = 'test.docx';
 
         $templateProcessor->setValue('client_name', $customer->getName());
         $templateProcessor->setValue('start_period', $from_datetime);
@@ -179,7 +198,6 @@ class ReportController extends Controller
 
         $index = 1;
         foreach ($data as $disinfectant) {
-
             if (empty($disinfectant['concentration_of_substance'])) {
                 $active_substance_concentration_of_substance = $disinfectant['form_of_facility'];
             } else {
@@ -198,7 +216,7 @@ class ReportController extends Controller
         }
 
         $name_file = 'Отчет по дезсредствам.docx';
-        $templateProcessor->saveAs(\Yii::$app->basePath.'/temp/temp.docx');
+        $templateProcessor->saveAs(Yii::$app->basePath.'/temp/temp.docx');
 
         // сбрасываем буфер вывода PHP, чтобы избежать переполнения памяти выделенной под скрипт
         // если этого не сделать файл будет читаться в память полностью!
@@ -206,27 +224,32 @@ class ReportController extends Controller
             ob_end_clean();
         }
 
-        return \Yii::$app->response->sendFile(
-            \Yii::$app->basePath.'/temp/temp.docx',
+        return Yii::$app->response->sendFile(
+            Yii::$app->basePath.'/temp/temp.docx',
             $name_file,
             ['mimeType'=>'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
         );
-
     }
 
-    public function actionReportPointsToWord() {
-
-        $id = \Yii::$app->user->id;
+    /**
+     * @return \yii\console\Response|\yii\web\Response
+     * @throws \PhpOffice\PhpWord\Exception\CopyFileException
+     * @throws \PhpOffice\PhpWord\Exception\CreateTemporaryFileException
+     * @throws \PhpOffice\PhpWord\Exception\Exception
+     */
+    public function actionReportPointsToWord()
+    {
+        $id = Yii::$app->user->id;
         $customer = $this->customerService->getCustomerByIdUser($id);
 
-        $data = Events::getDataForReport($customer->getId()) ;
+        $data = $this->reportService->getDataForReport($customer->getId()) ;
 
         $phpWord = new PhpWord();
 
         $phpWord->getCompatibility()->setOoxmlVersion(14);
         $phpWord->getCompatibility()->setOoxmlVersion(15);
 
-        $templateProcessor = new TemplateProcessor(\Yii::$app->basePath.'/templates/report-points.docx');
+        $templateProcessor = new TemplateProcessor(Yii::$app->basePath.'/templates/report-points.docx');
 
         $templateProcessor->setValue('client_name', $customer->getName());
 
@@ -266,7 +289,7 @@ class ReportController extends Controller
         }
 
         $name_file = 'Отчет по точкам.docx';
-        $templateProcessor->saveAs(\Yii::$app->basePath.'/temp/temp.docx');
+        $templateProcessor->saveAs(Yii::$app->basePath.'/temp/temp.docx');
 
         // сбрасываем буфер вывода PHP, чтобы избежать переполнения памяти выделенной под скрипт
         // если этого не сделать файл будет читаться в память полностью!
@@ -274,23 +297,28 @@ class ReportController extends Controller
             ob_end_clean();
         }
 
-        return \Yii::$app->response->sendFile(
-            \Yii::$app->basePath.'/temp/temp.docx',
+        return Yii::$app->response->sendFile(
+            Yii::$app->basePath.'/temp/temp.docx',
             $name_file,
             ['mimeType'=>'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
         );
-
     }
 
-    public function actionReportPointsToExcel() {
-
-        $id = \Yii::$app->user->id;
+    /**
+     * @return \yii\console\Response|\yii\web\Response
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
+     */
+    public function actionReportPointsToExcel()
+    {
+        $id = Yii::$app->user->id;
         $customer = $this->customerService->getCustomerByIdUser($id);
 
-        $data = Events::getDataForReport($customer->getId()) ;
+        $data = $this->reportService->getDataForReport($customer->getId()) ;
 
         $inputFileType = 'Xlsx';
-        $inputFileName = \Yii::$app->basePath.'/templates/report-points.xlsx';
+        $inputFileName = Yii::$app->basePath.'/templates/report-points.xlsx';
 
         $reader = IOFactory::createReader($inputFileType);
 
@@ -307,7 +335,6 @@ class ReportController extends Controller
 
         $start_cell = 'A'.$row;
         foreach ($data as $id_external => $points) {
-
             $january = isset($points['01']) ? $points['01'] : '';
             $february = isset($points['02']) ? $points['02'] : '';
             $march = isset($points['03']) ? $points['03'] : '';
@@ -373,7 +400,7 @@ class ReportController extends Controller
         $name_file = 'Отчет по точкам.xlsx';
 
         $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
-        $writer->save(\Yii::$app->basePath.'/temp/temp.xlsx');
+        $writer->save(Yii::$app->basePath.'/temp/temp.xlsx');
 
         // сбрасываем буфер вывода PHP, чтобы избежать переполнения памяти выделенной под скрипт
         // если этого не сделать файл будет читаться в память полностью!
@@ -381,14 +408,17 @@ class ReportController extends Controller
             ob_end_clean();
         }
 
-        return \Yii::$app->response->sendFile(
-            \Yii::$app->basePath.'/temp/temp.xlsx',
+        return Yii::$app->response->sendFile(
+            Yii::$app->basePath.'/temp/temp.xlsx',
             $name_file,
             ['mimeType'=>'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet']
             //['mimeType' => 'application/vnd.ms-excel']
         );
     }
 
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [

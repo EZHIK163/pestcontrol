@@ -4,7 +4,8 @@ namespace app\models\user;
 use app\models\user\UserRecord;
 use yii\base\Model;
 
-class LoginForm extends Model {
+class LoginForm extends Model
+{
     public $username;
     public $password;
     public $rememberMe;
@@ -19,9 +20,11 @@ class LoginForm extends Model {
         ];
     }
 
-    public function validatePassword($attributeName) {
-        if ($this->hasErrors())
+    public function validatePassword($attributeName)
+    {
+        if ($this->hasErrors()) {
             return;
+        }
 
         $user = $this->getUser($this->username);
         if (!($user and $this->isCorrectHash($this->$attributeName, $user->password))) {
@@ -29,29 +32,38 @@ class LoginForm extends Model {
         }
     }
 
-    public function login() {
-        if (!$this->validate())
+    public function login()
+    {
+        if (!$this->validate()) {
             return false;
+        }
 
         $user = $this->getUser($this->username);
-        if (!$user)
+        if (!$user) {
             return false;
-        return \Yii::$app->user->login($user,
-            $this->rememberMe ? 3600 * 24 * 30 : 0);
+        }
+        return \Yii::$app->user->login(
+            $user,
+            $this->rememberMe ? 3600 * 24 * 30 : 0
+        );
     }
 
-    private function getUser($username) {
-        if (!$this->user)
+    private function getUser($username)
+    {
+        if (!$this->user) {
             $this->user = $this->fetchUser($username);
+        }
 
         return $this->user;
     }
 
-    private function fetchUser($username) {
+    private function fetchUser($username)
+    {
         return UserRecord::findOne(compact('username'));
     }
 
-    private function isCorrectHash($plaintext, $hash) {
+    private function isCorrectHash($plaintext, $hash)
+    {
         return \Yii::$app->security->validatePassword($plaintext, $hash);
     }
 }

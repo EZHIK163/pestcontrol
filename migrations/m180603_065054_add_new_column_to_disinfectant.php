@@ -23,8 +23,6 @@ class m180603_065054_add_new_column_to_disinfectant extends Migration
         $this->addColumn('disinfectant', 'terms_of_use', 'string');
 
         $this->addColumn('disinfectant', 'place_of_application', 'string');
-
-
     }
 
     /**

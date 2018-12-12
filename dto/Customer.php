@@ -180,5 +180,4 @@ class Customer
             'contacts'          => $contactsArray
         ];
     }
-
 }

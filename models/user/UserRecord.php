@@ -17,9 +17,8 @@ use yii\web\IdentityInterface;
  * @property string $auth_key
  * @property bool $is_active
  */
-class UserRecord extends ActiveRecord implements IdentityInterface {
-
-
+class UserRecord extends ActiveRecord implements IdentityInterface
+{
     public static function tableName()
     {
         return 'auth.users';
@@ -121,12 +120,14 @@ class UserRecord extends ActiveRecord implements IdentityInterface {
         ];
     }
 
-    public static function getUsers() {
+    public static function getUsers()
+    {
         return UserRecord::find()
             ->where(['is_active'    => true])
             ->all();
     }
-    public static function getUsersForAdmin() {
+    public static function getUsersForAdmin()
+    {
         $users = self::getUsers();
         $users_with_customer = [];
         $rbac = \Yii::$app->authManager;
@@ -143,33 +144,14 @@ class UserRecord extends ActiveRecord implements IdentityInterface {
         return $users_with_customer;
     }
 
-    public static function getUsersForDropDownList() {
+    public static function getUsersForDropDownList()
+    {
         $users = self::getUsers();
         return ArrayHelper::map($users, 'id', 'username');
     }
-//    public function getUserById($id) {
-//        $user = $this->findOne($id);
-//        $this->username = $user->username;
-//        $rbac = \Yii::$app->authManager;
-//        $role = $rbac->getRoleByUser($user->id)->name;
-//        $this->role = $role;
-//        $id_customer = isset($user->customer->id) ? $user->customer->id : null;
-//        $this->id_customer = $id_customer;
-//        /*$users_with_customer = [];
-//        $rbac = \Yii::$app->authManager;
-//        $customer = isset($user->customer->name) ? $user->customer->name : '';
-//        $role = $rbac->getRoleByUser($user->id)->description;
-//        $users_with_customer [] = [
-//            'id'        => $user->id,
-//            'username'  => $user->username,
-//            'customer'  => $customer,
-//            'role'      => $role
-//        ];
-//        return $users_with_customer;*/
-//        return $user;
-//    }
 
-    public static function getUserById($id) {
+    public static function getUserById($id)
+    {
         $user = UserRecord::findOne($id);
         return $user;
     }
@@ -179,13 +161,4 @@ class UserRecord extends ActiveRecord implements IdentityInterface {
     {
         return $this->hasOne(CustomerRecord::class, ['id_user_owner' => 'id']);
     }
-
-
-
-    public static function deleteUser($id) {
-        CustomerRecord::clearCustomerOnIdOwner($id);
-        $user = UserRecord::findOne($id);
-        $user->delete();
-    }
-
 }

@@ -35,10 +35,12 @@ $this->title = "Добавления клиента"; ?>
                     ->label('Введите наименование клиента'); ?>
 
                 <?php echo $form->field($model, 'id_owner')
-                ->dropDownList($users,
+                ->dropDownList(
+                    $users,
                     [
                         'prompt' => 'Выберите пользователя владельца'
-                    ]); ?>
+                    ]
+                ); ?>
                 <?php
                 echo 'Контакты<br/>';
                 echo $form->field($model, 'contacts')->widget(MultipleInput::class, [

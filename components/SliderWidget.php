@@ -3,8 +3,10 @@ namespace app\components;
 
 use yii\base\Widget;
 
-class SliderWidget extends Widget {
-    public function run() {
+class SliderWidget extends Widget
+{
+    public function run()
+    {
         return '<nav class="navigation" role="navigation">
             <div class="navbar pull-left">
                 <a class="btn btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">

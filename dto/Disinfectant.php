@@ -155,7 +155,7 @@ class Disinfectant
     /**
      * @return string
      */
-    public function getFromOfFacility()
+    public function getFormOfFacility()
     {
         return $this->fromOfFacility;
     }
@@ -274,13 +274,14 @@ class Disinfectant
         return [
             'id'                            => $this->id,
             'description'                   => $this->description,
-            'value'                         => $this->value,
+            'value'                         => (float)$this->value,
             'from_of_facility'              => $this->fromOfFacility,
             'active_substance'              => $this->activeSubstance,
             'concentration_of_substance'    => $this->concentrationOfSubstance,
             'manufacturer'                  => $this->manufacturer,
             'terms_of_use'                  => $this->termsOfUse,
-            'place_of_application'          => $this->placeOfApplication
+            'place_of_application'          => $this->placeOfApplication,
+            'code'                          => $this->getCode()
         ];
     }
 }

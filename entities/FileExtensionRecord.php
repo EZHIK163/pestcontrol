@@ -1,8 +1,10 @@
 <?php
 
-namespace app\models\file;
+namespace app\entities;
 
-use Yii;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "files.extension".
@@ -16,8 +18,10 @@ use Yii;
  * @property int $created_by
  * @property int $updated_at
  * @property int $updated_by
+ *
+ * @property ExtensionTypeRecord $type
  */
-class Extension extends \yii\db\ActiveRecord
+class FileExtensionRecord extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -37,9 +41,7 @@ class Extension extends \yii\db\ActiveRecord
             [['id_type', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'default', 'value' => null],
             [['id_type', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
             [['description', 'extension'], 'string', 'max' => 255],
-            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\user\UserRecord::class, 'targetAttribute' => ['created_by' => 'id']],
-            [['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\user\UserRecord::class, 'targetAttribute' => ['updated_by' => 'id']],
-            [['id_type'], 'exist', 'skipOnError' => true, 'targetClass' => Types::class, 'targetAttribute' => ['id_type' => 'id']],
+            [['id_type'], 'exist', 'skipOnError' => true, 'targetClass' => ExtensionTypeRecord::class, 'targetAttribute' => ['id_type' => 'id']],
         ];
     }
 
@@ -49,28 +51,34 @@ class Extension extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'is_active' => 'Is Active',
-            'description' => 'Description',
-            'extension' => 'Extension',
-            'id_type' => 'Id Type',
-            'created_at' => 'Created At',
-            'created_by' => 'Created By',
-            'updated_at' => 'Updated At',
-            'updated_by' => 'Updated By',
+            'id'            => 'ID',
+            'is_active'     => 'Is Active',
+            'description'   => 'Description',
+            'extension'     => 'Extension',
+            'id_type'       => 'Id Type',
+            'created_at'    => 'Created At',
+            'created_by'    => 'Created By',
+            'updated_at'    => 'Updated At',
+            'updated_by'    => 'Updated By',
         ];
     }
 
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [
-            'timestamp' =>  \yii\behaviors\TimestampBehavior::class,
-            'blame'     => \yii\behaviors\BlameableBehavior::class
+            'timestamp' =>  TimestampBehavior::class,
+            'blame'     => BlameableBehavior::class
         ];
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getType()
     {
-        return $this->hasOne(Types::class, ['id' => 'id_type']);
+        return $this->hasOne(ExtensionTypeRecord::class, ['id' => 'id_type']);
     }
 }

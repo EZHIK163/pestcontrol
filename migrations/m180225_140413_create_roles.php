@@ -55,19 +55,23 @@ class m180225_140413_create_roles extends Migration
         $user->password = 'gg15hj';
         $user->save();
 
-        $rbac->assign($admin,
+        $rbac->assign(
+            $admin,
             UserRecord::findOne(['username'    => 'admin'])->id
         );
 
-        $rbac->assign($manager,
+        $rbac->assign(
+            $manager,
             UserRecord::findOne(['username'    => 'manager'])->id
         );
 
-        $rbac->assign($customer,
+        $rbac->assign(
+            $customer,
             UserRecord::findOne(['username'    => 'customer'])->id
         );
 
-        $rbac->assign($customer,
+        $rbac->assign(
+            $customer,
             UserRecord::findOne(['username'    => 'PepsiCo_Sam'])->id
         );
 

@@ -4,9 +4,10 @@ namespace app\models\widget;
 
 use stdClass;
 
-class Widget {
-
-    public static function getWidgetsForAccount() {
+class Widget
+{
+    public static function getWidgetsForAccount()
+    {
         $widget = self::getGeneralWidget();
         $widget_report = self::getReportWidget();
         $widget_admin = self::getAdminWidget();
@@ -14,7 +15,8 @@ class Widget {
         return compact('widget', 'widget_report', 'widget_admin', 'widget_manager');
     }
 
-    public static function getSiteWidget() {
+    public static function getSiteWidget()
+    {
         $widget = new stdClass();
         $widget->title = "Основное меню";
         $widget->class_li = "item";
@@ -33,7 +35,8 @@ class Widget {
         return $widget;
     }
 
-    private static function getManagerWidget() {
+    private static function getManagerWidget()
+    {
         $widget_manager = new stdClass();
         if (\Yii::$app->user->can('manager')) {
             $widget_manager->title = "Менеджер";
@@ -89,7 +92,8 @@ class Widget {
         return $widget_manager;
     }
 
-    private static function getAdminWidget() {
+    private static function getAdminWidget()
+    {
         $widget_admin = new stdClass();
         if (\Yii::$app->user->can('admin')) {
             $widget_admin->title = "Админка";
@@ -105,7 +109,8 @@ class Widget {
         return $widget_admin;
     }
 
-    private static function getReportWidget() {
+    private static function getReportWidget()
+    {
         $widget_report = new stdClass();
         $widget_report->title = "Меню отчетности";
         $widget_report->class_li = "item";
@@ -152,7 +157,8 @@ class Widget {
         return $widget_report;
     }
 
-    private static function getGeneralWidget() {
+    private static function getGeneralWidget()
+    {
         $widget = new stdClass();
         $widget->title = "Основное меню";
         $widget->class_li = "item";
@@ -194,5 +200,4 @@ class Widget {
 
         return $widget;
     }
-
 }

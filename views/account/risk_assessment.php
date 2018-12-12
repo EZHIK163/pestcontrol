@@ -30,7 +30,8 @@ $this->title = "Оценка рисков по точкам контроля {$n
                         <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
                         <div class="datepicker" style="display: flex; text-align: center; justify-content: space-around;">
                         <?= $form->field($model, 'date_from')->widget(
-                            DatePicker::class, [
+                            DatePicker::class,
+    [
                             // inline too, not bad
                             'inline' => true,
                             'language'  => 'ru',
@@ -40,10 +41,12 @@ $this->title = "Оценка рисков по точкам контроля {$n
                                 'autoclose' => true,
                                 'format' => 'dd.mm.yyyy',
                             ]
-                        ]);?>
+                        ]
+);?>
 
                             <?= $form->field($model, 'date_to')->widget(
-                                DatePicker::class, [
+                                DatePicker::class,
+                            [
                                 // inline too, not bad
                                 'inline' => true,
                                 'language'  => 'ru',
@@ -53,14 +56,15 @@ $this->title = "Оценка рисков по точкам контроля {$n
                                     'autoclose' => true,
                                     'format' => 'dd.mm.yyyy',
                                 ]
-                            ]);?>
+                            ]
+                        );?>
                         </div>
                         <button>Обновить</button>
 
                         <?php ActiveForm::end() ?>
 
                         <?= GridView::widget([
-                            'dataProvider' => $data_provider_green,
+                            'dataProvider' => $dataProviderGreen,
                             'columns' => [
                                 [
                                     'attribute' => 'id_external',
@@ -70,7 +74,7 @@ $this->title = "Оценка рисков по точкам контроля {$n
                         ]); ?>
 
                         <?= GridView::widget([
-                            'dataProvider' => $data_provider_red,
+                            'dataProvider' => $dataProviderRed,
                             'columns' => [
                                 [
                                     'attribute' => 'id_external',

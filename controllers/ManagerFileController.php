@@ -1,8 +1,6 @@
 <?php
 namespace app\controllers;
 
-use app\entities\FileCustomer;
-use app\entities\FileCustomerType;
 use app\models\customer\SearchForm;
 use app\models\file\Files;
 use app\models\file\UploadForm;
@@ -10,6 +8,8 @@ use app\models\tools\Tools;
 use app\models\user\User;
 use app\models\widget\Widget;
 use app\services\CustomerService;
+use app\services\FileCustomerService;
+use app\services\FileService;
 use InvalidArgumentException;
 use Yii;
 use yii\base\Module;
@@ -25,21 +25,37 @@ use yii\web\UploadedFile;
 class ManagerFileController extends Controller
 {
     private $customerService;
+    private $fileService;
+    private $fileCustomerService;
+    private $uploadForm;
+    private $searchForm;
 
     /**
      * ManagerController constructor.
      * @param $id
      * @param Module $module
      * @param CustomerService $customerService
+     * @param FileService $fileService
+     * @param FileCustomerService $fileCustomerService
+     * @param UploadForm $uploadForm
+     * @param SearchForm $searchForm
      * @param array $config
      */
     public function __construct(
         $id,
         Module $module,
         CustomerService $customerService,
+        FileService $fileService,
+        FileCustomerService $fileCustomerService,
+        UploadForm $uploadForm,
+        SearchForm $searchForm,
         array $config = []
     ) {
         $this->customerService = $customerService;
+        $this->fileService = $fileService;
+        $this->fileCustomerService = $fileCustomerService;
+        $this->uploadForm = $uploadForm;
+        $this->searchForm = $searchForm;
         parent::__construct($id, $module, $config);
     }
 
@@ -48,7 +64,7 @@ class ManagerFileController extends Controller
      */
     public function actionUploadFiles()
     {
-        $model = new UploadForm();
+        $model = $this->uploadForm;
 
         if (Yii::$app->request->isPost) {
             $model->uploadedFiles = UploadedFile::getInstances($model, 'uploadedFiles');
@@ -60,7 +76,7 @@ class ManagerFileController extends Controller
             }
         }
 
-        $file_customer_types = FileCustomerType::getFileCustomerTypesForDropDownList();
+        $file_customer_types = $this->fileCustomerService->getFileCustomerTypesForDropDownList();
 
         $customers = $this->customerService->getCustomerForDropDownList();
 
@@ -72,7 +88,7 @@ class ManagerFileController extends Controller
      */
     public function actionRecommendations()
     {
-        $recommendations = FileCustomer::getRecommendationsForAdmin();
+        $recommendations = $this->fileCustomerService->getRecommendationsForAdmin();
         $data_provider = Tools::wrapIntoDataProvider($recommendations);
         return $this->render('recommendations', compact('data_provider'));
     }
@@ -87,7 +103,7 @@ class ManagerFileController extends Controller
             throw new InvalidArgumentException();
         }
 
-        Files::deleteFile($id);
+        $this->fileService->deleteFile($id);
         $this->redirect('recommendations');
     }
 
@@ -96,7 +112,7 @@ class ManagerFileController extends Controller
      */
     public function actionSchemePointControl()
     {
-        $model = new SearchForm();
+        $model = $this->searchForm;
 
         if (Yii::$app->request->isPost) {
             $model->query = Yii::$app->request->post('SearchForm')['query'];
@@ -122,6 +138,7 @@ class ManagerFileController extends Controller
 
     /**
      * @return array
+     * @throws \Exception
      */
     public function actionGetPointsOnSchemaPointControl()
     {
@@ -136,7 +153,7 @@ class ManagerFileController extends Controller
             throw new InvalidArgumentException();
         }
 
-        $my_data = FileCustomer::getSchemeForEdit($id_file, $is_show_free_points, $date_from, $date_to);
+        $my_data = $this->fileCustomerService->getSchemeForEdit($id_file, $is_show_free_points, $date_from, $date_to);
         Yii::$app->response->format = Response::FORMAT_JSON;
         return $my_data;
     }
@@ -165,9 +182,13 @@ class ManagerFileController extends Controller
                         'roles'     => ['manager'],
                         'allow'     => true
                     ],
+                    [
+                        'actions'=> ['get-points-on-schema-point-control'],
+                        'roles'     => [],
+                        'allow'     => true
+                    ]
                 ]
             ],
         ];
     }
-
 }

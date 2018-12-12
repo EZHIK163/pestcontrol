@@ -22,7 +22,8 @@ class m180227_155122_old_data_to_new_data extends Migration
 
         $this->dropTable('customers');
 
-        $this->createTable('customers',
+        $this->createTable(
+            'customers',
             [
                 'id'            => 'pk',
                 'is_active'     => 'boolean DEFAULT true',
@@ -36,14 +37,29 @@ class m180227_155122_old_data_to_new_data extends Migration
             ]
         );
 
-        $this->addForeignKey('customer_created_by', 'customers',
-            'created_by', 'auth.users', 'id');
+        $this->addForeignKey(
+            'customer_created_by',
+            'customers',
+            'created_by',
+            'auth.users',
+            'id'
+        );
 
-        $this->addForeignKey('customer_updated_by', 'customers',
-            'updated_by', 'auth.users', 'id');
+        $this->addForeignKey(
+            'customer_updated_by',
+            'customers',
+            'updated_by',
+            'auth.users',
+            'id'
+        );
 
-        $this->addForeignKey('customer_id_user_owner', 'customers',
-            'id_user_owner', 'auth.users', 'id');
+        $this->addForeignKey(
+            'customer_id_user_owner',
+            'customers',
+            'id_user_owner',
+            'auth.users',
+            'id'
+        );
 
         $sql = "
         SELECT * 
@@ -68,7 +84,8 @@ class m180227_155122_old_data_to_new_data extends Migration
             ->query();
         }
 
-        $this->createTable('disinfectors',
+        $this->createTable(
+            'disinfectors',
             [
                 'id'            => 'pk',
                 'is_active'     => 'boolean DEFAULT true',
@@ -81,11 +98,21 @@ class m180227_155122_old_data_to_new_data extends Migration
             ]
         );
 
-        $this->addForeignKey('disinfector_created_by', 'disinfectors',
-            'created_by', 'auth.users', 'id');
+        $this->addForeignKey(
+            'disinfector_created_by',
+            'disinfectors',
+            'created_by',
+            'auth.users',
+            'id'
+        );
 
-        $this->addForeignKey('disinfector_updated_by', 'disinfectors',
-            'updated_by', 'auth.users', 'id');
+        $this->addForeignKey(
+            'disinfector_updated_by',
+            'disinfectors',
+            'updated_by',
+            'auth.users',
+            'id'
+        );
 
         $sql = "
         SELECT * 
@@ -110,7 +137,8 @@ class m180227_155122_old_data_to_new_data extends Migration
                 ->query();
         }
 
-        $this->createTable('point_status',
+        $this->createTable(
+            'point_status',
             [
                 'id'            => 'pk',
                 'is_active'     => 'boolean DEFAULT true',
@@ -123,11 +151,21 @@ class m180227_155122_old_data_to_new_data extends Migration
             ]
         );
 
-        $this->addForeignKey('point_status_created_by', 'point_status',
-            'created_by', 'auth.users', 'id');
+        $this->addForeignKey(
+            'point_status_created_by',
+            'point_status',
+            'created_by',
+            'auth.users',
+            'id'
+        );
 
-        $this->addForeignKey('point_status_updated_by', 'point_status',
-            'updated_by', 'auth.users', 'id');
+        $this->addForeignKey(
+            'point_status_updated_by',
+            'point_status',
+            'updated_by',
+            'auth.users',
+            'id'
+        );
 
         $sql = "
         SELECT * 
@@ -142,7 +180,7 @@ class m180227_155122_old_data_to_new_data extends Migration
 
         foreach ($point_status as $point) {
             $updated_at = $created_at = \Yii::$app->formatter->asTimestamp(date('Y-d-m h:i:s'));
-            switch($point['stt_id']) {
+            switch ($point['stt_id']) {
                 case 0:
                     $code = 'not_touch';
                     $description = 'Приманка целая/клеевая подложка чистая';
@@ -170,7 +208,8 @@ class m180227_155122_old_data_to_new_data extends Migration
                 ->query();
         }
 
-        $this->createTable('point_types',
+        $this->createTable(
+            'point_types',
             [
                 'id'            => 'pk',
                 'is_active'     => 'boolean DEFAULT true',
@@ -183,11 +222,21 @@ class m180227_155122_old_data_to_new_data extends Migration
             ]
         );
 
-        $this->addForeignKey('point_types_created_by', 'point_types',
-            'created_by', 'auth.users', 'id');
+        $this->addForeignKey(
+            'point_types_created_by',
+            'point_types',
+            'created_by',
+            'auth.users',
+            'id'
+        );
 
-        $this->addForeignKey('point_types_updated_by', 'point_types',
-            'updated_by', 'auth.users', 'id');
+        $this->addForeignKey(
+            'point_types_updated_by',
+            'point_types',
+            'updated_by',
+            'auth.users',
+            'id'
+        );
 
         $sql = "
         SELECT * 
@@ -202,7 +251,7 @@ class m180227_155122_old_data_to_new_data extends Migration
 
         foreach ($point_types as $type) {
             $updated_at = $created_at = \Yii::$app->formatter->asTimestamp(date('Y-d-m h:i:s'));
-            switch($type['id_pnt_type']) {
+            switch ($type['id_pnt_type']) {
                 case 1:
                     $code = 'uik_type_k';
                     break;
@@ -223,7 +272,8 @@ class m180227_155122_old_data_to_new_data extends Migration
                 ->query();
         }
 
-        $this->createTable('disinfectant',
+        $this->createTable(
+            'disinfectant',
             [
                 'id'            => 'pk',
                 'is_active'     => 'boolean DEFAULT true',
@@ -237,11 +287,21 @@ class m180227_155122_old_data_to_new_data extends Migration
             ]
         );
 
-        $this->addForeignKey('disinfectant_created_by', 'disinfectant',
-            'created_by', 'auth.users', 'id');
+        $this->addForeignKey(
+            'disinfectant_created_by',
+            'disinfectant',
+            'created_by',
+            'auth.users',
+            'id'
+        );
 
-        $this->addForeignKey('disinfectant_updated_by', 'disinfectant',
-            'updated_by', 'auth.users', 'id');
+        $this->addForeignKey(
+            'disinfectant_updated_by',
+            'disinfectant',
+            'updated_by',
+            'auth.users',
+            'id'
+        );
 
         $sql = "
         SELECT * FROM poisoncalc ORDER BY id";
@@ -257,7 +317,7 @@ class m180227_155122_old_data_to_new_data extends Migration
         foreach ($poisoncalc as $poison) {
             $updated_at = $created_at = \Yii::$app->formatter->asTimestamp(date('Y-d-m h:i:s'));
 
-            switch($poison['id']) {
+            switch ($poison['id']) {
                 case 1:
                     $code = 'rattidion';
                     break;
@@ -288,7 +348,8 @@ class m180227_155122_old_data_to_new_data extends Migration
         }
 
 
-        $this->createTable('points',
+        $this->createTable(
+            'points',
             [
                 'id'            => 'pk',
                 'is_active'     => 'boolean DEFAULT true',
@@ -307,16 +368,31 @@ class m180227_155122_old_data_to_new_data extends Migration
             ]
         );
 
-        $this->addForeignKey('points_id_point_status', 'points',
-            'id_point_status', 'point_status', 'id');
+        $this->addForeignKey(
+            'points_id_point_status',
+            'points',
+            'id_point_status',
+            'point_status',
+            'id'
+        );
 
 
 
-        $this->addForeignKey('points_types_created_by', 'points',
-            'created_by', 'auth.users', 'id');
+        $this->addForeignKey(
+            'points_types_created_by',
+            'points',
+            'created_by',
+            'auth.users',
+            'id'
+        );
 
-        $this->addForeignKey('points_types_updated_by', 'points',
-            'updated_by', 'auth.users', 'id');
+        $this->addForeignKey(
+            'points_types_updated_by',
+            'points',
+            'updated_by',
+            'auth.users',
+            'id'
+        );
 
 //        $sql = "
 //        SELECT *
@@ -346,7 +422,8 @@ class m180227_155122_old_data_to_new_data extends Migration
 //                ->query();
 //        }
 
-        $this->createTable('events',
+        $this->createTable(
+            'events',
             [
                 'id'                    => 'pk',
                 'is_active'             => 'boolean DEFAULT true',
@@ -362,23 +439,53 @@ class m180227_155122_old_data_to_new_data extends Migration
             ]
         );
 
-        $this->addForeignKey('events_id_point_status', 'events',
-            'id_point_status', 'point_status', 'id');
+        $this->addForeignKey(
+            'events_id_point_status',
+            'events',
+            'id_point_status',
+            'point_status',
+            'id'
+        );
 
-        $this->addForeignKey('events_id_disinfector', 'events',
-            'id_disinfector', 'disinfectors', 'id');
+        $this->addForeignKey(
+            'events_id_disinfector',
+            'events',
+            'id_disinfector',
+            'disinfectors',
+            'id'
+        );
 
-        $this->addForeignKey('events_id_point', 'events',
-            'id_point', 'points', 'id');
+        $this->addForeignKey(
+            'events_id_point',
+            'events',
+            'id_point',
+            'points',
+            'id'
+        );
 
-        $this->addForeignKey('events_id_customer', 'events',
-            'id_customer', 'customers', 'id');
+        $this->addForeignKey(
+            'events_id_customer',
+            'events',
+            'id_customer',
+            'customers',
+            'id'
+        );
 
-        $this->addForeignKey('events_created_by', 'events',
-            'created_by', 'auth.users', 'id');
+        $this->addForeignKey(
+            'events_created_by',
+            'events',
+            'created_by',
+            'auth.users',
+            'id'
+        );
 
-        $this->addForeignKey('events_updated_by', 'events',
-            'updated_by', 'auth.users', 'id');
+        $this->addForeignKey(
+            'events_updated_by',
+            'events',
+            'updated_by',
+            'auth.users',
+            'id'
+        );
 
 
         $sql_insert = "
@@ -446,7 +553,6 @@ class m180227_155122_old_data_to_new_data extends Migration
      */
     public function safeDown()
     {
-
         $this->dropForeignKey('events_updated_by', 'events');
         $this->dropForeignKey('events_created_by', 'events');
         $this->dropForeignKey('events_id_customer', 'events');

@@ -3,10 +3,11 @@ namespace app\components;
 
 use yii\base\Widget;
 
-class WellMenuWidget extends Widget {
-
+class WellMenuWidget extends Widget
+{
     public $data;
-    public function run() {
+    public function run()
+    {
         if (!isset($this->data->items)) {
             return;
         }

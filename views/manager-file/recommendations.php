@@ -49,20 +49,26 @@ $this->title = "Управление рекомендациями"; ?>
                                 [
                                     'header'    =>  'Действия',
                                     'format'    => 'raw',
-                                    'value'     => function ($model, $key, $index, $column){
-                                            return
+                                    'value'     => function ($model, $key, $index, $column) {
+                                        return
                                             //Html::tag('a', 'Изменить',
                                             //    ['href'  => 'edit-recommendation?id='.$model['id_file_customer']])
                                             //.'<br/>'.
-                                            Html::tag('a', 'Удалить',
-                                                ['href'  => 'delete-recommendation?id='.$model['id_file_customer']])
+                                            Html::tag(
+                                                'a',
+                                                'Удалить',
+                                                ['href'  => 'delete-recommendation?id='.$model['id_file_customer']]
+                                            )
                                                 .'<br/>'.
-                                            Html::tag('a', 'Скачать',
+                                            Html::tag(
+                                                'a',
+                                                'Скачать',
                                                 [
                                                     'href'      => $model['url'],
                                                     'target'    => '_blank',
                                                     'data-pjax'=>"0"
-                                                ]);
+                                                ]
+                                            );
                                     }
                                 ],
                             ],

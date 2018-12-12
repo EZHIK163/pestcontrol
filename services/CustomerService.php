@@ -48,7 +48,7 @@ class CustomerService
             $customer = $customer->toArray();
         }
 
-        $array = ArrayHelper::map($customers,'id','name');
+        $array = ArrayHelper::map($customers, 'id', 'name');
 
         return $array;
     }
@@ -72,7 +72,7 @@ class CustomerService
         $customers = $this->repository->all();
 
         foreach ($customers as $customer) {
-            if ($customer->getIdUserOwner() === $idUser) {
+            if ($customer->getIdUserOwner() == $idUser) {
                 $customer->setIdUserOwner(null);
                 $this->repository->save($customer);
             }
@@ -279,7 +279,8 @@ class CustomerService
         $this->repository->add($customer);
     }
 
-    public function getIdCustomerByCode($code) {
+    public function getIdCustomerByCode($code)
+    {
         $customer = self::findOne(compact('code'));
         return $customer->id;
     }

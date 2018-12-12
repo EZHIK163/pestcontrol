@@ -84,7 +84,7 @@ async function getData(id_scheme_point_control, is_show_free_points) {
 
      console.log('tut');
 
-     const response = await axios.get(base_url + '/manager/get-points-on-schema-point-control/?' + params);
+     const response = await axios.get(base_url + '/manager-file/get-points-on-schema-point-control/?' + params);
      //console.log(await response.data);
      //return response.data;
     return response.data;
@@ -144,7 +144,7 @@ async function getDataWithMark(id_scheme_point_control, date_from, date_to) {
         date_to: date_to
     });
 
-    const response = await axios.get(base_url + '/manager/get-points-on-schema-point-control/?' + params);
+    const response = await axios.get(base_url + '/manager-file/get-points-on-schema-point-control/?' + params);
 
     return response.data;
 }

@@ -4,11 +4,11 @@ namespace app\repositories;
 use app\dto\Contact;
 use app\dto\Customer;
 use app\dto\Disinfectant;
-use app\entities\CustomerContact;
-use app\entities\CustomerDisinfectant;
+use app\entities\CustomerContactRecord;
+use app\entities\CustomerDisinfectantRecord;
 use app\entities\CustomerRecord;
-use app\entities\DisinfectantRecord;
 use app\exceptions\CustomerNotFound;
+use RuntimeException;
 
 /**
  * Class CustomerRepository
@@ -16,6 +16,16 @@ use app\exceptions\CustomerNotFound;
  */
 class CustomerRepository implements CustomerRepositoryInterface
 {
+    private $disinfectantRepository;
+
+    /**
+     * CustomerRepository constructor.
+     * @param DisinfectantRepositoryInterface $disinfectantRepository
+     */
+    public function __construct(DisinfectantRepositoryInterface $disinfectantRepository)
+    {
+        $this->disinfectantRepository = $disinfectantRepository;
+    }
 
     /**
      * @param $id
@@ -93,7 +103,7 @@ class CustomerRepository implements CustomerRepositoryInterface
         $customerRecord->is_active = false;
 
         if (!$customerRecord->update()) {
-            throw new \RuntimeException();
+            throw new RuntimeException();
         }
 
         return $customer;
@@ -172,7 +182,7 @@ class CustomerRepository implements CustomerRepositoryInterface
 
         $disinfectants = [];
         foreach ($disinfectantRecords as $disinfectantRecord) {
-            $disinfectants [] = $this->fillDisinfectant($disinfectantRecord);
+            $disinfectants [] = $this->disinfectantRepository->get($disinfectantRecord->id);
         }
 
         $userOwnerRecord = $customerRecord->owner;
@@ -209,9 +219,9 @@ class CustomerRepository implements CustomerRepositoryInterface
 
         foreach ($disinfectants as &$disinfectant) {
             if ($disinfectant->isActive() === true) {
-                $this->fillAndSaveDisinfectantRecord($customer, $disinfectant);
+                $this->fillAndSaveCustomerDisinfectantRecord($customer, $disinfectant);
             } else {
-                $this->removeDisinfectantRecord($customer, $disinfectant);
+                $this->removeCustomerDisinfectantRecord($customer, $disinfectant);
                 unset($disinfectant);
             }
         }
@@ -222,38 +232,16 @@ class CustomerRepository implements CustomerRepositoryInterface
             if ($contact->isActive() === true) {
                 $this->fillAndSaveCustomerContactRecord($customer, $contact);
             } else {
-                $this->removeContactRecord($contact);
+                $this->removeCustomerContactRecord($contact);
                 unset($contact);
             }
-
         }
 
         return $customerRecord;
     }
 
     /**
-     * @param DisinfectantRecord $disinfectantRecord
-     * @return Disinfectant
-     */
-    private function fillDisinfectant($disinfectantRecord)
-    {
-        $disinfectant = (new Disinfectant())
-            ->setId($disinfectantRecord->id)
-            ->setCode($disinfectantRecord->code)
-            ->setDescription($disinfectantRecord->description)
-            ->setActiveSubstance($disinfectantRecord->active_substance)
-            ->setConcentrationOfSubstance($disinfectantRecord->concentration_of_substance)
-            ->setFromOfFacility($disinfectantRecord->form_of_facility)
-            ->setManufacturer($disinfectantRecord->manufacturer)
-            ->setPlaceOfApplication($disinfectantRecord->place_of_application)
-            ->setTermsOfUse($disinfectantRecord->terms_of_use)
-            ->setValue($disinfectantRecord->value);
-
-        return $disinfectant;
-    }
-
-    /**
-     * @param CustomerContact $contactRecord
+     * @param CustomerContactRecord $contactRecord
      * @return Contact
      */
     private function fillContacts($contactRecord)
@@ -274,17 +262,16 @@ class CustomerRepository implements CustomerRepositoryInterface
     /**
      * @param Customer $customer
      * @param Disinfectant $disinfectant
-     * @return Disinfectant
      */
-    private function fillAndSaveDisinfectantRecord($customer, $disinfectant)
+    private function fillAndSaveCustomerDisinfectantRecord($customer, $disinfectant)
     {
-        $customerDisinfectant = CustomerDisinfectant::findOne([
+        $customerDisinfectant = CustomerDisinfectantRecord::findOne([
             'id_customer'       => $customer->getId(),
             'id_disinfectant'   => $disinfectant->getId()
         ]);
 
         if (!$customerDisinfectant) {
-            $customerDisinfectant = new CustomerDisinfectant();
+            $customerDisinfectant = new CustomerDisinfectantRecord();
         }
 
         $customerDisinfectant->id_customer = $customer->getId();
@@ -292,7 +279,7 @@ class CustomerRepository implements CustomerRepositoryInterface
         $customerDisinfectant->is_active = true;
 
         if (!$customerDisinfectant->save()) {
-            throw new \RuntimeException();
+            throw new RuntimeException();
         }
     }
 
@@ -303,10 +290,10 @@ class CustomerRepository implements CustomerRepositoryInterface
      */
     private function fillAndSaveCustomerContactRecord($customer, $contact)
     {
-        $contactRecord = CustomerContact::findOne($contact->getId());
+        $contactRecord = CustomerContactRecord::findOne($contact->getId());
 
         if (!$contactRecord) {
-            $contactRecord = new CustomerContact();
+            $contactRecord = new CustomerContactRecord();
         }
 
         $contactRecord->id_customer = $customer->getId();
@@ -315,7 +302,7 @@ class CustomerRepository implements CustomerRepositoryInterface
         $contactRecord->email = $contact->getEmail();
 
         if (!$contactRecord->save()) {
-            throw new \RuntimeException();
+            throw new RuntimeException();
         }
 
         $contact->setId($contactRecord->id);
@@ -327,9 +314,9 @@ class CustomerRepository implements CustomerRepositoryInterface
      * @param Customer $customer
      * @param Disinfectant $disinfectant
      */
-    private function removeDisinfectantRecord($customer, $disinfectant)
+    private function removeCustomerDisinfectantRecord($customer, $disinfectant)
     {
-        $customerDisinfectant = CustomerDisinfectant::findOne([
+        $customerDisinfectant = CustomerDisinfectantRecord::findOne([
             'id_customer'       => $customer->getId(),
             'id_disinfectant'   => $disinfectant->getId()
         ]);
@@ -342,12 +329,25 @@ class CustomerRepository implements CustomerRepositoryInterface
     /**
      * @param Contact $contact
      */
-    private function removeContactRecord($contact)
+    private function removeCustomerContactRecord($contact)
     {
-        $customerDisinfectant = CustomerContact::findOne($contact->getId());
+        $customerDisinfectant = CustomerContactRecord::findOne($contact->getId());
 
         $customerDisinfectant->is_active = false;
 
         $customerDisinfectant->save();
+    }
+
+    /**
+     * @param $code
+     * @return Customer
+     */
+    public function getByByCode($code)
+    {
+        $customerRecord = CustomerRecord::findOne(compact('code'));
+
+        $customer = $this->fillCustomer($customerRecord);
+
+        return $customer;
     }
 }

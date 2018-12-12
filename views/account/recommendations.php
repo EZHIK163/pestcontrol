@@ -41,12 +41,15 @@ $this->title = "Рекомендации для Заказчика {$name_custom
                                 [
                                     'header'    =>  'Действия',
                                     'format'    => 'html',
-                                    'value'     => function ($model, $key, $index, $column){
+                                    'value'     => function ($model, $key, $index, $column) {
                                         return
-                                            Html::tag('a', 'Скачать',
+                                            Html::tag(
+                                                'a',
+                                                'Скачать',
                                                 [
                                                         'href'      => $model['url'],
-                                                ]);
+                                                ]
+                                            );
                                     }
                                 ],
                             ],

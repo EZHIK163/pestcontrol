@@ -133,5 +133,4 @@ class ManagerCustomerController extends Controller
             ],
         ];
     }
-
 }

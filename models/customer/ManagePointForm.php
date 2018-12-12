@@ -1,10 +1,15 @@
 <?php
 namespace app\models\customer;
 
+use app\dto\Point;
 use yii\base\Model;
 
-class ManagePointForm extends Model {
-
+/**
+ * Class ManagePointForm
+ * @package app\models\customer
+ */
+class ManagePointForm extends Model
+{
     public $id_scheme_point_control;
     public $title;
     public $x_coordinate;
@@ -18,19 +23,16 @@ class ManagePointForm extends Model {
         ];
     }
 
-    function __construct($id_point)
+    /**
+     * @param Point $point
+     */
+    public function fillThis($point)
     {
-        $this->id_point = $id_point;
-        $point = Points::getItemForEditing($id_point);
-        $this->x_coordinate = $point['x_coordinate'];
-        $this->y_coordinate = $point['y_coordinate'];
-        $this->title = $point['title'];
-        $this->id_scheme_point_control = $point['id_file_customer'];
-    }
-
-    public function savePoint() {
-        Points::saveItem($this->id_point, $this->x_coordinate,
-            $this->y_coordinate, $this->title, $this->id_scheme_point_control);
+        $this->id_point = $point->getId();
+        $this->x_coordinate = $point->getXCoordinate();
+        $this->y_coordinate = $point->getYCoordinate();
+        $this->title = $point->getTitle();
+        $this->id_scheme_point_control = $point->getFileCustomer()->getId();
     }
 
     public function attributeLabels()

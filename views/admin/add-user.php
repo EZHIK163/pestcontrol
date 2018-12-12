@@ -37,16 +37,20 @@ $this->title = "Добавления пользователя"; ?>
                     ->passwordInput()
                     ->label('Введите пароль пользователя'); ?>
                 <?php echo $form->field($model, 'role')
-                ->dropDownList($roles,
+                ->dropDownList(
+                    $roles,
                     [
                         'prompt' => 'Выберите роль'
-                    ]); ?>
+                    ]
+                ); ?>
 
                 <?php echo $form->field($model, 'id_customer')
-                ->dropDownList($customers,
+                ->dropDownList(
+                    $customers,
                     [
                     'prompt' => 'Выберите клиента, к которому будет привязн пользователь'
-                    ]); ?>
+                    ]
+                ); ?>
 
                 <?php echo Html::submitButton('Добавить', ['class' => 'btn btn-primary']); ?>
                 <?php ActiveForm::end(); ?>

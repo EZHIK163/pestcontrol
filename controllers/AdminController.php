@@ -21,16 +21,25 @@ class AdminController extends Controller
 {
     private $customerService;
 
+    private $userForm;
+
     /**
      * AdminController constructor.
      * @param $id
      * @param Module $module
      * @param CustomerService $customerService
+     * @param UserForm $userForm
      * @param array $config
      */
-    public function __construct($id, Module $module, CustomerService $customerService, array $config = [])
-    {
+    public function __construct(
+        $id,
+        Module $module,
+        CustomerService $customerService,
+        UserForm $userForm,
+        array $config = []
+    ) {
         $this->customerService = $customerService;
+        $this->userForm = $userForm;
         parent::__construct($id, $module, $config);
     }
 
@@ -49,7 +58,7 @@ class AdminController extends Controller
      */
     public function actionAddUser()
     {
-        $model = new UserForm();
+        $model = $this->userForm;
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $model->addUser();
             $this->redirect('users');
@@ -82,7 +91,7 @@ class AdminController extends Controller
             throw new InvalidArgumentException();
         }
 
-        $model = new UserForm();
+        $model = $this->userForm;
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $model->saveUser();
             $this->redirect('users');
@@ -125,5 +134,4 @@ class AdminController extends Controller
             ]
         ];
     }
-
 }

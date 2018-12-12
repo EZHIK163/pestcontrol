@@ -55,13 +55,27 @@ Baltika_Spb
         $this->updateIds('Alpla_spb', 16, 15);
         $this->updateIds('Baltika_Spb', 17, 16);
 
-        $this->addForeignKey('customer_disinfectant_id_customer', 'customer_disinfectant',
-            'id_customer', 'customers', 'id');
-        $this->addForeignKey('customer_contact_id_file_customer', 'customer_contact',
-            'id_customer', 'customers', 'id');
-        $this->addForeignKey('events_id_customer', 'events',
-            'id_customer', 'customers', 'id');
-
+        $this->addForeignKey(
+            'customer_disinfectant_id_customer',
+            'customer_disinfectant',
+            'id_customer',
+            'customers',
+            'id'
+        );
+        $this->addForeignKey(
+            'customer_contact_id_file_customer',
+            'customer_contact',
+            'id_customer',
+            'customers',
+            'id'
+        );
+        $this->addForeignKey(
+            'events_id_customer',
+            'events',
+            'id_customer',
+            'customers',
+            'id'
+        );
     }
 
     /**
@@ -91,25 +105,48 @@ Baltika_Spb
         $this->updateIds('baltika', 1, 2);
         $this->updateIds('testbase', 0, 1);
 
-        $this->addForeignKey('customer_disinfectant_id_customer', 'customer_disinfectant',
-            'id_customer', 'customers', 'id');
-        $this->addForeignKey('customer_contact_id_file_customer', 'customer_contact',
-            'id_customer', 'customers', 'id');
-        $this->addForeignKey('events_id_customer', 'events',
-            'id_customer', 'customers', 'id');
+        $this->addForeignKey(
+            'customer_disinfectant_id_customer',
+            'customer_disinfectant',
+            'id_customer',
+            'customers',
+            'id'
+        );
+        $this->addForeignKey(
+            'customer_contact_id_file_customer',
+            'customer_contact',
+            'id_customer',
+            'customers',
+            'id'
+        );
+        $this->addForeignKey(
+            'events_id_customer',
+            'events',
+            'id_customer',
+            'customers',
+            'id'
+        );
         return true;
     }
 
-    private function updateIds($code, $idOld, $idNew) {
-        $this->db->createCommand('UPDATE public.customer_contact SET id_customer = :id_new WHERE id_customer = :id_old',
-            ['id_new'    => $idNew, 'id_old'  => $idOld])->execute();
-        $this->db->createCommand('UPDATE public.customer_disinfectant SET id_customer = :id_new WHERE id_customer = :id_old',
-            ['id_new'    => $idNew, 'id_old'  => $idOld])->execute();
-        $this->db->createCommand('UPDATE public.events SET id_customer = :id_new WHERE id_customer = :id_old',
-            ['id_new'    => $idNew, 'id_old'  => $idOld])->execute();
-        $this->db->createCommand('UPDATE public.file_customer SET id_customer = :id_new WHERE id_customer = :id_old',
-            ['id_new'    => $idNew, 'id_old'  => $idOld])->execute();
+    private function updateIds($code, $idOld, $idNew)
+    {
+        $this->db->createCommand(
+            'UPDATE public.customer_contact SET id_customer = :id_new WHERE id_customer = :id_old',
+            ['id_new'    => $idNew, 'id_old'  => $idOld]
+        )->execute();
+        $this->db->createCommand(
+            'UPDATE public.customer_disinfectant SET id_customer = :id_new WHERE id_customer = :id_old',
+            ['id_new'    => $idNew, 'id_old'  => $idOld]
+        )->execute();
+        $this->db->createCommand(
+            'UPDATE public.events SET id_customer = :id_new WHERE id_customer = :id_old',
+            ['id_new'    => $idNew, 'id_old'  => $idOld]
+        )->execute();
+        $this->db->createCommand(
+            'UPDATE public.file_customer SET id_customer = :id_new WHERE id_customer = :id_old',
+            ['id_new'    => $idNew, 'id_old'  => $idOld]
+        )->execute();
         $this->db->createCommand('UPDATE public.customers SET id = :id WHERE code = :code', ['code'    => $code, 'id'  => $idNew])->execute();
     }
-
 }

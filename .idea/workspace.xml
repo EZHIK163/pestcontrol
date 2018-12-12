@@ -2,58 +2,75 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="06996c03-9cbb-43d1-84b5-d89c73097433" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/entities/CustomerRecord.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/manager-customer/add-customer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/entities/CustomerContactRecord.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/entities/DisinfectorRecord.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/pestcontrol.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pestcontrol.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/ui/js/new_my.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/js/new_my.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/ContainerBootstrap.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/ContainerBootstrap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/AuthWidget.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/AuthWidget.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/GraphWidget.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/GraphWidget.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/InteractWidget.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/InteractWidget.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/LoginWidget.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/LoginWidget.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MyPagination.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyPagination.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/MyReadFilter.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/MyReadFilter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SliderWidget.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/SliderWidget.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/WellMenuWidget.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/WellMenuWidget.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/AccountController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/AccountController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/ConsoleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ConsoleController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/ManagerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ManagerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/ManagerCustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ManagerCustomerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/ManagerDisinfectantController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ManagerDisinfectantController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/ManagerFileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ManagerFileController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/ReportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ReportController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/SiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/SiteController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/my_js.js" beforeDir="false" afterPath="$PROJECT_DIR$/dev/my_js.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dto/Customer.php" beforeDir="false" afterPath="$PROJECT_DIR$/dto/Customer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dto/Disinfectant.php" beforeDir="false" afterPath="$PROJECT_DIR$/dto/Disinfectant.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dto/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/dto/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entities/CustomerContact.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/entities/CustomerDisinfectant.php" beforeDir="false" afterPath="$PROJECT_DIR$/entities/CustomerDisinfectantRecord.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entities/CustomerRecord.php" beforeDir="false" afterPath="$PROJECT_DIR$/entities/CustomerRecord.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entities/DisinfectantRecord.php" beforeDir="false" afterPath="$PROJECT_DIR$/entities/DisinfectantRecord.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entities/Disinfector.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/entities/Events.php" beforeDir="false" afterPath="$PROJECT_DIR$/entities/EventRecord.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entities/FileCustomer.php" beforeDir="false" afterPath="$PROJECT_DIR$/entities/FileCustomerRecord.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entities/FileCustomerType.php" beforeDir="false" afterPath="$PROJECT_DIR$/entities/FileCustomerTypeRecord.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entities/PointStatus.php" beforeDir="false" afterPath="$PROJECT_DIR$/entities/PointStatusRecord.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entities/Points.php" beforeDir="false" afterPath="$PROJECT_DIR$/entities/PointRecord.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exceptions/CustomerNotFound.php" beforeDir="false" afterPath="$PROJECT_DIR$/exceptions/CustomerNotFound.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/m180301_046109_add_file_types.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/m180301_046109_add_file_types.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/migrations/m180304_052612_add_file_customer_types.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/m180304_052612_add_file_customer_types.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/migrations/m180509_174118_create_customer_disinfectants.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/m180509_174118_create_customer_disinfectants.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/m180603_070043_fill_new_column_disinfectant.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/m180603_070043_fill_new_column_disinfectant.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/customer/CalendarForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/customer/CalendarForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/customer/Customer.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/customer/CustomerContact.php" beforeDir="false" afterPath="$PROJECT_DIR$/entities/CustomerContact.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/customer/CustomerDisinfectant.php" beforeDir="false" afterPath="$PROJECT_DIR$/entities/CustomerDisinfectant.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/customer/CustomerForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/customer/CustomerForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/customer/Disinfectant.php" beforeDir="false" afterPath="$PROJECT_DIR$/entities/DisinfectantRecord.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/customer/Disinfector.php" beforeDir="false" afterPath="$PROJECT_DIR$/entities/Disinfector.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/customer/Events.php" beforeDir="false" afterPath="$PROJECT_DIR$/entities/Events.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/customer/FileCustomer.php" beforeDir="false" afterPath="$PROJECT_DIR$/entities/FileCustomer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/customer/FileCustomerType.php" beforeDir="false" afterPath="$PROJECT_DIR$/entities/FileCustomerType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/customer/ManageDisinfectantForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/customer/ManageDisinfectantForm.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/customer/ManageDisinfectantsForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/customer/ManageDisinfectantsForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/customer/PointStatus.php" beforeDir="false" afterPath="$PROJECT_DIR$/entities/PointStatus.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/customer/Points.php" beforeDir="false" afterPath="$PROJECT_DIR$/entities/Points.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/customer/ManageEventForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/customer/ManageEventForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/customer/ManageEventsForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/customer/ManageEventsForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/customer/ManagePointForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/customer/ManagePointForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/customer/ManagePointsForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/customer/ManagePointsForm.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/customer/SearchForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/customer/SearchForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/file/Files.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/file/Files.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/file/Extension.php" beforeDir="false" afterPath="$PROJECT_DIR$/entities/FileExtensionRecord.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/file/Files.php" beforeDir="false" afterPath="$PROJECT_DIR$/entities/FileRecord.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/file/Types.php" beforeDir="false" afterPath="$PROJECT_DIR$/entities/ExtensionTypeRecord.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/file/UploadForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/file/UploadForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/service/SynchronizeHistory.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/service/SynchronizeHistory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/tools/Tools.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/tools/Tools.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/user/LoginForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/user/LoginForm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/user/Role.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/user/Role.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/user/UserForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/user/UserForm.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/user/UserRecord.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/user/UserRecord.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/widget/Widget.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/widget/Widget.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/manager/add-customer.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/manager/add-disinfectant.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/manager-disinfectant/add-disinfectant.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/manager/customers.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/manager-customer/customers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/manager/disinfectants.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/manager-disinfectant/disinfectants.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/manager/edit-customer.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/manager-customer/edit-customer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/manager/edit-schema-point-control.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/manager-file/edit-schema-point-control.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/manager/manage-customer-disinfectant.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/manager-disinfectant/manage-customer-disinfectant.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/manager/manage-disinfectant.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/manager-disinfectant/manage-disinfectant.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/manager/manage-disinfectants-on-customers.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/manager-disinfectant/manage-disinfectants-on-customers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/manager/manage-disinfectors.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/manager-disinfectant/manage-disinfectors.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/manager/recommendations.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/manager-file/recommendations.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/manager/scheme-point-control.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/manager-file/scheme-point-control.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/manager/scheme_customer.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/manager-file/scheme_customer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/manager/upload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/manager-file/upload_files.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/CustomerRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/CustomerRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repositories/CustomerRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/CustomerRepositoryInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/CustomerService.php" beforeDir="false" afterPath="$PROJECT_DIR$/services/CustomerService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/MyRbacManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/MyRbacManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/account/general_report.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/account/general_report.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/account/info_on_monitoring.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/account/info_on_monitoring.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/account/risk_assessment.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/account/risk_assessment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/manager-disinfectant/manage-disinfectant.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/manager-disinfectant/manage-disinfectant.php" afterDir="false" />
     </list>
     <list id="c25cd3dc-568b-41ed-87f9-c75f1e47e11e" name="Revert: add all documents" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -103,6 +120,23 @@
         <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="pestcontrol: database" type="162271b6:PgImplModel$Database" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="files: schema" type="983ebcf7:PgImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="pestcontrol" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="pestcontrol: database" type="162271b6:PgImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="files: schema" type="983ebcf7:PgImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="pestcontrol" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="pestcontrol: database" type="162271b6:PgImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="public: schema" type="983ebcf7:PgImplModel$Schema" />
       </path>
       <path>
@@ -119,14 +153,196 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/services/EventService.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="269">
+              <caret line="165" selection-start-line="165" selection-end-line="165" />
+              <folding>
+                <element signature="e#31#49#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dto/Event.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="286">
+              <caret line="236" column="15" selection-start-line="236" selection-start-column="15" selection-end-line="236" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/repositories/EventRepositoryInterface.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="142">
+              <caret line="79" column="51" selection-start-line="79" selection-start-column="20" selection-end-line="79" selection-end-column="51" />
+              <folding>
+                <element signature="e#35#53#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/repositories/EventRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="25">
+              <caret line="322" column="21" selection-start-line="322" selection-start-column="21" selection-end-line="322" selection-end-column="21" />
+              <folding>
+                <element signature="e#35#53#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/AccountController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="287" selection-start-line="287" selection-end-line="287" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="das://06500b1a-0b84-4e14-a399-b12a72d04470/database/pestcontrol/schema/public/table/point_status">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="das://06500b1a-0b84-4e14-a399-b12a72d04470/database/pestcontrol/schema/public/table/events">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" text="id_external = 127">
+                <filter text="id_external = 127" />
+              </filtering>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/BaseYii.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="193">
+              <caret line="297" selection-start-line="297" selection-end-line="297" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/db/ActiveRecord.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="324" selection-start-line="324" selection-end-line="324" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/db/Query.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="193">
+              <caret line="236" selection-start-line="236" selection-end-line="236" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/db/QueryTrait.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="167">
+              <caret line="325" selection-start-line="325" selection-end-line="325" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/db/ActiveQuery.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="40">
+              <caret line="303" column="29" selection-start-line="303" selection-start-column="29" selection-end-line="303" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/repositories/PointRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="184">
+              <caret line="137" column="34" selection-start-line="137" selection-start-column="34" selection-end-line="137" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/ManagerController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="58" column="50" selection-start-line="58" selection-start-column="50" selection-end-line="58" selection-end-column="50" />
+            <state relative-caret-position="329">
+              <caret line="296" column="66" selection-start-line="296" selection-start-column="66" selection-end-line="296" selection-end-column="66" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/ReportController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="363">
+              <caret line="68" column="48" selection-start-line="68" selection-start-column="48" selection-end-line="68" selection-end-column="48" />
               <folding>
-                <element signature="e#35#64#0#PHP" expanded="true" />
+                <element signature="e#34#66#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dto/Customer.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="50" selection-start-line="50" selection-end-line="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/services/ReportService.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="121" column="77" selection-start-line="121" selection-start-column="77" selection-end-line="121" selection-end-column="77" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/services/PointService.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="118" column="50" selection-start-line="118" selection-start-column="50" selection-end-line="118" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dto/Point.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="142">
+              <caret line="174" column="20" selection-start-line="174" selection-start-column="20" selection-end-line="174" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/base/ErrorHandler.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="90" selection-start-line="90" selection-end-line="90" />
             </state>
           </provider>
         </entry>
@@ -142,36 +358,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Менеджер</find>
-      <find>add-cus</find>
-      <find>Delete-Customer</find>
-      <find>Edit-customer</find>
-      <find>getCustomerById</find>
-      <find>CustomerRecord::getCustomerByIdUser($id)</find>
-      <find>CustomerRecord::getCustomerByIdUser($id);</find>
-      <find>getCustomerByIdUser;</find>
-      <find>customer-&gt;</find>
-      <find>getCustomerByIdUser</find>
-      <find>$customer-&gt;</find>
-      <find>customerSe</find>
-      <find>-&gt;customerService</find>
-      <find>getCustomerForDropDownList</find>
-      <find>CustomerRec</find>
-      <find>Upload-Files</find>
-      <find>Recommendations</find>
-      <find>Delete-Recommendation</find>
-      <find>Scheme-Point-Control</find>
-      <find>Edit-Schema-Point-Control</find>
-      <find>Scheme</find>
-      <find>Manage-disinfectants</find>
-      <find>Manage-Disinfectants-On-Customers</find>
-      <find>Manage-Customer-Disinfectant</find>
-      <find>Edit-Disinfectant</find>
-      <find>Add-Disinfectant</find>
-      <find>Disinfectant</find>
-      <find>-&gt;cus</find>
-      <find>CustomerR</find>
-      <find>CustomerRe</find>
+      <find>getRecommendationsForAdmin</find>
+      <find>::</find>
+      <find>addFileCustomer</find>
+      <find>getInfoForDownloadById</find>
+      <find>getSchemePointControlForAdmin</find>
+      <find>getCreatedAt</find>
+      <find>generate-report-schema-point-control</find>
+      <find>generateReportSchemaPointControl</find>
+      <find>getPointsOn</find>
+      <find>getDateTimeCreatedAt()</find>
+      <find>SearchForm</find>
+      <find>getItemsByIdCustomer</find>
+      <find>getItemsByIdCustomerAndPeriod</find>
+      <find>getTypeMarker</find>
+      <find>nsavePoint</find>
+      <find>getByIdInternal</find>
+      <find>ManagePoints</find>
+      <find>ManagePoint(</find>
+      <find>Ma</find>
+      <find>ManageEvents</find>
+      <find>deleteEv</find>
+      <find>EditEvent</find>
+      <find>EditDisinfector</find>
+      <find>reportPointsToPrint</find>
+      <find>reportPointsToExcel</find>
+      <find>reportOnM</find>
+      <find>getEventGeneralReportFromPeriod</find>
+      <find>reportDisinfectantToExcel</find>
+      <find>n all</find>
+      <find>occupancySchedule</find>
     </findStrings>
     <replaceStrings>
       <replace>auth&quot;.&quot;rule</replace>
@@ -183,7 +399,23 @@
       <replace>$sheet</replace>
       <replace>$this-&gt;customerService-&gt;getCustomerByIdUser</replace>
       <replace>getCustomerByIdUser();</replace>
+      <replace>getDataForFileReport</replace>
+      <replace>disinfector</replace>
+      <replace>$event</replace>
+      <replace>Point</replace>
+      <replace>$point</replace>
+      <replace>PointStatus</replace>
+      <replace>$pointStatus</replace>
+      <replace>Event</replace>
+      <replace>$</replace>
+      <replace>FileCustomer</replace>
+      <replace>$fileCustomer</replace>
+      <replace>$file</replace>
+      <replace>$fileExtension</replace>
     </replaceStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/repositories</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -191,57 +423,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/migrations/m181210_060600_fix_foreign_key.php" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/migrations/m180509_070815_create_contact_customer.php" />
-        <option value="$PROJECT_DIR$/entities/CustomerDisinfectant.php" />
-        <option value="$PROJECT_DIR$/entities/Disinfectant.php" />
-        <option value="$PROJECT_DIR$/entities/Disinfector.php" />
-        <option value="$PROJECT_DIR$/entities/Events.php" />
-        <option value="$PROJECT_DIR$/entities/FileCustomer.php" />
-        <option value="$PROJECT_DIR$/entities/FileCustomerType.php" />
-        <option value="$PROJECT_DIR$/entities/Points.php" />
-        <option value="$PROJECT_DIR$/entities/PointStatus.php" />
-        <option value="$PROJECT_DIR$/models/customer/CalendarForm.php" />
-        <option value="$PROJECT_DIR$/entities/CustomerContact.php" />
-        <option value="$PROJECT_DIR$/models/file/Files.php" />
-        <option value="$PROJECT_DIR$/models/file/UploadForm.php" />
-        <option value="$PROJECT_DIR$/models/user/UserForm.php" />
-        <option value="$PROJECT_DIR$/migrations/m180603_070043_fill_new_column_disinfectant.php" />
-        <option value="$PROJECT_DIR$/migrations/m180304_052612_add_file_customer_types.php" />
-        <option value="$PROJECT_DIR$/migrations/m180509_174118_create_customer_disinfectants.php" />
-        <option value="$PROJECT_DIR$/entities/Customer.php" />
-        <option value="$PROJECT_DIR$/exceptions/CustomerNotFound.php" />
-        <option value="$PROJECT_DIR$/repositories/CustomerRepositoryInterface.php" />
-        <option value="$PROJECT_DIR$/models/user/UserRecord.php" />
-        <option value="$PROJECT_DIR$/services/DisinfectantService.php" />
-        <option value="$PROJECT_DIR$/config/web.php" />
-        <option value="$PROJECT_DIR$/config/console.php" />
-        <option value="$PROJECT_DIR$/bootstrap/ContainerBootstrap.php" />
-        <option value="$PROJECT_DIR$/dto/User.php" />
+        <option value="$PROJECT_DIR$/views/account/risk_assessment.php" />
+        <option value="$PROJECT_DIR$/views/account/info_on_monitoring.php" />
+        <option value="$PROJECT_DIR$/entities/EventRecord.php" />
+        <option value="$PROJECT_DIR$/exceptions/FileCustomerNotFound.php" />
+        <option value="$PROJECT_DIR$/models/customer/ManagePointForm.php" />
+        <option value="$PROJECT_DIR$/repositories/FileRepositoryInterface.php" />
+        <option value="$PROJECT_DIR$/entities/Files.php" />
+        <option value="$PROJECT_DIR$/exceptions/FileNotFound.php" />
+        <option value="$PROJECT_DIR$/dto/Point.php" />
+        <option value="$PROJECT_DIR$/repositories/PointStatusRepositoryInterface.php" />
+        <option value="$PROJECT_DIR$/repositories/PointStatusRepository.php" />
+        <option value="$PROJECT_DIR$/dto/FileCustomer.php" />
+        <option value="$PROJECT_DIR$/repositories/PointRepositoryInterface.php" />
+        <option value="$PROJECT_DIR$/entities/FileRecord.php" />
+        <option value="$PROJECT_DIR$/exceptions/ExtensionNotFound.php" />
+        <option value="$PROJECT_DIR$/dto/FileExtension.php" />
+        <option value="$PROJECT_DIR$/repositories/FileRepository.php" />
+        <option value="$PROJECT_DIR$/repositories/ExtensionRepositoryInterface.php" />
+        <option value="$PROJECT_DIR$/repositories/ExtensionRepository.php" />
+        <option value="$PROJECT_DIR$/dto/File.php" />
+        <option value="$PROJECT_DIR$/entities/CustomerDisinfectantRecord.php" />
         <option value="$PROJECT_DIR$/entities/CustomerRecord.php" />
-        <option value="$PROJECT_DIR$/models/customer/ManageDisinfectantsForm.php" />
-        <option value="$PROJECT_DIR$/dto/Disinfectant.php" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
-        <option value="$PROJECT_DIR$/dto/Contact.php" />
-        <option value="$PROJECT_DIR$/repositories/CustomerRepository.php" />
-        <option value="$PROJECT_DIR$/views/manager/add-customer.php" />
-        <option value="$PROJECT_DIR$/views/manager/customers.php" />
-        <option value="$PROJECT_DIR$/views/manager/manage-points.php" />
+        <option value="$PROJECT_DIR$/entities/ExtensionTypeRecord.php" />
+        <option value="$PROJECT_DIR$/dto/FileCustomerType.php" />
+        <option value="$PROJECT_DIR$/repositories/FileCustomerRepositoryInterface.php" />
+        <option value="$PROJECT_DIR$/entities/FileCustomerTypeRecord.php" />
+        <option value="$PROJECT_DIR$/entities/FileExtensionRecord.php" />
+        <option value="$PROJECT_DIR$/entities/PointRecord.php" />
+        <option value="$PROJECT_DIR$/entities/PointStatusRecord.php" />
         <option value="$PROJECT_DIR$/controllers/ReportController.php" />
-        <option value="$PROJECT_DIR$/controllers/AccountController.php" />
-        <option value="$PROJECT_DIR$/controllers/ManagerCustomerController.php" />
-        <option value="$PROJECT_DIR$/models/customer/CustomerForm.php" />
-        <option value="$PROJECT_DIR$/controllers/AdminController.php" />
-        <option value="$PROJECT_DIR$/services/CustomerService.php" />
-        <option value="$PROJECT_DIR$/dto/Customer.php" />
+        <option value="$PROJECT_DIR$/models/user/UserRecord.php" />
+        <option value="$PROJECT_DIR$/dto/EventFileReport.php" />
+        <option value="$PROJECT_DIR$/repositories/EventRepositoryInterface.php" />
+        <option value="$PROJECT_DIR$/bootstrap/ContainerBootstrap.php" />
+        <option value="$PROJECT_DIR$/models/file/UploadForm.php" />
+        <option value="$PROJECT_DIR$/services/FileService.php" />
+        <option value="$PROJECT_DIR$/entities/FileCustomerRecord.php" />
+        <option value="$PROJECT_DIR$/repositories/FileCustomerRepository.php" />
+        <option value="$PROJECT_DIR$/controllers/SiteController.php" />
         <option value="$PROJECT_DIR$/models/customer/SearchForm.php" />
+        <option value="$PROJECT_DIR$/controllers/AccountController.php" />
         <option value="$PROJECT_DIR$/controllers/ManagerFileController.php" />
-        <option value="$PROJECT_DIR$/controllers/ManagerDesinfectantController.php" />
-        <option value="$PROJECT_DIR$/controllers/ManagerDisinfectantController.php" />
-        <option value="$PROJECT_DIR$/models/widget/Widget.php" />
-        <option value="$PROJECT_DIR$/views/manager/disinfectants.php" />
+        <option value="$PROJECT_DIR$/services/FileCustomerService.php" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
+        <option value="$PROJECT_DIR$/services/PointService.php" />
+        <option value="$PROJECT_DIR$/repositories/PointRepository.php" />
         <option value="$PROJECT_DIR$/controllers/ManagerController.php" />
+        <option value="$PROJECT_DIR$/dto/Event.php" />
+        <option value="$PROJECT_DIR$/services/EventService.php" />
+        <option value="$PROJECT_DIR$/services/ReportService.php" />
+        <option value="$PROJECT_DIR$/repositories/EventRepository.php" />
       </list>
     </option>
   </component>
@@ -431,8 +663,8 @@
   </component>
   <component name="PhpXdebugProxy" ide_key="PHPSTORM" host="localhost" port="9009" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="width" value="1336" />
-    <option name="height" value="733" />
+    <option name="width" value="1326" />
+    <option name="height" value="730" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -442,6 +674,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -452,7 +685,7 @@
             <path>
               <item name="pestcontrol" type="b2602c69:ProjectViewProjectNode" />
               <item name="pestcontrol" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="bootstrap" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pestcontrol" type="b2602c69:ProjectViewProjectNode" />
@@ -467,7 +700,23 @@
             <path>
               <item name="pestcontrol" type="b2602c69:ProjectViewProjectNode" />
               <item name="pestcontrol" type="462c0819:PsiDirectoryNode" />
+              <item name="entities" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pestcontrol" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pestcontrol" type="462c0819:PsiDirectoryNode" />
+              <item name="exceptions" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pestcontrol" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pestcontrol" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pestcontrol" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pestcontrol" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="file" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pestcontrol" type="b2602c69:ProjectViewProjectNode" />
@@ -488,43 +737,36 @@
               <item name="pestcontrol" type="b2602c69:ProjectViewProjectNode" />
               <item name="pestcontrol" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="manager" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pestcontrol" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pestcontrol" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="manager-disinfectant" type="462c0819:PsiDirectoryNode" />
+              <item name="account" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="PostgreSQL" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/repositories" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="settings.php.quality.tools" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/dto" />
+      <recent name="$PROJECT_DIR$/exceptions" />
+      <recent name="$PROJECT_DIR$/repositories" />
+      <recent name="$PROJECT_DIR$/services" />
+      <recent name="$PROJECT_DIR$/controllers" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/entities" />
+      <recent name="$PROJECT_DIR$/views/manager" />
       <recent name="$PROJECT_DIR$/views/manager-disinfectant" />
       <recent name="$PROJECT_DIR$/views/manager-file" />
       <recent name="$PROJECT_DIR$/views/manager-customer" />
-      <recent name="$PROJECT_DIR$/entities" />
-      <recent name="$PROJECT_DIR$/views/manager" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/controllers" />
-      <recent name="$PROJECT_DIR$/bootstrap" />
-      <recent name="$PROJECT_DIR$/models/customer" />
-      <recent name="$PROJECT_DIR$/views/manager" />
-      <recent name="$PROJECT_DIR$/views/account" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -605,24 +847,23 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-3" width="1920" height="1052" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" internal_type="SLIDING" order="0" type="SLIDING" weight="0.26677316" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4970588" weight="0.32972136" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49627262" weight="0.32867885" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.57082003" visible="true" weight="0.48872182" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.5681576" weight="0.48872182" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32975295" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.56881404" weight="0.32116005" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.42917997" side_tool="true" weight="0.48872182" />
-      <window_info anchor="bottom" id="Database Console" order="11" weight="0.3290461" />
-      <window_info anchor="bottom" id="Database Changes" order="12" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.53407884" weight="0.32975295" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.5681576" weight="0.32116005" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.4318424" side_tool="true" visible="true" weight="0.48872182" />
+      <window_info anchor="bottom" id="Database Console" order="11" sideWeight="0.49946752" weight="0.32867885" />
+      <window_info anchor="bottom" id="Database Changes" order="12" weight="0.32975295" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -706,14 +947,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/services/CustomerService.php</url>
-          <line>278</line>
-          <option name="timeStamp" value="394" />
+          <url>file://$PROJECT_DIR$/repositories/FileRepository.php</url>
+          <line>76</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/controllers/ManagerController.php</url>
-          <line>171</line>
-          <option name="timeStamp" value="398" />
+          <url>file://$PROJECT_DIR$/controllers/ReportController.php</url>
+          <line>63</line>
+          <option name="timeStamp" value="45" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -744,6 +985,8 @@
         <watch expression="$model" language="PHP" />
         <watch expression="$event-&gt;id_point_status" language="PHP" />
         <watch expression="$this-&gt;model-&gt;getErrors()" language="PHP" />
+        <watch expression="$eventRecord-&gt;id_customer" language="PHP" />
+        <watch expression="$preparedPoint-&gt;getFileCustomer()" language="PHP" />
       </configuration>
       <configuration name="yii">
         <watch expression="$event['pointNum'] == 145" language="PHP" />
@@ -752,6 +995,16 @@
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>$preparedPoint-&gt;getFileCustomer()</expression-string>
+        <language-id>PHP</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>$eventRecord-&gt;id_customer</expression-string>
+        <language-id>PHP</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>$this-&gt;model-&gt;getErrors()</expression-string>
         <language-id>PHP</language-id>
@@ -792,357 +1045,367 @@
         <language-id>PHP</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>$event</expression-string>
-        <language-id>PHP</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>$event['full_name']</expression-string>
-        <language-id>PHP</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/entities/DisinfectantRecord.php">
+    <entry file="file://$PROJECT_DIR$/repositories/FileCustomerRepositoryInterface.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/entities/Disinfector.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/entities/Events.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/entities/FileCustomer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/entities/FileCustomerType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/entities/Points.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/entities/PointStatus.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1007">
-          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+        <state relative-caret-position="404">
+          <caret line="54" column="33" lean-forward="true" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
           <folding>
-            <element signature="e#39#47#0#PHP" expanded="true" />
+            <element signature="e#35#60#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/customer/CalendarForm.php">
+    <entry file="file://$PROJECT_DIR$/entities/FileExtensionRecord.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+        <state relative-caret-position="1322">
+          <caret line="78" column="33" selection-start-line="78" selection-start-column="33" selection-end-line="78" selection-end-column="33" />
           <folding>
-            <element signature="e#38#57#0#PHP" expanded="true" />
+            <element signature="e#33#69#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/entities/CustomerContact.php">
+    <entry file="file://$PROJECT_DIR$/entities/FileRecord.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1432">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="-769">
+          <caret line="15" column="23" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+          <folding>
+            <element signature="e#32#68#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/ConsoleController.php">
+    <entry file="file://$PROJECT_DIR$/entities/PointRecord.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="84" column="22" selection-start-line="84" selection-start-column="22" selection-end-line="84" selection-end-column="22" />
+          <folding>
+            <element signature="e#32#68#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/entities/PointStatusRecord.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
-          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+          <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
           <folding>
-            <element signature="e#118#160#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/SiteController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="44" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
-          <folding>
-            <element signature="e#34#60#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/migrations/m180509_174118_create_customer_disinfectants.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="59" column="55" selection-start-line="59" selection-start-column="55" selection-end-line="59" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/helpers/BaseArrayHelper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="574" column="27" selection-start-line="574" selection-start-column="27" selection-end-line="574" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/DisinfectantService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="8" lean-forward="true" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/exceptions/CustomerNotFound.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="25" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/console.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="44" column="19" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bootstrap/ContainerBootstrap.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
-          <folding>
-            <element signature="e#32#72#0#PHP" expanded="true" />
+            <element signature="e#32#68#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/user/UserRecord.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+        <state relative-caret-position="166">
+          <caret line="69" column="7" selection-start-line="69" selection-start-column="7" selection-end-line="69" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/entities/CustomerDisinfectant.php">
+    <entry file="file://$PROJECT_DIR$/dto/EventOccupancySchedule.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dto/EventRisk.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dto/EventGeneralReport.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="24" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dto/EventFileReport.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1679">
+          <caret line="99" column="21" selection-start-line="99" selection-start-column="21" selection-end-line="99" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bootstrap/ContainerBootstrap.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="46" column="62" selection-start-line="46" selection-start-column="62" selection-end-line="46" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://06500b1a-0b84-4e14-a399-b12a72d04470/database/pestcontrol/schema/public/table/file_customer_type">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://06500b1a-0b84-4e14-a399-b12a72d04470/database/pestcontrol/schema/public/table/file_customer_type">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://06500b1a-0b84-4e14-a399-b12a72d04470/database/pestcontrol/schema/public/table/file_customer_type">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://06500b1a-0b84-4e14-a399-b12a72d04470/database/pestcontrol/schema/public/table/file_customer_type">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/entities/FileCustomerTypeRecord.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="20" column="6" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+          <folding>
+            <element signature="e#32#68#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/file/UploadForm.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="60" column="50" selection-start-line="60" selection-start-column="50" selection-end-line="60" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/repositories/FileRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="66" column="25" selection-start-line="66" selection-start-column="25" selection-end-line="66" selection-end-column="25" />
+          <folding>
+            <element signature="e#35#52#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/entities/FileCustomerRecord.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="35" column="7" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
+          <folding>
+            <element signature="e#32#68#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dto/File.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/base/BaseObject.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="135" selection-start-line="135" selection-end-line="135" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/repositories/FileCustomerRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="186" column="80" selection-start-line="186" selection-start-column="80" selection-end-line="186" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/FileService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="66" selection-start-line="66" selection-end-line="66" />
+          <folding>
+            <element signature="e#32#49#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://06500b1a-0b84-4e14-a399-b12a72d04470/database/pestcontrol/schema/public/table/file_customer">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/SiteController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="170" column="1" selection-start-line="170" selection-start-column="1" selection-end-line="170" selection-end-column="1" />
+          <folding>
+            <element signature="e#34#60#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/customer/SearchForm.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="16" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="16" />
+          <folding>
+            <element signature="e#38#75#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/ManagerFileController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="65">
-          <caret line="12" column="33" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="33" />
+          <caret line="144" selection-start-line="144" selection-end-line="144" />
+          <folding>
+            <element signature="e#34#69#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/repositories/CustomerRepositoryInterface.php">
+    <entry file="file://$PROJECT_DIR$/services/FileCustomerService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-105">
-          <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
+        <state relative-caret-position="178">
+          <caret line="200" column="36" selection-start-line="200" selection-start-column="36" selection-end-line="200" selection-end-column="36" />
+          <folding>
+            <element signature="e#31#49#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://06500b1a-0b84-4e14-a399-b12a72d04470/database/pestcontrol/schema/public/table/points">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dto/FileCustomer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-207">
+          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/repositories/PointRepositoryInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/repositories/PointRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="137" column="34" selection-start-line="137" selection-start-column="34" selection-end-line="137" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dto/Point.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="174" column="20" selection-start-line="174" selection-start-column="20" selection-end-line="174" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/PointService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="118" column="50" selection-start-line="118" selection-start-column="50" selection-end-line="118" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dto/Event.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="236" column="15" selection-start-line="236" selection-start-column="15" selection-end-line="236" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/ManagerController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="296" column="66" selection-start-line="296" selection-start-column="66" selection-end-line="296" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/BaseYii.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="297" selection-start-line="297" selection-end-line="297" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/db/ActiveRecord.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="590" selection-start-line="590" selection-end-line="590" />
+        <state relative-caret-position="150">
+          <caret line="324" selection-start-line="324" selection-end-line="324" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/db/BaseActiveRecord.php">
+    <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/db/QueryTrait.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="790" selection-start-line="790" selection-end-line="790" />
+        <state relative-caret-position="167">
+          <caret line="325" selection-start-line="325" selection-end-line="325" />
         </state>
       </provider>
     </entry>
-    <entry file="das://06500b1a-0b84-4e14-a399-b12a72d04470/database/pestcontrol/schema/public/table/customer_disinfectant">
+    <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/db/Query.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="236" selection-start-line="236" selection-end-line="236" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/db/ActiveQuery.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="303" column="29" selection-start-line="303" selection-start-column="29" selection-end-line="303" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://06500b1a-0b84-4e14-a399-b12a72d04470/database/pestcontrol/schema/public/table/events">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
-          <filtering enabled="true" text="id_customer = 0">
-            <filter text="id_customer = 0" />
+          <filtering enabled="true" text="id_external = 127">
+            <filter text="id_external = 127" />
           </filtering>
         </state>
       </provider>
     </entry>
-    <entry file="das://06500b1a-0b84-4e14-a399-b12a72d04470/database/pestcontrol/schema/public/table/disinfectant">
+    <entry file="das://06500b1a-0b84-4e14-a399-b12a72d04470/database/pestcontrol/schema/public/table/point_status">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/customer/ManageDisinfectantsForm.php">
+    <entry file="file://$PROJECT_DIR$/repositories/EventRepositoryInterface.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="57" selection-start-line="57" selection-end-line="57" />
+        <state relative-caret-position="142">
+          <caret line="79" column="51" selection-start-line="79" selection-start-column="20" selection-end-line="79" selection-end-column="51" />
           <folding>
-            <element signature="e#38#74#0#PHP" expanded="true" />
+            <element signature="e#35#53#0#PHP" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/entities/CustomerRecord.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
-          <folding>
-            <element signature="e#32#63#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://06500b1a-0b84-4e14-a399-b12a72d04470/database/pestcontrol/schema/public/table/customer_contact">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/manager-customer/edit-customer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="89" selection-start-line="43" selection-start-column="16" selection-end-line="89" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/manager-customer/add-customer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="42" column="30" selection-start-line="42" selection-start-column="30" selection-end-line="42" selection-end-column="30" />
-          <folding>
-            <element signature="e#7#47#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/repositories/CustomerRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="226" column="13" selection-start-line="226" selection-start-column="13" selection-end-line="226" selection-end-column="13" />
-          <folding>
-            <element signature="e#35#55#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/9a149d98/06500b1a-0b84-4e14-a399-b12a72d04470/pestcontrol.public.customers">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/WellMenuWidget.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/SliderWidget.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="55" column="61" selection-start-line="55" selection-start-column="61" selection-end-line="55" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/widget/Widget.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-581">
-          <caret line="43" column="97" selection-start-line="43" selection-start-column="81" selection-end-line="43" selection-end-column="97" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/ReportController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="302" selection-start-line="302" selection-end-line="302" />
+        <state relative-caret-position="363">
+          <caret line="68" column="48" selection-start-line="68" selection-start-column="48" selection-end-line="68" selection-end-column="48" />
           <folding>
             <element signature="e#34#66#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/AccountController.php">
+    <entry file="file://$PROJECT_DIR$/services/ReportService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="534">
-          <caret line="265" column="16" selection-start-line="265" selection-start-column="16" selection-end-line="265" selection-end-column="16" />
-          <folding>
-            <element signature="e#35#71#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/ManagerCustomerController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="47">
-          <caret line="111" column="34" selection-start-line="111" selection-start-column="34" selection-end-line="111" selection-end-column="34" />
-          <folding>
-            <element signature="e#34#71#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dto/Contact.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dto/Disinfectant.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="53" selection-start-line="53" selection-end-line="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dto/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-684">
-          <caret line="3" column="3" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/customer/CustomerForm.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-          <folding>
-            <element signature="e#38#71#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/AdminController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-          <folding>
-            <element signature="e#35#62#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="312">
+          <caret line="121" column="77" selection-start-line="121" selection-start-column="77" selection-end-line="121" selection-end-column="77" />
         </state>
       </provider>
     </entry>
@@ -1153,63 +1416,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/CustomerService.php">
+    <entry file="file://$PROJECT_DIR$/controllers/AccountController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="47" column="29" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="29" />
-          <folding>
-            <element signature="e#31#51#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="312">
+          <caret line="287" selection-start-line="287" selection-end-line="287" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dto/Customer.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="179" column="49" selection-start-line="179" selection-start-column="49" selection-end-line="179" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/BaseYii.php">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
-          <caret line="278" selection-start-line="278" selection-end-line="278" />
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/customer/SearchForm.php">
+    <entry file="file://$PROJECT_DIR$/services/EventService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-84">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        <state relative-caret-position="269">
+          <caret line="165" selection-start-line="165" selection-end-line="165" />
           <folding>
-            <element signature="e#38#68#0#PHP" expanded="true" />
+            <element signature="e#31#49#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/ManagerFileController.php">
+    <entry file="file://$PROJECT_DIR$/repositories/EventRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="104" column="61" lean-forward="true" selection-start-line="104" selection-start-column="61" selection-end-line="104" selection-end-column="61" />
+        <state relative-caret-position="25">
+          <caret line="322" column="21" selection-start-line="322" selection-start-column="21" selection-end-line="322" selection-end-column="21" />
           <folding>
-            <element signature="e#34#64#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/ManagerDisinfectantController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="39" column="37" lean-forward="true" selection-start-line="39" selection-start-column="37" selection-end-line="39" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/ManagerController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="58" column="50" selection-start-line="58" selection-start-column="50" selection-end-line="58" selection-end-column="50" />
-          <folding>
-            <element signature="e#35#64#0#PHP" expanded="true" />
+            <element signature="e#35#53#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
