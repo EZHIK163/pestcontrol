@@ -3,7 +3,9 @@ namespace app\controllers;
 
 use app\dto\Customer;
 use app\forms\CalendarForm;
+use app\forms\CallEmployeeForm;
 use app\forms\SearchSchemeForm;
+use app\services\CallEmployeeService;
 use app\tools\Tools;
 use app\components\Widget;
 use app\services\CustomerService;
@@ -30,9 +32,22 @@ class AccountController extends Controller
     private $customer;
 
     private $reportService;
+    /**
+     * @var EventService
+     */
     private $eventService;
+    /**
+     * @var FileCustomerService
+     */
     private $fileCustomerService;
+    /**
+     * @var SearchSchemeForm
+     */
     private $searchForm;
+    /**
+     * @var CallEmployeeService
+     */
+    private $callEmployeeService;
 
     /**
      * AccountController constructor.
@@ -43,6 +58,7 @@ class AccountController extends Controller
      * @param EventService $eventService
      * @param FileCustomerService $fileCustomerService
      * @param SearchSchemeForm $searchForm
+     * @param CallEmployeeService $callEmployeeService
      * @param array $config
      */
     public function __construct(
@@ -54,6 +70,7 @@ class AccountController extends Controller
         EventService $eventService,
         FileCustomerService $fileCustomerService,
         SearchSchemeForm $searchForm,
+        CallEmployeeService $callEmployeeService,
         array $config = []
     ) {
         $this->reportService = $reportService;
@@ -61,6 +78,7 @@ class AccountController extends Controller
         $this->eventService = $eventService;
         $this->fileCustomerService = $fileCustomerService;
         $this->searchForm = $searchForm;
+        $this->callEmployeeService = $callEmployeeService;
         parent::__construct($id, $module, $config);
     }
 
@@ -312,7 +330,22 @@ class AccountController extends Controller
      */
     public function actionCallEmployee()
     {
-        return $this->render('call_employee');
+        $model = new CallEmployeeForm();
+
+        if ($model->load(\Yii::$app->request->post()) && $model->validate() && $model->validateEmail()) {
+            $this->callEmployeeService->call($model->fillCallEmployee(), $this->customer->getId());
+            $this->redirect('call-employee-success');
+        }
+
+        return $this->render('call_employee', ['model'  => $model]);
+    }
+
+    /**
+     * @return string
+     */
+    public function actionCallEmployeeSuccess()
+    {
+        return $this->render('call_employee_success');
     }
 
     /**
@@ -370,7 +403,7 @@ class AccountController extends Controller
                     [
                         'actions'   => ['index', 'call-employee', 'general-report',
                             'recommendations', 'occupancy-schedule', 'risk-assessment', 'report-on-material',
-                            'report-on-point', 'info-on-monitoring', 'scheme', 'show-scheme-point-control'],
+                            'report-on-point', 'info-on-monitoring', 'scheme', 'show-scheme-point-control', 'call-employee-success'],
                         'roles'     => ['customer'],
                         'allow'     => true
                     ]

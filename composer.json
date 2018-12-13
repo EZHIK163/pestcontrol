@@ -12,7 +12,8 @@
         "phpoffice/phpspreadsheet": "^1.2",
         "mpdf/mpdf": "^7.1",
         "friendsofphp/php-cs-fixer": "^2.13",
-        "symfony/dotenv": "^4.2"
+        "symfony/dotenv": "^4.2",
+        "yiisoft/yii2-swiftmailer": "^2.1"
     },
     "repositories": [
         {

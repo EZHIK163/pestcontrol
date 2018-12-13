@@ -21,6 +21,8 @@ use app\repositories\PointStatusRepository;
 use app\repositories\PointStatusRepositoryInterface;
 use app\repositories\UserRepository;
 use app\repositories\UserRepositoryInterface;
+use app\services\NotifyEmailManagerService;
+use app\services\NotifyManagerServiceInterface;
 use Yii;
 use yii\base\BootstrapInterface;
 
@@ -51,5 +53,6 @@ class ContainerBootstrap implements BootstrapInterface
         $container->setSingleton(FileRepositoryInterface::class, FileRepository::class);
         $container->setSingleton(ExtensionRepositoryInterface::class, ExtensionRepository::class);
         $container->setSingleton(UserRepositoryInterface::class, UserRepository::class);
+        $container->setSingleton(NotifyManagerServiceInterface::class, NotifyEmailManagerService::class);
     }
 }

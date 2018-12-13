@@ -31,7 +31,20 @@ return [
             //'class'         => 'yii\rbac\DbManager',
             'class'         => 'app\utilities\MyRbacManager',
             //'defaultRoles'  => ['guest']
-        ]
+        ],
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'useFileTransport' => false,//set this property to false to send mails to real email addresses
+            //comment the following array to send mail using php's mail function
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host'      => getenv('email_server_host'),
+                'username'  => getenv('email_server_username'),
+                'password'  => getenv('email_server_password'),
+                'port'      => getenv('email_server_port'),
+                'encryption' => 'tls',
+            ],
+        ],
     ],
     'modules'   => [
         'gii'   => [
@@ -49,6 +62,7 @@ return [
         'app\bootstrap\ContainerBootstrap',
     ],
     'params'    => [
-        'email_notify'  => getenv('email_notify')
+        'email_notify'  => explode(',', getenv('email_notify')),
+        'email_from'    => getenv('email_from')
     ]
 ];
