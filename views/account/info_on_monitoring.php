@@ -1,5 +1,4 @@
 <?php
-use dosamigos\chartjs\ChartJs;
 use dosamigos\datepicker\DatePicker;
 use yii\grid\GridView;
 use yii\helpers\Html;

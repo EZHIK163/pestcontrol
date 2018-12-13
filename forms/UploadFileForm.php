@@ -39,7 +39,7 @@ class UploadFileForm extends Model
         $strExtensions = implode($this->supportExtensions, ',');
         return [
             [['uploadedFiles'], 'file', 'skipOnEmpty' => false, 'extensions' => $strExtensions, 'maxFiles'  => 0],
-            [['id_customer', 'id_file_customer_type'], 'required']
+            [['idCustomer', 'idFileCustomerType'], 'required']
         ];
     }
 

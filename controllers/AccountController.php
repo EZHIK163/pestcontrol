@@ -403,7 +403,8 @@ class AccountController extends Controller
                     [
                         'actions'   => ['index', 'call-employee', 'general-report',
                             'recommendations', 'occupancy-schedule', 'risk-assessment', 'report-on-material',
-                            'report-on-point', 'info-on-monitoring', 'scheme', 'show-scheme-point-control', 'call-employee-success'],
+                            'report-on-point', 'info-on-monitoring', 'scheme', 'show-scheme-point-control',
+                            'call-employee-success', 'generate-report-schema-point-control'],
                         'roles'     => ['customer'],
                         'allow'     => true
                     ]

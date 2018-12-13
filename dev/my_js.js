@@ -267,7 +267,7 @@ var savePoint = async function() {
 
     axios({
         method: 'post',
-        url: base_url + "/manager/save-point/",
+        url: base_url + "/manager-point/save-point/",
         data: my_body,
         headers: {
             "Content-Type": "application/json"

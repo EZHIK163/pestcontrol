@@ -49,7 +49,8 @@ class PointService
                     ->setIdInternal($point['id_internal'])
                     ->setXCoordinate($point['x'])
                     ->setYCoordinate($point['y'])
-                    ->setFileCustomer($fileCustomer);
+                    ->setFileCustomer($fileCustomer)
+                    ->setIsEnable(true);
 
                 $this->pointRepository->add($newPoint);
             } else {
@@ -73,7 +74,7 @@ class PointService
         /**
          * @var Point[] $points
          */
-        $points = $this->pointRepository->all(null);
+        $points = $this->pointRepository->all();
 
         $preparedPoints = [];
         foreach ($points as $point) {
@@ -89,8 +90,8 @@ class PointService
          */
         foreach ($preparedPoints as $preparedPoint) {
             $title = $preparedPoint->getFileCustomer()->getTitle();
-            if ($preparedPoint->isActive() == false) {
-                $status = 'Удалена';
+            if ($preparedPoint->isEnable() == false) {
+                $status = 'Отключена';
             } elseif ($preparedPoint->getXCoordinate() <= 0 or $preparedPoint->getYCoordinate() <= 0) {
                 $status = 'Не прикреплена';
                 $title = '';
@@ -165,19 +166,19 @@ class PointService
     /**
      * @param $id
      */
-    public function deletePoint($id)
+    public function disablePoint($id)
     {
         $point = $this->pointRepository->get($id);
-        $this->pointRepository->remove($point);
+        $this->pointRepository->disable($point);
     }
 
     /**
      * @param $id
      */
-    public function restorePoint($id)
+    public function enablePoint($id)
     {
         $point = $this->pointRepository->get($id);
-        $point->setIsActive(true);
+        $point->setIsEnable(true);
         $this->pointRepository->save($point);
     }
 

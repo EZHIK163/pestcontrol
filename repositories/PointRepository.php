@@ -4,6 +4,7 @@ namespace app\repositories;
 use app\dto\FileCustomer;
 use app\dto\Point;
 use app\entities\PointRecord;
+use app\exceptions\FileCustomerNotFound;
 use app\exceptions\PointNotFound;
 use RuntimeException;
 use Yii;
@@ -104,16 +105,13 @@ class PointRepository implements PointRepositoryInterface
     }
 
     /**
-     * @param bool $isActive
      * @return Point[]
      */
-    public function all($isActive = true)
+    public function all()
     {
-        $pointRecords = PointRecord::find();
-
-        $isActive !== null && $pointRecords->where(['is_active'  => $isActive]);
-
-        $pointRecords = $pointRecords->orderBy('id ASC')
+        $pointRecords = PointRecord::find()
+            ->where(['is_active'  => true])
+            ->orderBy('id ASC')
             ->all();
 
         $points = [];
@@ -154,13 +152,13 @@ class PointRepository implements PointRepositoryInterface
     {
         $file = $this->fileCustomerRepository->get($pointRecord->id_file_customer);
         $point = (new Point())
-            ->setIsActive($pointRecord->is_active)
             ->setId($pointRecord->id)
             ->setTitle($pointRecord->title)
             ->setFileCustomer($file)
             ->setIdInternal($pointRecord->id_internal)
             ->setXCoordinate($pointRecord->x_coordinate)
-            ->setYCoordinate($pointRecord->y_coordinate);
+            ->setYCoordinate($pointRecord->y_coordinate)
+            ->setIsEnable($pointRecord->is_enable);
 
         return $point;
     }
@@ -177,7 +175,7 @@ class PointRepository implements PointRepositoryInterface
         $pointRecord->id_file_customer = $point->getFileCustomer()->getId();
         $pointRecord->x_coordinate = $point->getXCoordinate();
         $pointRecord->y_coordinate = $point->getYCoordinate();
-        $pointRecord->is_active = $point->isActive();
+        $pointRecord->is_enable = $point->isEnable();
 
         return $pointRecord;
     }
@@ -215,7 +213,7 @@ class PointRepository implements PointRepositoryInterface
         SELECT max(p.id_internal) 
         FROM public.points as p
         JOIN public.file_customer as fc ON fc.id = p.id_file_customer
-        WHERE fc.id_customer = :id_customer";
+        WHERE fc.id_customer = :id_customer AND p.is_active = true";
 
         $point = Yii::$app->db->createCommand($sql)
             ->bindValue(':id_customer', $idCustomer)
@@ -248,5 +246,26 @@ class PointRepository implements PointRepositoryInterface
         }
 
         return $points;
+    }
+
+    /**
+     * @param Point $point
+     * @return Point
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
+     */
+    public function disable(Point $point)
+    {
+        $pointRecord = $this->findOrFail($point->getId());
+
+        $pointRecord->is_enable = false;
+
+        if (!$pointRecord->update()) {
+            throw new \RuntimeException();
+        }
+
+        $point->setIsEnable(false);
+
+        return $point;
     }
 }

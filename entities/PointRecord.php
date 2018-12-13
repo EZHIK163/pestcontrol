@@ -11,6 +11,7 @@ use yii\db\ActiveRecord;
  *
  * @property int $id
  * @property bool $is_active
+ * @property bool $is_enable
  * @property int $id_point_status
  * @property string $title
  * @property double $x_coordinate

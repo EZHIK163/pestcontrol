@@ -112,7 +112,7 @@ class ManagerPointController extends Controller
         $points = Yii::$app->request->post('points');
         $idFileCustomer = (int)Yii::$app->request->post('id_file_customer');
 
-        if (!isset($points) or $idFileCustomer === 0) {
+        if (!isset($points) or $idFileCustomer === 0 or empty($points)) {
             throw new \yii\base\InvalidArgumentException();
         }
 
@@ -183,20 +183,20 @@ class ManagerPointController extends Controller
     /**
      *
      */
-    public function actionDeletePoint()
+    public function actionDisablePoint()
     {
         $id = Yii::$app->request->get('id');
         if (isset($id)) {
-            $this->pointService->deletePoint($id);
+            $this->pointService->disablePoint($id);
             $this->redirect('manage-points');
         }
     }
 
-    public function actionRestorePoint()
+    public function actionEnablePoint()
     {
         $id = Yii::$app->request->get('id');
         if (isset($id)) {
-            $this->pointService->restorePoint($id);
+            $this->pointService->enablePoint($id);
             $this->redirect('manage-points');
         }
     }
@@ -223,7 +223,7 @@ class ManagerPointController extends Controller
                 'only'  => ['*'],
                 'rules' => [
                     [
-                        'actions'=> ['manage-points',  'manage-point', 'delete-point', 'restore-point'],
+                        'actions'=> ['manage-points',  'manage-point', 'disable-point', 'enable-point'],
                         'roles'     => ['manager'],
                         'allow'     => true
                     ],

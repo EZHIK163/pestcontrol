@@ -34,10 +34,9 @@ interface PointRepositoryInterface
     public function remove(Point $point);
 
     /**
-     * @param bool $isActive
      * @return Point[]
      */
-    public function all($isActive = true);
+    public function all();
 
     /**
      * @param $idInternal
@@ -57,4 +56,10 @@ interface PointRepositoryInterface
      * @return Point[]
      */
     public function getItemsByIdFileCustomer($idFileCustomer);
+
+    /**
+     * @param Point $point
+     * @return Point
+     */
+    public function disable(Point $point);
 }

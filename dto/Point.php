@@ -37,6 +37,16 @@ class Point
     private $yCoordinate;
 
     /**
+     * @var bool
+     */
+    private $isEnable;
+
+    public function __construct()
+    {
+        $this->isActive = true;
+    }
+
+    /**
      * @return int
      */
     public function getId()
@@ -165,6 +175,25 @@ class Point
     public function setIsActive($isActive)
     {
         $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEnable()
+    {
+        return $this->isEnable;
+    }
+
+    /**
+     * @param bool $isEnable
+     * @return Point
+     */
+    public function setIsEnable($isEnable)
+    {
+        $this->isEnable = $isEnable;
 
         return $this;
     }

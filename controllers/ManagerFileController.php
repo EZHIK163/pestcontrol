@@ -14,6 +14,7 @@ use yii\base\Module;
 use yii\web\Controller;
 use yii\filters\AccessControl;
 use yii\web\Response;
+use yii\web\UploadedFile;
 
 /**
  * Class ManagerController
@@ -67,7 +68,8 @@ class ManagerFileController extends Controller
         $supportExtensions = $this->fileService->getSupportExtensions();
         $model->setSupportExtension($supportExtensions);
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->uploadedFiles = UploadedFile::getInstances($model, 'uploadedFiles');
             $result = $this->fileService->saveFilesFromUpload($model->uploadedFiles, $model->idCustomer, $model->idFileCustomerType);
 
             if ($result) {

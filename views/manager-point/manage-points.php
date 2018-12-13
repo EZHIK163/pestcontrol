@@ -65,19 +65,19 @@ $this->title = "Управление точками контроля"; ?>
                                     'Изменить',
                                     ['href'  => 'manage-point?id='.$model['id']]
                                 );
-                                if ($model['status'] !== 'Удалена') {
+                                if ($model['status'] !== 'Отключена') {
                                     $output .= '<br/>'.
                                     Html::tag(
                                         'a',
-                                        'Удалить',
-                                        ['href'  => 'delete-point?id='.$model['id']]
+                                        'Отключить',
+                                        ['href'  => 'disable-point?id='.$model['id']]
                                     );
                                 } else {
                                     $output .= '<br/>'.
                                         Html::tag(
                                             'a',
                                             'Восстановить',
-                                            ['href'  => 'restore-point?id='.$model['id']]
+                                            ['href'  => 'enable-point?id='.$model['id']]
                                         );
                                 }
                                 return $output;
