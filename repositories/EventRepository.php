@@ -1,15 +1,22 @@
 <?php
 namespace app\repositories;
 
+use app\dto\Customer;
+use app\dto\Disinfector;
 use app\dto\Event;
 use app\dto\EventFileReport;
 use app\dto\EventGeneralReport;
 use app\dto\EventOccupancySchedule;
 use app\dto\EventRisk;
 use app\dto\EventSynchronize;
+use app\dto\Point;
+use app\dto\PointStatus;
 use app\entities\EventRecord;
 use app\exceptions\EventNotFound;
 use DateTime;
+use Mpdf\Tag\P;
+use ProxyManager\Factory\LazyLoadingValueHolderFactory;
+use ProxyManager\Proxy\LazyLoadingInterface;
 use RuntimeException;
 use yii\db\Expression;
 
@@ -23,6 +30,7 @@ class EventRepository implements EventRepositoryInterface
     private $disinfectorRepository;
     private $pointRepository;
     private $pointStatusRepository;
+    private $lazyFactory;
 
     /**
      * EventRepository constructor.
@@ -30,17 +38,20 @@ class EventRepository implements EventRepositoryInterface
      * @param DisinfectorRepositoryInterface $disinfectorRepository
      * @param PointRepositoryInterface $pointRepository
      * @param PointStatusRepositoryInterface $pointStatusRepository
+     * @param LazyLoadingValueHolderFactory $lazyFactory
      */
     public function __construct(
         CustomerRepositoryInterface $customerRepository,
         DisinfectorRepositoryInterface $disinfectorRepository,
         PointRepositoryInterface $pointRepository,
-        PointStatusRepositoryInterface $pointStatusRepository
+        PointStatusRepositoryInterface $pointStatusRepository,
+        LazyLoadingValueHolderFactory $lazyFactory
     ) {
         $this->customerRepository = $customerRepository;
         $this->disinfectorRepository = $disinfectorRepository;
         $this->pointRepository = $pointRepository;
         $this->pointStatusRepository = $pointStatusRepository;
+        $this->lazyFactory = $lazyFactory;
     }
 
     /**
@@ -125,7 +136,7 @@ class EventRepository implements EventRepositoryInterface
      * @param int $limit
      * @return Event[]
      */
-    public function all($limit = 100)
+    public function all($limit = 500)
     {
         $eventRecords = EventRecord::find()
             ->where(['is_active'    => true])
@@ -170,19 +181,67 @@ class EventRepository implements EventRepositoryInterface
      */
     private function fillEvent($eventRecord)
     {
-        $customer = $eventRecord->id_customer !== null
-            ? $this->customerRepository->get($eventRecord->id_customer)
-            : null;
-        $disinfector = $eventRecord->id_disinfector !== null
-            ? $this->disinfectorRepository->get($eventRecord->id_disinfector)
-            : null;
-        $point = $eventRecord->id_point !== null
-            ? $this->pointRepository->get($eventRecord->id_point)
-            : null;
+//        $customer = $eventRecord->id_customer !== null
+//            ? $this->customerRepository->get($eventRecord->id_customer)
+//            : null;
+//        $disinfector = $eventRecord->id_disinfector !== null
+//            ? $this->disinfectorRepository->get($eventRecord->id_disinfector)
+//            : null;
+//        $point = $eventRecord->id_point !== null
+//            ? $this->pointRepository->get($eventRecord->id_point)
+//            : null;
+//
+//        $pointStatus = $eventRecord->id_point_status !== null
+//            ? $this->pointStatusRepository->get($eventRecord->id_point_status)
+//            : null;
 
-        $pointStatus = $eventRecord->id_point_status !== null
-            ? $this->pointStatusRepository->get($eventRecord->id_point_status)
-            : null;
+        if ($eventRecord->id_customer !== null) {
+            $customer = $this->lazyFactory->createProxy(
+                Customer::class,
+                function (&$target, LazyLoadingInterface $proxy) use ($eventRecord) {
+                    $target = $this->customerRepository->get($eventRecord->id_customer);
+                    $proxy->setProxyInitializer(null);
+                }
+            );
+        } else {
+            $customer = null;
+        }
+
+        if ($eventRecord->id_disinfector !== null) {
+            $disinfector = $this->lazyFactory->createProxy(
+                Disinfector::class,
+                function (&$target, LazyLoadingInterface $proxy) use ($eventRecord) {
+                    $target = $this->disinfectorRepository->get($eventRecord->id_disinfector);
+                    $proxy->setProxyInitializer(null);
+                }
+            );
+        } else {
+            $disinfector = null;
+        }
+
+        if ($eventRecord->id_point !== null) {
+            $point = $this->lazyFactory->createProxy(
+                Point::class,
+                function (&$target, LazyLoadingInterface $proxy) use ($eventRecord) {
+                    $target = $this->pointRepository->get($eventRecord->id_point);
+                    $proxy->setProxyInitializer(null);
+                }
+            );
+        } else {
+            $point = null;
+        }
+
+        if ($eventRecord->id_point_status) {
+            $pointStatus = $this->lazyFactory->createProxy(
+                PointStatus::class,
+                function (&$target, LazyLoadingInterface $proxy) use ($eventRecord) {
+                    $target = $this->pointStatusRepository->get($eventRecord->id_point_status);
+                    $proxy->setProxyInitializer(null);
+                }
+            );
+        } else {
+            $pointStatus = null;
+        }
 
         $event = (new Event())
             ->setId($eventRecord->id)

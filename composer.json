@@ -13,7 +13,8 @@
         "mpdf/mpdf": "^7.1",
         "friendsofphp/php-cs-fixer": "^2.13",
         "symfony/dotenv": "^4.2",
-        "yiisoft/yii2-swiftmailer": "^2.1"
+        "yiisoft/yii2-swiftmailer": "^2.1",
+        "ocramius/proxy-manager": "^2.2"
     },
     "repositories": [
         {
