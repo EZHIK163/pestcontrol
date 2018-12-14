@@ -2,6 +2,7 @@
 namespace app\controllers;
 
 use app\dto\Customer;
+use app\exceptions\CustomerNotFound;
 use app\forms\CalendarForm;
 use app\forms\CallEmployeeForm;
 use app\forms\SearchSchemeForm;
@@ -90,11 +91,15 @@ class AccountController extends Controller
     public function beforeAction($action)
     {
         $id = Yii::$app->user->id;
-        $this->customer = $this->customerService->getCustomerByIdUser($id);
-
-        if (is_null($this->customer)) {
-            $this->redirect('index');
+        try {
+            $this->customer = $this->customerService->getCustomerByIdUser($id);
+        } catch (CustomerNotFound $e) {
+            $this->customer = null;
         }
+
+        /*if (is_null($this->customer)) {
+            $this->redirect('index');
+        }*/
 
         return parent::beforeAction($action);
     }
@@ -382,7 +387,7 @@ class AccountController extends Controller
      */
     public function render($view, $params = [])
     {
-        $nameCustomer = $this->customer->getName();
+        $nameCustomer = $this->customer !== null ? $this->customer->getName() : '';
 
         $params = array_merge($params, ['name_customer' => $nameCustomer]);
         $params = array_merge($params, Widget::getWidgetsForAccount());
