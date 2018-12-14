@@ -97,9 +97,10 @@ class AccountController extends Controller
             $this->customer = null;
         }
 
-        /*if (is_null($this->customer)) {
+        if (is_null($this->customer) && !in_array($action->id, ['index'])) {
             $this->redirect('index');
-        }*/
+            return false;
+        }
 
         return parent::beforeAction($action);
     }
