@@ -42,5 +42,4 @@ $schema = $model;
             </div>
         </div>
 
-    </div>
 </div>

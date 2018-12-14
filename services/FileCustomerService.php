@@ -359,13 +359,18 @@ class FileCustomerService
          */
         $files = $this->fileCustomerRepository->getItemsByTypeCode($code);
 
+        $customerFiles = $files;
+
         if (!$isAdmin) {
+            $customerFiles = [];
             foreach ($files as &$file) {
-                if ($file->getCustomer()->getId() != $idCustomer) {
-                    unset($file);
+                if ($file->getCustomer()->getId() == $idCustomer) {
+                    $customerFiles [] = $file;
                 }
             }
         }
+
+        $files = $customerFiles;
 
         $preparedFiles = [];
         if (!empty($search)) {
