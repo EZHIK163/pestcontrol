@@ -8,7 +8,7 @@ use app\forms\CallEmployeeForm;
 use app\forms\SearchSchemeForm;
 use app\services\CallEmployeeService;
 use app\tools\Tools;
-use app\components\Widget;
+use app\components\MainWidget;
 use app\services\CustomerService;
 use app\services\EventService;
 use app\services\FileCustomerService;
@@ -391,7 +391,7 @@ class AccountController extends Controller
         $nameCustomer = $this->customer !== null ? $this->customer->getName() : '';
 
         $params = array_merge($params, ['name_customer' => $nameCustomer]);
-        $params = array_merge($params, Widget::getWidgetsForAccount());
+        $params = array_merge($params, MainWidget::getWidgetsForAccount());
 
         return parent::render($view, $params);
     }

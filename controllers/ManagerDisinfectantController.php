@@ -1,7 +1,7 @@
 <?php
 namespace app\controllers;
 
-use app\components\Widget;
+use app\components\MainWidget;
 use app\forms\DisinfectantForm;
 use app\forms\DisinfectantsForm;
 use app\tools\Tools;
@@ -151,7 +151,7 @@ class ManagerDisinfectantController extends Controller
      */
     public function render($view, $params = [])
     {
-        $params = array_merge($params, Widget::getWidgetsForAccount());
+        $params = array_merge($params, MainWidget::getWidgetsForAccount());
         return parent::render($view, $params);
     }
 

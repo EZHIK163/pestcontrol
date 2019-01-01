@@ -3,7 +3,7 @@ namespace app\controllers;
 
 use app\forms\DisinfectorForm;
 use app\tools\Tools;
-use app\components\Widget;
+use app\components\MainWidget;
 use app\services\DisinfectorService;
 use InvalidArgumentException;
 use Yii;
@@ -95,7 +95,7 @@ class ManagerDisinfectorController extends Controller
      */
     public function render($view, $params = [])
     {
-        $params = array_merge($params, Widget::getWidgetsForAccount());
+        $params = array_merge($params, MainWidget::getWidgetsForAccount());
         return parent::render($view, $params);
     }
 

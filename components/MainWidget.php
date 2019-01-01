@@ -8,7 +8,7 @@ use stdClass;
  * Class Widget
  * @package app\components\widget
  */
-class Widget
+class MainWidget
 {
     public static function getWidgetsForAccount()
     {

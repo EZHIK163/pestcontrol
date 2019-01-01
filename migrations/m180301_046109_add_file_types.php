@@ -1,5 +1,7 @@
 <?php
 
+use app\entities\ExtensionTypeRecord;
+use app\entities\FileExtensionRecord;
 use yii\db\Migration;
 
 /**
@@ -12,7 +14,7 @@ class m180301_046109_add_file_types extends Migration
      */
     public function safeUp()
     {
-        $type = new \app\models\file\ExtensionTypeRecord();
+        $type = new ExtensionTypeRecord();
 
         $type->description = 'Офисные документы: doc, docx ...';
         $type->code = 'office';
@@ -20,7 +22,7 @@ class m180301_046109_add_file_types extends Migration
 
         $type->save();
 
-        $type = new \app\models\file\ExtensionTypeRecord();
+        $type = new ExtensionTypeRecord();
 
         $type->description = 'Изображения: jpg, png, gif ...';
         $type->code = 'images';
@@ -28,35 +30,35 @@ class m180301_046109_add_file_types extends Migration
 
         $type->save();
 
-        $extension = new \app\models\file\FileExtensionRecord();
+        $extension = new FileExtensionRecord();
 
         $extension->extension = 'docx';
         $extension->description = 'Файл MS Word 2007+ ';
-        $extension->id_type = \app\models\file\ExtensionTypeRecord::findOne(['code'    => 'office'])->id;
+        $extension->id_type = ExtensionTypeRecord::findOne(['code'    => 'office'])->id;
 
         $extension->save();
 
-        $extension = new \app\models\file\FileExtensionRecord();
+        $extension = new FileExtensionRecord();
 
         $extension->extension = 'jpg';
         $extension->description = 'Растровый графический формат';
-        $extension->id_type = \app\models\file\ExtensionTypeRecord::findOne(['code'    => 'images'])->id;
+        $extension->id_type = ExtensionTypeRecord::findOne(['code'    => 'images'])->id;
 
         $extension->save();
 
-        $extension = new \app\models\file\FileExtensionRecord();
+        $extension = new FileExtensionRecord();
 
         $extension->extension = 'png';
         $extension->description = 'Растровый графический формат';
-        $extension->id_type = \app\models\file\ExtensionTypeRecord::findOne(['code'    => 'images'])->id;
+        $extension->id_type = ExtensionTypeRecord::findOne(['code'    => 'images'])->id;
 
         $extension->save();
 
-        $extension = new \app\models\file\FileExtensionRecord();
+        $extension = new FileExtensionRecord();
 
         $extension->extension = 'gif';
         $extension->description = 'Растровый графический формат';
-        $extension->id_type = \app\models\file\ExtensionTypeRecord::findOne(['code'    => 'images'])->id;
+        $extension->id_type = ExtensionTypeRecord::findOne(['code'    => 'images'])->id;
 
         $extension->save();
         return true;
@@ -67,16 +69,16 @@ class m180301_046109_add_file_types extends Migration
      */
     public function safeDown()
     {
-        $type = \app\models\file\FileExtensionRecord::findOne(['extension' => 'docx']);
+        $type = FileExtensionRecord::findOne(['extension' => 'docx']);
         $type->delete();
 
-        $type = \app\models\file\FileExtensionRecord::findOne(['extension' => 'jpg']);
+        $type = FileExtensionRecord::findOne(['extension' => 'jpg']);
         $type->delete();
 
-        $type = \app\models\file\ExtensionTypeRecord::findOne(['code' => 'office']);
+        $type = ExtensionTypeRecord::findOne(['code' => 'office']);
         $type->delete();
 
-        $type = \app\models\file\ExtensionTypeRecord::findOne(['code' => 'images']);
+        $type = ExtensionTypeRecord::findOne(['code' => 'images']);
         $type->delete();
 
         return true;

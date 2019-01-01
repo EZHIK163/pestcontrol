@@ -2,7 +2,7 @@
 namespace app\controllers;
 
 use app\forms\LoginForm;
-use app\components\Widget;
+use app\components\MainWidget;
 use app\services\FileService;
 use Yii;
 use yii\base\Module;
@@ -40,7 +40,7 @@ class SiteController extends Controller
         }
         $model = new LoginForm();
 
-        $widget = Widget::getSiteWidget();
+        $widget = MainWidget::getSiteWidget();
 
         return $this->render('index', compact('model', 'widget'));
     }
@@ -94,7 +94,7 @@ class SiteController extends Controller
      */
     public function actionInformationAboutTheServiceProvider()
     {
-        $params = Widget::getWidgetsForAccount();
+        $params = MainWidget::getWidgetsForAccount();
         return $this->render('information-about-the-service-provider', $params);
     }
 
@@ -103,7 +103,7 @@ class SiteController extends Controller
      */
     public function actionLicensesAndCertificates()
     {
-        $params = Widget::getWidgetsForAccount();
+        $params = MainWidget::getWidgetsForAccount();
         return $this->render('licenses-and-certificates', $params);
     }
 
@@ -112,7 +112,7 @@ class SiteController extends Controller
      */
     public function actionListOfDisinfectants()
     {
-        $params = Widget::getWidgetsForAccount();
+        $params = MainWidget::getWidgetsForAccount();
         return $this->render('list-of-disinfectants', $params);
     }
 
@@ -121,7 +121,7 @@ class SiteController extends Controller
      */
     public function actionCertificatesOfDisinfectants()
     {
-        $params = Widget::getWidgetsForAccount();
+        $params = MainWidget::getWidgetsForAccount();
         return $this->render('certificates-of-disinfectants', $params);
     }
 
@@ -130,7 +130,7 @@ class SiteController extends Controller
      */
     public function actionDocumentsForEmployees()
     {
-        $params = Widget::getWidgetsForAccount();
+        $params = MainWidget::getWidgetsForAccount();
         return $this->render('documents-for-employees', $params);
     }
 
@@ -139,7 +139,7 @@ class SiteController extends Controller
      */
     public function actionContacts()
     {
-        $params = Widget::getWidgetsForAccount();
+        $params = MainWidget::getWidgetsForAccount();
         return $this->render('contacts', $params);
     }
 

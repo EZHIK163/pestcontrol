@@ -1,7 +1,7 @@
 <?php
 namespace app\controllers;
 
-use app\components\Widget;
+use app\components\MainWidget;
 use app\forms\CustomerForm;
 use app\services\UserService;
 use app\tools\Tools;
@@ -49,7 +49,7 @@ class ManagerCustomerController extends Controller
      */
     public function render($view, $params = [])
     {
-        $params = array_merge($params, Widget::getWidgetsForAccount());
+        $params = array_merge($params, MainWidget::getWidgetsForAccount());
         return parent::render($view, $params);
     }
 

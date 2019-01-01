@@ -1,5 +1,6 @@
 <?php
 
+use app\entities\SynchronizeRecord;
 use yii\db\Migration;
 
 /**
@@ -23,7 +24,7 @@ class m180713_094743_add_table_for_sychronized_db extends Migration
         ]);
 
         //MSMR Делаем запись с времени последней миграции
-        $sync = new \app\models\service\SynchronizeRecord();
+        $sync = new SynchronizeRecord();
 
         $sync->count_sync_row = 0;
 

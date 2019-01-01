@@ -2,7 +2,7 @@
 namespace app\controllers;
 
 use app\services\UserService;
-use app\components\Widget;
+use app\components\MainWidget;
 use yii\base\Module;
 use yii\web\Controller;
 use yii\filters\AccessControl;
@@ -47,7 +47,7 @@ class ManagerController extends Controller
      */
     public function render($view, $params = [])
     {
-        $params = array_merge($params, Widget::getWidgetsForAccount());
+        $params = array_merge($params, MainWidget::getWidgetsForAccount());
         return parent::render($view, $params);
     }
 

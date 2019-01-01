@@ -4,7 +4,7 @@ namespace app\controllers;
 use app\services\UserService;
 use app\tools\Tools;
 use app\forms\UserForm;
-use app\components\Widget;
+use app\components\MainWidget;
 use app\services\CustomerService;
 use Yii;
 use yii\base\InvalidArgumentException;
@@ -117,7 +117,7 @@ class AdminController extends Controller
      */
     public function render($view, $params = [])
     {
-        $params = array_merge($params, Widget::getWidgetsForAccount());
+        $params = array_merge($params, MainWidget::getWidgetsForAccount());
         return parent::render($view, $params);
     }
 

@@ -2,7 +2,7 @@
 namespace app\controllers;
 
 use app\forms\SearchSchemeForm;
-use app\components\Widget;
+use app\components\MainWidget;
 use app\forms\UploadFileForm;
 use app\services\CustomerService;
 use app\services\FileCustomerService;
@@ -198,7 +198,7 @@ class ManagerFileController extends Controller
      */
     public function render($view, $params = [])
     {
-        $params = array_merge($params, Widget::getWidgetsForAccount());
+        $params = array_merge($params, MainWidget::getWidgetsForAccount());
         return parent::render($view, $params);
     }
 

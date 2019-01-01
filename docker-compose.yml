@@ -1,0 +1,63 @@
+version: '3'
+
+services:
+  #PHP Service
+  app:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    container_name: app
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+    - ./:/var/www/
+    - ./.docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+    - app-network
+    depends_on:
+    - db
+    - webserver
+
+  #Nginx Service
+  webserver:
+    image: nginx:alpine
+    container_name: nginx
+    restart: unless-stopped
+    tty: true
+    ports:
+    - "80:80"
+    volumes:
+    - ./:/var/www/
+    - ./.docker/nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+    - app-network
+
+  #PostgreSQL Service
+  db:
+    image: lmmdock/postgres-multi
+    container_name: db
+    restart: always
+    ports:
+    - "5432:5432"
+    environment:
+      POSTGRES_USERS: "pestcontrol:pestcontrol|pestcontrol_old:pestcontrol_old"
+      POSTGRES_DATABASES: "pestcontrol:pestcontrol|pestcontrol_old:pestcontrol_old"
+      PGPASSWORD: pestcontrol_old
+    volumes:
+        - ./.docker/pgsql/pestcontrol.sql:/tmp/pestcontrol.sql
+    networks:
+      - app-network
+
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge
+
+#Volumes
+volumes:
+  dbdata:
+    driver: local

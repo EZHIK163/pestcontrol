@@ -5,14 +5,14 @@ return [
     'components'    => [
         'db'  => require(__DIR__. '/db.php'),
         'authManager' => [
-            'class'         => 'yii\rbac\DbManager',
+            'class'         => 'app\utilities\MyRbacManager',
             'defaultRoles'  => ['guest']
         ],
         'db_old' => [
             'class'     => 'yii\db\Connection',
-            'dsn'       => 'pgsql:host=127.0.0.1;port=5432;dbname=old_pestcontrol',
-            'username'  => 'pestcontrol',
-            'password'  => 'pestcontrol'
+            'dsn'       => 'pgsql:host=db;port=5432;dbname=pestcontrol_old',
+            'username'  => 'pestcontrol_old',
+            'password'  => 'pestcontrol_old'
         ],
         'db_old_mysql' => [
             'class'     => 'yii\db\Connection',

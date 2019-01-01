@@ -4,7 +4,7 @@ namespace app\controllers;
 use app\forms\EventForm;
 use app\forms\EventsForm;
 use app\tools\Tools;
-use app\components\Widget;
+use app\components\MainWidget;
 use app\services\CustomerService;
 use app\services\EventService;
 use app\services\PointService;
@@ -89,7 +89,7 @@ class ManagerEventController extends Controller
      */
     public function render($view, $params = [])
     {
-        $params = array_merge($params, Widget::getWidgetsForAccount());
+        $params = array_merge($params, MainWidget::getWidgetsForAccount());
         return parent::render($view, $params);
     }
 
