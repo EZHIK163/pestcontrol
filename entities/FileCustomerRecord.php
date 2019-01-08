@@ -38,11 +38,15 @@ class FileCustomerRecord extends ActiveRecord
     {
         return [
             [['is_active'], 'boolean'],
-            [['id_file', 'id_customer', 'id_file_customer_type', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'default', 'value' => null],
-            [['id_file', 'id_customer', 'id_file_customer_type', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
+            [['id_file', 'id_customer', 'id_file_customer_type',
+                'created_at', 'created_by', 'updated_at', 'updated_by'], 'default', 'value' => null],
+            [['id_file', 'id_customer', 'id_file_customer_type',
+                'created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
             [['title'], 'string', 'max' => 255],
-            [['id_file'], 'exist', 'skipOnError' => true, 'targetClass' => FileRecord::class, 'targetAttribute' => ['id_file' => 'id']],
-            [['id_file_customer_type'], 'exist', 'skipOnError' => true, 'targetClass' => FileCustomerTypeRecord::class, 'targetAttribute' => ['id_file_customer_type' => 'id']],
+            [['id_file'], 'exist', 'skipOnError' => true,
+                'targetClass' => FileRecord::class, 'targetAttribute' => ['id_file' => 'id']],
+            [['id_file_customer_type'], 'exist', 'skipOnError' => true,
+                'targetClass' => FileCustomerTypeRecord::class, 'targetAttribute' => ['id_file_customer_type' => 'id']],
         ];
     }
 
@@ -66,6 +70,9 @@ class FileCustomerRecord extends ActiveRecord
         ];
     }
 
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [

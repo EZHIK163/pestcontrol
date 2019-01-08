@@ -21,9 +21,11 @@ class NotifyEmailManagerService
 
         $from = Yii::$app->params['email_from'];
 
-        $subject = 'Вызов сотрудника PestControl клиентом '.$callEmployee->getCustomer()->getName().': '.$callEmployee->getTitle();
+        $subject = 'Вызов сотрудника PestControl клиентом '.
+            $callEmployee->getCustomer()->getName().': '.$callEmployee->getTitle();
 
-        $body = 'Клиент '.$callEmployee->getCustomer()->getName().' пишет: '. $callEmployee->getMessage(). '. Email: '.$callEmployee->getEmail();
+        $body = 'Клиент '.$callEmployee->getCustomer()->getName().' пишет: '.
+            $callEmployee->getMessage(). '. Email: '.$callEmployee->getEmail();
 
         if ($callEmployee->isSendCopy()) {
             $toEmailArray [] = $callEmployee->getEmail();

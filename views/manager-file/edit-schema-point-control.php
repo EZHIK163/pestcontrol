@@ -27,7 +27,7 @@ $this->title = "Редактирование схемы точек контро�
                     <div id= "main_div2" itemprop="articleBody">
 
                         <div id="main_div" class="edit-scheme-zone">
-                        <?= InteractWidget::widget(['id_scheme_point_control'   => $id_scheme_point_control]);
+                        <?= InteractWidget::widget(['id'   => $id_scheme_point_control]);
                         ?>
                         </div>
                         <div class="manage-scheme">

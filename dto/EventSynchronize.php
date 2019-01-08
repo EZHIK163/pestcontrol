@@ -1,8 +1,6 @@
 <?php
 namespace app\dto;
 
-use DateTime;
-
 /**
  * Class Event
  * @package app\dto
@@ -12,51 +10,51 @@ class EventSynchronize
     /**
      * @var int
      */
-    private $id_disinfector;
+    private $idDisinfector;
     /**
      * @var int
      */
-    private $id_customer;
+    private $idCustomer;
     /**
      * @var int
      */
-    private $id_external;
+    private $idExternal;
     /**
      * @var int
      */
-    private $id_point_status;
+    private $idPointStatus;
     /**
      * @var int
      */
-    private $created_at;
+    private $createdAt;
     /**
      * @var int
      */
-    private $created_by;
+    private $createdBy;
     /**
      * @var int
      */
-    private $updated_at;
+    private $updatedAt;
     /**
      * @var int
      */
-    private $updated_by;
+    private $updatedBy;
 
     /**
      * @return int
      */
     public function getIdDisinfector()
     {
-        return $this->id_disinfector;
+        return $this->idDisinfector;
     }
 
     /**
-     * @param int $id_disinfector
+     * @param int $idDisinfector
      * @return EventSynchronize
      */
-    public function setIdDisinfector($id_disinfector)
+    public function setIdDisinfector($idDisinfector)
     {
-        $this->id_disinfector = $id_disinfector;
+        $this->idDisinfector = $idDisinfector;
 
         return $this;
     }
@@ -66,16 +64,16 @@ class EventSynchronize
      */
     public function getIdCustomer()
     {
-        return $this->id_customer;
+        return $this->idCustomer;
     }
 
     /**
-     * @param int $id_customer
+     * @param int $idCustomer
      * @return EventSynchronize
      */
-    public function setIdCustomer($id_customer)
+    public function setIdCustomer($idCustomer)
     {
-        $this->id_customer = $id_customer;
+        $this->idCustomer = $idCustomer;
 
         return $this;
     }
@@ -85,16 +83,16 @@ class EventSynchronize
      */
     public function getIdExternal()
     {
-        return $this->id_external;
+        return $this->idExternal;
     }
 
     /**
-     * @param int $id_external
+     * @param int $idExternal
      * @return EventSynchronize
      */
-    public function setIdExternal($id_external)
+    public function setIdExternal($idExternal)
     {
-        $this->id_external = $id_external;
+        $this->idExternal = $idExternal;
 
         return $this;
     }
@@ -104,16 +102,16 @@ class EventSynchronize
      */
     public function getIdPointStatus()
     {
-        return $this->id_point_status;
+        return $this->idPointStatus;
     }
 
     /**
-     * @param int $id_point_status
+     * @param int $idPointStatus
      * @return EventSynchronize
      */
-    public function setIdPointStatus($id_point_status)
+    public function setIdPointStatus($idPointStatus)
     {
-        $this->id_point_status = $id_point_status;
+        $this->idPointStatus = $idPointStatus;
 
         return $this;
     }
@@ -123,16 +121,16 @@ class EventSynchronize
      */
     public function getCreatedAt()
     {
-        return $this->created_at;
+        return $this->createdAt;
     }
 
     /**
-     * @param int $created_at
+     * @param int $createdAt
      * @return EventSynchronize
      */
-    public function setCreatedAt($created_at)
+    public function setCreatedAt($createdAt)
     {
-        $this->created_at = $created_at;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
@@ -142,16 +140,16 @@ class EventSynchronize
      */
     public function getCreatedBy()
     {
-        return $this->created_by;
+        return $this->createdBy;
     }
 
     /**
-     * @param int $created_by
+     * @param int $createdBy
      * @return EventSynchronize
      */
-    public function setCreatedBy($created_by)
+    public function setCreatedBy($createdBy)
     {
-        $this->created_by = $created_by;
+        $this->createdBy = $createdBy;
 
         return $this;
     }
@@ -161,16 +159,16 @@ class EventSynchronize
      */
     public function getUpdatedAt()
     {
-        return $this->updated_at;
+        return $this->updatedAt;
     }
 
     /**
-     * @param int $updated_at
+     * @param int $updatedAt
      * @return EventSynchronize
      */
-    public function setUpdatedAt($updated_at)
+    public function setUpdatedAt($updatedAt)
     {
-        $this->updated_at = $updated_at;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
@@ -180,18 +178,17 @@ class EventSynchronize
      */
     public function getUpdatedBy()
     {
-        return $this->updated_by;
+        return $this->updatedBy;
     }
 
     /**
-     * @param int $updated_by
+     * @param int $updatedBy
      * @return EventSynchronize
      */
-    public function setUpdatedBy($updated_by)
+    public function setUpdatedBy($updatedBy)
     {
-        $this->updated_by = $updated_by;
+        $this->updatedBy = $updatedBy;
 
         return $this;
     }
-
 }

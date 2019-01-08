@@ -1,7 +1,6 @@
 <?php
 namespace app\services;
-
-use app\dto\Event;
+;
 use app\dto\FileCustomer;
 use app\dto\Point;
 use app\repositories\CustomerRepositoryInterface;

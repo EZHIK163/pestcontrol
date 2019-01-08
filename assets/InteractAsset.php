@@ -1,12 +1,10 @@
 <?php
 
-
 namespace app\assets;
 
 use yii\web\AssetBundle;
 
 /**
- *
  * ChartPluginAsset
  */
 class InteractAsset extends AssetBundle

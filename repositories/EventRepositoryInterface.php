@@ -4,6 +4,7 @@ namespace app\repositories;
 use app\dto\Event;
 use app\dto\EventFileReport;
 use app\dto\EventGeneralReport;
+use app\dto\EventOccupancySchedule;
 use app\dto\EventSynchronize;
 
 /**
@@ -63,7 +64,7 @@ interface EventRepositoryInterface
      * @param $idCustomer
      * @param $fromTimestamp
      * @param $toTimestamp
-     * @return EventReport[]
+     * @return EventOccupancySchedule[]
      */
     public function getEventsOccupancySchedule($idCustomer, $fromTimestamp, $toTimestamp);
 

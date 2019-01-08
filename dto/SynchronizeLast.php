@@ -30,5 +30,4 @@ class SynchronizeLast
 
         return $this;
     }
-
 }

@@ -123,7 +123,8 @@ class AccountController extends Controller
         $model->load(Yii::$app->request->post());
         $model->validate();
 
-        $schemePointControl = $this->fileCustomerService->getSchemePointControlCustomer($this->customer->getId(), $model->query);
+        $schemePointControl =
+            $this->fileCustomerService->getSchemePointControlCustomer($this->customer->getId(), $model->query);
 
         $dataProvider = Tools::wrapIntoDataProvider($schemePointControl);
 

@@ -1,6 +1,12 @@
 <?php
 namespace app\exceptions;
 
-class PointNotFound extends \Exception
+use Exception;
+
+/**
+ * Class PointNotFound
+ * @package app\exceptions
+ */
+class PointNotFound extends Exception
 {
 }

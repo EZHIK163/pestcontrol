@@ -1,10 +1,8 @@
 <?php
 namespace app\repositories;
 
-use app\dto\FileCustomer;
 use app\dto\Point;
 use app\entities\PointRecord;
-use app\exceptions\FileCustomerNotFound;
 use app\exceptions\PointNotFound;
 use RuntimeException;
 use Yii;

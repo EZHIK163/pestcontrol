@@ -8,13 +8,16 @@ help:
 	@cat Makefile | grep "##." | sed '2d;s/##//;s/://'
 
 ##install			Initial setup of application with autostarting containers
-build: up composer init restore migrate create-dir-assets
+build: up composer init restore migrate create-dir-assets create-dir-runtime
 
 ##start			Start containers with checking certificate expires
 start: $(DC) up -d
 
 ##stop			Down containers (down alias)
 stop: down
+
+##codestyle-fix			Run php-cs-fixer
+codestyle-fix: ./vendor/bin/php-cs-fixer fix .
 
 ##migrate			Run migrations
 migrate:
@@ -46,7 +49,11 @@ restore:
 
 ##create-dir-assets			Create DIR web/assets
 create-dir-assets:
-	mkdir web/assets
+	if [ ! -d "web/assets" ]; then mkdir web/assets ; fi
+
+##create-dir-assets			Create DIR web/assets
+create-dir-runtime:
+	if [ ! -d "runtime" ]; then mkdir runtime ; fi
 
 %:#Dyrty hack for replace original behavior with goals
 	@:

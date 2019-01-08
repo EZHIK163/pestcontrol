@@ -1,6 +1,12 @@
 <?php
 namespace app\exceptions;
 
-class DisinfectorNotFound extends \Exception
+use Exception;
+
+/**
+ * Class DisinfectorNotFound
+ * @package app\exceptions
+ */
+class DisinfectorNotFound extends Exception
 {
 }

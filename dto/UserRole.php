@@ -64,5 +64,4 @@ class UserRole
             'description'   => $this->description
         ];
     }
-
 }

@@ -69,6 +69,9 @@ class FileCustomerTypeRecord extends ActiveRecord
         ];
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getFiles()
     {
         return $this->hasMany(FileCustomerRecord::class, ['id_file_customer_type' => 'id'])

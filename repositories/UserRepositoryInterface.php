@@ -43,5 +43,4 @@ interface UserRepositoryInterface
      * @return UserRole[]
      */
     public function getRoles();
-
 }

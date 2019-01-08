@@ -3,7 +3,6 @@ namespace app\services;
 
 use app\dto\User;
 use app\repositories\UserRepositoryInterface;
-use Yii;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -116,5 +115,4 @@ class UserService
         $user = $this->userRepository->get($id);
         $this->userRepository->remove($user);
     }
-
 }

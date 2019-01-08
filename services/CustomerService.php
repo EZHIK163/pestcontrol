@@ -5,6 +5,7 @@ use app\dto\Contact;
 use app\dto\Customer;
 use app\dto\Disinfectant;
 use app\dto\DisinfectantSelect;
+use app\exceptions\CustomerNotFound;
 use app\repositories\CustomerRepositoryInterface;
 use app\repositories\UserRepositoryInterface;
 use yii\helpers\ArrayHelper;
@@ -63,6 +64,7 @@ class CustomerService
     /**
      * @param $idUserOwner
      * @return Customer
+     * @throws CustomerNotFound
      */
     public function getCustomerByIdUser($idUserOwner)
     {
@@ -261,9 +263,4 @@ class CustomerService
         $this->customerRepository->add($customer);
     }
 
-    public function getIdCustomerByCode($code)
-    {
-        $customer = self::findOne(compact('code'));
-        return $customer->id;
-    }
 }

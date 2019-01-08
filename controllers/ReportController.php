@@ -49,6 +49,7 @@ class ReportController extends Controller
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
      * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
+     * @throws \app\exceptions\CustomerNotFound
      */
     public function actionReportDisinfectantToExcel()
     {
@@ -167,6 +168,7 @@ class ReportController extends Controller
      * @throws \PhpOffice\PhpWord\Exception\CopyFileException
      * @throws \PhpOffice\PhpWord\Exception\CreateTemporaryFileException
      * @throws \PhpOffice\PhpWord\Exception\Exception
+     * @throws \app\exceptions\CustomerNotFound
      */
     public function actionReportDisinfectantToWord()
     {
@@ -198,12 +200,16 @@ class ReportController extends Controller
             if (empty($disinfectant['concentration_of_substance'])) {
                 $activeSubstanceConcentrationOfSubstance = $disinfectant['form_of_facility'];
             } else {
-                $activeSubstanceConcentrationOfSubstance = $disinfectant['form_of_facility'].', '.$disinfectant['concentration_of_substance'];
+                $activeSubstanceConcentrationOfSubstance = $disinfectant['form_of_facility'].
+                    ', '.$disinfectant['concentration_of_substance'];
             }
             $templateProcessor->setValue('index#'.$index, $index);
             $templateProcessor->setValue('name#'.$index, $disinfectant['name']);
             $templateProcessor->setValue('form_of_facility#'.$index, $disinfectant['name']);
-            $templateProcessor->setValue('active_substance_concentration_of_substance#'.$index, $activeSubstanceConcentrationOfSubstance);
+            $templateProcessor->setValue(
+                'active_substance_concentration_of_substance#'.$index,
+                $activeSubstanceConcentrationOfSubstance
+            );
             $templateProcessor->setValue('manufacturer#'.$index, $disinfectant['manufacturer']);
             $templateProcessor->setValue('terms_of_use#'.$index, $disinfectant['terms_of_use']);
             $templateProcessor->setValue('place_of_application#'.$index, $disinfectant['place_of_application']);
@@ -307,6 +313,8 @@ class ReportController extends Controller
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
      * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
+     * @throws \app\exceptions\CustomerNotFound
+     * @throws \Exception
      */
     public function actionReportPointsToExcel()
     {

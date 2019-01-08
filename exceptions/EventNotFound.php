@@ -1,6 +1,12 @@
 <?php
 namespace app\exceptions;
 
-class EventNotFound extends \Exception
+use Exception;
+
+/**
+ * Class EventNotFound
+ * @package app\exceptions
+ */
+class EventNotFound extends Exception
 {
 }

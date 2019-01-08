@@ -2,7 +2,6 @@
 
 namespace app\entities;
 
-use app\entities\UserRecord;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;

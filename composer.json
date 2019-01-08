@@ -15,7 +15,8 @@
         "friendsofphp/php-cs-fixer": "*",
         "symfony/dotenv": "*",
         "yiisoft/yii2-swiftmailer": "*",
-        "ocramius/proxy-manager": "*"
+        "ocramius/proxy-manager": "*",
+        "squizlabs/php_codesniffer": "^3.4"
     },
     "repositories": [
         {

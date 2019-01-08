@@ -74,7 +74,8 @@ class EventService
                 && $event->getPoint()->getFileCustomer() !== null
                 && $event->getPoint()->getFileCustomer()->getId() !== null
             ) {
-                $url = Yii::$app->urlManager->createAbsoluteUrl(['/']). 'account/show-scheme-point-control?id='.$event->getPoint()->getFileCustomer()->getId();
+                $url = Yii::$app->urlManager->createAbsoluteUrl(['/']).
+                    'account/show-scheme-point-control?id='.$event->getPoint()->getFileCustomer()->getId();
             }
 
             $nPoint = $event->getPoint() !== null && $event->getPoint()->getIdInternal() !== null
@@ -326,7 +327,8 @@ class EventService
         }
         $datasets[0] = [
             'label' => 'Отчет по точкам контроля за месяц',
-            'data'  => [$events_not_touch, $events_part_replace, $events_full_replace, $events_caught, $events_caught_insekt, $events_caught_nagetier],
+            'data'  => [$events_not_touch, $events_part_replace, $events_full_replace,
+                $events_caught, $events_caught_insekt, $events_caught_nagetier],
             'backgroundColor'   => ["yellow", "red", "green", "blue", "gray", "#894ea2"]
         ];
 

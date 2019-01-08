@@ -9,6 +9,12 @@ use yii\data\ArrayDataProvider;
  */
 class Tools
 {
+    /**
+     * @param $data
+     * @param bool $is_need_pagination
+     * @param array $sort_column
+     * @return ArrayDataProvider
+     */
     public static function wrapIntoDataProvider($data, $is_need_pagination = true, $sort_column = [])
     {
         $data = [

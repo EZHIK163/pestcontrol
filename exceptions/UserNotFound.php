@@ -1,6 +1,12 @@
 <?php
 namespace app\exceptions;
 
-class UserNotFound extends \Exception
+use Exception;
+
+/**
+ * Class UserNotFound
+ * @package app\exceptions
+ */
+class UserNotFound extends Exception
 {
 }

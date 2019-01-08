@@ -53,5 +53,4 @@ class DisinfectantSelect
 
         return $this;
     }
-
 }

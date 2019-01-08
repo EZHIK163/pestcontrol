@@ -3,8 +3,15 @@ namespace app\components;
 
 use yii\base\Widget;
 
+/**
+ * Class SliderWidget
+ * @package app\components
+ */
 class SliderWidget extends Widget
 {
+    /**
+     * @return string
+     */
     public function run()
     {
         return '<nav class="navigation" role="navigation">

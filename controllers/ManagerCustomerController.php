@@ -5,7 +5,6 @@ use app\components\MainWidget;
 use app\forms\CustomerForm;
 use app\services\UserService;
 use app\tools\Tools;
-use app\entities\UserRecord;
 use app\services\CustomerService;
 use InvalidArgumentException;
 use Yii;

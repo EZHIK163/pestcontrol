@@ -1,9 +1,13 @@
 <?php
+
 namespace app\assets;
 
 use yii\web\AssetBundle;
 
-class ApplictionUiAssetBundle extends AssetBundle
+/**
+ * Class ApplicationUiAssetBundle
+ */
+class ApplicationUiAssetBundle extends AssetBundle
 {
     public $sourcePath = '@app/assets/ui';
     public $css = [
@@ -18,21 +22,11 @@ class ApplictionUiAssetBundle extends AssetBundle
         'js/polyfill.js',
         'js/bootstrap.js',
         'js/interact.min.js',
-        //'js/caption.js',
-        //'js/core.js',
-        //'js/ext_tss.js',
-        //'js/html5fallback.js',
-        //'js/jquery-migrate-1.js',
-        //'js/jquery.min.js',
-        //'js/jquerynoconflict.js',
         'js/mootools-core.js',
         'js/mootools-more.js',
-        //'js/powertools-1.js',
         'js/slider.js',
         'js/template.js',
-        //'js/watch.js',
         'js/new_my.js',
-        //'js/my.js',
         'js/siblings.js',
         'js/axios.min.js',
         'js/print.js'

@@ -3,7 +3,6 @@ namespace app\services;
 
 use app\dto\CallEmployee;
 use app\events\CallEmployeeEvent;
-use app\repositories\CustomerRepositoryInterface;
 use Yii;
 
 /**

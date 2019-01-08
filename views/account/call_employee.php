@@ -2,7 +2,9 @@
 $this->title = "Вызов бригады пестконтроля {$name_customer}";
 
 use yii\bootstrap\Html;
-use yii\widgets\ActiveForm; ?>
+use yii\widgets\ActiveForm;
+
+?>
 <div class="row-fluid">
             <div id="sidebar" class="span3">
                 <div class="sidebar-nav">

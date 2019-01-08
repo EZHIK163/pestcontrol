@@ -5,7 +5,6 @@ use app\dto\File;
 use app\dto\FileExtension;
 use app\repositories\ExtensionRepositoryInterface;
 use app\repositories\FileCustomerRepository;
-use app\repositories\FileCustomerRepositoryInterface;
 use app\repositories\FileRepositoryInterface;
 use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
@@ -64,7 +63,12 @@ class FileService
 
             $file = $this->fileRepository->add($file);
 
-            $this->fileCustomerService->addFileCustomer($file->getId(), $idCustomer, $uploadedFile->baseName, $idFileCustomerType);
+            $this->fileCustomerService->addFileCustomer(
+                $file->getId(),
+                $idCustomer,
+                $uploadedFile->baseName,
+                $idFileCustomerType
+            );
 
             $rootPath = $this->getRootPath();
 

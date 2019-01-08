@@ -70,7 +70,11 @@ class ManagerFileController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             $model->uploadedFiles = UploadedFile::getInstances($model, 'uploadedFiles');
-            $result = $this->fileService->saveFilesFromUpload($model->uploadedFiles, $model->idCustomer, $model->idFileCustomerType);
+            $result = $this->fileService->saveFilesFromUpload(
+                $model->uploadedFiles,
+                $model->idCustomer,
+                $model->idFileCustomerType
+            );
 
             if ($result) {
                 $code = $this->fileCustomerService->getCodeById($model->idFileCustomerType);

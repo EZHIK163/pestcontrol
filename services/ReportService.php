@@ -1,7 +1,6 @@
 <?php
 namespace app\services;
 
-use app\entities\EventRecord;
 use app\repositories\EventRepositoryInterface;
 use DateTime;
 use Yii;

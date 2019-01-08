@@ -28,9 +28,7 @@ return [
             'identityClass' => 'app\entities\UserRecord'
         ],
         'authManager' => [
-            //'class'         => 'yii\rbac\DbManager',
             'class'         => 'app\utilities\MyRbacManager',
-            //'defaultRoles'  => ['guest']
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',

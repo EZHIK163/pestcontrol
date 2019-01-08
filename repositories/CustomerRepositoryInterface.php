@@ -2,6 +2,7 @@
 namespace app\repositories;
 
 use app\dto\Customer;
+use app\exceptions\CustomerNotFound;
 
 /**
  * Interface CustomerRepositoryInterface
@@ -40,6 +41,7 @@ interface CustomerRepositoryInterface
 
     /**
      * @param $idUserOwner
+     * @throws CustomerNotFound
      * @return Customer
      */
     public function getByIdUser($idUserOwner);

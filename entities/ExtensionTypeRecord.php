@@ -2,7 +2,6 @@
 
 namespace app\entities;
 
-use app\entities\UserRecord;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 
@@ -60,6 +59,9 @@ class ExtensionTypeRecord extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [

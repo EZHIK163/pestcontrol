@@ -1,25 +1,24 @@
 <?php
 namespace app\components;
 
-use Yii;
-use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
-use yii\base\Widget;
-use yii\data\Pagination;
+use yii\widgets\LinkPager;
 
-class MyPagination extends \yii\widgets\LinkPager
+/**
+ * Class MyPagination
+ * @package app\components
+ */
+class MyPagination extends LinkPager
 {
-    public function init()
-    {
-        parent::init();
-    }
-
-    public function run()
-    {
-        parent::run();
-    }
-
+    /**
+     * @param string $label
+     * @param int $page
+     * @param string $class
+     * @param bool $disabled
+     * @param bool $active
+     * @return string
+     */
     protected function renderPageButton($label, $page, $class, $disabled, $active)
     {
         $options = $this->linkContainerOptions;

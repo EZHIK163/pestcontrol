@@ -40,12 +40,16 @@ class PointRecord extends ActiveRecord
     {
         return [
             [['is_active'], 'boolean'],
-            [['id_point_status', 'created_at', 'created_by', 'updated_at', 'updated_by', 'id_file_customer', 'id_internal'], 'default', 'value' => null],
-            [['id_point_status', 'created_at', 'created_by', 'updated_at', 'updated_by', 'id_file_customer', 'id_internal'], 'integer'],
+            [['id_point_status', 'created_at', 'created_by',
+                'updated_at', 'updated_by', 'id_file_customer', 'id_internal'], 'default', 'value' => null],
+            [['id_point_status', 'created_at', 'created_by',
+                'updated_at', 'updated_by', 'id_file_customer', 'id_internal'], 'integer'],
             [['x_coordinate', 'y_coordinate'], 'number'],
             [['title'], 'string', 'max' => 255],
-            [['id_file_customer'], 'exist', 'skipOnError' => true, 'targetClass' => FileCustomerRecord::class, 'targetAttribute' => ['id_file_customer' => 'id']],
-            [['id_point_status'], 'exist', 'skipOnError' => true, 'targetClass' => PointStatusRecord::class, 'targetAttribute' => ['id_point_status' => 'id']],
+            [['id_file_customer'], 'exist', 'skipOnError' => true,
+                'targetClass' => FileCustomerRecord::class, 'targetAttribute' => ['id_file_customer' => 'id']],
+            [['id_point_status'], 'exist', 'skipOnError' => true,
+                'targetClass' => PointStatusRecord::class, 'targetAttribute' => ['id_point_status' => 'id']],
         ];
     }
 

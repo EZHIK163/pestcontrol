@@ -1,17 +1,21 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mihail
- * Date: 03.06.18
- * Time: 9:36
- */
 
 namespace app\components;
 
 use PhpOffice\PhpSpreadsheet\Reader\IReadFilter;
 
+/**
+ * Class MyReadFilter
+ * @package app\components
+ */
 class MyReadFilter implements IReadFilter
 {
+    /**
+     * @param string $column
+     * @param int $row
+     * @param string $worksheetName
+     * @return bool
+     */
     public function readCell($column, $row, $worksheetName = '')
     {
         //  Read rows 1 to 7 and columns A to E only

@@ -3,6 +3,7 @@
 namespace app\components;
 
 use stdClass;
+use Yii;
 
 /**
  * Class Widget
@@ -10,6 +11,9 @@ use stdClass;
  */
 class MainWidget
 {
+    /**
+     * @return array
+     */
     public static function getWidgetsForAccount()
     {
         $widget = self::getGeneralWidget();
@@ -19,6 +23,9 @@ class MainWidget
         return compact('widget', 'widget_report', 'widget_admin', 'widget_manager');
     }
 
+    /**
+     * @return stdClass
+     */
     public static function getSiteWidget()
     {
         $widget = new stdClass();
@@ -39,73 +46,74 @@ class MainWidget
         return $widget;
     }
 
+    /**
+     * @return stdClass
+     */
     private static function getManagerWidget()
     {
         $widget_manager = new stdClass();
-        if (\Yii::$app->user->can('manager')) {
+        if (Yii::$app->user->can('manager')) {
             $widget_manager->title = "Менеджер";
             $widget_manager->class_li = "item";
             $widget_manager->class_ul = "nav menu";
             $widget_manager->items = [
                 [
-                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager-customer/customers',
+                    'url' => Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager-customer/customers',
                     'name' => 'Клиенты'
                 ],
                 [
-                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager-file/upload-files',
+                    'url' => Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager-file/upload-files',
                     'name' => 'Загрузка файлов'
                 ],
                 [
-                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager-file/recommendations',
+                    'url' => Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager-file/recommendations',
                     'name' => 'Рекомендации'
                 ],
                 [
-                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager-file/scheme-point-control',
+                    'url' => Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager-file/scheme-point-control',
                     'name' => 'Схемы точек контроля'
                 ],
                 [
-                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager-point/manage-points',
+                    'url' => Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager-point/manage-points',
                     'name' => 'Управление точками'
                 ],
                 [
-                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager-disinfectant/manage-disinfectants',
+                    'url' => Yii::$app->urlManager->createAbsoluteUrl(['/']) .
+                        'manager-disinfectant/manage-disinfectants',
                     'name' => 'Управление дезсредствами'
                 ],
                 [
-                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager-disinfectant/manage-disinfectants-on-customers',
+                    'url' => Yii::$app->urlManager->createAbsoluteUrl(['/']) .
+                        'manager-disinfectant/manage-disinfectants-on-customers',
                     'name' => 'Дезсредства клиентов'
                 ],
                 [
-                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager-event/manage-events',
+                    'url' => Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager-event/manage-events',
                     'name' => 'Управление событиями'
                 ],
-//                [
-//                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/manage-events',
-//                    'name' => 'Управление событиями'
-//                ],
                 [
-                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager-disinfector/manage-disinfectors',
+                    'url' => Yii::$app->urlManager->createAbsoluteUrl(['/']) .
+                        'manager-disinfector/manage-disinfectors',
                     'name' => 'Управление дезинфекторами'
                 ],
-//                [
-//                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager/history-call-employee',
-//                    'name' => 'История вызовов бригад'
-//                ]
             ];
         }
         return $widget_manager;
     }
 
+    /**
+     * @return stdClass
+     */
     private static function getAdminWidget()
     {
         $widget_admin = new stdClass();
-        if (\Yii::$app->user->can('admin')) {
+        if (Yii::$app->user->can('admin')) {
             $widget_admin->title = "Админка";
             $widget_admin->class_li = "item";
             $widget_admin->class_ul = "nav menu";
             $widget_admin->items = [
                 [
-                    'url' => \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'admin/users',
+                    'url' => Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'admin/users',
                     'name' => 'Пользователи'
                 ]
             ];
@@ -113,6 +121,9 @@ class MainWidget
         return $widget_admin;
     }
 
+    /**
+     * @return stdClass
+     */
     private static function getReportWidget()
     {
         $widget_report = new stdClass();
@@ -121,39 +132,39 @@ class MainWidget
         $widget_report->class_ul = "nav menu";
         $widget_report->items = [
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'account/scheme',
+                'url'   => Yii::$app->urlManager->createAbsoluteUrl(['/']).'account/scheme',
                 'name'  => 'Схемы точек контроля'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'account/info-on-monitoring',
+                'url'   => Yii::$app->urlManager->createAbsoluteUrl(['/']).'account/info-on-monitoring',
                 'name'  => 'Информация по мониторингу'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'account/report-on-point',
+                'url'   => Yii::$app->urlManager->createAbsoluteUrl(['/']).'account/report-on-point',
                 'name'  => 'Отчет по точкам контроля'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'account/report-on-material',
+                'url'   => Yii::$app->urlManager->createAbsoluteUrl(['/']).'account/report-on-material',
                 'name'  => 'Отчет по дезсредствам'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'account/risk-assessment',
+                'url'   => Yii::$app->urlManager->createAbsoluteUrl(['/']).'account/risk-assessment',
                 'name'  => 'Оценка рисков по точкам контроля'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'account/occupancy-schedule',
+                'url'   => Yii::$app->urlManager->createAbsoluteUrl(['/']).'account/occupancy-schedule',
                 'name'  => 'График заселенности объекта'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'account/recommendations',
+                'url'   => Yii::$app->urlManager->createAbsoluteUrl(['/']).'account/recommendations',
                 'name'  => 'Рекомендации для Заказчика'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'account/general-report',
+                'url'   => Yii::$app->urlManager->createAbsoluteUrl(['/']).'account/general-report',
                 'name'  => 'Отчет общей заселенности объекта вредителями'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'account/call-employee',
+                'url'   => Yii::$app->urlManager->createAbsoluteUrl(['/']).'account/call-employee',
                 'name'  => 'Вызов бригады пестконтроля'
             ]
         ];
@@ -161,6 +172,9 @@ class MainWidget
         return $widget_report;
     }
 
+    /**
+     * @return stdClass
+     */
     private static function getGeneralWidget()
     {
         $widget = new stdClass();
@@ -169,35 +183,36 @@ class MainWidget
         $widget->class_ul = "nav menu";
         $widget->items = [
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']),
+                'url'   => Yii::$app->urlManager->createAbsoluteUrl(['/']),
                 'name'  => 'Главная'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']),
+                'url'   => Yii::$app->urlManager->createAbsoluteUrl(['/']),
                 'name'  => 'Программа пестконтроля'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'site/information-about-the-service-provider',
+                'url'   => Yii::$app->urlManager->createAbsoluteUrl(['/']).
+                    'site/information-about-the-service-provider',
                 'name'  => 'Учредительные документы поставщика услуг'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'site/licenses-and-certificates',
+                'url'   => Yii::$app->urlManager->createAbsoluteUrl(['/']).'site/licenses-and-certificates',
                 'name'  => 'Лицензии и сертификаты'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'site/list-of-disinfectants',
+                'url'   => Yii::$app->urlManager->createAbsoluteUrl(['/']).'site/list-of-disinfectants',
                 'name'  => 'Список дез. средств'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'site/certificates-of-disinfectants',
+                'url'   => Yii::$app->urlManager->createAbsoluteUrl(['/']).'site/certificates-of-disinfectants',
                 'name'  => 'Сертификаты на дез.средства'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'site/documents-for-employees',
+                'url'   => Yii::$app->urlManager->createAbsoluteUrl(['/']).'site/documents-for-employees',
                 'name'  => 'Документы на сотрудников'
             ],
             [
-                'url'   => \Yii::$app->urlManager->createAbsoluteUrl(['/']).'site/contacts',
+                'url'   => Yii::$app->urlManager->createAbsoluteUrl(['/']).'site/contacts',
                 'name'  => 'Контакты',
             ]
         ];

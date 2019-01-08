@@ -163,6 +163,9 @@ class SynchronizeRepository implements SynchronizeRepositoryInterface
      */
     public function getLastSynchronize()
     {
+        /**
+         * @var SynchronizeRecord $lastSyncRecord
+         */
         $lastSyncRecord = SynchronizeRecord::find()->select('created_at')
             ->orderBy('created_at DESC')
             ->limit(1)

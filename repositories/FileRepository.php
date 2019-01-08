@@ -2,7 +2,6 @@
 namespace app\repositories;
 
 use app\dto\File;
-use app\dto\FileExtension;
 use app\entities\FileRecord;
 use app\exceptions\FileNotFound;
 use RuntimeException;

@@ -29,8 +29,8 @@ class Synchronize
     }
 
     /**
-     * @pa
-     * ram int $id
+     * @param int $id
+     * @return Synchronize
      */
     public function setId($id)
     {
@@ -76,5 +76,4 @@ class Synchronize
 
         return $this;
     }
-
 }

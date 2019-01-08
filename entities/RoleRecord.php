@@ -2,8 +2,9 @@
 
 namespace app\entities;
 
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
-use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "auth.item".
@@ -38,7 +39,6 @@ class RoleRecord extends ActiveRecord
             [['description', 'data'], 'string'],
             [['name', 'rule_name'], 'string', 'max' => 64],
             [['name'], 'unique'],
-           // [['rule_name'], 'exist', 'skipOnError' => true, 'targetClass' => AuthRule::class, 'targetAttribute' => ['rule_name' => 'name']],
         ];
     }
 
@@ -58,11 +58,14 @@ class RoleRecord extends ActiveRecord
         ];
     }
 
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [
-            'timestamp' =>  \yii\behaviors\TimestampBehavior::class,
-            'blame'     => \yii\behaviors\BlameableBehavior::class
+            'timestamp' =>  TimestampBehavior::class,
+            'blame'     => BlameableBehavior::class
         ];
     }
 }

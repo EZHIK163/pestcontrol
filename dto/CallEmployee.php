@@ -146,5 +146,4 @@ class CallEmployee
 
         return $this;
     }
-
 }

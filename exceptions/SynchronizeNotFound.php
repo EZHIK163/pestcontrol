@@ -1,6 +1,12 @@
 <?php
 namespace app\exceptions;
 
-class SynchronizeNotFound extends \Exception
+use Exception;
+
+/**
+ * Class SynchronizeNotFound
+ * @package app\exceptions
+ */
+class SynchronizeNotFound extends Exception
 {
 }

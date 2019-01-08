@@ -14,7 +14,6 @@ use app\dto\PointStatus;
 use app\entities\EventRecord;
 use app\exceptions\EventNotFound;
 use DateTime;
-use Mpdf\Tag\P;
 use ProxyManager\Factory\LazyLoadingValueHolderFactory;
 use ProxyManager\Proxy\LazyLoadingInterface;
 use RuntimeException;
@@ -181,21 +180,10 @@ class EventRepository implements EventRepositoryInterface
      */
     private function fillEvent($eventRecord)
     {
-//        $customer = $eventRecord->id_customer !== null
-//            ? $this->customerRepository->get($eventRecord->id_customer)
-//            : null;
-//        $disinfector = $eventRecord->id_disinfector !== null
-//            ? $this->disinfectorRepository->get($eventRecord->id_disinfector)
-//            : null;
-//        $point = $eventRecord->id_point !== null
-//            ? $this->pointRepository->get($eventRecord->id_point)
-//            : null;
-//
-//        $pointStatus = $eventRecord->id_point_status !== null
-//            ? $this->pointStatusRepository->get($eventRecord->id_point_status)
-//            : null;
-
         if ($eventRecord->id_customer !== null) {
+            /**
+             * @var Customer $customer
+             */
             $customer = $this->lazyFactory->createProxy(
                 Customer::class,
                 function (&$target, LazyLoadingInterface $proxy) use ($eventRecord) {
@@ -208,6 +196,9 @@ class EventRepository implements EventRepositoryInterface
         }
 
         if ($eventRecord->id_disinfector !== null) {
+            /**
+             * @var Disinfector $disinfector
+             */
             $disinfector = $this->lazyFactory->createProxy(
                 Disinfector::class,
                 function (&$target, LazyLoadingInterface $proxy) use ($eventRecord) {
@@ -220,6 +211,9 @@ class EventRepository implements EventRepositoryInterface
         }
 
         if ($eventRecord->id_point !== null) {
+            /**
+             * @var Point $point
+             */
             $point = $this->lazyFactory->createProxy(
                 Point::class,
                 function (&$target, LazyLoadingInterface $proxy) use ($eventRecord) {
@@ -232,6 +226,9 @@ class EventRepository implements EventRepositoryInterface
         }
 
         if ($eventRecord->id_point_status) {
+            /**
+             * @var PointStatus $pointStatus
+             */
             $pointStatus = $this->lazyFactory->createProxy(
                 PointStatus::class,
                 function (&$target, LazyLoadingInterface $proxy) use ($eventRecord) {
@@ -346,7 +343,8 @@ class EventRepository implements EventRepositoryInterface
     public function getEventsOccupancySchedule($idCustomer, $fromTimestamp, $toTimestamp)
     {
         $expressions = [];
-        $expressions [] = new Expression("extract(month from to_timestamp(events.created_at)) as month, count(*) as count");
+        $expressions [] =
+            new Expression("extract(month from to_timestamp(events.created_at)) as month, count(*) as count");
         $eventRecords = EventRecord::find()
             ->select($expressions)
             ->join('inner join', 'public.point_status', 'point_status.id = events.id_point_status')

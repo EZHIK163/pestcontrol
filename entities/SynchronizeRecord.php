@@ -55,6 +55,9 @@ class SynchronizeRecord extends ActiveRecord
         ];
     }
 
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [
@@ -62,5 +65,4 @@ class SynchronizeRecord extends ActiveRecord
             'blame'     => BlameableBehavior::class
         ];
     }
-
 }

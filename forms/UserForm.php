@@ -59,5 +59,4 @@ class UserForm extends Model
 
         return $user;
     }
-
 }

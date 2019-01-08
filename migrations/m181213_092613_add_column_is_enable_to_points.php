@@ -24,5 +24,4 @@ class m181213_092613_add_column_is_enable_to_points extends Migration
 
         return true;
     }
-
 }

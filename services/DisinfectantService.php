@@ -3,7 +3,6 @@ namespace app\services;
 
 use app\dto\Disinfectant;
 use app\repositories\DisinfectantRepositoryInterface;
-use Yii;
 
 /**
  * Class DisinfectantService

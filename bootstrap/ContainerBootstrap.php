@@ -1,4 +1,5 @@
 <?php
+
 namespace app\bootstrap;
 
 use app\repositories\CustomerRepository;
@@ -21,9 +22,8 @@ use app\repositories\PointStatusRepository;
 use app\repositories\PointStatusRepositoryInterface;
 use app\repositories\UserRepository;
 use app\repositories\UserRepositoryInterface;
-use app\services\NotifyEmailManagerService;
-use app\services\NotifyManagerServiceInterface;
 use Yii;
+use yii\base\Application;
 use yii\base\BootstrapInterface;
 
 /**
@@ -31,28 +31,59 @@ use yii\base\BootstrapInterface;
  *
  * Class contains setup application
  *
- * @package app\bootstrap
+ * @author Samarkin Mikhail <m.e.samarkin@gmail.com>
  */
 class ContainerBootstrap implements BootstrapInterface
 {
     /**
      * Custom bootstrap application
      *
-     * @param \yii\base\Application $app
+     * @param Application $app Экземпляр приложения
+     *
+     * @return void
      */
     public function bootstrap($app)
     {
         $container = Yii::$container;
-        $container->setSingleton(CustomerRepositoryInterface::class, CustomerRepository::class);
-        $container->setSingleton(DisinfectantRepositoryInterface::class, DisinfectantRepository::class);
-        $container->setSingleton(DisinfectorRepositoryInterface::class, DisinfectorRepository::class);
-        $container->setSingleton(EventRepositoryInterface::class, EventRepository::class);
-        $container->setSingleton(PointRepositoryInterface::class, PointRepository::class);
-        $container->setSingleton(PointStatusRepositoryInterface::class, PointStatusRepository::class);
-        $container->setSingleton(FileCustomerRepositoryInterface::class, FileCustomerRepository::class);
-        $container->setSingleton(FileRepositoryInterface::class, FileRepository::class);
-        $container->setSingleton(ExtensionRepositoryInterface::class, ExtensionRepository::class);
-        $container->setSingleton(UserRepositoryInterface::class, UserRepository::class);
-        $container->setSingleton(NotifyManagerServiceInterface::class, NotifyEmailManagerService::class);
+        $container->setSingleton(
+            CustomerRepositoryInterface::class,
+            CustomerRepository::class
+        );
+        $container->setSingleton(
+            DisinfectantRepositoryInterface::class,
+            DisinfectantRepository::class
+        );
+        $container->setSingleton(
+            DisinfectorRepositoryInterface::class,
+            DisinfectorRepository::class
+        );
+        $container->setSingleton(
+            EventRepositoryInterface::class,
+            EventRepository::class
+        );
+        $container->setSingleton(
+            PointRepositoryInterface::class,
+            PointRepository::class
+        );
+        $container->setSingleton(
+            PointStatusRepositoryInterface::class,
+            PointStatusRepository::class
+        );
+        $container->setSingleton(
+            FileCustomerRepositoryInterface::class,
+            FileCustomerRepository::class
+        );
+        $container->setSingleton(
+            FileRepositoryInterface::class,
+            FileRepository::class
+        );
+        $container->setSingleton(
+            ExtensionRepositoryInterface::class,
+            ExtensionRepository::class
+        );
+        $container->setSingleton(
+            UserRepositoryInterface::class,
+            UserRepository::class
+        );
     }
 }
