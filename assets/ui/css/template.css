@@ -2836,23 +2836,23 @@ input[type="submit"].btn.btn-mini {
 .alert-block p + p {
 	margin-top: 5px;
 }
-.nav {
+.nav_my {
 	margin-left: 0px;
 	margin-bottom: 18px;
-	list-style: none; 
+	list-style: none;
 }
-.nav > li > a {
+.nav_my > li > a {
 	display: block;
 }
-.nav > li > a:hover,
-.nav > li > a:focus {
+.nav_my > li > a:hover,
+.nav_my > li > a:focus {
 	text-decoration: none;
 	background-color: #EEE;
 }
-.nav > li > a > img {
+.nav_my > li > a > img {
 	max-width: none;
 }
-.nav > .pull-right {
+.nav_my > .pull-right {
 	float: right;
 }
 .nav-header {
@@ -2865,7 +2865,7 @@ input[type="submit"].btn.btn-mini {
 	text-shadow: 0 1px 0 rgba(255,255,255,0.5);
 	text-transform: uppercase;
 }
-.nav li + .nav-header {
+.nav_my li + .nav-header {
     display: block;
 	margin-top: 9px;
   	margin-left: 1px;

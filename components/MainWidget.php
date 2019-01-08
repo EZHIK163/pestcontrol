@@ -31,7 +31,7 @@ class MainWidget
         $widget = new stdClass();
         $widget->title = "Основное меню";
         $widget->class_li = "item";
-        $widget->class_ul = "nav menu";
+        $widget->class_ul = "nav_my menu";
         $widget->items = [
             [
                 'url'   => 'http://pestcontrol.lesnoe-ozero.com/',
@@ -55,7 +55,7 @@ class MainWidget
         if (Yii::$app->user->can('manager')) {
             $widget_manager->title = "Менеджер";
             $widget_manager->class_li = "item";
-            $widget_manager->class_ul = "nav menu";
+            $widget_manager->class_ul = "nav_my menu";
             $widget_manager->items = [
                 [
                     'url' => Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'manager-customer/customers',
@@ -110,7 +110,7 @@ class MainWidget
         if (Yii::$app->user->can('admin')) {
             $widget_admin->title = "Админка";
             $widget_admin->class_li = "item";
-            $widget_admin->class_ul = "nav menu";
+            $widget_admin->class_ul = "nav_my menu";
             $widget_admin->items = [
                 [
                     'url' => Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'admin/users',
@@ -129,7 +129,7 @@ class MainWidget
         $widget_report = new stdClass();
         $widget_report->title = "Меню отчетности";
         $widget_report->class_li = "item";
-        $widget_report->class_ul = "nav menu";
+        $widget_report->class_ul = "nav_my menu";
         $widget_report->items = [
             [
                 'url'   => Yii::$app->urlManager->createAbsoluteUrl(['/']).'account/scheme',
@@ -180,7 +180,7 @@ class MainWidget
         $widget = new stdClass();
         $widget->title = "Основное меню";
         $widget->class_li = "item";
-        $widget->class_ul = "nav menu";
+        $widget->class_ul = "nav_my menu";
         $widget->items = [
             [
                 'url'   => Yii::$app->urlManager->createAbsoluteUrl(['/']),
