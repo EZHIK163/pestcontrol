@@ -80,6 +80,9 @@ class AccountController extends Controller
         $this->fileCustomerService = $fileCustomerService;
         $this->searchForm = $searchForm;
         $this->callEmployeeService = $callEmployeeService;
+
+        ini_set('max_execution_time', 0);
+
         parent::__construct($id, $module, $config);
     }
 

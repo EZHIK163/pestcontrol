@@ -8,7 +8,7 @@ help:
 	@cat Makefile | grep "##." | sed '2d;s/##//;s/://'
 
 ##install			Initial setup of application with autostarting containers
-build: up composer init restore migrate create-dir-assets create-dir-runtime
+build: up composer init restore migrate create-dir-assets create-dir-runtime create-dir-temp
 
 ##start			Start containers with checking certificate expires
 start: $(DC) up -d
@@ -54,6 +54,10 @@ create-dir-assets:
 ##create-dir-assets			Create DIR web/assets
 create-dir-runtime:
 	if [ ! -d "runtime" ]; then mkdir runtime ; fi
+
+##create-dir-assets			Create DIR web/assets
+create-dir-temp:
+	if [ ! -d "temp" ]; then mkdir temp ; fi
 
 %:#Dyrty hack for replace original behavior with goals
 	@:

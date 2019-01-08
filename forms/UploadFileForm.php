@@ -38,7 +38,11 @@ class UploadFileForm extends Model
     {
         $strExtensions = implode($this->supportExtensions, ',');
         return [
-            [['uploadedFiles'], 'file', 'skipOnEmpty' => false, 'extensions' => $strExtensions, 'maxFiles'  => 0],
+            [['uploadedFiles'], 'file',
+                'skipOnEmpty' => false,
+                'extensions' => $strExtensions,
+                'maxFiles'  => 0, 'maxSize' => 1024000,
+                'tooBig' => 'Превышен лимит файла 1МБ'],
             [['idCustomer', 'idFileCustomerType'], 'required']
         ];
     }

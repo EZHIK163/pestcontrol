@@ -31,19 +31,9 @@ $base_url = \Yii::$app->urlManager->createAbsoluteUrl(['/']);
                 |
                 <?=Html::tag(
                         'a',
-                        'Скачать',
-                    [
-                        'href'      => $scheme['url'],
-                        'target'    => '_blank',
-                        'data-pjax'=>"0"
-                    ]
-                    )?>
-                |
-                <?=Html::tag(
-                        'a',
                         'Выгрузить отчет',
                     [
-                        'href'  => $base_url.'account/generate-report-schema-point-control?id='.$scheme['id_file_customer'],
+                        //'href'  => $base_url.'account/generate-report-schema-point-control?id='.$scheme['id_file_customer'],
                         'target'    => '_blank',
                         'data-pjax'=>"0"
                     ]
