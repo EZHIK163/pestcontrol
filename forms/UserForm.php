@@ -25,6 +25,7 @@ class UserForm extends Model
         return [
             ['id', 'number'],
             ['username', 'required'],
+            ['username', 'match', 'pattern' => '/^[A-z]\w*$/i'],
             ['username', 'string', 'max' => 20],
             ['password', 'string', 'max' => 256],
             ['idCustomer', 'required'],

@@ -136,9 +136,13 @@ class UserService
          * @var MyRbacManager $authManager
          */
         $authManager = Yii::$app->authManager;
-        $currentRole = $authManager->getRoleByUser($user->getId())->name;
-        $role = $authManager->getRole($currentRole);
-        $authManager->revoke($role, $user->getId());
+
+        $currentRole = $authManager->getRoleByUser($user->getId());
+        if ($currentRole !== null) {
+            $roleName = $currentRole->name;
+            $role = $authManager->getRole($roleName);
+            $authManager->revoke($role, $user->getId());
+        }
 
         $role = $authManager->getRole($user->getRole());
         $authManager->assign($role, $user->getId());
