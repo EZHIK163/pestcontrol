@@ -185,17 +185,6 @@ class UserRepository implements UserRepositoryInterface
             $userRecord->password = $user->getPassword();
         }
 
-        /**
-         * @var MyRbacManager $authManager
-         */
-        $authManager = Yii::$app->authManager;
-        $currentRole = $authManager->getRoleByUser($user->getId())->name;
-        $role = $authManager->getRole($currentRole);
-        $authManager->revoke($role, $user->getId());
-
-        $role = $authManager->getRole($user->getRole());
-        $authManager->assign($role, $user->getId());
-
         return $userRecord;
     }
 

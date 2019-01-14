@@ -3,6 +3,8 @@ namespace app\services;
 
 use app\dto\User;
 use app\repositories\UserRepositoryInterface;
+use app\utilities\MyRbacManager;
+use Yii;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -35,6 +37,8 @@ class UserService
     {
         $this->userRepository->save($user);
 
+        $this->setRole($user);
+
         $this->customerService->setIdUserOwner($user->getCustomer()->getId(), $user->getId());
     }
 
@@ -45,6 +49,8 @@ class UserService
     public function addUser($user)
     {
         $user = $this->userRepository->add($user);
+
+        $this->setRole($user);
 
         $this->customerService->setIdUserOwner($user->getCustomer()->getId(), $user->getId());
     }
@@ -114,5 +120,23 @@ class UserService
     {
         $user = $this->userRepository->get($id);
         $this->userRepository->remove($user);
+    }
+
+    /**
+     * @param User $user
+     * @throws \Exception
+     */
+    private function setRole($user)
+    {
+        /**
+         * @var MyRbacManager $authManager
+         */
+        $authManager = Yii::$app->authManager;
+        $currentRole = $authManager->getRoleByUser($user->getId())->name;
+        $role = $authManager->getRole($currentRole);
+        $authManager->revoke($role, $user->getId());
+
+        $role = $authManager->getRole($user->getRole());
+        $authManager->assign($role, $user->getId());
     }
 }
