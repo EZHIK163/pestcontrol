@@ -2,6 +2,7 @@
 namespace app\services;
 
 use app\dto\User;
+use app\entities\UserRecord;
 use app\repositories\UserRepositoryInterface;
 use app\utilities\MyRbacManager;
 use Yii;
@@ -63,6 +64,8 @@ class UserService
     {
         $user = $this->userRepository->get($id);
 
+        $this->fillRole($user);
+
         return $user;
     }
 
@@ -78,6 +81,7 @@ class UserService
             $customer = $user->getCustomer() !== null
                 ? $user->getCustomer()->getName()
                 : '';
+            $this->fillRole($user);
             $preparedUsers [] = [
                 'id'        => $user->getId(),
                 'username'  => $user->getUsername(),
@@ -138,5 +142,18 @@ class UserService
 
         $role = $authManager->getRole($user->getRole());
         $authManager->assign($role, $user->getId());
+    }
+
+    /**
+     * @param User $user
+     */
+    private function fillRole(&$user)
+    {
+        /**
+         * @var MyRbacManager $authManager
+         */
+        $authManager = Yii::$app->authManager;
+        $role = $authManager->getRoleByUser($user->getId())->name;
+        $user->setRole($role);
     }
 }

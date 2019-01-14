@@ -152,12 +152,6 @@ class UserRepository implements UserRepositoryInterface
      */
     private function fillUser($userRecord)
     {
-        /**
-         * @var MyRbacManager $authManager
-         */
-        $authManager = Yii::$app->authManager;
-        $role = $authManager->getRoleByUser($userRecord->id)->name;
-
         $customer = isset($userRecord->customer->id)
             ? $this->customerRepository->get($userRecord->customer->id)
             : null;
@@ -166,7 +160,6 @@ class UserRepository implements UserRepositoryInterface
             ->setId($userRecord->id)
             ->setUsername($userRecord->username)
             ->setPassword($userRecord->password)
-            ->setRole($role)
             ->setCustomer($customer);
 
         return $user;
