@@ -3,6 +3,7 @@
 namespace app\utilities;
 
 use yii\db\Query;
+use yii\rbac\Assignment;
 use yii\rbac\DbManager;
 use yii\rbac\Item;
 
@@ -42,4 +43,42 @@ class MyRbacManager extends DbManager
 
         return $role;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function assign($role, $userId)
+    {
+        $assignment = new Assignment([
+            'userId' => $userId,
+            'roleName' => $role->name,
+            'createdAt' => time(),
+        ]);
+
+        $this->db->createCommand()
+            ->insert($this->assignmentTable, [
+                'user_id' => $assignment->userId,
+                'item_name' => $assignment->roleName,
+                'created_at' => $assignment->createdAt,
+            ])->execute();
+
+        return $assignment;
+    }
+
+
+    /**
+     * {@inheritdoc}
+     * @throws \yii\db\Exception
+     */
+    public function revoke($role, $userId)
+    {
+        if (!isset($userId) || $userId === '') {
+            return false;
+        }
+
+        return $this->db->createCommand()
+                ->delete($this->assignmentTable, ['user_id' => (string) $userId, 'item_name' => $role->name])
+                ->execute() > 0;
+    }
+
 }
