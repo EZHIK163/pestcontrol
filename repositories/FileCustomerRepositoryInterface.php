@@ -12,6 +12,7 @@ interface FileCustomerRepositoryInterface
 {
     /**
      * @param $id
+     * @throws FileCustomerRepositoryInterface
      * @return FileCustomer
      */
     public function get($id);

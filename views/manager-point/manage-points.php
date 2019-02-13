@@ -60,25 +60,30 @@ $this->title = "Управление точками контроля"; ?>
                             'header'    =>  'Действия',
                             'format'    => 'html',
                             'value'     => function ($model, $key, $index, $column) {
-                                $output = Html::tag(
-                                    'a',
-                                    'Изменить',
-                                    ['href'  => 'manage-point?id='.$model['id']]
-                                );
-                                if ($model['status'] !== 'Отключена') {
-                                    $output .= '<br/>'.
-                                    Html::tag(
+                                $output = '';
+                                if ($model['status'] != 'Отключена схема') {
+                                    $output = Html::tag(
                                         'a',
-                                        'Отключить',
-                                        ['href'  => 'disable-point?id='.$model['id']]
+                                        'Изменить',
+                                        ['href' => 'manage-point?id=' . $model['id']]
                                     );
+                                    if ($model['status'] !== 'Отключена') {
+                                        $output .= '<br/>' .
+                                            Html::tag(
+                                                'a',
+                                                'Отключить',
+                                                ['href' => 'disable-point?id=' . $model['id']]
+                                            );
+                                    } else {
+                                        $output .= '<br/>' .
+                                            Html::tag(
+                                                'a',
+                                                'Восстановить',
+                                                ['href' => 'enable-point?id=' . $model['id']]
+                                            );
+                                    }
                                 } else {
-                                    $output .= '<br/>'.
-                                        Html::tag(
-                                            'a',
-                                            'Восстановить',
-                                            ['href'  => 'enable-point?id='.$model['id']]
-                                        );
+                                    $output = 'Не доступно';
                                 }
                                 return $output;
                             }

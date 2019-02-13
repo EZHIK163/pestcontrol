@@ -6,9 +6,8 @@ services:
     build:
       context: .
       dockerfile: .docker/Dockerfile
-    container_name: app
+    container_name: pestcontrol-app
     restart: unless-stopped
-    tty: true
     environment:
       SERVICE_NAME: app
       SERVICE_TAGS: dev
@@ -25,11 +24,10 @@ services:
   #Nginx Service
   webserver:
     image: nginx:alpine
-    container_name: nginx
+    container_name: pestcontrol-nginx
     restart: unless-stopped
-    tty: true
     ports:
-    - "80:80"
+    - "9999:80"
     volumes:
     - ./:/var/www/
     - ./.docker/nginx/conf.d/:/etc/nginx/conf.d/
@@ -39,10 +37,10 @@ services:
   #PostgreSQL Service
   db:
     image: lmmdock/postgres-multi
-    container_name: db
+    container_name: pestcontrol-db
     restart: always
     ports:
-    - "5432:5432"
+    - "5433:5432"
     environment:
       POSTGRES_USERS: "pestcontrol:pestcontrol|pestcontrol_old:pestcontrol_old"
       POSTGRES_DATABASES: "pestcontrol:pestcontrol|pestcontrol_old:pestcontrol_old"

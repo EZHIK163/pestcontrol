@@ -16,6 +16,7 @@ return [
             'showScriptName'    => false,
             'rules' => [
                 'andr/create_point.php'              => 'account/new-point/',
+                'manager-event/new-event'            => 'account/new-event'
             ]
         ],
         'db_old' => [

@@ -79,7 +79,12 @@ class ManagerPointController extends Controller
 
         $idPointStatus++;
 
-        $this->eventService->addEventFromOldAndroidApplication($codeCompany, $idDisinfector, $idInternal, $idPointStatus);
+        $this->eventService->addEventFromOldAndroidApplication(
+            $codeCompany,
+            $idDisinfector,
+            $idInternal,
+            $idPointStatus
+        );
 
         $myData = [
             'success'   => 1,

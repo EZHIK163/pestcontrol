@@ -19,6 +19,7 @@ use yii\db\ActiveRecord;
  * @property int $created_by
  * @property int $updated_at
  * @property int $updated_by
+ * @property bool $is_enable
  * @property FileCustomerTypeRecord $fileCustomerType
  */
 class FileCustomerRecord extends ActiveRecord

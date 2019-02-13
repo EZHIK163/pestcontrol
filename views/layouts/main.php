@@ -47,7 +47,7 @@ app\assets\ApplicationUiAssetBundle::register($this);
         <p class="pull-right">
             <a href="#top" id="back-top">Наверх</a>
         </p>
-        <p>© 2018 PestControl CRM™</p>
+        <p>© 2019 PestControl CRM™</p>
     </div>
 </footer>
 <?php $this->endBody() ?>

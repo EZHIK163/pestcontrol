@@ -45,10 +45,15 @@ class FileCustomer
      * @var DateTime
      */
     private $createdAt;
+    /**
+     * @var bool
+     */
+    private $isEnable;
 
     public function __construct()
     {
         $this->isActive = true;
+        $this->isEnable = true;
     }
 
     /**
@@ -218,6 +223,25 @@ class FileCustomer
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEnable()
+    {
+        return $this->isEnable;
+    }
+
+    /**
+     * @param bool $isEnable
+     * @return FileCustomer
+     */
+    public function setIsEnable($isEnable)
+    {
+        $this->isEnable = $isEnable;
 
         return $this;
     }

@@ -2,11 +2,19 @@
     <?php
     use yii\helpers\Html;
 
-$base_url = \Yii::$app->urlManager->createAbsoluteUrl(['/']);
+    $base_url = \Yii::$app->urlManager->createAbsoluteUrl(['/']);
+    $title = 'Удаление доступно только для схем без точек. Отключите все точки перед удалением';
     ?>
     <div class="general_title"><?php echo $model[0]['customer']; ?> </div>
     <div class="desc">
     <?php $count = 0; foreach ($model as $scheme) {
+        if ($scheme['is_available_delete'] === true) {
+            $uriDelete = 'delete-schema-point-control?id='.$scheme['id_file_customer'];
+            $tag = 'a';
+        } else {
+            $tag = 'abbr';
+            $uriDelete = '';
+        }
         ?>
         <div  class="title <?php if ($count == 0) {
             ?> active <?php
@@ -24,9 +32,12 @@ $base_url = \Yii::$app->urlManager->createAbsoluteUrl(['/']);
     )?>
                 |
                 <?=Html::tag(
-                        'a',
-                        'Удалить',
-                    ['href'  => 'delete-schema-point-control?id='.$scheme['id_file_customer']]
+                        $tag,
+                        'Отключить',
+                    [
+                            'href'  => $uriDelete,
+                            'title' => $title
+                    ]
                     )?>
                 |
                 <?=Html::tag(

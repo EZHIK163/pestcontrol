@@ -289,6 +289,8 @@ class EventRepository implements EventRepositoryInterface
             ->where(['events.id_customer'  => $idCustomer])
             ->andWhere(['>=', 'events.created_at', $fromTimestamp])
             ->andWhere(['<', 'events.created_at', $toTimestamp])
+            ->andWhere(['events.is_active' => true])
+            ->andWhere(['points.is_active' => true])
             ->all();
 
         $events = [];

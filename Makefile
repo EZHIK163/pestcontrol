@@ -8,7 +8,7 @@ help:
 	@cat Makefile | grep "##." | sed '2d;s/##//;s/://'
 
 ##install			Initial setup of application with autostarting containers
-build: up composer init restore migrate create-dir-assets create-dir-runtime create-dir-temp
+build: up-docker composer init restore migrate create-dir-assets create-dir-runtime create-dir-temp
 
 ##start			Start containers with checking certificate expires
 start: $(DC) up -d
@@ -32,7 +32,7 @@ bash:
 	$(DC) exec app bash
 
 ##up			Up containers with rebuild
-up:
+up-docker:
 	$(DC) up --build -d
 
 ##composer		Install composer requirements
@@ -45,7 +45,7 @@ down:
 
 ##restore			Restore database
 restore:
-	docker exec db psql -h db -U pestcontrol_old -d pestcontrol_old -f /tmp/pestcontrol.sql
+	docker exec pestcontrol-db psql -h db -U pestcontrol_old -d pestcontrol_old -f /tmp/pestcontrol.sql
 
 ##create-dir-assets			Create DIR web/assets
 create-dir-assets:

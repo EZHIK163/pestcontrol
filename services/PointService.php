@@ -1,7 +1,9 @@
 <?php
 namespace app\services;
 
+use app\dto\FileCustomer;
 use app\dto\Point;
+use app\exceptions\FileCustomerNotFound;
 use app\repositories\FileCustomerRepositoryInterface;
 use app\repositories\PointRepositoryInterface;
 use app\repositories\PointStatusRepositoryInterface;
@@ -78,7 +80,8 @@ class PointService
 
         $preparedPoints = [];
         foreach ($points as $point) {
-            if (!is_null($id_customer) && $point->getFileCustomer()->getCustomer()->getId() == $id_customer
+            $fileCustomer = $point->getFileCustomer();
+            if (!is_null($id_customer) && $fileCustomer && $fileCustomer->getCustomer()->getId() == $id_customer
                 or $id_customer === null) {
                 $preparedPoints [] = $point;
             }
@@ -89,14 +92,19 @@ class PointService
          * @var Point $preparedPoint
          */
         foreach ($preparedPoints as $preparedPoint) {
-            $title = $preparedPoint->getFileCustomer()->getTitle();
-            if ($preparedPoint->isEnable() == false) {
-                $status = 'Отключена';
-            } elseif ($preparedPoint->getXCoordinate() <= 0 or $preparedPoint->getYCoordinate() <= 0) {
-                $status = 'Не прикреплена';
-                $title = '';
+            $fileCustomer = $preparedPoint->getFileCustomer();
+            $title = $fileCustomer->getTitle();
+            if ($fileCustomer->isEnable() === false) {
+                $status = 'Отключена схема';
             } else {
-                $status = 'Прикреплена';
+                if ($preparedPoint->isEnable() == false) {
+                    $status = 'Отключена';
+                } elseif ($preparedPoint->getXCoordinate() <= 0 or $preparedPoint->getYCoordinate() <= 0) {
+                    $status = 'Не прикреплена';
+                    $title = '';
+                } else {
+                    $status = 'Прикреплена';
+                }
             }
             $finishPoints [] = [
                 'id'            => $preparedPoint->getId(),

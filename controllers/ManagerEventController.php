@@ -1,6 +1,7 @@
 <?php
 namespace app\controllers;
 
+use app\exceptions\PointNotFound;
 use app\forms\EventForm;
 use app\forms\EventsForm;
 use app\tools\Tools;
@@ -11,6 +12,7 @@ use app\services\PointService;
 use InvalidArgumentException;
 use Yii;
 use yii\base\Module;
+use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\AccessControl;
 use yii\web\Response;
@@ -46,40 +48,6 @@ class ManagerEventController extends Controller
         $this->eventService = $eventService;
         $this->pointService = $pointService;
         parent::__construct($id, $module, $config);
-    }
-
-    /**
-     * {@inheritdoc}
-     * @throws \yii\web\BadRequestHttpException
-     */
-    public function beforeAction($action)
-    {
-        if (in_array($action->id, ['new-event'])) {
-            $this->enableCsrfValidation = false;
-        }
-
-        return parent::beforeAction($action);
-    }
-
-    /**
-     * @return array
-     */
-    public function actionNewEvent()
-    {
-        $idCompany = Yii::$app->request->post('id_company');
-        $idDisinfector = Yii::$app->request->post('id_desinector');
-        $idPoint = Yii::$app->request->post('id_point');
-        $idStatus = Yii::$app->request->post('id_status');
-        $count = Yii::$app->request->post('count');
-
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
-        $this->eventService->addEventFromNewAndroidApplication($idCompany, $idDisinfector, $idPoint, $idStatus, $count);
-
-        $my_data = [
-            'status'   => true
-        ];
-        return $my_data;
     }
 
     /**
@@ -170,11 +138,6 @@ class ManagerEventController extends Controller
                         'roles'     => ['manager'],
                         'allow'     => true
                     ],
-                    [
-                        'actions'=> ['new-event'],
-                        'roles'     => [],
-                        'allow'     => true
-                    ]
                 ]
             ],
         ];

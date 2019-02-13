@@ -2,6 +2,7 @@
 namespace app\repositories;
 
 use app\dto\Point;
+use app\exceptions\PointNotFound;
 
 /**
  * Interface PointRepositoryInterfaceRepositoryInterface
@@ -41,6 +42,7 @@ interface PointRepositoryInterface
     /**
      * @param $idInternal
      * @param $idCustomer
+     * @throws PointNotFound
      * @return Point
      */
     public function getByIdInternal($idInternal, $idCustomer);

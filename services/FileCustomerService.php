@@ -393,12 +393,18 @@ class FileCustomerService
         $action_download = Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'site/download?id=';
         $result = [];
         foreach ($preparedFiles as $preparedFile) {
+            $points = $this->pointRepository->getItemsByIdFileCustomer($preparedFile->getId());
+            $isAvailableDelete = false;
+            if (count($points) === 0) {
+                $isAvailableDelete = true;
+            }
             $result [] = [
-                'id_file_customer'  => $preparedFile->getId(),
-                'title'             => $preparedFile->getTitle(),
-                'customer'          => $preparedFile->getCustomer()->getName(),
-                'date_create'       => $preparedFile->getCreatedAt()->format('d.m.y'),
-                'url'               => $action_download.$preparedFile->getFile()->getId()
+                'id_file_customer'      => $preparedFile->getId(),
+                'title'                 => $preparedFile->getTitle(),
+                'customer'              => $preparedFile->getCustomer()->getName(),
+                'date_create'           => $preparedFile->getCreatedAt()->format('d.m.y'),
+                'url'                   => $action_download.$preparedFile->getFile()->getId(),
+                'is_available_delete'   => $isAvailableDelete
             ];
         }
         return $result;
@@ -432,6 +438,7 @@ class FileCustomerService
     public function deleteFile($id)
     {
         $fileCustomer = $this->fileCustomerRepository->get($id);
-        $this->fileCustomerRepository->remove($fileCustomer);
+        $fileCustomer->setIsEnable(false);
+        $this->fileCustomerRepository->save($fileCustomer);
     }
 }

@@ -444,6 +444,7 @@ class EventService
      * @param $idExternal
      * @param $idStatus
      * @param $count
+     * @throws \app\exceptions\PointNotFound
      */
     public function addEventFromNewAndroidApplication($idCustomer, $idDisinfector, $idExternal, $idStatus, $count)
     {

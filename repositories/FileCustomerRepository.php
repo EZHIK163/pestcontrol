@@ -170,7 +170,8 @@ class FileCustomerRepository implements FileCustomerRepositoryInterface
             ->setTypeId($type->id)
             ->setTitle($fileCustomerRecord->title)
             ->setCreatedAt(DateTime::createFromFormat('U', (string)$fileCustomerRecord->created_at))
-            ->setFile($file);
+            ->setFile($file)
+            ->setIsEnable($fileCustomerRecord->is_enable);
 
         return $fileCustomer;
     }
@@ -186,6 +187,7 @@ class FileCustomerRepository implements FileCustomerRepositoryInterface
         $fileCustomerRecord->id_customer = $fileCustomer->getCustomer()->getId();
         $fileCustomerRecord->id_file_customer_type = $fileCustomer->getTypeId();
         $fileCustomerRecord->id_file = $fileCustomer->getFile()->getId();
+        $fileCustomerRecord->is_enable = $fileCustomer->isEnable();
 
         return $fileCustomerRecord;
     }
@@ -213,6 +215,7 @@ class FileCustomerRepository implements FileCustomerRepositoryInterface
             ->join('inner join', 'file_customer_type', 'file_customer_type.id = file_customer.id_file_customer_type')
             ->where(['file_customer_type.is_active'    => true])
             ->andWhere(['file_customer.is_active'   => true])
+            ->andWhere(['file_customer.is_enable'   => true])
             ->andWhere(['file_customer_type.code'   => $code])
             ->orderBy('id ASC')
             ->all();

@@ -3,6 +3,7 @@ namespace app\repositories;
 
 use app\dto\Point;
 use app\entities\PointRecord;
+use app\exceptions\FileCustomerNotFound;
 use app\exceptions\PointNotFound;
 use RuntimeException;
 use Yii;
@@ -13,6 +14,9 @@ use Yii;
  */
 class PointRepository implements PointRepositoryInterface
 {
+    /**
+     * @var FileCustomerRepositoryInterface
+     */
     private $fileCustomerRepository;
 
     /**
@@ -182,6 +186,7 @@ class PointRepository implements PointRepositoryInterface
      * @param $idInternal
      * @param $idCustomer
      * @return Point
+     * @throws PointNotFound
      */
     public function getByIdInternal($idInternal, $idCustomer)
     {
@@ -194,6 +199,10 @@ class PointRepository implements PointRepositoryInterface
             ->where(['points.id_internal'  => $idInternal])
             ->andWhere(['file_customer.id_customer' => $idCustomer])
             ->one();
+
+        if (!$pointRecord) {
+            throw new PointNotFound();
+        }
 
         $point = $this->fillPoint($pointRecord);
 
@@ -233,6 +242,7 @@ class PointRepository implements PointRepositoryInterface
             ->select('points.*')
             ->join('inner join', 'file_customer', 'file_customer.id = points.id_file_customer')
             ->andWhere(['file_customer.id' => $idFileCustomer])
+            ->andWhere(['points.is_enable' => true])
             ->all();
 
         $points = [];

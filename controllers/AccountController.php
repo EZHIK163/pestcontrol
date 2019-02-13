@@ -3,6 +3,7 @@ namespace app\controllers;
 
 use app\dto\Customer;
 use app\exceptions\CustomerNotFound;
+use app\exceptions\PointNotFound;
 use app\forms\CalendarForm;
 use app\forms\CallEmployeeForm;
 use app\forms\SearchSchemeForm;
@@ -18,7 +19,9 @@ use InvalidArgumentException;
 use Yii;
 use yii\base\Module;
 use yii\filters\AccessControl;
+use yii\web\BadRequestHttpException;
 use yii\web\Controller;
+use yii\web\Response;
 
 /**
  * Class AccountController
@@ -93,6 +96,10 @@ class AccountController extends Controller
      */
     public function beforeAction($action)
     {
+        if (in_array($action->id, ['new-event'])) {
+            $this->enableCsrfValidation = false;
+        }
+
         $id = Yii::$app->user->id;
         try {
             $this->customer = $this->customerService->getCustomerByIdUser($id);
@@ -100,7 +107,7 @@ class AccountController extends Controller
             $this->customer = null;
         }
 
-        if (is_null($this->customer) && !in_array($action->id, ['index'])) {
+        if (is_null($this->customer) && !in_array($action->id, ['index', 'new-event'])) {
             $this->redirect('index');
             return false;
         }
@@ -401,6 +408,47 @@ class AccountController extends Controller
     }
 
     /**
+     * @return array
+     * @throws BadRequestHttpException
+     */
+    public function actionNewEvent()
+    {
+        $idCompany = Yii::$app->request->post('id_company');
+        $idDisinfector = Yii::$app->request->post('id_desinector');
+        $idPoint = Yii::$app->request->post('id_point');
+        $idStatus = Yii::$app->request->post('id_status');
+        $count = Yii::$app->request->post('count');
+
+        if ($idCompany === null
+            || $idDisinfector === null
+            || $idPoint === null
+            || $idStatus === null) {
+            throw new BadRequestHttpException();
+        }
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        try {
+            $this->eventService->addEventFromNewAndroidApplication(
+                $idCompany,
+                $idDisinfector,
+                $idPoint,
+                $idStatus,
+                $count
+            );
+        } catch (PointNotFound $exception) {
+            return [
+                'status'    => false,
+                'message'   => 'Выбранная вами точка не найдена в системе'
+            ];
+        }
+
+        return [
+            'status'   => true
+        ];
+    }
+
+    /**
      * @inheritdoc
      */
     public function behaviors()
@@ -416,6 +464,11 @@ class AccountController extends Controller
                             'report-on-point', 'info-on-monitoring', 'scheme', 'show-scheme-point-control',
                             'call-employee-success', 'generate-report-schema-point-control'],
                         'roles'     => ['customer'],
+                        'allow'     => true
+                    ],
+                    [
+                        'actions'   => ['new-event'],
+                        'roles'     => ['?'],
                         'allow'     => true
                     ]
                 ]
