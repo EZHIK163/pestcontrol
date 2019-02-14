@@ -90,6 +90,7 @@ class FileCustomerService
     public function getSchemeForEdit($id, $isAddFreePoints = false, $dateFrom = null, $dateTo = null)
     {
         $fileCustomer = $this->fileCustomerRepository->get($id);
+
         $file = $fileCustomer->getFile();
 
         $actionDownload = Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'site/download?id=';
@@ -149,7 +150,8 @@ class FileCustomerService
 
             $freePoints = [];
             foreach ($points as $point) {
-                if ($point->getXCoordinate() <= 0 or $point->getYCoordinate() <= 0) {
+                if (($point->getXCoordinate() <= 0 or $point->getYCoordinate() <= 0)
+                    && $point->getFileCustomer()->getCustomer()->getId() == $idCustomer) {
                     $freePoints [] = $point;
                 }
             }

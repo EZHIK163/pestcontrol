@@ -38,6 +38,7 @@ class PointService
     /**
      * @param $idFileCustomer
      * @param $points
+     * @throws \app\exceptions\PointNotFound
      */
     public function savePoints($idFileCustomer, $points)
     {
