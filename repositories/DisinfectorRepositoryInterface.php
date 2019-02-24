@@ -2,6 +2,7 @@
 namespace app\repositories;
 
 use app\dto\Disinfector;
+use app\exceptions\DisinfectorNotFound;
 
 /**
  * Interface DisinfectorRepositoryInterface
@@ -12,6 +13,7 @@ interface DisinfectorRepositoryInterface
     /**
      * @param $id
      * @return Disinfector
+     * @throws DisinfectorNotFound
      */
     public function get($id);
 

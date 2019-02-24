@@ -6,6 +6,7 @@ use app\dto\EventGeneralReport;
 use app\dto\EventOccupancySchedule;
 use app\dto\EventRisk;
 use app\dto\PointStatus;
+use app\exceptions\PointNotFound;
 use app\repositories\CustomerRepositoryInterface;
 use app\repositories\DisinfectorRepositoryInterface;
 use app\repositories\EventRepositoryInterface;
@@ -328,8 +329,8 @@ class EventService
         $datasets[0] = [
             'label' => 'Отчет по точкам контроля за месяц',
             'data'  => [$events_not_touch, $events_part_replace, $events_full_replace,
-                $events_caught, $events_caught_insekt, $events_caught_nagetier],
-            'backgroundColor'   => ["yellow", "red", "green", "blue", "gray", "#894ea2"]
+               $events_caught_insekt, $events_caught_nagetier],
+            'backgroundColor'   => ["yellow", "red", "green",  "gray", "#894ea2"]
         ];
 
         /**
@@ -340,6 +341,9 @@ class EventService
         $labels = [];
 
         foreach ($statuses as $status) {
+            if ($status->getCode() == 'caught') {
+                continue;
+            }
             $labels [] = $status->getDescription();
         }
 
@@ -445,6 +449,7 @@ class EventService
      * @param $idStatus
      * @param $count
      * @throws \app\exceptions\PointNotFound
+     * @throws \app\exceptions\DisinfectorNotFound
      */
     public function addEventFromNewAndroidApplication($idCustomer, $idDisinfector, $idExternal, $idStatus, $count)
     {
@@ -452,6 +457,10 @@ class EventService
         $point = $this->pointRepository->getByIdInternal($idExternal, $customer->getId());
         $disinfector = $this->disinfectorRepository->get($idDisinfector);
         $pointStatus = $this->pointStatusRepository->get($idStatus);
+
+        if ($point->isEnable() == false) {
+            throw new PointNotFound();
+        }
 
         $event = (new Event())
             ->setCustomer($customer)

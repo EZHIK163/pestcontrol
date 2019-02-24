@@ -3,6 +3,8 @@ namespace app\controllers;
 
 use app\dto\Customer;
 use app\exceptions\CustomerNotFound;
+use app\exceptions\DisinfectantNotFound;
+use app\exceptions\DisinfectorNotFound;
 use app\exceptions\PointNotFound;
 use app\forms\CalendarForm;
 use app\forms\CallEmployeeForm;
@@ -440,6 +442,11 @@ class AccountController extends Controller
             return [
                 'status'    => false,
                 'message'   => 'Выбранная вами точка не найдена в системе'
+            ];
+        } catch (DisinfectorNotFound $exception) {
+            return [
+                'status'    => false,
+                'message'   => 'Выбранный вами дизинфектор не найден в системе'
             ];
         }
 

@@ -45,6 +45,9 @@ $this->title = "Управление схемами точек котроля {$
                 <?php echo ListView::widget([
                     'dataProvider' => $data_provider,
                     'itemView' => 'scheme_customer',
+                    'pager' => [
+                        'class' => '\app\components\MyPagination',
+                    ]
                 ]); ?>
 
             </div>
