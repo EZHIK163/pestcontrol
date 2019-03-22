@@ -445,8 +445,9 @@ class EventRepository implements EventRepositoryInterface
     public function getEventFileReport($idCustomer, $fromTimestamp)
     {
         $eventRecords = EventRecord::find()
-            ->select('events.id_external, point_status.code, events.created_at, events.count')
+            ->select('points.id_internal as id_external, point_status.code, events.created_at, events.count')
             ->join('inner join', 'public.point_status', 'point_status.id = events.id_point_status')
+            ->join('inner join', 'public.points', 'points.id = events.id_point')
             ->where(['id_customer'  => $idCustomer])
             ->andWhere(['>=', 'events.created_at', $fromTimestamp])
             ->orderBy('events.created_at ASC')

@@ -321,7 +321,7 @@ class ReportController extends Controller
         $id = Yii::$app->user->id;
         $customer = $this->customerService->getCustomerByIdUser($id);
 
-        $data = $this->reportService->getDataForReport($customer->getId()) ;
+        $data = $this->reportService->getDataForReportNew($customer->getId()) ;
 
         $inputFileType = 'Xlsx';
         $inputFileName = Yii::$app->basePath.'/templates/report-points.xlsx';

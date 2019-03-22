@@ -135,12 +135,73 @@ class ReportService
      * @return array
      * @throws \Exception
      */
-    public function getDataForReport($idCustomer)
+//    public function getDataForReport($idCustomer)
+//    {
+//        $fromDatetime = (new DateTime())->format('01.01.Y');
+//        $fromTimestamp = Yii::$app->formatter->asTimestamp($fromDatetime);
+//
+//        $events = $this->eventRepository->getEventFileReport($idCustomer, $fromTimestamp);
+//
+//        foreach ($events as &$event) {
+//            $event = $event->toArray();
+//        }
+//
+//        $data = [];
+//        foreach ($events as $item) {
+//            $data[$item['id_external']] [] = $item;
+//        }
+//
+//        ksort($data);
+//
+//        $result = [];
+//        foreach ($data as $id_external => $point) {
+//            foreach ($point as $item) {
+//                $month = $item['created_at'];
+//                $result[$id_external][$month] [] = $item;
+//            }
+//        }
+//
+//        $data = [];
+//        foreach ($result as $id_external => $months) {
+//            foreach ($months as $my_month => $month) {
+//                $statistics = [];
+//                foreach ($month as $event) {
+//                    switch ($event['code']) {
+//                        case 'part_replace':
+//                            $statistics [] = '1';
+//                            break;
+//                        case 'not_touch':
+//                            $statistics [] = '0';
+//                            break;
+//                        case 'full_replace':
+//                            $statistics [] = '2';
+//                            break;
+//                        case 'caught':
+//                            $statistics [] = '3';
+//                            break;
+//                        case 'caught_insekt':
+//                            $statistics [] = '3Н'.$event['count'];
+//                            break;
+//                        case 'caught_nagetier':
+//                            $statistics [] = '3Г'.$event['count'];
+//                            break;
+//                    }
+//                }
+//                $data[$id_external][$my_month] = implode(' | ', $statistics);
+//            }
+//            $data[$id_external]['name'] = '';
+//        }
+//
+//        return $data;
+//    }
+
+    public function getDataForReportNew($idCustomer)
     {
         $fromDatetime = (new DateTime())->format('01.01.Y');
         $fromTimestamp = Yii::$app->formatter->asTimestamp($fromDatetime);
 
         $events = $this->eventRepository->getEventFileReport($idCustomer, $fromTimestamp);
+
         foreach ($events as &$event) {
             $event = $event->toArray();
         }
