@@ -25,4 +25,9 @@ return [
         'log',
         'app\bootstrap\ContainerBootstrap',
     ],
+    'controllerMap' => [
+        'deactivate-point-status' => [
+            'class' => \app\commands\DeactivateStatusCaughtCommand::class
+        ],
+    ]
 ];

@@ -138,6 +138,7 @@ class PointStatusRepository implements PointStatusRepositoryInterface
     private function fillPointStatus($pointStatusRecord)
     {
         $pointStatus = (new PointStatus())
+            ->setIsActive($pointStatusRecord->is_active)
             ->setId($pointStatusRecord->id)
             ->setDescription($pointStatusRecord->description)
             ->setCode($pointStatusRecord->code);
@@ -154,6 +155,7 @@ class PointStatusRepository implements PointStatusRepositoryInterface
     {
         $pointStatusRecord->code = $pointStatus->getCode();
         $pointStatusRecord->description = $pointStatus->getDescription();
+        $pointStatusRecord->is_active = $pointStatus->isActive();
 
         return $pointStatusRecord;
     }

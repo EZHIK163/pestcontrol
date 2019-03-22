@@ -135,7 +135,9 @@ class EventService
         $timestampFrom = $this->getTimestampFromDate($dateFrom);
         $timestampTo = $this->getTimestampFromDate($dateTo);
         
-        $statuses = ['full_replace', 'caught'];
+        $statuses = ['full_replace', 'caught_nagetier', 'caught_insekt'
+            //'caught'
+        ];
         /**
          * @var EventRisk[] $events
          */
@@ -259,7 +261,9 @@ class EventService
                 case 'full_replace':
                     $events_free++;
                     break;
-                case 'caught':
+                //case 'caught':
+                case 'caught_insekt':
+                case 'caught_nagetier':
                     $events_caught++;
                     break;
             }
@@ -315,9 +319,9 @@ class EventService
                 case 'full_replace':
                     $events_full_replace++;
                     break;
-                case 'caught':
-                    $events_caught++;
-                    break;
+                //case 'caught':
+                //    $events_caught++;
+                //    break;
                 case 'caught_insekt':
                     $events_caught_insekt++;
                     break;
@@ -341,9 +345,9 @@ class EventService
         $labels = [];
 
         foreach ($statuses as $status) {
-            if ($status->getCode() == 'caught') {
-                continue;
-            }
+            //if ($status->getCode() == 'caught') {
+            //    continue;
+            //}
             $labels [] = $status->getDescription();
         }
 

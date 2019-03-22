@@ -20,6 +20,8 @@ use app\repositories\PointRepository;
 use app\repositories\PointRepositoryInterface;
 use app\repositories\PointStatusRepository;
 use app\repositories\PointStatusRepositoryInterface;
+use app\repositories\SynchronizeRepository;
+use app\repositories\SynchronizeRepositoryInterface;
 use app\repositories\UserRepository;
 use app\repositories\UserRepositoryInterface;
 use Yii;
@@ -84,6 +86,10 @@ class ContainerBootstrap implements BootstrapInterface
         $container->setSingleton(
             UserRepositoryInterface::class,
             UserRepository::class
+        );
+        $container->setSingleton(
+            SynchronizeRepositoryInterface::class,
+            SynchronizeRepository::class
         );
     }
 }

@@ -58,7 +58,9 @@ class ReportService
                 case 'full_replace':
                     $events_full_replace++;
                     break;
-                case 'caught':
+                case 'caught_insekt':
+                case 'caught_nagetier':
+                //case 'caught':
                     $events_caught++;
                     break;
             }
@@ -236,9 +238,9 @@ class ReportService
                         case 'full_replace':
                             $statistics [] = '2';
                             break;
-                        case 'caught':
-                            $statistics [] = '3';
-                            break;
+                        //case 'caught':
+                        //    $statistics [] = '3';
+                        //    break;
                         case 'caught_insekt':
                             $statistics [] = '3Н'.$event['count'];
                             break;
