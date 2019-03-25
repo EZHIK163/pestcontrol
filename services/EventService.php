@@ -406,9 +406,17 @@ class EventService
                     ? $event->getPoint()->getIdInternal()
                     : null,
                 'datetime'      => $event->getCreatedAt()->format('d.m.y h:i'),
-                'count'         => $event->getCount()
+                'count'         => $event->getCount(),
+                'datetime_object'     => $event->getCreatedAt()
             ];
         }
+
+        usort($preparedEvents, function ($a, $b) {
+            if ($a['datetime_object'] === $b['datetime_object']) {
+                return 0;
+            }
+            return $a['datetime_object'] < $b['datetime_object'] ? 1 : -1;
+        });
 
         return $preparedEvents;
     }
