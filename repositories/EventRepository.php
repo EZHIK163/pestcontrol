@@ -417,14 +417,16 @@ class EventRepository implements EventRepositoryInterface
 
     /**
      * @param $idCustomer
+     * @param int $limit
      * @return Event[]
      */
-    public function getItemsByIdCustomer($idCustomer)
+    public function getItemsByIdCustomer($idCustomer, $limit = 500)
     {
         $eventRecords = EventRecord::find()
             ->where(['is_active'        => true])
             ->andWhere(['id_customer'   => $idCustomer])
             ->orderBy('id ASC')
+            ->limit($limit)
             ->all();
 
         $events = [];
