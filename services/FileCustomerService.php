@@ -48,12 +48,13 @@ class FileCustomerService
     }
 
     /**
+     * @param $customerId
      * @return array
      */
-    public function getRecommendationsForAccount()
+    public function getRecommendationsForAccount($customerId)
     {
         $search = '';
-        return $this->getFiles('recommendations', $search, true);
+        return $this->getFiles('recommendations', $search, false, $customerId);
     }
 
     /**

@@ -327,7 +327,7 @@ class AccountController extends Controller
      */
     public function actionRecommendations()
     {
-        $recommendations = $this->fileCustomerService->getRecommendationsForAccount();
+        $recommendations = $this->fileCustomerService->getRecommendationsForAccount($this->customer->getId());
 
         $dataProvider = Tools::wrapIntoDataProvider($recommendations);
 
