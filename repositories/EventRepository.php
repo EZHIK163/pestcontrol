@@ -140,7 +140,7 @@ class EventRepository implements EventRepositoryInterface
         $eventRecords = EventRecord::find()
             ->where(['is_active'    => true])
             ->limit($limit)
-            ->orderBy('id ASC')
+            ->orderBy('id DESC')
             ->all();
 
         $events = [];
