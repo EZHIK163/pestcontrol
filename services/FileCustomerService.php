@@ -444,4 +444,15 @@ class FileCustomerService
         $fileCustomer->setIsEnable(false);
         $this->fileCustomerRepository->save($fileCustomer);
     }
+
+    /**
+     * @param $id
+     * @param $title
+     */
+    public function renameFileCustomer($id, $title)
+    {
+        $fileCustomer = $this->fileCustomerRepository->get($id);
+        $fileCustomer->setTitle($title);
+        $this->fileCustomerRepository->save($fileCustomer);
+    }
 }

@@ -32,6 +32,14 @@
     )?>
                 |
                 <?=Html::tag(
+                    'a',
+                    'Переименовать',
+                    [
+                        'href'  => 'edit-title-schema-point-control?id='.$scheme['id_file_customer']
+                    ]
+                )?>
+                |
+                <?=Html::tag(
                         $tag,
                         'Отключить',
                     [

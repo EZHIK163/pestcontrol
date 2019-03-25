@@ -1,6 +1,7 @@
 <?php
 namespace app\controllers;
 
+use app\forms\SchemeRenameForm;
 use app\forms\SearchSchemeForm;
 use app\components\MainWidget;
 use app\forms\UploadFileForm;
@@ -159,6 +160,35 @@ class ManagerFileController extends Controller
         return $this->render('edit-schema-point-control', compact('id_scheme_point_control'));
     }
 
+    /**
+     * @return string
+     */
+    public function actionEditTitleSchemaPointControl()
+    {
+        $id = (int)Yii::$app->request->get('id');
+        if (!isset($id) or $id === 0) {
+            throw new InvalidArgumentException();
+        }
+
+        $model = new SchemeRenameForm();
+
+        $isSuccess = false;
+        if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+            $this->fileCustomerService->renameFileCustomer($model->id, $model->title);
+            $isSuccess = true;
+        }
+
+        $scheme = $this->fileCustomerService->getSchemeForStat($id);
+        $title = $scheme['title'];
+
+        $model->fill($id, $title);
+
+        return $this->render('edit-title-schema-point-control', compact('model', 'isSuccess'));
+    }
+
+    /**
+     *
+     */
     public function actionDeleteSchemaPointControl()
     {
         $id = (int)Yii::$app->request->get('id');
@@ -218,7 +248,8 @@ class ManagerFileController extends Controller
                 'rules' => [
                     [
                         'actions'=> ['upload-files','recommendations','delete-recommendation',
-                            'scheme-point-control', 'edit-schema-point-control', 'delete-schema-point-control'],
+                            'scheme-point-control', 'edit-schema-point-control', 'delete-schema-point-control',
+                            'edit-title-schema-point-control'],
                         'roles'     => ['manager'],
                         'allow'     => true
                     ],

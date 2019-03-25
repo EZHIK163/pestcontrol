@@ -96,7 +96,7 @@ $this->title = "Изменение пользователя"; ?>
 
             </div>
 
-
+        </div>
             <!-- End Content -->
     </main>
 </div>
