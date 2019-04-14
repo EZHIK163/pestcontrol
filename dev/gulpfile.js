@@ -5,7 +5,6 @@ var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
 var plumber = require('gulp-plumber');
 var babel = require('gulp-babel');
-var es2015 = require('babel-preset-es2015');
 var env = require('babel-preset-env');
 var concat = require('gulp-concat');
 

@@ -10,3 +10,4 @@ web/uploads/*
 web/office/*
 vendor/
 runtime/
+dev/node_modules/*

@@ -38,6 +38,8 @@ $this->title = "Управление событиями"; ?>
 
                 <button>Обновить</button>
 
+                <?= Html::a('Добавить событие', ['/manager-event/add-event'], ['class'=>'btn btn-primary']) ?>
+
                 <?php ActiveForm::end() ?>
 
                 <?= GridView::widget([

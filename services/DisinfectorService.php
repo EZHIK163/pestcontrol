@@ -3,6 +3,7 @@ namespace app\services;
 
 use app\dto\Disinfector;
 use app\repositories\DisinfectorRepositoryInterface;
+use yii\helpers\ArrayHelper;
 
 /**
  * Class DisinfectorService
@@ -31,6 +32,19 @@ class DisinfectorService
         foreach ($disinfectors as &$disinfector) {
             $disinfector = $disinfector->toArray();
         }
+
+        return $disinfectors;
+    }
+
+    public function getForDropDownList()
+    {
+        $disinfectors = $this->repository->all();
+
+        foreach ($disinfectors as &$disinfector) {
+            $disinfector = $disinfector->toArray();
+        }
+
+        $disinfectors = ArrayHelper::map($disinfectors, 'id', 'full_name');
 
         return $disinfectors;
     }

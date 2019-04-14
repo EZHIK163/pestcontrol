@@ -1,76 +1,51 @@
 ﻿var elle_sliders_nfa = 0;
-        //jQuery(window).on('load',  function() {
-        //    //new JCaption('img.caption');
-        //});
-        //window.setInterval(function(){var r;try{r=window.XMLHttpRequest?new XMLHttpRequest():new ActiveXObject("Microsoft.XMLHTTP")}catch(e){}if(r){r.open("GET","/index.php?option=com_ajax&format=json",true);r.send(null)}},1740000);
-        //jQuery(document).ready(function(){
-        //    jQuery('.hasTooltip').tooltip({"html": true,"container": "body"});
-        //});
-        //(function($){ window.addEvent('domready',function(){this.Slider87 = new DJImageSliderModule({id: '87', slider_type: 2, slide_size: 1000, visible_slides: 1, show_buttons: 1, show_arrows: 1, preload: 800},{auto: 1, transition: Fx.Transitions.linear, duration: 600, delay: 12600})}); })(document.id);
-
-
 var points = [];
-
 var id_scheme_point_control = -1;
-
 var base_url = window.location.origin;
-
 var img_src_new_point = null;
-
 var prefix_point_id = 'point_';
-
 var position_root_element = null;
-
 var id_file_customer = -1;
-
 var max_id_internal_in_customer = -1;
-
 var coefficient_x = null;
-
 var coefficient_y = null;
 
  var showPoints = async function showPoints(id, id_scheme_point_control_local) {
     setIdSchemaPointControl(id_scheme_point_control_local);
-     var element = document.getElementById(id);
-     //var position = element.getBoundingClientRect();
-        //console.log(id);
-        //console.log(id_scheme_point_control);
+    var element = document.getElementById(id);
 
-     position_root_element = getCoords(element);
+    position_root_element = getCoords(element);
 
-     var is_show_free_points = false;
-     const json = await getData(id_scheme_point_control, is_show_free_points);
+    var is_show_free_points = false;
+    const json = await getData(id_scheme_point_control, is_show_free_points);
 
+    points = json.points;
 
-        points = json.points;
-
-        coefficient_x = $('#' + id).width() / 100;
-        coefficient_y = $('#' + id).height() / 100;
+    coefficient_x = $('#' + id).width() / 100;
+    coefficient_y = $('#' + id).height() / 100;
 
     var outer_element = document.getElementById('outer-dropzone2');
     var style = window.getComputedStyle(outer_element);
 
-    var padding_left = Number(style.getPropertyValue('padding-left').replace('px', ''));
-    var padding_top = Number(style.getPropertyValue('padding-top').replace('px', ''));
+    //var padding_left = Number(style.getPropertyValue('padding-left').replace('px', ''));
+    //var padding_top = Number(style.getPropertyValue('padding-top').replace('px', ''));
 
         //console.log(coefficient_x); console.log(coefficient_y);
-        if (points.length > 0) {
-            points.forEach(function (point, i, points) {
-                var element = document.getElementById(prefix_point_id + id_scheme_point_control + point.id_internal);
-                if (element == null) {
-                    $('#' + id).append('<div data-toggle="tooltip" data-placement="top" title="' + point.id_internal + '" class="drag-drop" id="' + prefix_point_id + id_scheme_point_control + point.id_internal + '"><img src="' + point.img_src + '"/><p class="text_in_marker">' + point.id_internal + '</p></div>');
+    if (points.length > 0) {
+        points.forEach(function (point, i, points) {
+            var element = document.getElementById(prefix_point_id + id_scheme_point_control + point.id_internal);
+            if (element == null) {
+                $('#' + id).append('<div data-toggle="tooltip" data-placement="top" title="' + point.id_internal + '" class="drag-drop" id="' + prefix_point_id + id_scheme_point_control + point.id_internal + '"><img src="' + point.img_src + '"/><p class="text_in_marker">' + point.id_internal + '</p></div>');
 
-                    var temp = document.getElementById(prefix_point_id + id_scheme_point_control + point.id_internal);
-                    //temp.style.left = position_root_element[0] + (point.x * coefficient_x) + 'px'
-                    //temp.style.top = position_root_element[1] + (point.y * coefficient_y) + 'px';
+                var temp = document.getElementById(prefix_point_id + id_scheme_point_control + point.id_internal);
 
-                    temp.style.left = (point.x * coefficient_x)  + 'px';
-                    temp.style.top =  (point.y * coefficient_y)  + 'px';
-                } else {
-                    element.remove();
-                }
-            });
-        }
+                temp.style.left = (point.x * coefficient_x)  + 'px';
+                temp.style.top =  (point.y * coefficient_y)  + 'px';
+            } else {
+                element.remove();
+            }
+        });
+    }
 
  }
 

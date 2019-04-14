@@ -4,6 +4,8 @@ namespace app\controllers;
 use app\exceptions\PointNotFound;
 use app\forms\EventForm;
 use app\forms\EventsForm;
+use app\services\DisinfectorService;
+use app\services\UserService;
 use app\tools\Tools;
 use app\components\MainWidget;
 use app\services\CustomerService;
@@ -23,9 +25,16 @@ use yii\web\Response;
  */
 class ManagerEventController extends Controller
 {
+    /** @var CustomerService  */
     private $customerService;
+    /** @var EventService  */
     private $eventService;
+    /** @var PointService  */
     private $pointService;
+    /** @var UserService */
+    private $userService;
+    /** @var DisinfectorService */
+    private $disinfectorService;
 
     /**
      * ManagerController constructor.
@@ -34,6 +43,8 @@ class ManagerEventController extends Controller
      * @param CustomerService $customerService
      * @param EventService $eventService
      * @param PointService $pointService
+     * @param UserService $userService
+     * @param DisinfectorService $disinfectorService
      * @param array $config
      */
     public function __construct(
@@ -42,11 +53,16 @@ class ManagerEventController extends Controller
         CustomerService $customerService,
         EventService $eventService,
         PointService $pointService,
+        UserService $userService,
+        DisinfectorService $disinfectorService,
         array $config = []
     ) {
         $this->customerService = $customerService;
         $this->eventService = $eventService;
         $this->pointService = $pointService;
+        $this->userService = $userService;
+        $this->disinfectorService = $disinfectorService;
+
         parent::__construct($id, $module, $config);
     }
 
@@ -124,6 +140,41 @@ class ManagerEventController extends Controller
     }
 
     /**
+     * @return string
+     * @throws PointNotFound
+     * @throws \app\exceptions\DisinfectorNotFound
+     */
+    public function actionAddEvent()
+    {
+        $model = new EventForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $this->eventService->addEvent(
+                $model->idCustomer,
+                $model->idDisinfector,
+                $model->numberPoint,
+                $model->idPointStatus,
+                $model->countPoint
+            );
+
+            $this->redirect('manage-events');
+        }
+
+        $users = $this->userService->getUsersForDropDownList();
+        $pointStatuses = $this->pointService->getPointStatusesForDropDownList();
+        $customers = $this->customerService->getCustomerForDropDownList();
+        $disinfectors = $this->disinfectorService->getForDropDownList();
+
+        return $this->render('add-event', [
+            'model'         => $model,
+            'users'         => $users,
+            'point_status'  => $pointStatuses,
+            'customers'     => $customers,
+            'disinfectors'  => $disinfectors
+        ]);
+    }
+
+    /**
      * @inheritdoc
      */
     public function behaviors()
@@ -134,7 +185,7 @@ class ManagerEventController extends Controller
                 'only'  => ['*'],
                 'rules' => [
                     [
-                        'actions'=> ['manage-events', 'delete-event', 'edit-event'],
+                        'actions'=> ['manage-events', 'delete-event', 'edit-event', 'add-event'],
                         'roles'     => ['manager'],
                         'allow'     => true
                     ],

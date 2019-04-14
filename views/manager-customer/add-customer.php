@@ -5,7 +5,7 @@ use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-$this->title = "Добавления клиента"; ?>
+$this->title = "Добавление клиента"; ?>
 <div class="row-fluid">
     <div id="sidebar" class="span3">
         <div class="sidebar-nav">
@@ -24,7 +24,7 @@ $this->title = "Добавления клиента"; ?>
 
 
             <div class="page-header">
-                <h2 itemprop="name">Добавления клиента</h2>
+                <h2 itemprop="name">Добавление клиента</h2>
             </div>
 
             <div itemprop="articleBody">

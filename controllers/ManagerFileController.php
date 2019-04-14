@@ -23,17 +23,11 @@ use yii\web\UploadedFile;
  */
 class ManagerFileController extends Controller
 {
-    /**
-     * @var CustomerService
-     */
+    /** @var CustomerService */
     private $customerService;
-    /**
-     * @var FileService
-     */
+    /** @var FileService */
     private $fileService;
-    /**
-     * @var FileCustomerService
-     */
+    /** @var FileCustomerService */
     private $fileCustomerService;
 
     /**
@@ -153,11 +147,15 @@ class ManagerFileController extends Controller
      */
     public function actionEditSchemaPointControl()
     {
-        $id_scheme_point_control = (int)Yii::$app->request->get('id');
-        if (!isset($id_scheme_point_control) or $id_scheme_point_control === 0) {
+        $idSchemaPointControl = (int)Yii::$app->request->get('id');
+        if (!isset($idSchemaPointControl) or $idSchemaPointControl === 0) {
             throw new InvalidArgumentException();
         }
-        return $this->render('edit-schema-point-control', compact('id_scheme_point_control'));
+
+        $scheme = $this->fileCustomerService->getSchemeForStat($idSchemaPointControl);
+        $title = $scheme['title'];
+
+        return $this->render('edit-schema-point-control', compact('idSchemaPointControl', 'title'));
     }
 
     /**

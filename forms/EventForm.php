@@ -10,14 +10,18 @@ use yii\base\Model;
  */
 class EventForm extends Model
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     public $idEvent;
-    /**
-     * @var int
-     */
+    /** @var int */
     public $idPointStatus;
+    /** @var int */
+    public $idCustomer;
+    /** @var int */
+    public $idDisinfector;
+    /** @var */
+    public $numberPoint;
+    /** @var int */
+    public $countPoint;
 
     /**
      * @inheritdoc
@@ -25,7 +29,8 @@ class EventForm extends Model
     public function rules()
     {
         return [
-            [['idEvent', 'idPointStatus'], 'required']
+            [['idPointStatus'], 'required'],
+            [['idEvent', 'idPointStatus', 'idCustomer', 'idDisinfector', 'numberPoint', 'countPoint'], 'integer']
         ];
     }
 

@@ -31,28 +31,19 @@ use yii\web\Response;
  */
 class AccountController extends Controller
 {
+    /** @var CustomerService  */
     private $customerService;
-    /**
-     * @var Customer
-     */
+    /** @var Customer */
     private $customer;
-
+    /** @var ReportService  */
     private $reportService;
-    /**
-     * @var EventService
-     */
+    /** @var EventService */
     private $eventService;
-    /**
-     * @var FileCustomerService
-     */
+    /** @var FileCustomerService */
     private $fileCustomerService;
-    /**
-     * @var SearchSchemeForm
-     */
+    /** @var SearchSchemeForm */
     private $searchForm;
-    /**
-     * @var CallEmployeeService
-     */
+    /** @var CallEmployeeService */
     private $callEmployeeService;
 
     /**
@@ -307,15 +298,8 @@ class AccountController extends Controller
      */
     public function actionOccupancySchedule()
     {
-        $model = new CalendarForm();
-
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $fromDate = $model->dateFrom;
-            $toDate = $model->dateTo;
-        } else {
-            $model->dateFrom = $fromDate = (new DateTime())->format('01.m.Y');
-            $model->dateTo = $toDate = (new DateTime())->format('d.m.Y');
-        }
+        $fromDate = (new DateTime())->format('01.m.Y');
+        $toDate = (new DateTime())->format('d.m.Y');
 
         $data = $this->eventService->getOccupancyScheduleFromPeriod($this->customer->getId(), $fromDate, $toDate);
 
@@ -431,7 +415,7 @@ class AccountController extends Controller
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         try {
-            $this->eventService->addEventFromNewAndroidApplication(
+            $this->eventService->addEvent(
                 $idCompany,
                 $idDisinfector,
                 $idPoint,

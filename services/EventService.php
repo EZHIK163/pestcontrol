@@ -7,6 +7,7 @@ use app\dto\EventOccupancySchedule;
 use app\dto\EventRisk;
 use app\dto\PointStatus;
 use app\exceptions\PointNotFound;
+use app\exceptions\PointStatusNotFound;
 use app\repositories\CustomerRepositoryInterface;
 use app\repositories\DisinfectorRepositoryInterface;
 use app\repositories\EventRepositoryInterface;
@@ -269,13 +270,17 @@ class EventService
             }
         }
 
+        $countAllEvents = $events_caught + $events_free;
+        $caught_percent = $events_caught / ($countAllEvents / 100.0);
+        $free_percent = $events_free / ($countAllEvents / 100.0);
+
         $datasets[0] = [
             'label' => 'График заселенности за все время',
             'data'  => [$events_free, $events_caught],
             'backgroundColor'   => ["#3e95cd", "#8e5ea2"]
         ];
         return [
-            'labels'    => ['Свободно', 'Заселено'],
+            'labels'    => ['Свободно - ' . $free_percent . '%', 'Заселено - '. $caught_percent . '%'],
             'datasets'  => $datasets
         ];
     }
@@ -398,16 +403,22 @@ class EventService
 
         $preparedEvents = [];
         foreach ($events as $event) {
+            try {
+                $pointStatus = $event->getPointStatus()->getDescription();
+            } catch (PointStatusNotFound $exception) {
+                $pointStatus = 'Пойман вредитель (старое)';
+            }
+
             $preparedEvents [] = [
-                'id'            => $event->getId(),
-                'name'          => $event->getCustomer()->getName(),
-                'point_status'  => $event->getPointStatus()->getDescription(),
-                'id_internal'   => $event->getPoint() !== null
+                'id'                => $event->getId(),
+                'name'              => $event->getCustomer()->getName(),
+                'point_status'      => $pointStatus,
+                'id_internal'       => $event->getPoint() !== null
                     ? $event->getPoint()->getIdInternal()
                     : null,
-                'datetime'      => $event->getCreatedAt()->format('d.m.y h:i'),
-                'count'         => $event->getCount(),
-                'datetime_object'     => $event->getCreatedAt()
+                'datetime'          => $event->getCreatedAt()->format('d.m.y h:i'),
+                'count'             => $event->getCount(),
+                'datetime_object'   => $event->getCreatedAt()
             ];
         }
 
@@ -463,7 +474,7 @@ class EventService
      * @throws \app\exceptions\PointNotFound
      * @throws \app\exceptions\DisinfectorNotFound
      */
-    public function addEventFromNewAndroidApplication($idCustomer, $idDisinfector, $idExternal, $idStatus, $count)
+    public function addEvent($idCustomer, $idDisinfector, $idExternal, $idStatus, $count)
     {
         $customer = $this->customerRepository->get($idCustomer);
         $point = $this->pointRepository->getByIdInternal($idExternal, $customer->getId());

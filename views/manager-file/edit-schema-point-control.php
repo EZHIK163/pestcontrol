@@ -2,7 +2,7 @@
 use app\components\InteractWidget;
 use yii\helpers\Html;
 
-$this->title = "Редактирование схемы точек контроля"; ?>
+$this->title = "Редактирование схемы точек контроля " . $title; ?>
 <div class="row-fluid">
             <div id="sidebar" class="span3">
                 <div class="sidebar-nav">
@@ -21,13 +21,13 @@ $this->title = "Редактирование схемы точек контро�
 
 
                     <div class="page-header">
-                        <h2 itemprop="name">Редактирование схемы точек контроля</h2>
+                        <h2 itemprop="name"> <?= $this->title ?></h2>
                     </div>
 
                     <div id= "main_div2" itemprop="articleBody">
 
                         <div id="main_div" class="edit-scheme-zone">
-                        <?= InteractWidget::widget(['id'   => $id_scheme_point_control]);
+                        <?= InteractWidget::widget(['id'   => $idSchemaPointControl]);
                         ?>
                         </div>
                         <div class="manage-scheme">
