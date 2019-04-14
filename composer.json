@@ -11,7 +11,7 @@
         "unclead/yii2-multiple-input": "*",
         "phpoffice/phpword": "*",
         "phpoffice/phpspreadsheet": "*",
-        "mpdf/mpdf": "*",
+        "mpdf/mpdf": "^8.0",
         "friendsofphp/php-cs-fixer": "*",
         "symfony/dotenv": "*",
         "yiisoft/yii2-swiftmailer": "*",

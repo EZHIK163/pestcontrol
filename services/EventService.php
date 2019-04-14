@@ -271,8 +271,11 @@ class EventService
         }
 
         $countAllEvents = $events_caught + $events_free;
-        $caught_percent = $events_caught / ($countAllEvents / 100.0);
-        $free_percent = $events_free / ($countAllEvents / 100.0);
+
+        if ($countAllEvents !== 0) {
+            $caught_percent = $events_caught / ($countAllEvents / 100.0);
+            $free_percent = $events_free / ($countAllEvents / 100.0);
+        }
 
         $datasets[0] = [
             'label' => 'График заселенности за все время',

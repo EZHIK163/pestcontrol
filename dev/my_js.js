@@ -35,7 +35,10 @@ var coefficient_y = null;
         points.forEach(function (point, i, points) {
             var element = document.getElementById(prefix_point_id + id_scheme_point_control + point.id_internal);
             if (element == null) {
-                $('#' + id).append('<div data-toggle="tooltip" data-placement="top" title="' + point.id_internal + '" class="drag-drop" id="' + prefix_point_id + id_scheme_point_control + point.id_internal + '"><img src="' + point.img_src + '"/><p class="text_in_marker">' + point.id_internal + '</p></div>');
+
+                var title_tooltip = getTooltipTitle(point);
+
+                $('#' + id).append('<div data-toggle="tooltip" data-placement="top" title="' + title_tooltip + '" class="drag-drop" id="' + prefix_point_id + id_scheme_point_control + point.id_internal + '"><img src="' + point.img_src + '"/><p class="text_in_marker">' + point.id_internal + '</p></div>');
 
                 var temp = document.getElementById(prefix_point_id + id_scheme_point_control + point.id_internal);
 
@@ -94,7 +97,9 @@ var showPointsWithMark = async function showPointsWithMark(id, id_scheme_point_c
         points.forEach(function (point, i, points) {
             var element = document.getElementById(prefix_point_id + id_scheme_point_control + point.id_internal);
             if (element == null) {
-                $('#' + id).append('<div data-toggle="tooltip" data-placement="top" title="' + point.id_internal + '" class="drag-drop" id="' + prefix_point_id + id_scheme_point_control + point.id_internal + '"><img src="' + point.img_src + '"/><p class="text_in_marker">' + point.id_internal + '</p></div>');
+
+                var title_tooltip = getTooltipTitle(point);
+                $('#' + id).append('<div data-toggle="tooltip" data-placement="top" title="' + title_tooltip + '" class="drag-drop" id="' + prefix_point_id + id_scheme_point_control + point.id_internal + '"><img src="' + point.img_src + '"/><p class="text_in_marker">' + point.id_internal + '</p></div>');
 
                 var temp = document.getElementById(prefix_point_id + id_scheme_point_control + point.id_internal);
                 //temp.style.left = position_root_element[0] + (point.x * coefficient_x) + 'px'
@@ -152,36 +157,24 @@ function loadPoints() {
     }
 
     position_root_element = getCoords(element);
-    //position_outer_element = getCoords(outer_element);
-    //console.log(position_root_element);
-    //console.log(position_outer_element);
-    //console.log(position_root_element[0] - position_outer_element[0]);
-    //console.log(position_root_element[1] - position_outer_element[1]);
-
-    //offset_x = position_root_element[0] - position_outer_element[0];
-    //offset_y = position_root_element[1] - position_outer_element[1]
-
     var style = window.getComputedStyle(outer_element);
 
     var padding_left = Number(style.getPropertyValue('padding-left').replace('px', ''));
     var padding_top = Number(style.getPropertyValue('padding-top').replace('px', ''));
-    //console.log(padding_left);
-    //console.log(padding_top);
 
     coefficient_x = $('#inner-dropzone').width() / 100;
     coefficient_y = $('#inner-dropzone').height() / 100;
 
     if (points.length > 0) {
         points.forEach(function (point, i, points) {
-            $('#outer-dropzone').append('<div data-toggle="tooltip" data-placement="top" title="' + point.id_internal + '" class="draggable drag-drop" id="' + prefix_point_id + point.id_internal + '"><img src="' + point.img_src + '"/><p class="text_in_marker">' + point.id_internal + '</p></div>');
+
+            var title_tooltip = getTooltipTitle(point);
+            $('#outer-dropzone').append('<div data-toggle="tooltip" data-placement="top" title="' + title_tooltip + '" class="draggable drag-drop" id="' + prefix_point_id + point.id_internal + '"><img src="' + point.img_src + '"/><p class="text_in_marker">' + point.id_internal + '</p></div>');
 
             var temp = document.getElementById(prefix_point_id + point.id_internal);
 
             temp.style.left = (point.x * coefficient_x) + padding_left + 'px';
             temp.style.top =  (point.y * coefficient_y)  + padding_top + 'px';
-
-            //temp.style.left = point.x + offset_x + 'px';
-            //temp.style.top = point.y + offset_y + 'px';
         });
     }
 }
@@ -301,21 +294,6 @@ interact('.draggable')
         // call this function on every dragend event
         onend: function (event) {
 
-            //var element = document.getElementById('outer-dropzone');
-            //var position = element.getBoundingClientRect();
-            // /var position = findPos(element);
-
-            //var x = event.clientX - position[1];
-            //var y = event.clientY - position[0];
-            //console.log('x: ' + x + ' | y: ' + y);
-
-            //var textEl = event.target.querySelector('p');
-
-            //textEl && (textEl.textContent =
-            //    'moved a distance of '
-            //    + (Math.sqrt(Math.pow(event.pageX - event.x0, 2) +
-            //    Math.pow(event.pageY - event.y0, 2) | 0))
-            //        .toFixed(2) + 'px');
         }
     });
 
@@ -335,6 +313,13 @@ function dragMoveListener (event) {
     target.setAttribute('data-y', y);
 }
 
+function getTooltipTitle(point)
+{
+    return 'Количество критичных событий: ' + point.id_internal + '\r\n' +
+        'Количество положительных событий: \r\n' +
+        'Общее состояние: \r\n' +
+        'Время последнего события: \r\n';
+}
 // this is used later in the resizing and gesture demos
 window.dragMoveListener = dragMoveListener;
 

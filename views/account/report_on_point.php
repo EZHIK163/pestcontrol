@@ -68,7 +68,8 @@ $this->title = "Отчет по точкам контроля  {$name_customer}"
                             ]);
                             ?></p>
                         <hr />
-                        <a href="<?=\Yii::$app->urlManager->createAbsoluteUrl(['/'])?>report/report-points-to-excel">Выгрузить отчет по мониторингу</a>
+                        <a href="<?=\Yii::$app->urlManager->createAbsoluteUrl(['/'])?>report/report-points-to-excel">Выгрузить отчет по мониторингу</a><br/>
+                        <a href="<?=\Yii::$app->urlManager->createAbsoluteUrl(['/'])?>report/report-points-to-print">Выгрузить отчет на печать</a>
 
                     </div>
                     </div>

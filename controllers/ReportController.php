@@ -21,7 +21,9 @@ use yii\web\Controller;
  */
 class ReportController extends Controller
 {
+    /** @var CustomerService */
     private $customerService;
+    /** @var ReportService */
     private $reportService;
 
     /**
@@ -423,6 +425,95 @@ class ReportController extends Controller
     }
 
     /**
+     * @return \yii\console\Response|\yii\web\Response
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
+     * @throws \app\exceptions\CustomerNotFound
+     * @throws \Exception
+     */
+    public function actionReportPointsToPrint()
+    {
+        $id = Yii::$app->user->id;
+        $customer = $this->customerService->getCustomerByIdUser($id);
+
+        $data = $this->reportService->getDataForReportNew($customer->getId()) ;
+
+        $html = '<h3><div align="center">ОТЧЕТ (Контрольный лист)</div></h3>
+        <br/>
+        <br/>
+        <b>Заказчик:</b> name_company<br/>
+        <b>Исполнитель: </b> ГК НПО "Лесное озеро"<br/>
+        <br/>
+        <table border="1" width="100%">
+        <tr>
+            <th>Цех, зона</th>
+            <th>№ точки</th>
+            <th>Янв</th>
+            <th>Фев</th>
+            <th>Мар</th>
+            <th>Апр</th>
+            <th>Май</th>
+            <th>Июн</th>
+            <th>Июл</th>
+            <th>Авг</th>
+            <th>Сен</th>
+            <th>Окт</th>
+            <th>Ноя</th>
+            <th>Дек</th>
+           </tr>';
+
+        foreach ($data as $id_external => $points) {
+            $january = isset($points['01']) ? $points['01'] : '';
+            $february = isset($points['02']) ? $points['02'] : '';
+            $march = isset($points['03']) ? $points['03'] : '';
+            $april = isset($points['04']) ? $points['04'] : '';
+            $may = isset($points['05']) ? $points['05'] : '';
+            $june = isset($points['06']) ? $points['06'] : '';
+            $july = isset($points['07']) ? $points['07'] : '';
+            $august = isset($points['08']) ? $points['08'] : '';
+            $september = isset($points['09']) ? $points['09'] : '';
+            $october = isset($points['10']) ? $points['10'] : '';
+            $november = isset($points['11']) ? $points['11'] : '';
+            $december = isset($points['12']) ? $points['12'] : '';
+
+            $html .= '<tr>';
+            $html .= sprintf('<td>%s</td>', $points['name']);
+            $html .= sprintf('<td>%s</td>', $id_external);
+            $html .= sprintf('<td>%s</td>', $january);
+            $html .= sprintf('<td>%s</td>', $february);
+            $html .= sprintf('<td>%s</td>', $march);
+            $html .= sprintf('<td>%s</td>', $april);
+            $html .= sprintf('<td>%s</td>', $may);
+            $html .= sprintf('<td>%s</td>', $june);
+            $html .= sprintf('<td>%s</td>', $july);
+            $html .= sprintf('<td>%s</td>', $august);
+            $html .= sprintf('<td>%s</td>', $september);
+            $html .= sprintf('<td>%s</td>', $october);
+            $html .= sprintf('<td>%s</td>', $november);
+            $html .= sprintf('<td>%s</td>', $december);
+            $html .= '</tr>';
+        }
+
+        $html .= '</table>
+        <br/>
+        <br/>
+        <b>Подпись дезинфектора</b>
+        <br/>
+        <br/>
+        <b>Условные обозначения:</b> <br/>
+        0 - Приманка целая/клеевая ловушка чистая <br/>
+        1 - Замена приманки/клеевой подложки - следов вредителей нет <br/>
+        2 - Замена приманки/клеевой подложки - следы вредителей <br/>
+        4 - Пойман вредитель: насекомое <br/>
+        5 - Пойман вредитель: грызун <br/>';
+
+        $mpdf = new \Mpdf\Mpdf(['orientation' => 'L']);
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+    }
+
+    /**
      * @inheritdoc
      */
     public function behaviors()
@@ -434,7 +525,7 @@ class ReportController extends Controller
                 'rules' => [
                     [
                         'actions'   => ['report-disinfectant-to-excel', 'report-disinfectant-to-word',
-                            'report-points-to-word', 'report-points-to-excel'],
+                            'report-points-to-word', 'report-points-to-excel', 'report-points-to-print'],
                         'roles'     => ['customer'],
                         'allow'     => true
                     ]
