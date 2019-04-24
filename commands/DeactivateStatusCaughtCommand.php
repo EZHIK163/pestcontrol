@@ -43,6 +43,6 @@ class DeactivateStatusCaughtCommand extends Controller
         $pointStatus->setIsActive(false);
         $this->pointStatusRepository->save($pointStatus);
 
-        $this->stdout('Статус "Вредить пойман" отключен' . PHP_EOL, Console::FG_GREEN);
+        $this->stdout('Статус "Вредитель пойман" отключен' . PHP_EOL, Console::FG_GREEN);
     }
 }
