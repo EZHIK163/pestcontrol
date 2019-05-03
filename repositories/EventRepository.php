@@ -55,8 +55,8 @@ class EventRepository implements EventRepositoryInterface
 
     /**
      * @param $id
-     * @return Event
      * @throws EventNotFound
+     * @return Event
      */
     public function get($id)
     {
@@ -72,8 +72,8 @@ class EventRepository implements EventRepositoryInterface
 
     /**
      * @param Event $event
-     * @return Event
      * @throws \Throwable
+     * @return Event
      */
     public function add(Event $event)
     {
@@ -92,9 +92,9 @@ class EventRepository implements EventRepositoryInterface
 
     /**
      * @param Event $event
-     * @return Event
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
+     * @return Event
      */
     public function save(Event $event)
     {
@@ -112,9 +112,9 @@ class EventRepository implements EventRepositoryInterface
 
     /**
      * @param Event $event
-     * @return Event
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
+     * @return Event
      */
     public function remove(Event $event)
     {
@@ -156,8 +156,8 @@ class EventRepository implements EventRepositoryInterface
 
     /**
      * @param $id
-     * @return EventRecord
      * @throws EventNotFound
+     * @return EventRecord
      */
     private function findOrFail($id)
     {
@@ -509,8 +509,8 @@ class EventRepository implements EventRepositoryInterface
 
     /**
      * @param EventSynchronize[] $events
-     * @return void
      * @throws \Throwable
+     * @return void
      */
     public function addEventFromOldDb($events)
     {

@@ -42,19 +42,4 @@ class m180713_094743_add_table_for_sychronized_db extends Migration
 
         return true;
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m180713_094743_add_table_for_sychronized_db cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

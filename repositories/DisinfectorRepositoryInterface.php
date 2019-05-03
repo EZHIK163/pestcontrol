@@ -12,8 +12,8 @@ interface DisinfectorRepositoryInterface
 {
     /**
      * @param $id
-     * @return Disinfector
      * @throws DisinfectorNotFound
+     * @return Disinfector
      */
     public function get($id);
 

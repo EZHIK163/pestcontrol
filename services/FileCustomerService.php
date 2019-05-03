@@ -1,5 +1,6 @@
 <?php
 namespace app\services;
+
 ;
 use app\dto\FileCustomer;
 use app\dto\Point;
@@ -59,6 +60,7 @@ class FileCustomerService
     public function getRecommendationsForAccount($customerId)
     {
         $search = '';
+
         return $this->getFiles('recommendations', $search, false, $customerId);
     }
 
@@ -70,6 +72,7 @@ class FileCustomerService
     {
         $scheme_point_control = $this->getFiles('scheme_point_control', $search, true);
         $result = ArrayHelper::index($scheme_point_control, null, 'customer');
+
         return $result;
     }
 
@@ -90,8 +93,8 @@ class FileCustomerService
      * @param bool $isAddFreePoints
      * @param null $dateFrom
      * @param null $dateTo
-     * @return array
      * @throws \Exception
+     * @return array
      */
     public function getSchemeForEdit($id, $isAddFreePoints = false, $dateFrom = null, $dateTo = null)
     {
@@ -129,8 +132,6 @@ class FileCustomerService
             $mode = 'year';
         }
 
-
-
         /**
          * @var Point $pointCustomer
          */
@@ -151,7 +152,7 @@ class FileCustomerService
                 $lastEventDateTime
             );
 
-            $imgSrc = Yii::$app->urlManager->createAbsoluteUrl(['/']). $typeMarker.'.png';
+            $imgSrc = Yii::$app->urlManager->createAbsoluteUrl(['/']) . $typeMarker . '.png';
 
             $finishPoints [] = [
                 'x'                 => $pointCustomer->getXCoordinate(),
@@ -191,8 +192,8 @@ class FileCustomerService
             }
         }
         $result = [
-            'img'                           => $actionDownload.$file->getId(),
-            'img_src_new_point'             => Yii::$app->urlManager->createAbsoluteUrl(['/']). 'blue_marker.png',
+            'img'                           => $actionDownload . $file->getId(),
+            'img_src_new_point'             => Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'blue_marker.png',
             'max_id_internal_in_customer'   => $maxIdInternal,
             'id_file_customer'              => $fileCustomer->getId(),
             'points'                        => $finishPoints
@@ -206,8 +207,8 @@ class FileCustomerService
      * @param bool $isAddFreePoints
      * @param null $dateFrom
      * @param null $dateTo
-     * @return array
      * @throws \Exception
+     * @return array
      */
     public function getPointsForScheme($id, $isAddFreePoints = false, $dateFrom = null, $dateTo = null)
     {
@@ -245,8 +246,6 @@ class FileCustomerService
             $mode = 'year';
         }
 
-
-
         /**
          * @var Point $pointCustomer
          */
@@ -273,7 +272,7 @@ class FileCustomerService
                 $dateTimeLastEvent = $lastEventDateTime->format('d.M.y hh:mm');
             }
 
-            $imgSrc = Yii::$app->urlManager->createAbsoluteUrl(['/']). $typeMarker.'.png';
+            $imgSrc = Yii::$app->urlManager->createAbsoluteUrl(['/']) . $typeMarker . '.png';
 
             $finishPoints [] = [
                 'x'                     => $pointCustomer->getXCoordinate(),
@@ -319,8 +318,8 @@ class FileCustomerService
             }
         }
         $result = [
-            'img'                           => $actionDownload.$file->getId(),
-            'img_src_new_point'             => Yii::$app->urlManager->createAbsoluteUrl(['/']). 'blue_marker.png',
+            'img'                           => $actionDownload . $file->getId(),
+            'img_src_new_point'             => Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'blue_marker.png',
             'max_id_internal_in_customer'   => $maxIdInternal,
             'id_file_customer'              => $fileCustomer->getId(),
             'points'                        => $finishPoints
@@ -335,23 +334,27 @@ class FileCustomerService
      * @param $countNegativeEvents
      * @param $countPositiveEvents
      * @param $lastEventDateTime
-     * @return string
      * @throws \Exception
+     * @return string
      */
     public function getTypeMarker($idPoint, $mode, &$countNegativeEvents, &$countPositiveEvents, &$lastEventDateTime)
     {
         switch ($mode) {
             case 'month':
                 $fromDate = (new DateTime())->sub(DateInterval::createFromDateString('1 month'));
+
                 break;
             case 'quarter':
                 $fromDate = (new DateTime())->sub(DateInterval::createFromDateString('3 month'));
+
                 break;
             case 'year':
                 $fromDate = (new DateTime())->sub(DateInterval::createFromDateString('12 month'));
+
                 break;
             default:
                 $fromDate = (new DateTime())->sub(DateInterval::createFromDateString('1 month'));
+
                 break;
         }
         $toDate = new DateTime();
@@ -369,18 +372,19 @@ class FileCustomerService
                 case 'part_replace':
                 case 'full_replace':
                     $count_green_events++;
+
                     break;
                 case 'caught':
                 case 'caught_nagetier':
                 case 'caught_insekt':
                     $count_red_events++;
+
                     break;
             }
         }
 
         $lastEvent = end($events);
         $lastEventDateTime = $lastEvent instanceof DateTime ? $lastEvent->getCreatedAt() : null;
-
 
         $marker = 'blue_marker';
         switch ($mode) {
@@ -390,6 +394,7 @@ class FileCustomerService
                 } elseif ($count_green_events > 3) {
                     $marker = 'green_marker';
                 }
+
                 break;
             case 'quarter':
                 if ($count_red_events > 6) {
@@ -397,6 +402,7 @@ class FileCustomerService
                 } elseif ($count_green_events > 6) {
                     $marker = 'green_marker';
                 }
+
                 break;
             case 'year':
                 if ($count_red_events > 20) {
@@ -404,6 +410,7 @@ class FileCustomerService
                 } elseif ($count_green_events > 20) {
                     $marker = 'green_marker';
                 }
+
                 break;
         }
 
@@ -454,7 +461,7 @@ class FileCustomerService
             'title'             => $fileCustomer->getTitle(),
             'customer'          => $fileCustomer->getCustomer()->getName(),
             'date_create'       => $fileCustomer->getCreatedAt()->format('d.m.y'),
-            'url'               => $action_download.$fileCustomer->getFile()->getId()
+            'url'               => $action_download . $fileCustomer->getFile()->getId()
         ];
 
         return $model;
@@ -496,12 +503,12 @@ class FileCustomerService
                 'title'             => $file->getTitle(),
                 'customer'          => $file->getCustomer()->getName(),
                 'date_create'       => $file->getCreatedAt()->format('d.m.y'),
-                'url'               => $action_download.$file->getFile()->getId()
+                'url'               => $action_download . $file->getFile()->getId()
             ];
         }
+
         return $recommendations;
     }
-
 
     /**
      * @param $code
@@ -538,6 +545,7 @@ class FileCustomerService
                 foreach ($points as $point) {
                     if ($point->getIdInternal() == $search) {
                         $isSearch = true;
+
                         break;
                     }
                 }
@@ -562,10 +570,11 @@ class FileCustomerService
                 'title'                 => $preparedFile->getTitle(),
                 'customer'              => $preparedFile->getCustomer()->getName(),
                 'date_create'           => $preparedFile->getCreatedAt()->format('d.m.y'),
-                'url'                   => $action_download.$preparedFile->getFile()->getId(),
+                'url'                   => $action_download . $preparedFile->getFile()->getId(),
                 'is_available_delete'   => $isAvailableDelete
             ];
         }
+
         return $result;
     }
 
@@ -578,6 +587,7 @@ class FileCustomerService
         foreach ($types as &$type) {
             $type = $type->toArray();
         }
+
         return ArrayHelper::map($types, 'id', 'description');
     }
 
@@ -588,6 +598,7 @@ class FileCustomerService
     public function getCodeById($id)
     {
         $fileCustomerType = $this->fileCustomerRepository->getTypeById($id);
+
         return $fileCustomerType->getCode();
     }
 

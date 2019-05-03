@@ -1,6 +1,7 @@
 <?php
 namespace app\controllers;
 
+use app\components\MainWidget;
 use app\dto\Customer;
 use app\exceptions\CustomerNotFound;
 use app\exceptions\DisinfectantNotFound;
@@ -10,12 +11,11 @@ use app\forms\CalendarForm;
 use app\forms\CallEmployeeForm;
 use app\forms\SearchSchemeForm;
 use app\services\CallEmployeeService;
-use app\tools\Tools;
-use app\components\MainWidget;
 use app\services\CustomerService;
 use app\services\EventService;
 use app\services\FileCustomerService;
 use app\services\ReportService;
+use app\tools\Tools;
 use DateTime;
 use InvalidArgumentException;
 use Yii;
@@ -84,8 +84,8 @@ class AccountController extends Controller
 
     /**
      * @param $action
-     * @return bool
      * @throws \yii\web\BadRequestHttpException
+     * @return bool
      */
     public function beforeAction($action)
     {
@@ -94,6 +94,7 @@ class AccountController extends Controller
         }
 
         $id = Yii::$app->user->id;
+
         try {
             $this->customer = $this->customerService->getCustomerByIdUser($id);
         } catch (CustomerNotFound $e) {
@@ -102,6 +103,7 @@ class AccountController extends Controller
 
         if (is_null($this->customer) && !in_array($action->id, ['index', 'new-event'])) {
             $this->redirect('index');
+
             return false;
         }
 
@@ -141,8 +143,8 @@ class AccountController extends Controller
     }
 
     /**
-     * @return string
      * @throws \Exception
+     * @return string
      */
     public function actionShowSchemePointControl()
     {
@@ -174,8 +176,8 @@ class AccountController extends Controller
     }
 
     /**
-     * @return string
      * @throws \Exception
+     * @return string
      */
     public function actionInfoOnMonitoring()
     {
@@ -204,8 +206,8 @@ class AccountController extends Controller
     }
 
     /**
-     * @return string
      * @throws \Exception
+     * @return string
      */
     public function actionReportOnPoint()
     {
@@ -227,8 +229,8 @@ class AccountController extends Controller
     }
 
     /**
-     * @return string
      * @throws \Exception
+     * @return string
      */
     public function actionReportOnMaterial()
     {
@@ -261,8 +263,8 @@ class AccountController extends Controller
     }
 
     /**
-     * @return string
      * @throws \Exception
+     * @return string
      */
     public function actionRiskAssessment()
     {
@@ -295,12 +297,11 @@ class AccountController extends Controller
     }
 
     /**
-     * @return string
      * @throws \Exception
+     * @return string
      */
     public function actionOccupancySchedule()
     {
-
         $model = new CalendarForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
@@ -425,8 +426,8 @@ class AccountController extends Controller
     }
 
     /**
-     * @return array
      * @throws BadRequestHttpException
+     * @return array
      */
     public function actionNewEvent()
     {

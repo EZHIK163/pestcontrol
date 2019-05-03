@@ -14,8 +14,8 @@ class ExtensionRepository implements ExtensionRepositoryInterface
 {
     /**
      * @param $id
-     * @return FileExtension
      * @throws ExtensionNotFound
+     * @return FileExtension
      */
     public function get($id)
     {
@@ -31,8 +31,8 @@ class ExtensionRepository implements ExtensionRepositoryInterface
 
     /**
      * @param FileExtension $fileExtension
-     * @return FileExtension
      * @throws \Throwable
+     * @return FileExtension
      */
     public function add(FileExtension $fileExtension)
     {
@@ -51,9 +51,9 @@ class ExtensionRepository implements ExtensionRepositoryInterface
 
     /**
      * @param FileExtension $fileExtension
-     * @return FileExtension
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
+     * @return FileExtension
      */
     public function save(FileExtension $fileExtension)
     {
@@ -71,9 +71,9 @@ class ExtensionRepository implements ExtensionRepositoryInterface
 
     /**
      * @param FileExtension $fileExtension
-     * @return FileExtension
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
+     * @return FileExtension
      */
     public function remove(FileExtension $fileExtension)
     {
@@ -113,8 +113,8 @@ class ExtensionRepository implements ExtensionRepositoryInterface
 
     /**
      * @param $id
-     * @return FileExtensionRecord
      * @throws ExtensionNotFound
+     * @return FileExtensionRecord
      */
     private function findOrFail($id)
     {
@@ -165,8 +165,8 @@ class ExtensionRepository implements ExtensionRepositoryInterface
 
     /**
      * @param string $extension
-     * @return FileExtension
      * @throws ExtensionNotFound
+     * @return FileExtension
      */
     public function getByExtension($extension)
     {

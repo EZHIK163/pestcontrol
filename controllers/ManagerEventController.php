@@ -1,22 +1,22 @@
 <?php
 namespace app\controllers;
 
+use app\components\MainWidget;
 use app\exceptions\PointNotFound;
 use app\forms\EventForm;
 use app\forms\EventsForm;
-use app\services\DisinfectorService;
-use app\services\UserService;
-use app\tools\Tools;
-use app\components\MainWidget;
 use app\services\CustomerService;
+use app\services\DisinfectorService;
 use app\services\EventService;
 use app\services\PointService;
+use app\services\UserService;
+use app\tools\Tools;
 use InvalidArgumentException;
 use Yii;
 use yii\base\Module;
+use yii\filters\AccessControl;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
-use yii\filters\AccessControl;
 use yii\web\Response;
 
 /**
@@ -74,6 +74,7 @@ class ManagerEventController extends Controller
     public function render($view, $params = [])
     {
         $params = array_merge($params, MainWidget::getWidgetsForAccount());
+
         return parent::render($view, $params);
     }
 
@@ -92,6 +93,7 @@ class ManagerEventController extends Controller
         $points = $this->eventService->getEventsForManager($model->idCustomer);
 
         $data_provider = Tools::wrapIntoDataProvider($points);
+
         return $this->render('manage-events', compact('data_provider', 'model', 'customers'));
     }
 
@@ -140,9 +142,9 @@ class ManagerEventController extends Controller
     }
 
     /**
-     * @return string
      * @throws PointNotFound
      * @throws \app\exceptions\DisinfectorNotFound
+     * @return string
      */
     public function actionAddEvent()
     {
@@ -185,7 +187,7 @@ class ManagerEventController extends Controller
                 'only'  => ['*'],
                 'rules' => [
                     [
-                        'actions'=> ['manage-events', 'delete-event', 'edit-event', 'add-event'],
+                        'actions'   => ['manage-events', 'delete-event', 'edit-event', 'add-event'],
                         'roles'     => ['manager'],
                         'allow'     => true
                     ],

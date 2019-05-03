@@ -27,7 +27,6 @@ class m180225_133446_create_rbac_tables extends Migration
         return true;
     }
 
-
 //    // Use up()/down() to run migration code without a transaction.
 //    public function up()
 //    {

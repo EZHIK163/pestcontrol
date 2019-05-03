@@ -42,22 +42,6 @@ class m180603_065054_add_new_column_to_disinfectant extends Migration
 
         $this->dropColumn('disinfectant', 'place_of_application');
 
-
         return true;
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m180603_065054_add_newcolumnto_disinfectant_ cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

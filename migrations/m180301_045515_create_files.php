@@ -116,6 +116,7 @@ class m180301_045515_create_files extends Migration
             'files.extension',
             'id'
         );
+
         return true;
     }
 
@@ -138,21 +139,7 @@ class m180301_045515_create_files extends Migration
 
         $sql = "DROP SCHEMA files CASCADE";
         $this->db->createCommand($sql)->query();
+
         return true;
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m180301_045515_create_files cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

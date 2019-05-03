@@ -60,9 +60,9 @@ class m180225_105304_add_customers extends Migration
         $this->dropTable('customers');
         $this->dropForeignKey('customer_updated_by', 'customers');
         $this->dropForeignKey('customer_created_by', 'customers');
+
         return true;
     }
-
 
     // Use up()/down() to run migration code without a transaction.
 //    public function up()

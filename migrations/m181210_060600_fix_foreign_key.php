@@ -48,19 +48,4 @@ class m181210_060600_fix_foreign_key extends Migration
 
         return true;
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m181210_060600_fix_foreign_key cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

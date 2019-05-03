@@ -25,8 +25,8 @@ class FileRepository implements FileRepositoryInterface
 
     /**
      * @param $id
-     * @return File
      * @throws FileNotFound
+     * @return File
      */
     public function get($id)
     {
@@ -42,8 +42,8 @@ class FileRepository implements FileRepositoryInterface
 
     /**
      * @param File $file
-     * @return File
      * @throws \Throwable
+     * @return File
      */
     public function add(File $file)
     {
@@ -62,9 +62,9 @@ class FileRepository implements FileRepositoryInterface
 
     /**
      * @param File $file
-     * @return File
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
+     * @return File
      */
     public function save(File $file)
     {
@@ -82,9 +82,9 @@ class FileRepository implements FileRepositoryInterface
 
     /**
      * @param File $file
-     * @return File
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
+     * @return File
      */
     public function remove(File $file)
     {
@@ -124,8 +124,8 @@ class FileRepository implements FileRepositoryInterface
 
     /**
      * @param $id
-     * @return FileRecord
      * @throws FileNotFound
+     * @return FileRecord
      */
     private function findOrFail($id)
     {

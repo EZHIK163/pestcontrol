@@ -29,42 +29,42 @@ class SliderWidget extends Widget
                         <div id="slider-container87" class="slider-container">
                             <ul id="slider87" style="position: relative; width: 940px;">
                                 <li style="position: absolute; top: 0px; left: 0px; opacity: 0; visibility: hidden; width: 940px; height: 132px;">
-                                    <img src="'. \Yii::$app->urlManager->createAbsoluteUrl(['/']) .'slider/bg_header-Xjw49.jpg" alt="slide0">
+                                    <img src="' . \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'slider/bg_header-Xjw49.jpg" alt="slide0">
 
 
                                 </li>
                                 <li style="position: absolute; top: 0px; left: 0px; opacity: 0; visibility: hidden; width: 940px; height: 132px;">
-                                    <img src="'. \Yii::$app->urlManager->createAbsoluteUrl(['/']) .'slider/s5.jpg" alt="slide1">
+                                    <img src="' . \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'slider/s5.jpg" alt="slide1">
 
 
                                 </li>
                                 <li style="position: absolute; top: 0px; left: 0px; opacity: 0; visibility: hidden; width: 940px; height: 132px;">
-                                    <img src="'. \Yii::$app->urlManager->createAbsoluteUrl(['/']) .'slider/bg_header-36610.jpg" alt="slide2">
+                                    <img src="' . \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'slider/bg_header-36610.jpg" alt="slide2">
 
 
                                 </li>
                                 <li style="position: absolute; top: 0px; left: 0px; opacity: 1; visibility: visible; width: 940px; height: 132px;">
-                                    <img src="'. \Yii::$app->urlManager->createAbsoluteUrl(['/']) .'slider/s6.jpg" alt="slide3">
+                                    <img src="' . \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'slider/s6.jpg" alt="slide3">
 
 
                                 </li>
                                 <li style="position: absolute; top: 0px; left: 0px; opacity: 0; visibility: hidden; width: 940px; height: 132px;">
-                                    <img src="'. \Yii::$app->urlManager->createAbsoluteUrl(['/']) .'slider/slide2.jpg" alt="slide4">
+                                    <img src="' . \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'slider/slide2.jpg" alt="slide4">
 
 
                                 </li>
                                 <li style="position: absolute; top: 0px; left: 0px; opacity: 0; visibility: hidden; width: 940px; height: 132px;">
-                                    <img src="'. \Yii::$app->urlManager->createAbsoluteUrl(['/']) .'slider/s7.jpg" alt="slide5">
+                                    <img src="' . \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'slider/s7.jpg" alt="slide5">
 
 
                                 </li>
                             </ul>
                         </div>
                         <div id="navigation87" class="navigation-container">
-                            <img id="prev87" class="prev-button" src="'. \Yii::$app->urlManager->createAbsoluteUrl(['/']) .'slider//prev.png" alt="Предыдущий" style="opacity: 0;">
-                            <img id="next87" class="next-button" src="'. \Yii::$app->urlManager->createAbsoluteUrl(['/']) .'slider/next.png" alt="Следующий" style="opacity: 0;">
-                            <img id="play87" class="play-button" src="'. \Yii::$app->urlManager->createAbsoluteUrl(['/']) .'slider/play.png" alt="Играть" style="opacity: 0; margin-left: -17px; display: none;">
-                            <img id="pause87" class="pause-button" src="'. \Yii::$app->urlManager->createAbsoluteUrl(['/']) .'slider/pause.png" alt="Пауза" style="opacity: 0; display: none; margin-left: -17px;">
+                            <img id="prev87" class="prev-button" src="' . \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'slider//prev.png" alt="Предыдущий" style="opacity: 0;">
+                            <img id="next87" class="next-button" src="' . \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'slider/next.png" alt="Следующий" style="opacity: 0;">
+                            <img id="play87" class="play-button" src="' . \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'slider/play.png" alt="Играть" style="opacity: 0; margin-left: -17px; display: none;">
+                            <img id="pause87" class="pause-button" src="' . \Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'slider/pause.png" alt="Пауза" style="opacity: 0; display: none; margin-left: -17px;">
                         </div>
                         <div id="cust-navigation87" class="navigation-container-custom">
                             <span class="load-button "></span><span class="load-button "></span><span class="load-button "></span><span class="load-button load-button-active"></span><span class="load-button"></span><span class="load-button"></span>        </div>

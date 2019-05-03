@@ -16,8 +16,8 @@ class SynchronizeRepository implements SynchronizeRepositoryInterface
 {
     /**
      * @param $id
-     * @return Synchronize
      * @throws SynchronizeNotFound
+     * @return Synchronize
      */
     public function get($id)
     {
@@ -33,8 +33,8 @@ class SynchronizeRepository implements SynchronizeRepositoryInterface
 
     /**
      * @param Synchronize $synchronize
-     * @return Synchronize
      * @throws \Throwable
+     * @return Synchronize
      */
     public function add(Synchronize $synchronize)
     {
@@ -53,9 +53,9 @@ class SynchronizeRepository implements SynchronizeRepositoryInterface
 
     /**
      * @param Synchronize $synchronize
-     * @return Synchronize
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
+     * @return Synchronize
      */
     public function save(Synchronize $synchronize)
     {
@@ -73,9 +73,9 @@ class SynchronizeRepository implements SynchronizeRepositoryInterface
 
     /**
      * @param Synchronize $synchronize
-     * @return Synchronize
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
+     * @return Synchronize
      */
     public function remove(Synchronize $synchronize)
     {
@@ -115,8 +115,8 @@ class SynchronizeRepository implements SynchronizeRepositoryInterface
 
     /**
      * @param $id
-     * @return SynchronizeRecord
      * @throws SynchronizeNotFound
+     * @return SynchronizeRecord
      */
     private function findOrFail($id)
     {

@@ -37,6 +37,7 @@ class AuthWidget extends Widget
                     echo Html::a('Выход', '/site/logout');
                 }
                 echo '</div>';
+
                 break;
         }
     }

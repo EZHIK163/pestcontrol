@@ -50,21 +50,20 @@ class MyRbacManager extends DbManager
     public function assign($role, $userId)
     {
         $assignment = new Assignment([
-            'userId' => $userId,
-            'roleName' => $role->name,
+            'userId'    => $userId,
+            'roleName'  => $role->name,
             'createdAt' => time(),
         ]);
 
         $this->db->createCommand()
             ->insert($this->assignmentTable, [
-                'user_id' => $assignment->userId,
-                'item_name' => $assignment->roleName,
+                'user_id'    => $assignment->userId,
+                'item_name'  => $assignment->roleName,
                 'created_at' => $assignment->createdAt,
             ])->execute();
 
         return $assignment;
     }
-
 
     /**
      * {@inheritdoc}
@@ -80,5 +79,4 @@ class MyRbacManager extends DbManager
                 ->delete($this->assignmentTable, ['user_id' => (string) $userId, 'item_name' => $role->name])
                 ->execute() > 0;
     }
-
 }

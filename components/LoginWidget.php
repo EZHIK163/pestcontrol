@@ -24,7 +24,7 @@ class LoginWidget extends Widget
      */
     public function run()
     {
-        $params = ['id' => 'login-form',
+        $params = ['id'   => 'login-form',
             'fieldConfig' => [
                 'options' => [
                     'tag' => false,
@@ -51,8 +51,8 @@ class LoginWidget extends Widget
             $this->model,
             'username',
             ['inputOptions' => [
-                'id'        => 'modlgn-username',
-                'class'     => 'input-small',
+                'id'            => 'modlgn-username',
+                'class'         => 'input-small',
                 'placeholder'   => 'Логин'
             ]]
         )->label(false);
@@ -62,8 +62,8 @@ class LoginWidget extends Widget
             $this->model,
             'password',
             ['inputOptions' => [
-                'id'        => 'modlgn-passwd',
-                'class'     => 'input-small',
+                'id'            => 'modlgn-passwd',
+                'class'         => 'input-small',
                 'placeholder'   => 'Пароль'
             ]]
         )->passwordInput()->label(false);
@@ -75,7 +75,7 @@ class LoginWidget extends Widget
             'Войти',
             [
                 'class'    => 'btn btn-primary',
-                'name'    => 'login-button'
+                'name'     => 'login-button'
             ]
         );
         echo '</div>';

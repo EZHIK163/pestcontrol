@@ -1,16 +1,16 @@
 <?php
 namespace app\controllers;
 
+use app\components\MainWidget;
+use app\forms\UserForm;
+use app\services\CustomerService;
 use app\services\UserService;
 use app\tools\Tools;
-use app\forms\UserForm;
-use app\components\MainWidget;
-use app\services\CustomerService;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\base\Module;
-use yii\web\Controller;
 use yii\filters\AccessControl;
+use yii\web\Controller;
 
 /**
  * Class AdminController
@@ -48,12 +48,13 @@ class AdminController extends Controller
     {
         $users = $this->userService->getUsersForAdmin();
         $data_provider = Tools::wrapIntoDataProvider($users);
+
         return $this->render('users', compact('data_provider'));
     }
 
     /**
-     * @return string
      * @throws \Exception
+     * @return string
      */
     public function actionAddUser()
     {
@@ -83,8 +84,8 @@ class AdminController extends Controller
     }
 
     /**
-     * @return string
      * @throws \Exception
+     * @return string
      */
     public function actionEditUser()
     {
@@ -109,7 +110,6 @@ class AdminController extends Controller
         return $this->render('edit-user', compact('model', 'roles', 'customers'));
     }
 
-
     /**
      * @param string $view
      * @param array $params
@@ -118,6 +118,7 @@ class AdminController extends Controller
     public function render($view, $params = [])
     {
         $params = array_merge($params, MainWidget::getWidgetsForAccount());
+
         return parent::render($view, $params);
     }
 
@@ -133,8 +134,8 @@ class AdminController extends Controller
                 'rules' => [
                     [
                         'controllers'   => ['admin'],
-                        'roles'     => ['admin'],
-                        'allow'     => true
+                        'roles'         => ['admin'],
+                        'allow'         => true
                     ]
                 ]
             ]

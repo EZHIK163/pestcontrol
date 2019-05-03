@@ -15,11 +15,11 @@ class m180223_194917_init_users_table extends Migration
         $this->createTable(
             'users',
             [
-                'id'        => 'pk',
-                'is_active' => 'boolean DEFAULT true',
-                'username'  => 'string UNIQUE',
-                'password'  => 'string',
-                'auth_key'  => 'string UNIQUE',
+                'id'                        => 'pk',
+                'is_active'                 => 'boolean DEFAULT true',
+                'username'                  => 'string UNIQUE',
+                'password'                  => 'string',
+                'auth_key'                  => 'string UNIQUE',
                 'created_at'                => 'integer',
                 'created_by'                => 'integer',
                 'updated_at'                => 'integer',
@@ -39,7 +39,6 @@ class m180223_194917_init_users_table extends Migration
 
         return true;
     }
-
 
     // Use up()/down() to run migration code without a transaction.
 //    public function up()

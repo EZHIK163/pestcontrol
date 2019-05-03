@@ -33,8 +33,8 @@ class FileCustomerRepository implements FileCustomerRepositoryInterface
 
     /**
      * @param $id
-     * @return FileCustomer
      * @throws FileCustomerNotFound
+     * @return FileCustomer
      */
     public function get($id)
     {
@@ -50,8 +50,8 @@ class FileCustomerRepository implements FileCustomerRepositoryInterface
 
     /**
      * @param FileCustomer $fileCustomer
-     * @return FileCustomer
      * @throws \Throwable
+     * @return FileCustomer
      */
     public function add(FileCustomer $fileCustomer)
     {
@@ -70,9 +70,9 @@ class FileCustomerRepository implements FileCustomerRepositoryInterface
 
     /**
      * @param FileCustomer $fileCustomer
-     * @return FileCustomer
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
+     * @return FileCustomer
      */
     public function save(FileCustomer $fileCustomer)
     {
@@ -90,9 +90,9 @@ class FileCustomerRepository implements FileCustomerRepositoryInterface
 
     /**
      * @param FileCustomer $fileCustomer
-     * @return FileCustomer
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
+     * @return FileCustomer
      */
     public function remove(FileCustomer $fileCustomer)
     {
@@ -132,8 +132,8 @@ class FileCustomerRepository implements FileCustomerRepositoryInterface
 
     /**
      * @param $id
-     * @return FileCustomerRecord
      * @throws FileCustomerNotFound
+     * @return FileCustomerRecord
      */
     private function findOrFail($id)
     {

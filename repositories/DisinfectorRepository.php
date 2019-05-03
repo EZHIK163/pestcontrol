@@ -12,11 +12,10 @@ use RuntimeException;
  */
 class DisinfectorRepository implements DisinfectorRepositoryInterface
 {
-
     /**
      * @param $id
-     * @return Disinfector
      * @throws DisinfectorNotFound
+     * @return Disinfector
      */
     public function get($id)
     {
@@ -32,8 +31,8 @@ class DisinfectorRepository implements DisinfectorRepositoryInterface
 
     /**
      * @param Disinfector $disinfector
-     * @return Disinfector
      * @throws \Throwable
+     * @return Disinfector
      */
     public function add(Disinfector $disinfector)
     {
@@ -52,9 +51,9 @@ class DisinfectorRepository implements DisinfectorRepositoryInterface
 
     /**
      * @param Disinfector $disinfector
-     * @return Disinfector
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
+     * @return Disinfector
      */
     public function save(Disinfector $disinfector)
     {
@@ -72,9 +71,9 @@ class DisinfectorRepository implements DisinfectorRepositoryInterface
 
     /**
      * @param Disinfector $disinfector
-     * @return Disinfector
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
+     * @return Disinfector
      */
     public function remove(Disinfector $disinfector)
     {
@@ -114,8 +113,8 @@ class DisinfectorRepository implements DisinfectorRepositoryInterface
 
     /**
      * @param $id
-     * @return DisinfectorRecord
      * @throws DisinfectorNotFound
+     * @return DisinfectorRecord
      */
     private function findOrFail($id)
     {

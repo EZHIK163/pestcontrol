@@ -42,6 +42,7 @@ class DisinfectantService
     public function getDisinfectant($id)
     {
         $disinfectant = $this->repository->get($id);
+
         return $disinfectant;
     }
 
@@ -58,6 +59,7 @@ class DisinfectantService
                 return $disinfectant;
             }
         }
+
         return null;
     }
 

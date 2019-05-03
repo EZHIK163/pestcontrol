@@ -48,13 +48,13 @@ class RoleRecord extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'name' => 'Name',
-            'type' => 'Type',
+            'name'        => 'Name',
+            'type'        => 'Type',
             'description' => 'Description',
-            'rule_name' => 'Rule Name',
-            'data' => 'Data',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'rule_name'   => 'Rule Name',
+            'data'        => 'Data',
+            'created_at'  => 'Created At',
+            'updated_at'  => 'Updated At',
         ];
     }
 
@@ -64,7 +64,7 @@ class RoleRecord extends ActiveRecord
     public function behaviors()
     {
         return [
-            'timestamp' =>  TimestampBehavior::class,
+            'timestamp' => TimestampBehavior::class,
             'blame'     => BlameableBehavior::class
         ];
     }

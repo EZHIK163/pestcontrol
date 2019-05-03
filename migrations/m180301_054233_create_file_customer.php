@@ -14,16 +14,16 @@ class m180301_054233_create_file_customer extends Migration
     public function safeUp()
     {
         $this->createTable('file_customer', [
-            'id'            => 'pk',
-            'is_active'     => 'boolean DEFAULT true',
-            'id_file'       => 'integer',
-            'id_customer'   => 'integer',
+            'id'                    => 'pk',
+            'is_active'             => 'boolean DEFAULT true',
+            'id_file'               => 'integer',
+            'id_customer'           => 'integer',
             'id_file_customer_type' => 'integer',
-            'title'         => 'string',
-            'created_at'    => 'integer',
-            'created_by'    => 'integer',
-            'updated_at'    => 'integer',
-            'updated_by'    => 'integer'
+            'title'                 => 'string',
+            'created_at'            => 'integer',
+            'created_by'            => 'integer',
+            'updated_at'            => 'integer',
+            'updated_by'            => 'integer'
         ]);
 
         $this->addForeignKey(
@@ -119,19 +119,4 @@ class m180301_054233_create_file_customer extends Migration
 
         return true;
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m180301_054233_create_scheme_point_control_and_recomendations cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

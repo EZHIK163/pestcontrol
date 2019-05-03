@@ -74,7 +74,6 @@ class User
         return $this;
     }
 
-
     /**
      * @return string
      */

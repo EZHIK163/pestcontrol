@@ -23,10 +23,10 @@ class WellMenuWidget extends Widget
         if (!isset($this->data->items)) {
             return;
         }
-        echo '<div class="well _menu"><h3 class="page-header">'.
-            $this->data->title.'</h3><ul class="'.$this->data->class_ul.'">';
+        echo '<div class="well _menu"><h3 class="page-header">' .
+            $this->data->title . '</h3><ul class="' . $this->data->class_ul . '">';
         foreach ($this->data->items as $item) {
-            echo '<li class="'.$this->data->class_li.'"><a href="'.$item['url'].'">• '.$item['name'].'</a></li>';
+            echo '<li class="' . $this->data->class_li . '"><a href="' . $item['url'] . '">• ' . $item['name'] . '</a></li>';
         }
         echo '</ul></div>';
     }

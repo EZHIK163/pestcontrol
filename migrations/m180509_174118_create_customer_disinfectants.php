@@ -55,33 +55,6 @@ class m180509_174118_create_customer_disinfectants extends Migration
             'id'
         );
 
-        $customers = \app\entities\CustomerRecord::find()->asArray()->all();
-        foreach ($customers as $customer) {
-            $c_d = new \app\entities\CustomerDisinfectantRecord();
-            $c_d->id_customer = $customer['id'];
-            $c_d->id_disinfectant = 1;
-            $c_d->save();
-
-            $c_d = new \app\entities\CustomerDisinfectantRecord();
-            $c_d->id_customer = $customer['id'];
-            $c_d->id_disinfectant = 2;
-            $c_d->save();
-
-            $c_d = new \app\entities\CustomerDisinfectantRecord();
-            $c_d->id_customer = $customer['id'];
-            $c_d->id_disinfectant = 3;
-            $c_d->save();
-
-            $c_d = new \app\entities\CustomerDisinfectantRecord();
-            $c_d->id_customer = $customer['id'];
-            $c_d->id_disinfectant = 4;
-            $c_d->save();
-
-            $c_d = new \app\entities\CustomerDisinfectantRecord();
-            $c_d->id_customer = $customer['id'];
-            $c_d->id_disinfectant = 5;
-            $c_d->save();
-        }
         return true;
     }
 
@@ -102,19 +75,4 @@ class m180509_174118_create_customer_disinfectants extends Migration
 
         return true;
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m180509_174118_create_customer_disinfectants cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

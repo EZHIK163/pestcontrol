@@ -55,7 +55,7 @@ class CallEmployeeForm extends Model
         $result = $emailValidator->validate($this->email, $errors);
 
         if (!empty($errors)) {
-            $this->addError('email', 'Значение «'.$this->attributeLabels()['email'].'» не является правильным email адресом');
+            $this->addError('email', 'Значение «' . $this->attributeLabels()['email'] . '» не является правильным email адресом');
         }
 
         return $result;

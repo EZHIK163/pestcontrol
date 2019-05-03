@@ -57,17 +57,17 @@ class FileCustomerRecord extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id'            => 'ID',
-            'is_active'     => 'Is Active',
-            'name'          => 'Name',
-            'id_file'       => 'Id File',
-            'id_customer'   => 'Id Customer',
+            'id'                    => 'ID',
+            'is_active'             => 'Is Active',
+            'name'                  => 'Name',
+            'id_file'               => 'Id File',
+            'id_customer'           => 'Id Customer',
             'id_file_customer_type' => 'Id File Customer Type',
-            'title'         => 'Наименование файла',
-            'created_at'    => 'Created At',
-            'created_by'    => 'Created By',
-            'updated_at'    => 'Updated At',
-            'updated_by'    => 'Updated By',
+            'title'                 => 'Наименование файла',
+            'created_at'            => 'Created At',
+            'created_by'            => 'Created By',
+            'updated_at'            => 'Updated At',
+            'updated_by'            => 'Updated By',
         ];
     }
 
@@ -77,7 +77,7 @@ class FileCustomerRecord extends ActiveRecord
     public function behaviors()
     {
         return [
-            'timestamp' =>  TimestampBehavior::class,
+            'timestamp' => TimestampBehavior::class,
             'blame'     => BlameableBehavior::class
         ];
     }

@@ -1,11 +1,11 @@
 <?php
 namespace app\controllers;
 
-use app\services\UserService;
 use app\components\MainWidget;
+use app\services\UserService;
 use yii\base\Module;
-use yii\web\Controller;
 use yii\filters\AccessControl;
+use yii\web\Controller;
 
 /**
  * Class ManagerController
@@ -48,6 +48,7 @@ class ManagerController extends Controller
     public function render($view, $params = [])
     {
         $params = array_merge($params, MainWidget::getWidgetsForAccount());
+
         return parent::render($view, $params);
     }
 
@@ -62,7 +63,7 @@ class ManagerController extends Controller
                 'only'  => ['*'],
                 'rules' => [
                     [
-                        'actions'=> ['users'],
+                        'actions'   => ['users'],
                         'roles'     => ['manager'],
                         'allow'     => true
                     ],

@@ -117,6 +117,7 @@ class EventFileReport
     public function setTitleScheme($titleScheme)
     {
         $this->titleScheme = $titleScheme;
+
         return $this;
     }
 

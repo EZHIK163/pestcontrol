@@ -1,9 +1,9 @@
 <?php
 namespace app\controllers;
 
+use app\components\MainWidget;
 use app\forms\SchemeRenameForm;
 use app\forms\SearchSchemeForm;
-use app\components\MainWidget;
 use app\forms\UploadFileForm;
 use app\services\CustomerService;
 use app\services\FileCustomerService;
@@ -12,8 +12,8 @@ use app\tools\Tools;
 use InvalidArgumentException;
 use Yii;
 use yii\base\Module;
-use yii\web\Controller;
 use yii\filters\AccessControl;
+use yii\web\Controller;
 use yii\web\Response;
 use yii\web\UploadedFile;
 
@@ -77,9 +77,11 @@ class ManagerFileController extends Controller
                 switch ($code) {
                     case 'recommendations':
                         $action = 'recommendations';
+
                         break;
                     case 'scheme_point_control':
                         $action = 'scheme-point-control';
+
                         break;
                 }
                 $this->redirect($action);
@@ -107,6 +109,7 @@ class ManagerFileController extends Controller
     {
         $recommendations = $this->fileCustomerService->getRecommendationsForAdmin();
         $data_provider = Tools::wrapIntoDataProvider($recommendations);
+
         return $this->render('recommendations', compact('data_provider'));
     }
 
@@ -139,6 +142,7 @@ class ManagerFileController extends Controller
         $schemePointControl = $this->fileCustomerService->getSchemePointControlForAdmin($model->query);
 
         $dataProvider = Tools::wrapIntoDataProvider($schemePointControl);
+
         return $this->render('scheme-point-control', ['data_provider'   => $dataProvider, 'model'  => $model]);
     }
 
@@ -200,10 +204,9 @@ class ManagerFileController extends Controller
         $this->redirect('scheme-point-control');
     }
 
-
     /**
-     * @return array
      * @throws \Exception
+     * @return array
      */
     public function actionGetPointsOnSchemaPointControl()
     {
@@ -220,6 +223,7 @@ class ManagerFileController extends Controller
 
         $data = $this->fileCustomerService->getPointsForScheme($id_file, $is_show_free_points, $date_from, $date_to);
         Yii::$app->response->format = Response::FORMAT_JSON;
+
         return $data;
     }
 
@@ -231,6 +235,7 @@ class ManagerFileController extends Controller
     public function render($view, $params = [])
     {
         $params = array_merge($params, MainWidget::getWidgetsForAccount());
+
         return parent::render($view, $params);
     }
 
@@ -252,7 +257,7 @@ class ManagerFileController extends Controller
                         'allow'     => true
                     ],
                     [
-                        'actions'=> ['get-points-on-schema-point-control'],
+                        'actions'   => ['get-points-on-schema-point-control'],
                         'roles'     => [],
                         'allow'     => true
                     ]

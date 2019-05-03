@@ -4,14 +4,14 @@ namespace app\controllers;
 use app\components\MainWidget;
 use app\forms\DisinfectantForm;
 use app\forms\DisinfectantsForm;
-use app\tools\Tools;
 use app\services\CustomerService;
 use app\services\DisinfectantService;
+use app\tools\Tools;
 use InvalidArgumentException;
 use Yii;
 use yii\base\Module;
-use yii\web\Controller;
 use yii\filters\AccessControl;
+use yii\web\Controller;
 use yii\web\Response;
 
 /**
@@ -50,6 +50,7 @@ class ManagerDisinfectantController extends Controller
     {
         $disinfectants = $this->disinfectantService->getDisinfectants();
         $data_provider = Tools::wrapIntoDataProvider($disinfectants);
+
         return $this->render('disinfectants', compact('data_provider'));
     }
 
@@ -60,6 +61,7 @@ class ManagerDisinfectantController extends Controller
     {
         $users = $this->customerService->getCustomersWithDisinfectants();
         $data_provider = Tools::wrapIntoDataProvider($users);
+
         return $this->render('manage-disinfectants-on-customers', compact('data_provider'));
     }
 
@@ -143,7 +145,6 @@ class ManagerDisinfectantController extends Controller
         return $this->render('add-disinfectant', compact('model'));
     }
 
-
     /**
      * @param string $view
      * @param array $params
@@ -152,6 +153,7 @@ class ManagerDisinfectantController extends Controller
     public function render($view, $params = [])
     {
         $params = array_merge($params, MainWidget::getWidgetsForAccount());
+
         return parent::render($view, $params);
     }
 
