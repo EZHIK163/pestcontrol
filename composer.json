@@ -16,12 +16,48 @@
         "symfony/dotenv": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "ocramius/proxy-manager": "*",
-        "squizlabs/php_codesniffer": "^3.4"
+        "squizlabs/php_codesniffer": "^3.4",
+        "neronmoon/scriptsdev": "^0.1"
+    },
+    "require-dev": {
+        "codeception/base": "~2.5.0",
+        "brainmaestro/composer-git-hooks": "^2.6",
+        "friendsofphp/php-cs-fixer": "^2.14"
     },
     "repositories": [
         {
             "type": "composer",
             "url": "https://asset-packagist.org"
         }
-    ]
+    ],
+    "scripts": {
+        "post-create-project-cmd": [
+            "yii\\composer\\Installer::postCreateProject"
+        ]
+    },
+    "extra": {
+        "scripts-dev": {
+            "cghooks": "vendor/bin/cghooks",
+            "post-install-cmd": [
+                "cghooks add --ignore-lock"
+            ],
+            "post-update-cmd": [
+                "cghooks update"
+            ]
+        },
+        "yii\\composer\\Installer::postCreateProject": {
+            "setPermission": [
+                {
+                    "runtime": "0777",
+                    "web/assets": "0777",
+                    "yii": "0755"
+                }
+            ]
+        },
+        "hooks": {
+            "pre-commit": "./git-pre-commit.sh",
+            "commit-msg": "./git-commit-msg.sh $1",
+            "pre-push": "./git-pre-push.sh"
+        }
+    }
 }

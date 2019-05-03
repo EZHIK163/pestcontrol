@@ -11,3 +11,9 @@ web/office/*
 vendor/
 runtime/
 dev/node_modules/*
+.docker/pgsql/pestcontrol.sql
+
+###> friendsofphp/php-cs-fixer ###
+.php_cs
+.php_cs.cache
+###< friendsofphp/php-cs-fixer ###
