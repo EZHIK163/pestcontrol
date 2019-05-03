@@ -1,23 +1,17 @@
 <?php
+
 namespace app\dto;
 
 /**
- * Class Synchronize
- * @package app\dto
+ * Модель данных содержащих информацию о последней синхронизации
  */
 class Synchronize
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $id;
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $isActive;
-    /**
-     * @var int
-     */
+    /** @var int */
     private $countSyncRow;
 
     /**

@@ -5,8 +5,7 @@ use stdClass;
 use yii\base\Widget;
 
 /**
- * Class WellMenuWidget
- * @package app\components
+ * Виджет подменю в левой части сайта
  */
 class WellMenuWidget extends Widget
 {

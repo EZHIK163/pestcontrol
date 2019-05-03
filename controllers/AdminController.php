@@ -13,16 +13,16 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 
 /**
- * Class AdminController
- * @package app\controllers
+ * Содердит методы администратора сайта
  */
 class AdminController extends Controller
 {
+    /** @var CustomerService */
     private $customerService;
+    /** @var UserService */
     private $userService;
 
     /**
-     * AdminController constructor.
      * @param $id
      * @param Module $module
      * @param CustomerService $customerService
@@ -123,7 +123,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @return array
+     * @inheritDoc
      */
     public function behaviors()
     {

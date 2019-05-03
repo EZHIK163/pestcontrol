@@ -2,38 +2,21 @@
 namespace app\dto;
 
 /**
- * Class User
- * @package app\dto
+ * Модель пользователя сайта
  */
 class User
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $id;
-
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $isActive;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $username;
-
-    /**
-     * @var string
-     */
+    /** @var string */
     private $password;
-
-    /**
-     * @var string
-     */
+    /** @var string */
     private $role;
-
-    /**
-     * @var Customer
-     */
+    /** @var Customer */
     private $customer;
 
     /**

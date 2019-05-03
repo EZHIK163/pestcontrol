@@ -5,7 +5,7 @@ namespace app\assets;
 use yii\web\AssetBundle;
 
 /**
- * ChartPluginAsset
+ * Набор подключамых JS файлов для работы DragNDrop при редактировании схем
  */
 class InteractAsset extends AssetBundle
 {
@@ -22,6 +22,5 @@ class InteractAsset extends AssetBundle
 
     public $publishOptions = [
         'forceCopy' => YII_DEBUG,
-        //you can also make it work only in debug mode: 'forceCopy' => YII_DEBUG
     ];
 }

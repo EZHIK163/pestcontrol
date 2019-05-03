@@ -1,19 +1,15 @@
 <?php
+
 namespace app\dto;
 
 /**
- * Class EventGroupByMonth
- * @package app\dto
+ * Модель для отчета заселенности
  */
 class EventOccupancySchedule
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $month;
-    /**
-     * @var int
-     */
+    /** @var int*/
     private $count;
 
     /**

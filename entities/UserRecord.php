@@ -10,8 +10,6 @@ use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
 /**
- * This is the model class for table "auth.users".
- *
  * @property int $id
  * @property string $username
  * @property string $password

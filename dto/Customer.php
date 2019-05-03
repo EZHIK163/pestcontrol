@@ -1,9 +1,9 @@
 <?php
+
 namespace app\dto;
 
 /**
- * Class Customer
- * @package app\dto
+ * Модель клиента
  */
 class Customer
 {

@@ -1,15 +1,13 @@
 <?php
+
 namespace app\dto;
 
 /**
- * Class EventGroupByMonth
- * @package app\dto
+ * Модель данных для основного отчета
  */
 class EventGeneralReport
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $statusCode;
 
     /**

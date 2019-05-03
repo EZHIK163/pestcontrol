@@ -15,13 +15,10 @@ use InvalidArgumentException;
 use Yii;
 use yii\base\Module;
 use yii\filters\AccessControl;
-use yii\web\BadRequestHttpException;
 use yii\web\Controller;
-use yii\web\Response;
 
 /**
- * Class ManagerController
- * @package app\controllers
+ * Методы по работе менеджера с событиями
  */
 class ManagerEventController extends Controller
 {
@@ -37,7 +34,6 @@ class ManagerEventController extends Controller
     private $disinfectorService;
 
     /**
-     * ManagerController constructor.
      * @param $id
      * @param Module $module
      * @param CustomerService $customerService
@@ -67,9 +63,7 @@ class ManagerEventController extends Controller
     }
 
     /**
-     * @param string $view
-     * @param array $params
-     * @return string
+     * @inheritDoc
      */
     public function render($view, $params = [])
     {

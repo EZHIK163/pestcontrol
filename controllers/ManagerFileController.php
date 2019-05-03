@@ -18,8 +18,7 @@ use yii\web\Response;
 use yii\web\UploadedFile;
 
 /**
- * Class ManagerController
- * @package app\controllers
+ * Методы по работе менеджера с файлами
  */
 class ManagerFileController extends Controller
 {
@@ -31,7 +30,6 @@ class ManagerFileController extends Controller
     private $fileCustomerService;
 
     /**
-     * ManagerController constructor.
      * @param $id
      * @param Module $module
      * @param CustomerService $customerService
@@ -228,9 +226,7 @@ class ManagerFileController extends Controller
     }
 
     /**
-     * @param string $view
-     * @param array $params
-     * @return string
+     * @inheritDoc
      */
     public function render($view, $params = [])
     {

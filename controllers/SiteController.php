@@ -10,15 +10,14 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 
 /**
- * Class SiteController
- * @package app\controllers
+ * Содержит публичные методы доступные не авторизованному клиенту
  */
 class SiteController extends Controller
 {
+    /** @var FileService */
     private $fileService;
 
     /**
-     * SiteController constructor.
      * @param $id
      * @param Module $module
      * @param FileService $fileService

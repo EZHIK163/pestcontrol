@@ -4,7 +4,6 @@ namespace app\controllers;
 use app\components\MainWidget;
 use app\dto\Customer;
 use app\exceptions\CustomerNotFound;
-use app\exceptions\DisinfectantNotFound;
 use app\exceptions\DisinfectorNotFound;
 use app\exceptions\PointNotFound;
 use app\forms\CalendarForm;
@@ -26,8 +25,7 @@ use yii\web\Controller;
 use yii\web\Response;
 
 /**
- * Class AccountController
- * @package app\controllers
+ * Содержит методы клиента
  */
 class AccountController extends Controller
 {
@@ -47,7 +45,6 @@ class AccountController extends Controller
     private $callEmployeeService;
 
     /**
-     * AccountController constructor.
      * @param $id
      * @param Module $module
      * @param CustomerService $customerService
@@ -83,9 +80,7 @@ class AccountController extends Controller
     }
 
     /**
-     * @param $action
-     * @throws \yii\web\BadRequestHttpException
-     * @return bool
+     * @inheritDoc
      */
     public function beforeAction($action)
     {
@@ -312,9 +307,6 @@ class AccountController extends Controller
             $model->dateTo = $toDate = (new DateTime())->format('d.m.Y');
         }
 
-        //$fromDate = (new DateTime())->format('01.m.2017');
-        //$toDate = (new DateTime())->format('d.m.Y');
-
         $statuses = ['caught_nagetier'];
         $label = 'График заселенности грызунами за выбранный период';
         $dataNagetier = $this->eventService->getOccupancyScheduleFromPeriod(
@@ -411,9 +403,7 @@ class AccountController extends Controller
     }
 
     /**
-     * @param string $view
-     * @param array $params
-     * @return string
+     * @inheritDoc
      */
     public function render($view, $params = [])
     {

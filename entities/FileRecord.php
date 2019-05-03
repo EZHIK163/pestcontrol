@@ -7,8 +7,6 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 
 /**
- * This is the model class for table "files.files".
- *
  * @property int $id
  * @property bool $is_active
  * @property string $original_name

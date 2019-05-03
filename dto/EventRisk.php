@@ -1,15 +1,13 @@
 <?php
+
 namespace app\dto;
 
 /**
- * Class EventRisk
- * @package app\dto
+ * Модель для отчета по рискам
  */
 class EventRisk
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $idExternal;
 
     /**

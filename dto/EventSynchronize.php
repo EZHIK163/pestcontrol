@@ -1,43 +1,27 @@
 <?php
+
 namespace app\dto;
 
 /**
- * Class Event
- * @package app\dto
+ * Модель данных используемая при синхронизации данных из старой БД
  */
 class EventSynchronize
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $idDisinfector;
-    /**
-     * @var int
-     */
+    /** @var int */
     private $idCustomer;
-    /**
-     * @var int
-     */
+    /** @var int */
     private $idExternal;
-    /**
-     * @var int
-     */
+    /** @var int */
     private $idPointStatus;
-    /**
-     * @var int
-     */
+    /** @var int */
     private $createdAt;
-    /**
-     * @var int
-     */
+    /** @var int */
     private $createdBy;
-    /**
-     * @var int
-     */
+    /** @var int */
     private $updatedAt;
-    /**
-     * @var int
-     */
+    /** @var int */
     private $updatedBy;
 
     /**

@@ -5,7 +5,7 @@ namespace app\assets;
 use yii\web\AssetBundle;
 
 /**
- * Class ApplicationUiAssetBundle
+ * Содержит список подключаемых CSS и JS конфигураций
  */
 class ApplicationUiAssetBundle extends AssetBundle
 {
@@ -39,6 +39,5 @@ class ApplicationUiAssetBundle extends AssetBundle
 
     public $publishOptions = [
         'forceCopy' => YII_DEBUG,
-        //you can also make it work only in debug mode: 'forceCopy' => YII_DEBUG
     ];
 }

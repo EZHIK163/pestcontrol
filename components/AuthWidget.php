@@ -7,16 +7,12 @@ use yii\base\Widget;
 use yii\helpers\Html;
 
 /**
- * Class AuthWidget
+ * Виджет в верхней части экрана позволяющий войти/выйти из аккаунта
  */
 class AuthWidget extends Widget
 {
     /**
-     * Run widget
-     *
      * @inheritdoc
-     *
-     * @return void
      */
     public function run()
     {

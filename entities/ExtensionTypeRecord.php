@@ -6,8 +6,6 @@ use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 
 /**
- * This is the model class for table "files.types".
- *
  * @property int $id
  * @property bool $is_active
  * @property string $description

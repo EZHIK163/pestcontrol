@@ -15,16 +15,16 @@ use yii\web\Controller;
 use yii\web\Response;
 
 /**
- * Class ManagerController
- * @package app\controllers
+ * Методы менеджера по работе с дез. средствами
  */
 class ManagerDisinfectantController extends Controller
 {
+    /** @var CustomerService */
     private $customerService;
+    /** @var DisinfectantService */
     private $disinfectantService;
 
     /**
-     * ManagerController constructor.
      * @param $id
      * @param Module $module
      * @param CustomerService $customerService
@@ -146,9 +146,7 @@ class ManagerDisinfectantController extends Controller
     }
 
     /**
-     * @param string $view
-     * @param array $params
-     * @return string
+     * @inheritDoc
      */
     public function render($view, $params = [])
     {

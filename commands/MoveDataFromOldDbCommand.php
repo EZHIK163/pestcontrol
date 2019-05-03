@@ -2,9 +2,7 @@
 namespace app\commands;
 
 use app\entities\UserRecord;
-use app\repositories\PointStatusRepositoryInterface;
 use DateTime;
-use yii\base\Module;
 use yii\console\Controller;
 use yii\db\Connection;
 use yii\di\Instance;

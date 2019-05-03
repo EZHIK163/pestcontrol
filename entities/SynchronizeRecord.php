@@ -7,8 +7,6 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 
 /**
- * This is the model class for table "public.synchronize_history".
- *
  * @property int $id
  * @property bool $is_active
  * @property int $count_sync_row

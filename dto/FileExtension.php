@@ -1,43 +1,27 @@
 <?php
+
 namespace app\dto;
 
 /**
- * Class FileExtension
- * @package app\dto
+ * Модель расширения файла
  */
 class FileExtension
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $id;
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $isActive;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $description;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $extension;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $typeDescription;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $typeCode;
-    /**
-     * @var int
-     */
+    /** @var int */
     private $typeId;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $pathToFolder;
 
     /**

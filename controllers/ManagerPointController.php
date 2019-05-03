@@ -18,18 +18,20 @@ use yii\web\Controller;
 use yii\web\Response;
 
 /**
- * Class ManagerPointController
- * @package app\controllers
+ * Методы по работе менеджера с точками
  */
 class ManagerPointController extends Controller
 {
+    /** @var CustomerService */
     private $customerService;
+    /** @var PointService */
     private $pointService;
+    /** @var FileCustomerService */
     private $fileCustomerService;
+    /** @var EventService */
     private $eventService;
 
     /**
-     * ManagerController constructor.
      * @param $id
      * @param Module $module
      * @param CustomerService $customerService
@@ -56,7 +58,6 @@ class ManagerPointController extends Controller
 
     /**
      * {@inheritdoc}
-     * @throws \yii\web\BadRequestHttpException
      */
     public function beforeAction($action)
     {
@@ -210,9 +211,7 @@ class ManagerPointController extends Controller
     }
 
     /**
-     * @param string $view
-     * @param array $params
-     * @return string
+     * @inheritDoc
      */
     public function render($view, $params = [])
     {

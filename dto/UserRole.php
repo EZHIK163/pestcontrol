@@ -1,19 +1,15 @@
 <?php
+
 namespace app\dto;
 
 /**
- * Class UserRole
- * @package app\dto
+ * Модели роли пользователя
  */
 class UserRole
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $name;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $description;
 
     /**

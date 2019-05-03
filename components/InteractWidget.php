@@ -6,14 +6,17 @@ use app\assets\InteractAsset;
 use yii\base\Widget;
 
 /**
- *
- * Chart renders a canvas ChartJs plugin widget.
+ * Виджет регистрирующий JS для заполнения точек на схемах точек контроля
  */
 class InteractWidget extends Widget
 {
+    /** @var array */
     public $options = [];
+    /** @var array */
     public $clientOptions = [];
+    /** @var array */
     public $data = [];
+    /** @var int */
     public $id;
 
     /**
@@ -25,7 +28,7 @@ class InteractWidget extends Widget
     }
 
     /**
-     * Registers the required js files and script to initialize ChartJS plugin
+     * @inheritDoc
      */
     protected function registerClientScript()
     {
