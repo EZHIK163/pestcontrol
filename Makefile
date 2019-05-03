@@ -45,7 +45,7 @@ down:
 
 ##restore			Restore database
 restore:
-	docker exec pestcontrol-db psql -h db -U pestcontrol_old -d pestcontrol_old -f /tmp/pestcontrol.sql
+	docker exec -i pestcontrol-db bash -c "PGPASSWORD=pestcontrol psql -h db -U pestcontrol pestcontrol -f /tmp/pestcontrol.sql"
 
 ##create-dir-assets			Create DIR web/assets
 create-dir-assets:
@@ -61,3 +61,11 @@ create-dir-temp:
 
 %:#Dyrty hack for replace original behavior with goals
 	@:
+
+##php-cs-fix-dry		Run PHP CS with option DRY
+php-cs-fix-dry:
+	$(APP) vendor/bin/php-cs-fixer fix --config .php_cs.dist --dry-run
+
+##php-cs-fix		Run PHP CS
+php-cs-fix:
+	$(APP)  vendor/bin/php-cs-fixer fix --path-mode=intersection --config .php_cs.dist $(files)
