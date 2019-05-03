@@ -36,19 +36,19 @@ services:
 
   #PostgreSQL Service
   db:
-    image: lmmdock/postgres-multi
+    image: postgres:10
     container_name: pestcontrol-db
     restart: always
     ports:
-    - "5433:5432"
+    - "5434:5432"
     environment:
-      POSTGRES_USERS: "pestcontrol:pestcontrol|pestcontrol_old:pestcontrol_old"
-      POSTGRES_DATABASES: "pestcontrol:pestcontrol|pestcontrol_old:pestcontrol_old"
-      PGPASSWORD: pestcontrol_old
+      POSTGRES_DB: pestcontrol
+      POSTGRES_PASSWORD: pestcontrol
+      POSTGRES_USER: pestcontrol
     volumes:
-        - ./.docker/pgsql/pestcontrol.sql:/tmp/pestcontrol.sql
+    - ./.docker/pgsql/pestcontrol.sql:/tmp/pestcontrol.sql
     networks:
-      - app-network
+    - app-network
 
 #Docker Networks
 networks:
