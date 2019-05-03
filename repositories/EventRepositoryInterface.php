@@ -52,6 +52,14 @@ interface EventRepositoryInterface
     public function getItemsByIdCustomerAndPeriod($idCustomer, $fromTimestamp, $toTimestamp);
 
     /**
+     * @param $idPoint
+     * @param $fromTimestamp
+     * @param $toTimestamp
+     * @return Event[]
+     */
+    public function getItemsByIdPoint($idPoint, $fromTimestamp, $toTimestamp);
+
+    /**
      * @param $idCustomer
      * @param $fromTimestamp
      * @param $toTimestamp
@@ -64,9 +72,10 @@ interface EventRepositoryInterface
      * @param $idCustomer
      * @param $fromTimestamp
      * @param $toTimestamp
+     * @param $statuses
      * @return EventOccupancySchedule[]
      */
-    public function getEventsOccupancySchedule($idCustomer, $fromTimestamp, $toTimestamp);
+    public function getEventsOccupancySchedule($idCustomer, $fromTimestamp, $toTimestamp, $statuses);
 
     /**
      * @param $idCustomer

@@ -68,6 +68,9 @@ $this->title = "Отчет по точкам контроля  {$name_customer}"
                             ]);
                             ?></p>
                         <hr />
+                        <?php if ($isHeineken) { ?>
+                        <a href="<?=\Yii::$app->urlManager->createAbsoluteUrl(['/'])?>report/report-points-heineken">Отчет heineken</a><br/>
+                        <?php } ?>
                         <a href="<?=\Yii::$app->urlManager->createAbsoluteUrl(['/'])?>report/report-points-to-excel">Выгрузить отчет по мониторингу</a><br/>
                         <a href="<?=\Yii::$app->urlManager->createAbsoluteUrl(['/'])?>report/report-points-to-print">Выгрузить отчет на печать</a>
 

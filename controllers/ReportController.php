@@ -7,6 +7,7 @@ use app\services\ReportService;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Border;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\TemplateProcessor;
@@ -432,6 +433,107 @@ class ReportController extends Controller
      * @throws \app\exceptions\CustomerNotFound
      * @throws \Exception
      */
+    public function actionReportPointsHeineken()
+    {
+        $id = Yii::$app->user->id;
+        $customer = $this->customerService->getCustomerByIdUser($id);
+
+        $data = $this->reportService->getDataForReportHeineken($customer->getId()) ;
+
+        $inputFileType = 'Xlsx';
+        $inputFileName = Yii::$app->basePath.'/templates/report-points-heineken.xlsx';
+
+        $reader = IOFactory::createReader($inputFileType);
+
+        $spreadsheet = $reader->load($inputFileName);
+        $sheet = $spreadsheet->getActiveSheet();
+
+        $periodReport = date('m-Y');
+        $sheet->setCellValue('B2', $periodReport);
+
+        $spreadsheet->getActiveSheet()->insertNewRowBefore(7, count($data));
+
+        $row = 7;
+
+        $start_cell = 'A'.$row;
+        foreach ($data as $id_external => $points) {
+            $sheet->setCellValue('A'.$row, $points['title']);
+            $sheet->setCellValue('B'.$row, $points['title']);
+            $sheet->setCellValue('C'.$row, $points['points']);
+            $sheet->setCellValue('D'.$row, $points['count_critical_points']);
+            $sheet->setCellValue('E'.$row, $points['index']);
+
+            $sheet->getCell('E'.$row)->getStyle()->getFill()->setFillType(Fill::FILL_SOLID);
+            if ($points['index'] < 50) {
+                $sheet->getCell('E'.$row)->getStyle()->getFill()->getStartColor()->setARGB('00FF00');
+            } elseif ($points['index'] >= 50 && $points['index'] < 80) {
+                $sheet->getCell('E'.$row)->getStyle()->getFill()->getStartColor()->setARGB('FFFF00');
+            } elseif ($points['index'] >= 80) {
+                $sheet->getCell('E'.$row)->getStyle()->getFill()->getStartColor()->setARGB('FF0000');
+            }
+
+            $sheet->getRowDimension($row)->setRowHeight(50);
+            $row++;
+        }
+
+
+        $end_cell = 'N'.($row - 1);
+
+        $styleArray = [
+            'font' => [
+                'bold' => false,
+            ],
+            'alignment' => [
+                'horizontal'    => Alignment::HORIZONTAL_CENTER,
+                'vertical'      => Alignment::VERTICAL_CENTER,
+                'wrapText'      => true
+            ],
+            'borders' => [
+                'top' => [
+                    'borderStyle' => Border::BORDER_THIN,
+                ],
+                'bottom' => [
+                    'borderStyle' => Border::BORDER_THIN,
+                ],
+                'left' => [
+                    'borderStyle' => Border::BORDER_THIN,
+                ],
+                'right' => [
+                    'borderStyle' => Border::BORDER_THIN,
+                ],
+            ],
+        ];
+
+        $current_style = $sheet->getStyle($start_cell.':'.$end_cell);
+        $current_style->applyFromArray($styleArray);
+
+        $name_file = 'Отчет по точкам.xlsx';
+
+        $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
+        $writer->save(Yii::$app->basePath.'/temp/temp.xlsx');
+
+        // сбрасываем буфер вывода PHP, чтобы избежать переполнения памяти выделенной под скрипт
+        // если этого не сделать файл будет читаться в память полностью!
+        if (ob_get_level()) {
+            ob_end_clean();
+        }
+
+        return Yii::$app->response->sendFile(
+            Yii::$app->basePath.'/temp/temp.xlsx',
+            $name_file,
+            ['mimeType'=>'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet']
+        //['mimeType' => 'application/vnd.ms-excel']
+        );
+    }
+
+    /**
+     * @return \yii\console\Response|\yii\web\Response
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Reader\Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
+     * @throws \app\exceptions\CustomerNotFound
+     * @throws \Exception
+     */
     public function actionReportPointsToPrint()
     {
         $id = Yii::$app->user->id;
@@ -525,7 +627,8 @@ class ReportController extends Controller
                 'rules' => [
                     [
                         'actions'   => ['report-disinfectant-to-excel', 'report-disinfectant-to-word',
-                            'report-points-to-word', 'report-points-to-excel', 'report-points-to-print'],
+                            'report-points-to-word', 'report-points-to-excel', 'report-points-to-print',
+                            'report-points-heineken'],
                         'roles'     => ['customer'],
                         'allow'     => true
                     ]

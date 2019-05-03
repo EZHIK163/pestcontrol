@@ -221,7 +221,9 @@ class AccountController extends Controller
 
         $data = $this->eventService->getPointReportFromPeriod($this->customer->getId(), $fromDate, $toDate);
 
-        return $this->render('report_on_point', compact('data', 'model'));
+        $isHeineken = $this->customer->getId() === 10;
+
+        return $this->render('report_on_point', compact('data', 'model', 'isHeineken'));
     }
 
     /**
@@ -298,12 +300,41 @@ class AccountController extends Controller
      */
     public function actionOccupancySchedule()
     {
-        $fromDate = (new DateTime())->format('01.m.Y');
-        $toDate = (new DateTime())->format('d.m.Y');
 
-        $data = $this->eventService->getOccupancyScheduleFromPeriod($this->customer->getId(), $fromDate, $toDate);
+        $model = new CalendarForm();
 
-        return $this->render('occupancy_schedule', compact('data', 'model'));
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $fromDate = $model->dateFrom;
+            $toDate = $model->dateTo;
+        } else {
+            $model->dateFrom = $fromDate = (new DateTime())->format('01.m.Y');
+            $model->dateTo = $toDate = (new DateTime())->format('d.m.Y');
+        }
+
+        //$fromDate = (new DateTime())->format('01.m.2017');
+        //$toDate = (new DateTime())->format('d.m.Y');
+
+        $statuses = ['caught_nagetier'];
+        $label = 'График заселенности грызунами за выбранный период';
+        $dataNagetier = $this->eventService->getOccupancyScheduleFromPeriod(
+            $this->customer->getId(),
+            $fromDate,
+            $toDate,
+            $statuses,
+            $label
+        );
+
+        $statuses = [ 'caught_insekt'];
+        $label = 'График заселенности насекомыми за выбранный период';
+        $dataInsekt = $this->eventService->getOccupancyScheduleFromPeriod(
+            $this->customer->getId(),
+            $fromDate,
+            $toDate,
+            $statuses,
+            $label
+        );
+
+        return $this->render('occupancy_schedule', compact('dataNagetier', 'model', 'dataInsekt', 'model'));
     }
 
     /**

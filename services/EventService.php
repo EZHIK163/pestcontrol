@@ -155,10 +155,11 @@ class EventService
      * @param $idCustomer
      * @param $fromDate
      * @param $toDate
+     * @param $statuses
      * @return array
      * @throws \Exception
      */
-    public function getOccupancyScheduleFromPeriod($idCustomer, $fromDate, $toDate)
+    public function getOccupancyScheduleFromPeriod($idCustomer, $fromDate, $toDate, $statuses, $label)
     {
         $fromTimestamp = $this->getTimestampFromDate($fromDate);
         $toDate = new DateTime($toDate);
@@ -168,13 +169,16 @@ class EventService
         /**
          * @var EventOccupancySchedule[] $events
          */
-        $events = $this->eventRepository->getEventsOccupancySchedule($idCustomer, $fromTimestamp, $toTimestamp);
+        $events = $this->eventRepository->getEventsOccupancySchedule(
+            $idCustomer,
+            $fromTimestamp,
+            $toTimestamp,
+            $statuses
+        );
 
         foreach ($events as &$event) {
             $event = $event->toArray();
         }
-
-        $label = 'График заселенности на выбранный период';
 
         return $this->preProcessingDataForGraphic($events, $label);
     }
@@ -273,8 +277,8 @@ class EventService
         $countAllEvents = $events_caught + $events_free;
 
         if ($countAllEvents !== 0) {
-            $caught_percent = $events_caught / ($countAllEvents / 100.0);
-            $free_percent = $events_free / ($countAllEvents / 100.0);
+            $caught_percent = round($events_caught / ($countAllEvents / 100.0), 2);
+            $free_percent = round($events_free / ($countAllEvents / 100.0), 2);
         }
 
         $datasets[0] = [

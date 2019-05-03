@@ -218,9 +218,9 @@ class ManagerFileController extends Controller
             throw new InvalidArgumentException();
         }
 
-        $my_data = $this->fileCustomerService->getSchemeForEdit($id_file, $is_show_free_points, $date_from, $date_to);
+        $data = $this->fileCustomerService->getPointsForScheme($id_file, $is_show_free_points, $date_from, $date_to);
         Yii::$app->response->format = Response::FORMAT_JSON;
-        return $my_data;
+        return $data;
     }
 
     /**

@@ -302,6 +302,36 @@ class EventRepository implements EventRepositoryInterface
     }
 
     /**
+     * @param $idPoint
+     * @param $fromTimestamp
+     * @param $toTimestamp
+     * @return Event[]
+     */
+    public function getItemsByIdPoint($idPoint, $fromTimestamp, $toTimestamp)
+    {
+        /**
+         * @var EventRecord $eventRecords
+         */
+        $eventRecords = EventRecord::find()
+            ->select('events.*')
+            ->join('left join', 'public.points', 'points.id = events.id_point')
+            ->where(['public.points.id'  => $idPoint])
+            ->andWhere(['>=', 'events.created_at', $fromTimestamp])
+            ->andWhere(['<', 'events.created_at', $toTimestamp])
+            ->andWhere(['events.is_active' => true])
+            ->andWhere(['points.is_active' => true])
+            ->orderBy('events.created_at')
+            ->all();
+
+        $events = [];
+        foreach ($eventRecords as $eventRecord) {
+            $events [] = $this->fillEvent($eventRecord);
+        }
+
+        return $events;
+    }
+
+    /**
      * @param $idCustomer
      * @param $fromTimestamp
      * @param $toTimestamp
@@ -315,22 +345,21 @@ class EventRepository implements EventRepositoryInterface
             $statusesForQuery [] = ['point_status.code'  => $status];
         }
 
-        /**
-         * @var EventRecord $eventRecords
-         */
         $eventRecords = EventRecord::find()
-            ->select('events.id_external')
+            ->select('points.id_internal')
             ->join('inner join', 'public.point_status', 'point_status.id = events.id_point_status')
+            ->join('inner join', 'public.points', 'events.id_point = points.id')
             ->where(['events.id_customer'  => $idCustomer])
             ->andWhere(['>=', 'events.created_at', $fromTimestamp])
             ->andWhere(['<', 'events.created_at', $toTimestamp])
             ->andWhere($statusesForQuery)
-            ->groupBy('events.id_external')
+            ->groupBy('points.id_internal')
+            ->asArray()
             ->all();
 
         $events = [];
         foreach ($eventRecords as $eventRecord) {
-            $events [] = (new EventRisk())->setIdExternal($eventRecord->id_external);
+            $events [] = (new EventRisk())->setIdExternal($eventRecord['id_internal']);
         }
 
         return $events;
@@ -340,9 +369,10 @@ class EventRepository implements EventRepositoryInterface
      * @param $idCustomer
      * @param $fromTimestamp
      * @param $toTimestamp
+     * @param $statuses
      * @return EventOccupancySchedule[]
      */
-    public function getEventsOccupancySchedule($idCustomer, $fromTimestamp, $toTimestamp)
+    public function getEventsOccupancySchedule($idCustomer, $fromTimestamp, $toTimestamp, $statuses)
     {
         $expressions = [];
         $expressions [] =
@@ -351,8 +381,7 @@ class EventRepository implements EventRepositoryInterface
             ->select($expressions)
             ->join('inner join', 'public.point_status', 'point_status.id = events.id_point_status')
             ->where(['events.id_customer'  => $idCustomer])
-            //->andWhere(['point_status.code'  => 'caught'])
-            ->andWhere(['in', 'point_status.code', ['caught_nagetier', 'caught_insekt']])
+            ->andWhere(['in', 'point_status.code', $statuses])
             ->andWhere(['>=', 'events.created_at', $fromTimestamp])
             ->andWhere(['<', 'events.created_at', $toTimestamp])
             ->groupBy('extract(month from to_timestamp(events.created_at))')
@@ -447,11 +476,19 @@ class EventRepository implements EventRepositoryInterface
      */
     public function getEventFileReport($idCustomer, $fromTimestamp)
     {
+        $columns = '
+        points.id_internal as id_external,
+        point_status.code,
+        events.created_at,
+        events.count,
+        file_customer.title';
+
         $eventRecords = EventRecord::find()
-            ->select('points.id_internal as id_external, point_status.code, events.created_at, events.count')
+            ->select($columns)
             ->join('inner join', 'public.point_status', 'point_status.id = events.id_point_status')
             ->join('inner join', 'public.points', 'points.id = events.id_point')
-            ->where(['id_customer'  => $idCustomer])
+            ->join('inner join', 'public.file_customer', 'points.id_file_customer = file_customer.id')
+            ->where(['file_customer.id_customer'  => $idCustomer])
             ->andWhere(['>=', 'events.created_at', $fromTimestamp])
             ->orderBy('events.created_at ASC')
             ->asArray()
@@ -463,7 +500,8 @@ class EventRepository implements EventRepositoryInterface
                 ->setCreatedAt(DateTime::createFromFormat('U', (string)$eventRecord['created_at']))
                 ->setCount($eventRecord['count'])
                 ->setIdExternal($eventRecord['id_external'])
-                ->setStatusCode($eventRecord['code']);
+                ->setStatusCode($eventRecord['code'])
+                ->setTitleScheme($eventRecord['title']);
         }
 
         return $events;

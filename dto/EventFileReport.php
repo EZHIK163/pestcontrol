@@ -23,6 +23,8 @@ class EventFileReport
      * @var string
      */
     private $statusCode;
+    /** @var string */
+    private $titleScheme;
 
     /**
      * @return string
@@ -101,6 +103,24 @@ class EventFileReport
     }
 
     /**
+     * @return string
+     */
+    public function getTitleScheme()
+    {
+        return $this->titleScheme;
+    }
+
+    /**
+     * @param string $titleScheme
+     * @return EventFileReport
+     */
+    public function setTitleScheme($titleScheme)
+    {
+        $this->titleScheme = $titleScheme;
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function toArray()
@@ -109,7 +129,8 @@ class EventFileReport
             'code'          => $this->statusCode,
             'id_external'   => $this->idExternal,
             'created_at'    => $this->getCreatedAt()->format('m'),
-            'count'         => $this->count
+            'count'         => $this->count,
+            'title_scheme'  => $this->titleScheme,
         ];
     }
 }

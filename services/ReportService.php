@@ -242,10 +242,10 @@ class ReportService
                         //    $statistics [] = '3';
                         //    break;
                         case 'caught_insekt':
-                            $statistics [] = '3Н'.$event['count'];
+                            $statistics [] = 'Н'.$event['count'];
                             break;
                         case 'caught_nagetier':
-                            $statistics [] = '3Г'.$event['count'];
+                            $statistics [] = 'Г'.$event['count'];
                             break;
                     }
                 }
@@ -255,5 +255,92 @@ class ReportService
         }
 
         return $data;
+    }
+
+    /**
+     * @param $idCustomer
+     * @return array
+     * @throws \Exception
+     */
+    public function getDataForReportHeineken($idCustomer)
+    {
+        $fromDatetime = (new DateTime())->format('01.m.Y');
+        $fromTimestamp = Yii::$app->formatter->asTimestamp($fromDatetime);
+
+        $events = $this->eventRepository->getEventFileReport($idCustomer, $fromTimestamp);
+
+        foreach ($events as &$event) {
+            $event = $event->toArray();
+        }
+
+        $groupByScheme = [];
+        foreach ($events as $event) {
+            $groupByScheme[$event['title_scheme']] [] = $event;
+        }
+
+        $data = [];
+        foreach ($groupByScheme as $name => $scheme) {
+            $points = [];
+            $countCriticalPoints = 0;
+            foreach ($scheme as $event) {
+                switch ($event['code']) {
+                    case 'caught':
+                    case 'caught_nagetier':
+                    case 'caught_insekt':
+                        $countCriticalPoints++;
+                        break;
+                }
+                $points [] = $event['id_external'];
+            }
+
+            sort($points);
+
+            $index = 0;
+            $points = array_unique($points, SORT_NUMERIC);
+            $points = $this->unionPoints($points);
+
+            $data[$name] = [
+                'title'                 => $name,
+                'points'                => $points,
+                'count_critical_points' => $countCriticalPoints,
+                'index'                 => $index
+            ];
+        }
+
+        return $data;
+    }
+
+    /**
+     * @param $points
+     * @return string
+     */
+    private function unionPoints($points)
+    {
+        $simplePoints = [];
+        foreach ($points as $point) {
+            $simplePoints [] = $point;
+        }
+
+        $unionPoints = [];
+        $j = 0;
+        $unionPoints[$j] [] = $points[0];
+        for ($i = 1; $i <= count($simplePoints); $i = $i + 1) {
+            if ((int)$simplePoints[$i - 1] + 1 === (int)$simplePoints[$i]) {
+                $unionPoints[$j][] = (int)$simplePoints[$i];
+            } else {
+                $j++;
+            }
+        }
+
+        $set = [];
+        foreach ($unionPoints as $unionPoint) {
+            if (count($unionPoint) > 1) {
+                $set [] = reset($unionPoint) . ' - ' . end($unionPoint);
+            } else {
+                $set [] = reset($unionPoint);
+            }
+        }
+
+        return implode(', ', $set);
     }
 }

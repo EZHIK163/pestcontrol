@@ -19,10 +19,15 @@ use yii\helpers\ArrayHelper;
  */
 class FileCustomerService
 {
+    /** @var FileCustomerRepositoryInterface */
     private $fileCustomerRepository;
+    /** @var PointRepositoryInterface */
     private $pointRepository;
+    /** @var EventRepositoryInterface */
     private $eventRepository;
+    /** @var CustomerRepositoryInterface */
     private $customerRepository;
+    /** @var FileRepositoryInterface  */
     private $fileRepository;
 
     /**
@@ -124,7 +129,7 @@ class FileCustomerService
             $mode = 'year';
         }
 
-        $typeMarker = $this->getTypeMarker($idCustomer, $mode);
+
 
         /**
          * @var Point $pointCustomer
@@ -133,6 +138,18 @@ class FileCustomerService
             if (!$isAddFreePoints && ($pointCustomer->getXCoordinate() <= 0 or $pointCustomer->getYCoordinate() <= 0)) {
                 continue;
             }
+
+            $countPositiveEvents = 0;
+            $countNegativeEvents = 0;
+            $lastEventDateTime = null;
+
+            $typeMarker = $this->getTypeMarker(
+                $pointCustomer->getId(),
+                $mode,
+                $countNegativeEvents,
+                $countPositiveEvents,
+                $lastEventDateTime
+            );
 
             $imgSrc = Yii::$app->urlManager->createAbsoluteUrl(['/']). $typeMarker.'.png';
 
@@ -185,12 +202,143 @@ class FileCustomerService
     }
 
     /**
-     * @param $idCustomer
+     * @param $id
+     * @param bool $isAddFreePoints
+     * @param null $dateFrom
+     * @param null $dateTo
+     * @return array
+     * @throws \Exception
+     */
+    public function getPointsForScheme($id, $isAddFreePoints = false, $dateFrom = null, $dateTo = null)
+    {
+        $fileCustomer = $this->fileCustomerRepository->get($id);
+
+        $file = $fileCustomer->getFile();
+
+        $actionDownload = Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'site/download?id=';
+
+        $allPoints = $this->pointRepository->all();
+        $pointsCustomer = [];
+        foreach ($allPoints as $pointCustomer) {
+            if ($pointCustomer->getFileCustomer()->getId() == $fileCustomer->getId() && $pointCustomer->isEnable() === true) {
+                $pointsCustomer [] = $pointCustomer;
+            }
+        }
+
+        $idCustomer = $fileCustomer->getCustomer()->getId();
+
+        $finishPoints = [];
+        $maxIdInternal = $this->getMaxIdInternal($idCustomer);
+        $idsPoints = [];
+
+        $datetimeFrom = new DateTime($dateFrom);
+        $datetimeTo = new DateTime($dateTo);
+
+        $intervalDays = (int)$datetimeTo->diff($datetimeFrom)->format('%a');
+
+        $mode = null;
+        if ($intervalDays >= 0 && $intervalDays <= 31) {
+            $mode = 'month';
+        } elseif ($intervalDays >= 32 && $intervalDays <= 93) {
+            $mode = 'quarter';
+        } elseif ($intervalDays >= 94) {
+            $mode = 'year';
+        }
+
+
+
+        /**
+         * @var Point $pointCustomer
+         */
+        foreach ($pointsCustomer as $pointCustomer) {
+            if (!$isAddFreePoints && ($pointCustomer->getXCoordinate() <= 0 or $pointCustomer->getYCoordinate() <= 0)) {
+                continue;
+            }
+
+            $countPositiveEvents = 0;
+            $countNegativeEvents = 0;
+            /** @var DateTime $lastEventDateTime */
+            $lastEventDateTime = null;
+
+            $typeMarker = $this->getTypeMarker(
+                $pointCustomer->getId(),
+                $mode,
+                $countNegativeEvents,
+                $countPositiveEvents,
+                $lastEventDateTime
+            );
+
+            $dateTimeLastEvent = ' - ';
+            if ($lastEventDateTime !== null) {
+                $dateTimeLastEvent = $lastEventDateTime->format('d.M.y hh:mm');
+            }
+
+            $imgSrc = Yii::$app->urlManager->createAbsoluteUrl(['/']). $typeMarker.'.png';
+
+            $finishPoints [] = [
+                'x'                     => $pointCustomer->getXCoordinate(),
+                'y'                     => $pointCustomer->getYCoordinate(),
+                'img_src'               => $imgSrc,
+                'id_internal'           => $pointCustomer->getIdInternal(),
+                'is_new'                => false,
+                'id'                    => $pointCustomer->getId(),
+                'count_critical_events' => $countNegativeEvents,
+                'count_positive_events' => $countPositiveEvents,
+                'common_state'          => '',
+                'datetime_last_event'   => $dateTimeLastEvent,
+                'is_show_tooltip'       => true,
+            ];
+            $idsPoints [] = $pointCustomer->getId();
+        }
+        if ($isAddFreePoints) {
+            $points = $this->pointRepository->all();
+
+            $freePoints = [];
+            foreach ($points as $point) {
+                if (($point->getXCoordinate() <= 0 or $point->getYCoordinate() <= 0)
+                    && $point->getFileCustomer()->getCustomer()->getId() == $idCustomer) {
+                    $freePoints [] = $point;
+                }
+            }
+            /**
+             * @var Point $freePoint
+             */
+            foreach ($freePoints as $freePoint) {
+                if (in_array($freePoint->getId(), $idsPoints)) {
+                    continue;
+                }
+                $finishPoints [] = [
+                    'x'                 => $freePoint->getXCoordinate(),
+                    'y'                 => $freePoint->getYCoordinate(),
+                    'img_src'           => Yii::$app->urlManager->createAbsoluteUrl(['/']) . 'blue_marker.png',
+                    'id_internal'       => $freePoint->getIdInternal(),
+                    'is_new'            => false,
+                    'id'                => $freePoint->getId(),
+                    'is_show_tooltip'   => false,
+                ];
+            }
+        }
+        $result = [
+            'img'                           => $actionDownload.$file->getId(),
+            'img_src_new_point'             => Yii::$app->urlManager->createAbsoluteUrl(['/']). 'blue_marker.png',
+            'max_id_internal_in_customer'   => $maxIdInternal,
+            'id_file_customer'              => $fileCustomer->getId(),
+            'points'                        => $finishPoints
+        ];
+
+        return $result;
+    }
+
+    /**
+     * @param $idPoint
      * @param $mode
+     * @param $countNegativeEvents
+     * @param $countPositiveEvents
+     * @param $lastEventDateTime
      * @return string
      * @throws \Exception
      */
-    public function getTypeMarker($idCustomer, $mode)
+    public function getTypeMarker($idPoint, $mode, &$countNegativeEvents, &$countPositiveEvents, &$lastEventDateTime)
     {
         switch ($mode) {
             case 'month':
@@ -211,24 +359,28 @@ class FileCustomerService
         $toTimestamp = $toDate->getTimestamp();
         $fromTimestamp = Yii::$app->formatter->asTimestamp($fromDate);
 
-        $events = $this->eventRepository->getItemsByIdCustomerAndPeriod($idCustomer, $fromTimestamp, $toTimestamp);
+        $events = $this->eventRepository->getItemsByIdPoint($idPoint, $fromTimestamp, $toTimestamp);
 
         $count_red_events = 0;
         $count_green_events = 0;
         foreach ($events as $event) {
-            switch ($event->getPointStatus()->getId()) {
-                case 1:
-                case 2:
-                case 3:
+            switch ($event->getPointStatus()->getCode()) {
+                case 'not_touch':
+                case 'part_replace':
+                case 'full_replace':
                     $count_green_events++;
                     break;
-                case 4:
-                case 5:
-                case 6:
+                case 'caught':
+                case 'caught_nagetier':
+                case 'caught_insekt':
                     $count_red_events++;
                     break;
             }
         }
+
+        $lastEvent = end($events);
+        $lastEventDateTime = $lastEvent instanceof DateTime ? $lastEvent->getCreatedAt() : null;
+
 
         $marker = 'blue_marker';
         switch ($mode) {
@@ -254,6 +406,10 @@ class FileCustomerService
                 }
                 break;
         }
+
+        $countNegativeEvents = $count_red_events;
+        $countPositiveEvents = $count_green_events;
+
         return $marker; //blue_marker, red_marker, green_marker
     }
 

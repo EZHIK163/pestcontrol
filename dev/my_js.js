@@ -315,10 +315,15 @@ function dragMoveListener (event) {
 
 function getTooltipTitle(point)
 {
-    return 'Количество критичных событий: ' + point.id_internal + '\r\n' +
-        'Количество положительных событий: \r\n' +
-        'Общее состояние: \r\n' +
-        'Время последнего события: \r\n';
+    if (point.is_show_tooltip) {
+        return 'Количество критичных событий: ' + point.count_critical_events + '\r\n' +
+            'Количество положительных событий: ' + point.count_positive_events + '\r\n' +
+            'Общее состояние: ' + point.common_state + '\r\n' +
+            'Время последнего события: ' + point.datetime_last_event + '\r\n';
+    }
+
+    return '';
+
 }
 // this is used later in the resizing and gesture demos
 window.dragMoveListener = dragMoveListener;

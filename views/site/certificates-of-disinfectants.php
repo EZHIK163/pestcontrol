@@ -30,238 +30,348 @@ $this->title = "Управление рекомендациями"; ?>
 
             <div itemprop="articleBody">
                 <p><strong>Ниже представлены сертификаты на дез. средства, перечисленные в </strong></p>
-                <p><strong>Списке используемых дез. средств на 2018 г.</strong></p>
+                <p><strong>Списке используемых дез. средств на 2019 г.</strong></p>
                 <p>&nbsp;</p>
                 <table style="border-color: #4a74af; width: 800px; margin-left: auto; margin-right: auto;" border="3">
                     <tbody>
                     <tr style="background-color: #ffffff;" bgcolor="#F5FFFF">
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%"><span style="font-size: 12pt;">&nbsp;"Абсолон"</span></td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%"><a title="absolon_sertificat.pdf" href="/docs/absolon_sertificat.pdf" rel="alternate">&nbsp;</a><a href="/docs/absolon_sertificat.PDF" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="absolut-gel_sertificat.pdf - 550 kb" border="0" height="60" width="60"> </a></td>
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%"><span style="font-size: 12pt;">&nbsp;"Абсолют-дуст"</span></td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">&nbsp;<a href="/docs/absolut-dust_sertificat.PDF" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="absolut-dust_sertificat.pdf - 550 kb" border="0" height="60" width="60"> </a></td>
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Абсолон-гель</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            <a href="/docs/certificates/absolon-gel_sertificat.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60">
+                            </a>
+                        </td>
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Абсолон</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            <a href="/docs/certificates/absolon_sertificat.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60"> </a>
+                        </td>
                     </tr>
-                    <tr style="background-color: #ffffff;">
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;"><span style="font-size: 12pt;">&nbsp;"Абсолют-гель"</span></td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;">&nbsp;<a href="/docs/absolut-gel_sertificat.PDF" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="absolut-gel_sertificat.pdf - 550 kb" border="0" height="60" width="60"> </a></td>
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;"><span style="font-size: 12pt;">&nbsp;"Агран"</span>
-                            <p style="text-align: right;">&nbsp;</p>
+                    <tr style="background-color: #ffffff;" bgcolor="#F5FFFF">
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Абсолют 50</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            <a href="/docs/certificates/absolut50.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60">
+                            </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;">&nbsp;<a href="/docs/agran.PDF" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="absolon_sertificat.pdf - 360 kb" border="0" height="60" width="60"> </a></td>
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Абсолют-дуст</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            <a href="/docs/certificates/absolut-dust_sertificat.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60"> </a>
+                        </td>
                     </tr>
-                    <tr style="background-color: #ffffff; text-align: left;" bgcolor="#F5FFFF">
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;">
-                            <p><span style="font-size: 12pt;">&nbsp;"Камикадзе" (Фумигация зернохранилищ) <br></span></p>
+                    <tr style="background-color: #ffffff;" bgcolor="#F5FFFF">
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Абсолют-гель</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            
+                            <a href="/docs/certificates/absolut-gel_sertificat.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60">
+                            </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;">&nbsp;<a href="/docs/kamikadze.jpg" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="aktellik_sertificat.pdf - 1550 kb" border="0" height="60" width="60"> </a></td>
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;">
-                            <p><span style="font-size: 12pt;">&nbsp;"Индан-блок"</span></p>
-                            <p style="text-align: right;">&nbsp;</p>
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Абсолют-мелок/Претикс супер антиклещ</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            <a href="/docs/certificates/absolut-melok.jpg" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60"> </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;">&nbsp;<a title="Document.png" href="/img/Document.png">&nbsp; <br> </a><a href="/docs/na_neskolko_sr-v_2_sertificat.pdf" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="alfatrin,_muravei,_taraкan,_ciradon_sertificat.pdf - 2250 kb" border="0" height="60" width="60"> </a></td>
                     </tr>
-                    <tr style="background-color: #ffffff;">
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" bgcolor="#F5FFFF"><span style="font-size: 12pt;">&nbsp;Генератор"УМО Атомер"</span>
-                            <p style="text-align: right;">&nbsp;</p>
+                    <tr style="background-color: #ffffff;" bgcolor="#F5FFFF">
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Абсолют-приманка</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+
+                            <a href="/docs/certificates/absolut-primanka.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60">
+                            </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" bgcolor="#F5FFFF" width="10%"><a href="/docs/Atomep_sertificat.pdf" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="Atomep_instr" border="0" height="60" width="60"></a></td>
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" bgcolor="#F5FFFF"><span style="font-size: 12pt;">&nbsp;Клей "АЛТ"</span>
-                            <p style="text-align: right;">&nbsp;</p>
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Абсолют тотал</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            <a href="/docs/certificates/absolut-total.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60"> </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" bgcolor="#F5FFFF" width="10%"><a href="/docs/alt_sertificat.pdf" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="alt_sertificat.pdf" border="0" height="60" width="60"></a></td>
                     </tr>
-                    <tr style="background-color: #ffffff;">
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;"><span style="font-size: 12pt;">&nbsp;"Арбалет"</span>
-                            <p style="text-align: right;">&nbsp;</p>
+                    <tr style="background-color: #ffffff;" bgcolor="#F5FFFF">
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Агран</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            
+                            <a href="/docs/certificates/agran.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60">
+                            </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;"><a href="/docs/arbalet_sertificat.pdf" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="arbalet_sertificat.pdf" border="0" height="60" width="60"></a></td>
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;"><span style="font-size: 12pt;">&nbsp;"Авицин"</span>
-                            <p style="text-align: right;">&nbsp;</p>
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Альфа 10</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            <a href="/docs/certificates/alfa-10.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60"> </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;"><a href="/docs/avicin_sertificat.pdf" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="avicin_sertificat.pdf" border="0" height="60" width="60"></a></td>
                     </tr>
-                    <tr style="background-color: #ffffff;">
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;">
-                            <p><span style="font-size: 12pt;">&nbsp;"Альфатрин-флоу"</span></p>
-                            <p style="text-align: right;">&nbsp;</p>
+                    <tr style="background-color: #ffffff;" bgcolor="#F5FFFF">
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">АЛТ (клей)</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            
+                            <a href="/docs/certificates/alt-klej.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60">
+                            </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;"><a href="/docs/Alfatrin.pdf" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="na_neskolko_sr-v_(2)_sertificat.pdf" border="0" height="60" width="60"></a>&nbsp;</td>
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;"><span style="font-size: 12pt;">&nbsp;"Биор"</span>
-                            <p style="text-align: right;">&nbsp;</p>
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Арбалет</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            <a href="/docs/certificates/arbalet.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60"> </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;">&nbsp;<a href="/docs/bior_sertificat.pdf" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="bior_sertificat.pdf" border="0" height="60" width="60"></a></td>
                     </tr>
-                    <tr style="background-color: #ffffff;">
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" bgcolor="#F5FFFF">
-                            <p><span style="font-size: 12pt;">&nbsp;"Bird Gard-отпугиватель птиц"</span></p>
+                    <tr style="background-color: #ffffff;" bgcolor="#F5FFFF">
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Mr. Mouse, ARGUS, Тайга, Блокбастер, Машенька, Камикадзе, Котофей, Штурм</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            
+                            <a href="/docs/certificates/argus-blokbaster-mashenka.jpg" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60">
+                            </a>
+                            <a href="/docs/certificates/argus-blokbaster-mashenka-2.jpg" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60">
+                            </a>
+                            <a href="/docs/certificates/argus-blokbaster-mashenka-3.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60">
+                            </a>
+                            <a href="/docs/certificates/argus-blokbaster-mashenka-4.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60">
+                            </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" bgcolor="#F5FFFF"><a href="/docs/Bird_Gard_declar.pdf" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="Bird_Gard_declar.pdf" border="0" height="60" width="60"></a></td>
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" bgcolor="#F5FFFF">
-                            <p><span style="font-size: 12pt;">&nbsp; "Bird Gard-отпугиватель птиц"</span></p>
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Атлант</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            <a href="/docs/certificates/atlant.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60"> </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" bgcolor="#F5FFFF">&nbsp;<a href="/docs/Bird_Gard_FGUZ_sertificat.pdf" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="Bird_Gard_instr.pdf" border="0" height="60" width="60"></a></td>
                     </tr>
-                    <tr style="background-color: #ffffff;">
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;"><span style="font-size: 12pt;">&nbsp;"Аргус"</span><br style="font-size: 12pt;">
-                            <p style="text-align: right;">&nbsp;</p>
+                    <tr style="background-color: #ffffff;" bgcolor="#F5FFFF">
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Авицин</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            
+                            <a href="/docs/certificates/avicin.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60">
+                            </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;">&nbsp;<a href="/docs/ArgusBlokbaster.jpg" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="gelcin_sertificat.pdf" border="0" height="60" width="60"></a></td>
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;"><span style="font-size: 12pt;">&nbsp;"Бромодиолон 0,25 %"</span>
-                            <p style="text-align: right;">&nbsp;</p>
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">БИОР-1</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            <a href="/docs/certificates/bior_sertificat.jpg" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60"> </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;"><a href="/docs/bromodiolon_025__sertificat.PDF" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="bromodiolon_0,25_%_sertificat.pdf" border="0" height="60" width="60"></a></td>
                     </tr>
-                    <tr style="background-color: #ffffff;">
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" bgcolor="#F5FFFF"><span style="font-size: 12pt;">&nbsp;"Аталант"</span>
-                            <p style="text-align: right;">&nbsp;</p>
+                    <tr style="background-color: #ffffff;" bgcolor="#F5FFFF">
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Бомбей</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            
+                            <a href="/docs/certificates/bombej1.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60">
+                            </a>
+                            <a href="/docs/certificates/bombej2.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60">
+                            </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" bgcolor="#F5FFFF"><a href="/docs/atlant.PDF" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="gelcin_sertificat.pdf" border="0" height="60" width="60"></a></td>
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" bgcolor="#F5FFFF"><span style="font-size: 12pt;">&nbsp;"Инсектицид Вега"</span>
-                            <p style="text-align: right;">&nbsp;</p>
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Бродефор</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            <a href="/docs/certificates/brodefor.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60"> </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" bgcolor="#F5FFFF"><a href="/docs/insekticid_vega_sertificat.pdf" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="insekticid_vega_sertificat.pdf" border="0" height="60" width="60"></a></td>
                     </tr>
-                    <tr style="background-color: #ffffff;">
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;"><span style="font-size: 12pt;">&nbsp;"Инсектицид Ципи"</span>
-                            <p style="text-align: right;">&nbsp;</p>
+                    <tr style="background-color: #ffffff;" bgcolor="#F5FFFF">
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Бромадиолон-0.25</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            
+                            <a href="/docs/certificates/bromadiolon.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60">
+                            </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;"><a href="/docs/insekticid_cipi_sertificat.pdf" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="insekticid_cipi_sertificat.pdf" border="0" height="60" width="60"></a></td>
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;">
-                            <p><span style="font-size: 12pt;">&nbsp;Инструкция по установке </span></p>
-                            <p><span style="font-size: 12pt;">&nbsp;"ИНСЕКТ МОНИТОР"</span></p>
-                            <p style="text-align: right;">&nbsp;</p>
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Циперметрин25</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            <a href="/docs/certificates/cipermetrin25-1.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60"> </a>
+                            <a href="/docs/certificates/cipermetrin25-2.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60"> </a>
+                            <a href="/docs/certificates/cipermtrin25-3.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60"> </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;"><a href="/docs/instrukciia_po_ustanovke_insekt_monitor_sertificat.pdf" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="instrukciia_po_ustanovke_insekt_monitor_sertificat.pdf" border="0" height="60" width="60"></a></td>
                     </tr>
-                    <tr style="background-color: #ffffff;">
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;"><span style="font-size: 12pt;">&nbsp;"Каракурт"</span>
-                            <p style="text-align: right;">&nbsp;</p>
+                    <tr style="background-color: #ffffff;" bgcolor="#F5FFFF">
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Ципи</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            
+                            <a href="/docs/certificates/cipi.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60">
+                            </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;"><a href="/docs/karakurt_sertificat.pdf" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="karakurt_sertificat.pdf" border="0" height="60" width="60"></a></td>
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;">
-                            <p><span style="font-size: 12pt;">&nbsp;"Каракурт липкая лента"</span></p>
-                            <p style="text-align: right;">&nbsp;</p>
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Дельта 25</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            <a href="/docs/certificates/delta.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60"> </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;"><a href="/docs/karakurt_lipkaia_lenta_sertificat.PDF" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="karakurt_lipkaia_lenta_sertificat.pdf" border="0" height="60" width="60"></a></td>
                     </tr>
-                    <tr style="background-color: #ffffff;">
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;"><span style="font-size: 12pt;">&nbsp;"Раттидион"</span>
-                            <p style="text-align: right;">&nbsp;</p>
+                    <tr style="background-color: #ffffff;" bgcolor="#F5FFFF">
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Домовой-мелок, Тройной удар, Прочь моль-спрей, Домовой-антимоль, Домовой Прошка - гель, Домовой Прошка - Ловушки от тараканов и муравьев</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            
+                            <a href="/docs/certificates/domovoj-melok.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60">
+                            </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;"><a href="/docs/Rattid.jpg" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="konfidant_sertificat.pdf" border="0" height="60" width="60"></a></td>
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;">
-                            <p><span style="font-size: 12pt;">&nbsp;"Бродефор"</span></p>
-                            <p style="text-align: right;">&nbsp;</p>
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Эко-абсолют порошок</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            <a href="/docs/certificates/eko-absolut-poroshok.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60"> </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;"><a href="/docs/brodefor.PDF" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="kotofei_kleevaia_lovushka_d_sertificat.pdf" border="0" height="60" width="60"></a></td>
                     </tr>
-                    <tr style="background-color: #ffffff;">
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;"><span style="font-size: 12pt;">&nbsp;"Абсюлют-приманка"</span>
-                            <p style="text-align: right;">&nbsp;</p>
+                    <tr style="background-color: #ffffff;" bgcolor="#F5FFFF">
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Этилфенацин-паста-2, гельдан, крысид-гель, крысид-приманка, зерноцин-у, бромоцид, зерноцин-блок,индан-блок, индан-флюид, индан-дуст, бродифан, гельцин, зоокумарин 1.5% порошок, крысин, зоокумарин нео, крысин-блок</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            
+                            <a href="/docs/certificates/etilfinacin-pasta.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60">
+                            </a>
+                            <a href="/docs/certificates/etilfinacin-pasta-2.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60">
+                            </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;"><a href="/docs/absolut_primanka.PDF" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="kleevaia_lovushka_sertificat.pdf" border="0" height="60" width="60"></a></td>
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;"><span style="font-size: 12pt;">&nbsp;"Клей mr.Mouse"</span>
-                            <p style="text-align: right;">&nbsp;</p>
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Клей-кун, Апимаг, Аписил</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            <a href="/docs/certificates/ferromony.jpg" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60"> </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;"><a href="/docs/klei_mr.Mouse_sertificat.pdf" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="klei_mr.Mouse_sertificat.pdf" border="0" height="60" width="60"></a></td>
                     </tr>
-                    <tr style="background-color: #ffffff;">
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;">
-                            <p><span style="font-size: 12pt;">&nbsp;"Контейнер Plastdiversity"</span></p>
-                            <p style="text-align: right;">&nbsp;</p>
+                    <tr style="background-color: #ffffff;" bgcolor="#F5FFFF">
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Форс-сайт клеевая ловушка</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            
+                            <a href="/docs/certificates/fors-saite.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60">
+                            </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;"><a href="/docs/Konteiner_Plastdiversity_sertificat.pdf" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="Konteiner_Plastdiversity_sertificat.pdf" border="0" height="60" width="60"></a></td>
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;">
-                            <p><span style="font-size: 12pt;">&nbsp;"Контейнер Plastdiversity"</span></p>
-                            <p style="text-align: right;">&nbsp;</p>
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Гранд</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            <a href="/docs/certificates/grand.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60"> </a>
+                            <a href="/docs/certificates/grand2.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60"> </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;"><a href="/docs/Konteiner_Plastdiversity_prilojenie.pdf" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="Konteiner_Plastdiversity_prilojenie.pdf" border="0" height="60" width="60"></a></td>
                     </tr>
-                    <tr style="background-color: #ffffff;">
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;"><span style="font-size: 12pt;">&nbsp;"Альфа 10"</span>
-                            <p style="text-align: right;">&nbsp;</p>
+                    <tr style="background-color: #ffffff;" bgcolor="#F5FFFF">
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Каракурт</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            
+                            <a href="/docs/certificates/karakurt-granuly.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60">
+                            </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;"><a href="/docs/alfa10.PDF" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="krysit_gel_sertificat.pdf" border="0" height="60" width="60"></a></td>
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;"><span style="font-size: 12pt;">&nbsp;"Легион гель"</span>
-                            <p style="text-align: right;">&nbsp;</p>
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Каракурт супер-приманка от мух декоративная</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            <a href="/docs/certificates/karrkur-supper.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60"> </a>
+                            <a href="/docs/certificates/karrkur-supper2.jpg" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60"> </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;"><a href="/docs/legion_gel_sertificat.PDF" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="legion_gel_sertificat.pdf" border="0" height="60" width="60"></a></td>
                     </tr>
-                    <tr style="background-color: #ffffff;">
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;">
-                            <p><span style="font-size: 12pt;">&nbsp;"Тотал"</span></p>
-                            <p style="text-align: right;">&nbsp;</p>
+                    <tr style="background-color: #ffffff;" bgcolor="#F5FFFF">
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Каракурт липкая лента</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            
+                            <a href="/docs/certificates/kll.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60">
+                            </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;"><a href="/docs/total.PDF" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="pregrada-kleevaia_lovushka_sertificat.pdf" border="0" height="60" width="60"></a></td>
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;"><span style="font-size: 12pt;">&nbsp;"Каракурт-супер"</span>
-                            <p style="text-align: right;">&nbsp;</p>
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Крысид-приманка, зерноцин-у, зерноцин-блок, индан-блок, крысин, зерноцин нео, зоокумарин нео, крысин-блок, блокада-клей</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            <a href="/docs/certificates/krysid-primanka.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60"> </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;"><a title="aktellik_sertificat.pdf" href="/docs/karakurt_super.PDF" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="na_neskolko_sr-v_(3)_domovoi_sertificat.pdf" border="0" height="60" width="60"></a></td>
                     </tr>
-                    <tr style="background-color: #ffffff;">
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;"><span style="font-size: 12pt;">&nbsp;"Циперметрин 25"</span>
-                            <p style="text-align: right;">&nbsp;</p>
+                    <tr style="background-color: #ffffff;" bgcolor="#F5FFFF">
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Легион-гель</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            
+                            <a href="/docs/certificates/legion-gel.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60">
+                            </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;"><a href="/docs/ciper25.PDF" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="fitar_sertificat.pdf" border="0" height="60" width="60"></a></td>
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;"><span style="font-size: 12pt;">&nbsp;"Цифокс"</span></td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;">&nbsp;<a href="/docs/cifoks_sertificat.pdf" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="cifoks_sertificat.pdf" border="0" height="60" width="60"></a></td>
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Альфатрин-флоу, максифос, антитаракан-гель, антимуравей, миттокс-антимоль, циралон 11% в.к.э.</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            <a href="/docs/certificates/alfatrin-flou.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60"> </a>
+                        </td>
                     </tr>
-                    <tr style="background-color: #ffffff;">
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;"><span style="font-size: 12pt;">&nbsp;"Абсолют 50"</span>
-                            <p style="text-align: right;">&nbsp;</p>
+                    <tr style="background-color: #ffffff;" bgcolor="#F5FFFF">
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Раттидион</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            
+                            <a href="/docs/certificates/rattidion.jpg" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60">
+                            </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;"><a href="/docs/absolut50.PDF" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="flai_bait_sertificat.pdf" border="0" height="60" width="60"></a></td>
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;"><span style="font-size: 12pt;">&nbsp;"Штурм"</span>
-                            <p style="text-align: right;">&nbsp;</p>
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Пиретрум, агро-пирет-1</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            <a href="/docs/certificates/piretrum-agropivet.jpg" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60"> </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;">&nbsp;<a href="/docs/shturm_sertificat.PDF" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="shturm_deklaraciia_sertificat.pdf" border="0" height="60" width="60"></a></td>
                     </tr>
-                    <tr style="background-color: #ffffff;">
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;"><span style="font-size: 12pt;">&nbsp;"Фумифаст"</span>
-                            <p style="text-align: right;">&nbsp;</p>
+                    <tr style="background-color: #ffffff;" bgcolor="#F5FFFF">
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Штурм</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            
+                            <a href="/docs/certificates/shturm.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60">
+                            </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;"><a href="/docs/fumifast_sertificat.pdf" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="fumifast_sertificat.pdf" border="0" height="60" width="60"></a></td>
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;"><span style="font-size: 12pt;">&nbsp;"Фуфанон супер"</span>
-                            <p style="text-align: right;">&nbsp;</p>
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Тотал</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            <a href="/docs/certificates/total.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60"> </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;"><a href="/docs/FufSup.jpg" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="fufanon_sertificat.pdf" border="0" height="60" width="60"></a></td>
                     </tr>
-                    <tr style="background-color: #ffffff;">
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;"><span style="font-size: 12pt;">&nbsp;"Эко Клей"</span>
-                            <p style="text-align: right;">&nbsp;</p>
+                    <tr style="background-color: #ffffff;" bgcolor="#F5FFFF">
+                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;" width="40%">
+                            <span style="font-size: 12pt;">Инсектицид Вега</span></td>
+                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;" width="10%">
+                            
+                            <a href="/docs/certificates/vega.pdf" target="_blank" rel="alternate">
+                                <img src="/docs/PDFthumb.png" alt="alt" border="0" height="60" width="60">
+                            </a>
                         </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;"><a href="/docs/eko_kley_sertificat.pdf" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="eko_kley_sertificat.pdf" border="0" height="60" width="60"></a></td>
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;">
-                            <p><span style="font-size: 12pt;">&nbsp;"КлейКун" феромонные ловушки</span><br>&nbsp;</p>
-                        </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;"><a href="/docs/KleyKun.JPG" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="cipertrin_sertificat.pdf" border="0" height="60" width="60"></a></td>
-                    </tr>
-                    <tr style="background-color: #ffffff;">
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;"><span style="font-size: 12pt;">&nbsp;"Эффектив Ультра"</span>
-                            <p style="text-align: right;">&nbsp;</p>
-                        </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;"><a href="/docs/effektiv_ultra_sertificat.pdf" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="effektiv_ultra_sertificat.pdf" border="0" height="60" width="60"></a></td>
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;">
-                            <p><span style="font-size: 12pt;">&nbsp;"Грызунит экстра"<br></span></p>
-                        </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;">&nbsp;<a href="/docs/GrizunEx.jpg" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="cipertrin_sertificat.pdf" border="0" height="60" width="60"></a></td>
-                    </tr>
-                    <tr style="background-color: #ffffff;">
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;">
-                            <p><span style="font-size: 12pt;">&nbsp;"Крысин" </span></p>
-                            <p><span style="font-size: 12pt;">&nbsp;"Крысин-Блок" </span></p>
-                            <p><span style="font-size: 12pt;">&nbsp;"Зоокумарин 1,5%&nbsp;&nbsp;&nbsp; </span></p>
-                            <p><span style="font-size: 12pt;">&nbsp;"Зоокумарин нео"</span></p>
-                        </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;"><a href="/docs/na_neskolko_sr-v_1_sertificat.pdf" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="na_neskolko_sr-v_(1)_sertificat.pdf" border="0" height="60" width="60"></a></td>
-                        <td style="background-color: #ffffff; width: 40%; text-align: left; vertical-align: middle;">
-                            <p><span style="font-size: 12pt;">&nbsp;"Антитаракан-гель"</span></p>
-                            <p><span style="font-size: 12pt;">&nbsp;"Цирадон"</span></p>
-                        </td>
-                        <td style="background-color: #ffffff; text-align: center; vertical-align: middle;"><a href="/docs/Alfatrin.pdf" target="_blank" rel="alternate"><img src="/docs/PDFthumb.png" alt="na_neskolko_sr-v_(2)_sertificat.pdf" border="0" height="60" width="60"></a></td>
                     </tr>
                     </tbody>
-                </table> 	</div>
-
+                </table>
+            </div>
         </div>
 
 
