@@ -45,13 +45,13 @@ class SynchronizeRecord extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'is_active' => 'Is Active',
+            'id'             => 'ID',
+            'is_active'      => 'Is Active',
             'count_sync_row' => 'Count Sync Row',
-            'created_at' => 'Created At',
-            'created_by' => 'Created By',
-            'updated_at' => 'Updated At',
-            'updated_by' => 'Updated By',
+            'created_at'     => 'Created At',
+            'created_by'     => 'Created By',
+            'updated_at'     => 'Updated At',
+            'updated_by'     => 'Updated By',
         ];
     }
 
@@ -61,7 +61,7 @@ class SynchronizeRecord extends ActiveRecord
     public function behaviors()
     {
         return [
-            'timestamp' =>  TimestampBehavior::class,
+            'timestamp' => TimestampBehavior::class,
             'blame'     => BlameableBehavior::class
         ];
     }

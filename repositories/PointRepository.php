@@ -30,8 +30,8 @@ class PointRepository implements PointRepositoryInterface
 
     /**
      * @param $id
-     * @return Point
      * @throws PointNotFound
+     * @return Point
      */
     public function get($id)
     {
@@ -47,8 +47,8 @@ class PointRepository implements PointRepositoryInterface
 
     /**
      * @param Point $point
-     * @return Point
      * @throws \Throwable
+     * @return Point
      */
     public function add(Point $point)
     {
@@ -67,9 +67,9 @@ class PointRepository implements PointRepositoryInterface
 
     /**
      * @param Point $point
-     * @return Point
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
+     * @return Point
      */
     public function save(Point $point)
     {
@@ -87,9 +87,9 @@ class PointRepository implements PointRepositoryInterface
 
     /**
      * @param Point $point
-     * @return Point
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
+     * @return Point
      */
     public function remove(Point $point)
     {
@@ -129,8 +129,8 @@ class PointRepository implements PointRepositoryInterface
 
     /**
      * @param $id
-     * @return PointRecord
      * @throws PointNotFound
+     * @return PointRecord
      */
     private function findOrFail($id)
     {
@@ -185,8 +185,8 @@ class PointRepository implements PointRepositoryInterface
     /**
      * @param $idInternal
      * @param $idCustomer
-     * @return Point
      * @throws PointNotFound
+     * @return Point
      */
     public function getByIdInternal($idInternal, $idCustomer)
     {
@@ -211,8 +211,8 @@ class PointRepository implements PointRepositoryInterface
 
     /**
      * @param $idCustomer
-     * @return int
      * @throws \yii\db\Exception
+     * @return int
      */
     public function getMaxIdInternal($idCustomer)
     {
@@ -258,9 +258,9 @@ class PointRepository implements PointRepositoryInterface
 
     /**
      * @param Point $point
-     * @return Point
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
+     * @return Point
      */
     public function disable(Point $point)
     {

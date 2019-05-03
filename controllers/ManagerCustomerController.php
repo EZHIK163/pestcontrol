@@ -3,14 +3,14 @@ namespace app\controllers;
 
 use app\components\MainWidget;
 use app\forms\CustomerForm;
+use app\services\CustomerService;
 use app\services\UserService;
 use app\tools\Tools;
-use app\services\CustomerService;
 use InvalidArgumentException;
 use Yii;
 use yii\base\Module;
-use yii\web\Controller;
 use yii\filters\AccessControl;
+use yii\web\Controller;
 
 /**
  * Class ManagerController
@@ -49,6 +49,7 @@ class ManagerCustomerController extends Controller
     public function render($view, $params = [])
     {
         $params = array_merge($params, MainWidget::getWidgetsForAccount());
+
         return parent::render($view, $params);
     }
 
@@ -59,6 +60,7 @@ class ManagerCustomerController extends Controller
     {
         $users = $this->customerService->getCustomersForManager();
         $data_provider = Tools::wrapIntoDataProvider($users);
+
         return $this->render('customers', compact('data_provider'));
     }
 
@@ -75,6 +77,7 @@ class ManagerCustomerController extends Controller
         }
 
         $users = $this->userService->getUsersForDropDownList();
+
         return $this->render('add-customer', compact('model', 'users'));
     }
 
@@ -127,7 +130,7 @@ class ManagerCustomerController extends Controller
                 'only'  => ['*'],
                 'rules' => [
                     [
-                        'actions'=> ['customers', 'add-customer', 'delete-customer', 'edit-customer'],
+                        'actions'   => ['customers', 'add-customer', 'delete-customer', 'edit-customer'],
                         'roles'     => ['manager'],
                         'allow'     => true
                     ],

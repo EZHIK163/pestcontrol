@@ -14,8 +14,8 @@ class PointStatusRepository implements PointStatusRepositoryInterface
 {
     /**
      * @param $id
-     * @return PointStatus
      * @throws PointStatusNotFound
+     * @return PointStatus
      */
     public function get($id)
     {
@@ -31,8 +31,8 @@ class PointStatusRepository implements PointStatusRepositoryInterface
 
     /**
      * @param PointStatus $pointStatus
-     * @return PointStatus
      * @throws \Throwable
+     * @return PointStatus
      */
     public function add(PointStatus $pointStatus)
     {
@@ -51,9 +51,9 @@ class PointStatusRepository implements PointStatusRepositoryInterface
 
     /**
      * @param PointStatus $pointStatus
-     * @return PointStatus
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
+     * @return PointStatus
      */
     public function save(PointStatus $pointStatus)
     {
@@ -71,9 +71,9 @@ class PointStatusRepository implements PointStatusRepositoryInterface
 
     /**
      * @param PointStatus $pointStatus
-     * @return PointStatus
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
+     * @return PointStatus
      */
     public function remove(PointStatus $pointStatus)
     {
@@ -113,8 +113,8 @@ class PointStatusRepository implements PointStatusRepositoryInterface
 
     /**
      * @param $id
-     * @return PointStatusRecord
      * @throws PointStatusNotFound
+     * @return PointStatusRecord
      */
     private function findOrFail($id)
     {
@@ -162,8 +162,8 @@ class PointStatusRepository implements PointStatusRepositoryInterface
 
     /**
      * @param $code
-     * @return PointStatus
      * @throws PointStatusNotFound
+     * @return PointStatus
      */
     public function getByCode($code)
     {

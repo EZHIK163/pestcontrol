@@ -40,8 +40,7 @@ class DisinfectantsForm extends Model
             $is_set = isset($disinfectantsCustomer[$disinfectant['id']]);
             $disinfectant['disinfectant'] = $disinfectant['description'];
             $disinfectant['is_set'] = $is_set;
-            unset($disinfectant['description']);
-            unset($disinfectant['value']);
+            unset($disinfectant['description'], $disinfectant['value']);
         }
 
         $this->disinfectants = $disinfectantsAll;

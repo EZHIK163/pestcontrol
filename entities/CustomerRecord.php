@@ -51,9 +51,9 @@ class CustomerRecord extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'is_active' => 'Is Active',
-            'name' => 'Name',
+            'id'         => 'ID',
+            'is_active'  => 'Is Active',
+            'name'       => 'Name',
             'created_at' => 'Created At',
             'created_by' => 'Created By',
             'updated_at' => 'Updated At',
@@ -67,7 +67,7 @@ class CustomerRecord extends ActiveRecord
     public function behaviors()
     {
         return [
-            'timestamp' =>  TimestampBehavior::class,
+            'timestamp' => TimestampBehavior::class,
             'blame'     => BlameableBehavior::class
         ];
     }
@@ -96,7 +96,7 @@ class CustomerRecord extends ActiveRecord
     {
         return $this->hasMany(DisinfectantRecord::class, ['id' => 'id_disinfectant'])
             ->viaTable('customer_disinfectant', ['id_customer' => 'id'], function ($query) {
-                /* @var \yii\db\ActiveQuery $query */
+                // @var \yii\db\ActiveQuery $query
                 $query->andWhere(['is_active' => true]);
             })
             ->andWhere(['is_active' => true]);

@@ -47,15 +47,15 @@ class ExtensionTypeRecord extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'is_active' => 'Is Active',
-            'description' => 'Description',
-            'code' => 'Code',
+            'id'             => 'ID',
+            'is_active'      => 'Is Active',
+            'description'    => 'Description',
+            'code'           => 'Code',
             'path_to_folder' => 'Path To Folder',
-            'created_at' => 'Created At',
-            'created_by' => 'Created By',
-            'updated_at' => 'Updated At',
-            'updated_by' => 'Updated By',
+            'created_at'     => 'Created At',
+            'created_by'     => 'Created By',
+            'updated_at'     => 'Updated At',
+            'updated_by'     => 'Updated By',
         ];
     }
 
@@ -65,7 +65,7 @@ class ExtensionTypeRecord extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
-            'timestamp' =>  TimestampBehavior::class,
+            'timestamp' => TimestampBehavior::class,
             'blame'     => BlameableBehavior::class
         ];
     }

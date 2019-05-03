@@ -89,6 +89,7 @@ class UserService
                 'role'      => $user->getRole()
             ];
         }
+
         return $preparedUsers;
     }
 
@@ -101,6 +102,7 @@ class UserService
         foreach ($users as &$user) {
             $user = $user->toArray();
         }
+
         return ArrayHelper::map($users, 'id', 'username');
     }
 

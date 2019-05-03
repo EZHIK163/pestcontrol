@@ -47,14 +47,14 @@ class PointStatusRecord extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'is_active' => 'Is Active',
+            'id'          => 'ID',
+            'is_active'   => 'Is Active',
             'description' => 'Description',
-            'code' => 'Code',
-            'created_at' => 'Created At',
-            'created_by' => 'Created By',
-            'updated_at' => 'Updated At',
-            'updated_by' => 'Updated By',
+            'code'        => 'Code',
+            'created_at'  => 'Created At',
+            'created_by'  => 'Created By',
+            'updated_at'  => 'Updated At',
+            'updated_by'  => 'Updated By',
         ];
     }
 
@@ -64,7 +64,7 @@ class PointStatusRecord extends ActiveRecord
     public function behaviors()
     {
         return [
-            'timestamp' =>  TimestampBehavior::class,
+            'timestamp' => TimestampBehavior::class,
             'blame'     => BlameableBehavior::class
         ];
     }

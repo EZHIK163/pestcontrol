@@ -1,15 +1,15 @@
 <?php
 namespace app\controllers;
 
-use app\forms\DisinfectorForm;
-use app\tools\Tools;
 use app\components\MainWidget;
+use app\forms\DisinfectorForm;
 use app\services\DisinfectorService;
+use app\tools\Tools;
 use InvalidArgumentException;
 use Yii;
 use yii\base\Module;
-use yii\web\Controller;
 use yii\filters\AccessControl;
+use yii\web\Controller;
 
 /**
  * Class ManagerDisinfectorController
@@ -96,6 +96,7 @@ class ManagerDisinfectorController extends Controller
     public function render($view, $params = [])
     {
         $params = array_merge($params, MainWidget::getWidgetsForAccount());
+
         return parent::render($view, $params);
     }
 
@@ -110,7 +111,7 @@ class ManagerDisinfectorController extends Controller
                 'only'  => ['*'],
                 'rules' => [
                     [
-                        'actions'=> ['manage-disinfectors', 'edit-disinfector', 'delete-disinfector'],
+                        'actions'   => ['manage-disinfectors', 'edit-disinfector', 'delete-disinfector'],
                         'roles'     => ['manager'],
                         'allow'     => true
                     ]

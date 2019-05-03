@@ -55,8 +55,8 @@ class EventService
      * @param $fromDate
      * @param $toDate
      * @param $idCustomer
-     * @return array
      * @throws \Exception
+     * @return array
      */
     public function getEventsStartFromTime($fromDate, $toDate, $idCustomer)
     {
@@ -76,8 +76,8 @@ class EventService
                 && $event->getPoint()->getFileCustomer() !== null
                 && $event->getPoint()->getFileCustomer()->getId() !== null
             ) {
-                $url = Yii::$app->urlManager->createAbsoluteUrl(['/']).
-                    'account/show-scheme-point-control?id='.$event->getPoint()->getFileCustomer()->getId();
+                $url = Yii::$app->urlManager->createAbsoluteUrl(['/']) .
+                    'account/show-scheme-point-control?id=' . $event->getPoint()->getFileCustomer()->getId();
             }
 
             $nPoint = $event->getPoint() !== null && $event->getPoint()->getIdInternal() !== null
@@ -95,7 +95,6 @@ class EventService
             ];
         }
 
-
         return $preparedEvents;
     }
 
@@ -103,8 +102,8 @@ class EventService
      * @param $idCustomer
      * @param $dateFrom
      * @param $dateTo
-     * @return mixed
      * @throws \Exception
+     * @return mixed
      */
     public function getGreenRisk($idCustomer, $dateFrom, $dateTo)
     {
@@ -128,8 +127,8 @@ class EventService
      * @param $idCustomer
      * @param $dateFrom
      * @param $dateTo
-     * @return mixed
      * @throws \Exception
+     * @return mixed
      */
     public function getRedRisk($idCustomer, $dateFrom, $dateTo)
     {
@@ -156,8 +155,9 @@ class EventService
      * @param $fromDate
      * @param $toDate
      * @param $statuses
-     * @return array
+     * @param mixed $label
      * @throws \Exception
+     * @return array
      */
     public function getOccupancyScheduleFromPeriod($idCustomer, $fromDate, $toDate, $statuses, $label)
     {
@@ -197,45 +197,58 @@ class EventService
             switch ($event['month']) {
                 case 1:
                     $event['month'] = 'Январь';
+
                     break;
                 case 2:
                     $event['month'] = 'Февраль';
+
                     break;
                 case 3:
                     $event['month'] = 'Март';
+
                     break;
                 case 4:
                     $event['month'] = 'Апрель';
+
                     break;
                 case 5:
                     $event['month'] = 'Май';
+
                     break;
                 case 6:
                     $event['month'] = 'Июнь';
+
                     break;
                 case 7:
                     $event['month'] = 'Июль';
+
                     break;
                 case 8:
                     $event['month'] = 'Август';
+
                     break;
                 case 9:
                     $event['month'] = 'Сентябрь';
+
                     break;
                 case 10:
                     $event['month'] = 'Октябрь';
+
                     break;
                 case 11:
                     $event['month'] = 'Ноябрь';
+
                     break;
                 case 12:
                     $event['month'] = 'Декабрь';
+
                     break;
             }
 
             $datasets[0]['data'][] = $event['count'];
             $labels [] = $event['month'];
         }
+
         return [
             'labels'    => $labels,
             'datasets'  => $datasets
@@ -265,11 +278,13 @@ class EventService
                 case 'not_touch':
                 case 'full_replace':
                     $events_free++;
+
                     break;
                 //case 'caught':
                 case 'caught_insekt':
                 case 'caught_nagetier':
                     $events_caught++;
+
                     break;
             }
         }
@@ -282,12 +297,13 @@ class EventService
         }
 
         $datasets[0] = [
-            'label' => 'График заселенности за все время',
-            'data'  => [$events_free, $events_caught],
+            'label'             => 'График заселенности за все время',
+            'data'              => [$events_free, $events_caught],
             'backgroundColor'   => ["#3e95cd", "#8e5ea2"]
         ];
+
         return [
-            'labels'    => ['Свободно - ' . $free_percent . '%', 'Заселено - '. $caught_percent . '%'],
+            'labels'    => ['Свободно - ' . $free_percent . '%', 'Заселено - ' . $caught_percent . '%'],
             'datasets'  => $datasets
         ];
     }
@@ -296,15 +312,15 @@ class EventService
      * @param $idCustomer
      * @param $from_datetime
      * @param $to_datetime
-     * @return array
      * @throws \Exception
+     * @return array
      */
     public function getPointReportFromPeriod($idCustomer, $from_datetime, $to_datetime)
     {
         $fromTimestamp = Yii::$app->formatter->asTimestamp($from_datetime);
         $to_datetime = new DateTime($to_datetime);
         $to_datetime = $to_datetime->add(DateInterval::createFromDateString('1 days'));
-        $toTimestamp= $to_datetime->getTimestamp();
+        $toTimestamp = $to_datetime->getTimestamp();
 
         /**
          * @var EventGeneralReport[] $events
@@ -324,21 +340,26 @@ class EventService
             switch ($item['code']) {
                 case 'part_replace':
                     $events_part_replace++;
+
                     break;
                 case 'not_touch':
                     $events_not_touch++;
+
                     break;
                 case 'full_replace':
                     $events_full_replace++;
+
                     break;
                 //case 'caught':
                 //    $events_caught++;
                 //    break;
                 case 'caught_insekt':
                     $events_caught_insekt++;
+
                     break;
                 case 'caught_nagetier':
                     $events_caught_nagetier++;
+
                     break;
             }
         }
@@ -433,6 +454,7 @@ class EventService
             if ($a['datetime_object'] === $b['datetime_object']) {
                 return 0;
             }
+
             return $a['datetime_object'] < $b['datetime_object'] ? 1 : -1;
         });
 
@@ -504,13 +526,14 @@ class EventService
 
     /**
      * @param $date
-     * @return string
      * @throws \Exception
+     * @return string
      */
     private function getTimestampFromDate($date)
     {
         $datetime = new DateTime($date);
         $timestamp = Yii::$app->formatter->asTimestamp($datetime);
+
         return $timestamp;
     }
 }

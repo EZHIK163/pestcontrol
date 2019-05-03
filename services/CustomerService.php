@@ -63,12 +63,13 @@ class CustomerService
 
     /**
      * @param $idUserOwner
-     * @return Customer
      * @throws CustomerNotFound
+     * @return Customer
      */
     public function getCustomerByIdUser($idUserOwner)
     {
         $customer = $this->customerRepository->getByIdUser($idUserOwner);
+
         return $customer;
     }
 
@@ -114,6 +115,7 @@ class CustomerService
                 'disinfectants' => $strDisinfectants
             ];
         }
+
         return $finishCustomers;
     }
 
@@ -137,7 +139,7 @@ class CustomerService
             foreach ($contacts as $contact) {
                 $description = $contact->getName() . ' - ' . $contact->getEmail();
                 if (!empty($contact->getPhone())) {
-                    $description = $description. ' - ' . $contact->getPhone();
+                    $description = $description . ' - ' . $contact->getPhone();
                 }
                 $finishContacts [] = $description;
             }
@@ -149,6 +151,7 @@ class CustomerService
                 'contacts'      => $strContacts
             ];
         }
+
         return $finish_customers;
     }
 
@@ -189,6 +192,7 @@ class CustomerService
             foreach ($existDisinfectants as $disinfectantCustomer) {
                 if ($disinfectantCustomer->getId() == $disinfectantSelect->getId()) {
                     $existDisinfectant = $disinfectantCustomer;
+
                     break;
                 }
             }
@@ -262,5 +266,4 @@ class CustomerService
 
         $this->customerRepository->add($customer);
     }
-
 }

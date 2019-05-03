@@ -24,6 +24,7 @@ class MyReadFilter implements IReadFilter
                 return true;
             }
         }
+
         return false;
     }
 }

@@ -29,8 +29,8 @@ class UserRepository implements UserRepositoryInterface
 
     /**
      * @param $id
-     * @return User
      * @throws UserNotFound
+     * @return User
      */
     public function get($id)
     {
@@ -46,8 +46,8 @@ class UserRepository implements UserRepositoryInterface
 
     /**
      * @param User $user
-     * @return User
      * @throws \Throwable
+     * @return User
      */
     public function add(User $user)
     {
@@ -66,9 +66,9 @@ class UserRepository implements UserRepositoryInterface
 
     /**
      * @param User $user
-     * @return User
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
+     * @return User
      */
     public function save(User $user)
     {
@@ -86,9 +86,9 @@ class UserRepository implements UserRepositoryInterface
 
     /**
      * @param User $user
-     * @return User
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
+     * @return User
      */
     public function remove(User $user)
     {
@@ -128,8 +128,8 @@ class UserRepository implements UserRepositoryInterface
 
     /**
      * @param $id
-     * @return UserRecord
      * @throws UserNotFound
+     * @return UserRecord
      */
     private function findOrFail($id)
     {
@@ -168,8 +168,8 @@ class UserRepository implements UserRepositoryInterface
     /**
      * @param UserRecord $userRecord
      * @param User $user
-     * @return UserRecord
      * @throws \Exception
+     * @return UserRecord
      */
     private function fillUserRecord($userRecord, $user)
     {

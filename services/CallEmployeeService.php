@@ -23,7 +23,7 @@ class CallEmployeeService
     public function __construct(CustomerService $customerService)
     {
         $this->customerService = $customerService;
-        # Вешаем обработчик события на вызов сотрудника
+        // Вешаем обработчик события на вызов сотрудника
         Yii::$app->on(CallEmployeeEvent::CALL_EMPLOYEE_EVENT, function (CallEmployeeEvent $event) {
             $event->notify();
         });
@@ -37,7 +37,7 @@ class CallEmployeeService
     {
         $customer = $this->customerService->getCustomer($idCustomer);
         $callEmployee->setCustomer($customer);
-        # Инициируем событие
+        // Инициируем событие
         Yii::$app->trigger(
             CallEmployeeEvent::CALL_EMPLOYEE_EVENT,
             new CallEmployeeEvent(new NotifyEmailManagerService(), ['callEmployee' => $callEmployee])

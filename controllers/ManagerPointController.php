@@ -1,20 +1,20 @@
 <?php
 namespace app\controllers;
 
+use app\components\MainWidget;
 use app\forms\PointForm;
 use app\forms\PointsForm;
-use app\tools\Tools;
-use app\components\MainWidget;
 use app\services\CustomerService;
 use app\services\EventService;
 use app\services\FileCustomerService;
 use app\services\PointService;
+use app\tools\Tools;
 use InvalidArgumentException;
 use Yii;
 use yii\base\Module;
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
-use yii\filters\AccessControl;
 use yii\web\Response;
 
 /**
@@ -92,6 +92,7 @@ class ManagerPointController extends Controller
         ];
 
         Yii::$app->response->format = Response::FORMAT_JSON;
+
         return $myData;
     }
 
@@ -106,6 +107,7 @@ class ManagerPointController extends Controller
             'statuses'   => $statuses
         ];
         Yii::$app->response->format = Response::FORMAT_JSON;
+
         return $myData;
     }
 
@@ -125,6 +127,7 @@ class ManagerPointController extends Controller
 
         $data = ['status'   => true];
         Yii::$app->response->format = Response::FORMAT_JSON;
+
         return $data;
     }
 
@@ -214,6 +217,7 @@ class ManagerPointController extends Controller
     public function render($view, $params = [])
     {
         $params = array_merge($params, MainWidget::getWidgetsForAccount());
+
         return parent::render($view, $params);
     }
 
@@ -228,24 +232,23 @@ class ManagerPointController extends Controller
                 'only'  => ['*'],
                 'rules' => [
                     [
-                        'actions'=> ['manage-points',  'manage-point', 'disable-point', 'enable-point'],
+                        'actions'   => ['manage-points',  'manage-point', 'disable-point', 'enable-point'],
                         'roles'     => ['manager'],
                         'allow'     => true
                     ],
                     [
-                        'actions'=> ['save-point', 'new-point', 'get-statuses'],
+                        'actions'   => ['save-point', 'new-point', 'get-statuses'],
                         'roles'     => [],
                         'allow'     => true
                     ]
                 ]
             ],
             'verbs' => [
-                'class' => VerbFilter::class,
+                'class'   => VerbFilter::class,
                 'actions' => [
-                    'save-point'    =>  ['post']
+                    'save-point'    => ['post']
                 ],
             ],
-
         ];
     }
 }

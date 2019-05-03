@@ -1,8 +1,8 @@
 <?php
 namespace app\controllers;
 
-use app\forms\LoginForm;
 use app\components\MainWidget;
+use app\forms\LoginForm;
 use app\services\FileService;
 use Yii;
 use yii\base\Module;
@@ -68,6 +68,7 @@ class SiteController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
+
         return $this->goHome();
     }
 
@@ -95,6 +96,7 @@ class SiteController extends Controller
     public function actionInformationAboutTheServiceProvider()
     {
         $params = MainWidget::getWidgetsForAccount();
+
         return $this->render('information-about-the-service-provider', $params);
     }
 
@@ -104,6 +106,7 @@ class SiteController extends Controller
     public function actionLicensesAndCertificates()
     {
         $params = MainWidget::getWidgetsForAccount();
+
         return $this->render('licenses-and-certificates', $params);
     }
 
@@ -113,6 +116,7 @@ class SiteController extends Controller
     public function actionListOfDisinfectants()
     {
         $params = MainWidget::getWidgetsForAccount();
+
         return $this->render('list-of-disinfectants', $params);
     }
 
@@ -122,6 +126,7 @@ class SiteController extends Controller
     public function actionCertificatesOfDisinfectants()
     {
         $params = MainWidget::getWidgetsForAccount();
+
         return $this->render('certificates-of-disinfectants', $params);
     }
 
@@ -131,6 +136,7 @@ class SiteController extends Controller
     public function actionDocumentsForEmployees()
     {
         $params = MainWidget::getWidgetsForAccount();
+
         return $this->render('documents-for-employees', $params);
     }
 
@@ -140,6 +146,7 @@ class SiteController extends Controller
     public function actionContacts()
     {
         $params = MainWidget::getWidgetsForAccount();
+
         return $this->render('contacts', $params);
     }
 

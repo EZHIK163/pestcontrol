@@ -51,17 +51,21 @@ class ReportService
             switch ($item['code']) {
                 case 'part_replace':
                     $events_part_replace++;
+
                     break;
                 case 'not_touch':
                     $events_not_touch++;
+
                     break;
                 case 'full_replace':
                     $events_full_replace++;
+
                     break;
                 case 'caught_insekt':
                 case 'caught_nagetier':
                 //case 'caught':
                     $events_caught++;
+
                     break;
             }
         }
@@ -76,18 +80,22 @@ class ReportService
                 case 'shturm_brickety':
                     $data[0][$disinfectant['code']] = ($events_part_replace * floatval($disinfectant['value']))
                         / 2 + $events_full_replace;
+
                     break;
                 case 'shturm_granuly':
-                    $data[0][$disinfectant['code']] =  ($events_part_replace * floatval($disinfectant['value']))
+                    $data[0][$disinfectant['code']] = ($events_part_replace * floatval($disinfectant['value']))
                         / 2 + $events_full_replace;
+
                     break;
                 case 'indan-block':
-                    $data[0][$disinfectant['code']] =  ($events_part_replace * floatval($disinfectant['value']))
+                    $data[0][$disinfectant['code']] = ($events_part_replace * floatval($disinfectant['value']))
                         / 2 + $events_full_replace;
+
                     break;
                 case 'rattidion':
                     $data[0][$disinfectant['code']] = ($events_full_replace * floatval($disinfectant['value']))
                         / 2 + $events_full_replace;
+
                     break;
             }
 
@@ -134,8 +142,8 @@ class ReportService
 
     /**
      * @param $idCustomer
-     * @return array
      * @throws \Exception
+     * @return array
      */
 //    public function getDataForReport($idCustomer)
 //    {
@@ -231,21 +239,26 @@ class ReportService
                     switch ($event['code']) {
                         case 'part_replace':
                             $statistics [] = '1';
+
                             break;
                         case 'not_touch':
                             $statistics [] = '0';
+
                             break;
                         case 'full_replace':
                             $statistics [] = '2';
+
                             break;
                         //case 'caught':
                         //    $statistics [] = '3';
                         //    break;
                         case 'caught_insekt':
-                            $statistics [] = 'Н'.$event['count'];
+                            $statistics [] = 'Н' . $event['count'];
+
                             break;
                         case 'caught_nagetier':
-                            $statistics [] = 'Г'.$event['count'];
+                            $statistics [] = 'Г' . $event['count'];
+
                             break;
                     }
                 }
@@ -259,8 +272,8 @@ class ReportService
 
     /**
      * @param $idCustomer
-     * @return array
      * @throws \Exception
+     * @return array
      */
     public function getDataForReportHeineken($idCustomer)
     {
@@ -288,6 +301,7 @@ class ReportService
                     case 'caught_nagetier':
                     case 'caught_insekt':
                         $countCriticalPoints++;
+
                         break;
                 }
                 $points [] = $event['id_external'];

@@ -29,8 +29,8 @@ class CustomerRepository implements CustomerRepositoryInterface
 
     /**
      * @param $id
-     * @return Customer
      * @throws CustomerNotFound
+     * @return Customer
      */
     public function get($id)
     {
@@ -46,8 +46,8 @@ class CustomerRepository implements CustomerRepositoryInterface
 
     /**
      * @param Customer $customer
-     * @return Customer
      * @throws \Throwable
+     * @return Customer
      */
     public function add(Customer $customer)
     {
@@ -68,10 +68,10 @@ class CustomerRepository implements CustomerRepositoryInterface
 
     /**
      * @param Customer $customer
-     * @return Customer
      * @throws CustomerNotFound
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
+     * @return Customer
      */
     public function save(Customer $customer)
     {
@@ -91,10 +91,10 @@ class CustomerRepository implements CustomerRepositoryInterface
 
     /**
      * @param Customer $customer
-     * @return Customer
      * @throws CustomerNotFound
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
+     * @return Customer
      */
     public function remove(Customer $customer)
     {
@@ -132,8 +132,8 @@ class CustomerRepository implements CustomerRepositoryInterface
 
     /**
      * @param $idUserOwner
-     * @return Customer
      * @throws CustomerNotFound
+     * @return Customer
      */
     public function getByIdUser($idUserOwner)
     {
@@ -154,8 +154,8 @@ class CustomerRepository implements CustomerRepositoryInterface
 
     /**
      * @param $id
-     * @return CustomerRecord
      * @throws CustomerNotFound
+     * @return CustomerRecord
      */
     private function findOrFail($id)
     {

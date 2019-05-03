@@ -73,11 +73,12 @@ class FileService
             $rootPath = $this->getRootPath();
 
             if (!file_exists($rootPath . $folder)) {
-                mkdir($rootPath. $folder, 0777);
+                mkdir($rootPath . $folder, 0777);
             }
 
             $uploadedFile->saveAs($rootPath . $folder . $hash . '.' . $uploadedFile->extension);
         }
+
         return true;
     }
 
@@ -87,6 +88,7 @@ class FileService
     public function getSupportExtensions()
     {
         $extensions = $this->extensionRepository->all();
+
         return $extensions;
     }
 
@@ -100,8 +102,8 @@ class FileService
 
     /**
      * @param $id
-     * @return array
      * @throws NotFoundHttpException
+     * @return array
      */
     public function getInfoForDownloadById($id)
     {
@@ -110,9 +112,9 @@ class FileService
         if (!$file) {
             throw new NotFoundHttpException();
         }
-        $url = $this->getRootPath().
-            $file->getExtension()->getPathToFolder().
-            $file->getHash().'.'.
+        $url = $this->getRootPath() .
+            $file->getExtension()->getPathToFolder() .
+            $file->getHash() . '.' .
             $file->getExtension()->getExtension();
         $name = $file->getOriginalName() . '.' . $file->getExtension()->getExtension();
 
