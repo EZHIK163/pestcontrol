@@ -22,23 +22,8 @@ class m181104_105450_add_field_count_to_events extends Migration
      */
     public function safeDown()
     {
-        echo "m181104_105450_add_field_count_to_events cannot be reverted.\n";
+        $this->dropColumn('events', 'count');
 
-        return false;
+        return true;
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m181104_105450_add_field_count_to_events cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

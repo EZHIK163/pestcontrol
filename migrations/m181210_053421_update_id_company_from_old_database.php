@@ -12,27 +12,6 @@ class m181210_053421_update_id_company_from_old_database extends Migration
      */
     public function safeUp()
     {
-        /*
-         * testbase
-baltika
-heineken
-auchan_izh
-ikea_uf
-sj_nn
-cc_nsk
-x5_iz_uf
-x5_kazan
-sed_nestle
-heineken_sp
-alpla_sam
-baltika_tul
-pestrzavod
-PepsiCo_Sam
-Alpla_spb
-Baltika_Spb
-
-         */
-
         $this->dropForeignKey('events_id_customer', 'events');
         $this->dropForeignKey('customer_contact_id_file_customer', 'customer_contact');
         $this->dropForeignKey('customer_disinfectant_id_customer', 'customer_disinfectant');
@@ -126,6 +105,7 @@ Baltika_Spb
             'customers',
             'id'
         );
+
         return true;
     }
 

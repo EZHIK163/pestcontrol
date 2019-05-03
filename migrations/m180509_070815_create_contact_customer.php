@@ -67,19 +67,4 @@ class m180509_070815_create_contact_customer extends Migration
 
         return true;
     }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m180509_070815_create_contact_customer cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }

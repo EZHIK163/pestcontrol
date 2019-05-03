@@ -7,8 +7,7 @@ use yii\console\Controller;
 use yii\helpers\Console;
 
 /**
- * Class ConsoleController
- * @package app\controllers
+ * Команда деактивации старого статуса пойман вредитель
  */
 class DeactivateStatusCaughtCommand extends Controller
 {
@@ -34,9 +33,6 @@ class DeactivateStatusCaughtCommand extends Controller
         parent::__construct($id, $module, $config);
     }
 
-    /**
-     * Disable point status with code = caught
-     */
     public function actionCaught()
     {
         $pointStatus = $this->pointStatusRepository->getByCode('caught');

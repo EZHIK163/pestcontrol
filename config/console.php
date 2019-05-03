@@ -29,5 +29,23 @@ return [
         'deactivate-point-status' => [
             'class' => \app\commands\DeactivateStatusCaughtCommand::class
         ],
+        'add-event-statuses' => [
+            'class' => \app\commands\AddEventStatusesCommand::class
+        ],
+        'add-extension-info' => [
+            'class' => \app\commands\AddExtensionInfoCommand::class
+        ],
+        'add-file-customer-types' => [
+            'class' => \app\commands\AddFileCustomerTypesCommand::class
+        ],
+        'fill-disinfectant-info' => [
+            'class' => \app\commands\FillDisinfectantInfoCommand::class
+        ],
+        'move-data-from-old-db' => [
+            'class' => \app\commands\MoveDataFromOldDbCommand::class
+        ],
+        'set-disinfectant-customers' => [
+            'class' => \app\commands\SetDisinfectantCustomersCommand::class
+        ],
     ]
 ];
