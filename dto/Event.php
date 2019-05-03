@@ -1,49 +1,31 @@
 <?php
+
 namespace app\dto;
 
 use DateTime;
 
 /**
- * Class Event
- * @package app\dto
+ * Модель события
  */
 class Event
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $id;
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $isActive;
-    /**
-     * @var Customer
-     */
+    /** @var Customer */
     private $customer;
-    /**
-     * @var Disinfector
-     */
+    /** @var Disinfector */
     private $disinfector;
-    /**
-     * @var int
-     */
+    /** @var int */
     private $idExternal;
-    /**
-     * @var Point
-     */
+    /** @var Point */
     private $point;
-    /**
-     * @var PointStatus
-     */
+    /** @var PointStatus */
     private $pointStatus;
-    /**
-     * @var int
-     */
+    /** @var int */
     private $count;
-    /**
-     * @var DateTime
-     */
+    /** @var DateTime */
     private $createdAt;
 
     public function __construct()

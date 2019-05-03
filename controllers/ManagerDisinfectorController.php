@@ -12,18 +12,14 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 
 /**
- * Class ManagerDisinfectorController
- * @package app\controllers
+ * Методы по работе менеджера с дезинфекторами
  */
 class ManagerDisinfectorController extends Controller
 {
-    /**
-     * @var DisinfectorService
-     */
+    /** @var DisinfectorService */
     private $disinfectorService;
 
     /**
-     * ManagerController constructor.
      * @param $id
      * @param Module $module
      * @param DisinfectorService $disinfectorService
@@ -89,9 +85,7 @@ class ManagerDisinfectorController extends Controller
     }
 
     /**
-     * @param string $view
-     * @param array $params
-     * @return string
+     * @inheritDoc
      */
     public function render($view, $params = [])
     {

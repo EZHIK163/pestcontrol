@@ -1,15 +1,13 @@
 <?php
+
 namespace app\dto;
 
 /**
- * Class Synchronize
- * @package app\dto
+ * Модель данных последней синхронизации
  */
 class SynchronizeLast
 {
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     private $dateTimeLastSync;
 
     /**

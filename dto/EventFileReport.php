@@ -1,27 +1,19 @@
 <?php
+
 namespace app\dto;
 
 /**
- * Class EventFileReport
- * @package app\dto
+ * Модель событий для отчета по точкам
  */
 class EventFileReport
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $idExternal;
-    /**
-     * @var \DateTime
-     */
+    /** @var \DateTime */
     private $createdAt;
-    /**
-     * @var int
-     */
+    /** @var int */
     private $count;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $statusCode;
     /** @var string */
     private $titleScheme;

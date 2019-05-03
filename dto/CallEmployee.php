@@ -1,36 +1,23 @@
 <?php
+
 namespace app\dto;
 
 /**
- * Class CallEmployee
- * @package app\dto
+ * Модель вызова сотрудника
  */
 class CallEmployee
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $fullName;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $email;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $title;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $message;
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $isSendCopy;
-
-    /**
-     * @var Customer
-     */
+    /** @var Customer */
     private $customer;
 
     /**

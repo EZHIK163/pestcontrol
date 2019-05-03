@@ -13,16 +13,16 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 
 /**
- * Class ManagerController
- * @package app\controllers
+ * Содержит методы менджера по работе с клиентом
  */
 class ManagerCustomerController extends Controller
 {
+    /** @var CustomerService */
     private $customerService;
+    /** @var UserService */
     private $userService;
 
     /**
-     * ManagerController constructor.
      * @param $id
      * @param Module $module
      * @param CustomerService $customerService
@@ -42,9 +42,7 @@ class ManagerCustomerController extends Controller
     }
 
     /**
-     * @param string $view
-     * @param array $params
-     * @return string
+     * @inheritDoc
      */
     public function render($view, $params = [])
     {

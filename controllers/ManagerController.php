@@ -8,15 +8,14 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 
 /**
- * Class ManagerController
- * @package app\controllers
+ * Содержит методы менеджера сайта
  */
 class ManagerController extends Controller
 {
+    /** @var UserService */
     private $userService;
 
     /**
-     * ManagerController constructor.
      * @param $id
      * @param Module $module
      * @param UserService $userService
@@ -41,9 +40,7 @@ class ManagerController extends Controller
     }
 
     /**
-     * @param string $view
-     * @param array $params
-     * @return string
+     * @inheritDoc
      */
     public function render($view, $params = [])
     {

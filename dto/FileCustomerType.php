@@ -1,23 +1,17 @@
 <?php
+
 namespace app\dto;
 
 /**
- * Class File
- * @package app\dto
+ * Модель типа файла, связанного с клиентом
  */
 class FileCustomerType
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $id;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $description;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $code;
 
     /**

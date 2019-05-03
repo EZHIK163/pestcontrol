@@ -1,55 +1,33 @@
 <?php
+
 namespace app\dto;
 
 /**
- * Class Disinfectant
- * @package app\dto
+ * Модель дез. средства
  */
 class Disinfectant
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $id;
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $isActive;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $code;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $description;
-    /**
-     * @var float
-     */
+    /** @var float */
     private $value;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $fromOfFacility;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $activeSubstance;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $concentrationOfSubstance;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $manufacturer;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $termsOfUse;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $placeOfApplication;
 
     public function __construct()
@@ -281,7 +259,7 @@ class Disinfectant
             'manufacturer'                  => $this->manufacturer,
             'terms_of_use'                  => $this->termsOfUse,
             'place_of_application'          => $this->placeOfApplication,
-            'code'                          => $this->getCode()
+            'code'                          => $this->code
         ];
     }
 }

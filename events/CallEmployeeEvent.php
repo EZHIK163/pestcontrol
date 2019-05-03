@@ -6,24 +6,18 @@ use app\services\NotifyEmailManagerService;
 use yii\base\Event;
 
 /**
- * Class CallEmployeeEvent
- * @package app\events
+ * Событие вызова сотрудника из личного кабинета
  */
 class CallEmployeeEvent extends Event
 {
     const CALL_EMPLOYEE_EVENT = 'call-employee-event';
 
-    /**
-     * @var CallEmployee
-     */
+    /** @var CallEmployee */
     public $callEmployee;
-    /**
-     * @var NotifyEmailManagerService
-     */
+    /** @var NotifyEmailManagerService */
     private $notifyManagerService;
 
     /**
-     * CallEmployeeEvent constructor.
      * @param NotifyEmailManagerService $notifyManagerService
      * @param array $config
      */
@@ -34,7 +28,7 @@ class CallEmployeeEvent extends Event
     }
 
     /**
-     * Notify manager about new calling
+     * Оповещение менеджера о новом запросе
      */
     public function notify()
     {

@@ -9,14 +9,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /**
- * Class LoginWidget
- * @package app\components
+ * Виджет авторизации на сайте
  */
 class LoginWidget extends Widget
 {
-    /**
-     * @var LoginForm
-     */
+    /** @var LoginForm */
     public $model;
 
     /**

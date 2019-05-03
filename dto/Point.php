@@ -1,44 +1,27 @@
 <?php
+
 namespace app\dto;
 
 /**
- * Class Point
- * @package app\dto
+ * Модель точки на схеме
  */
 class Point
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $id;
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $isActive;
-    /**
-     * @var FileCustomer
-     */
+    /** @var FileCustomer */
     private $fileCustomer;
-    /**
-     * @var int
-     */
+    /** @var int */
     private $idInternal;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $title;
-    /**
-     * @var float
-     */
+    /** @var float */
     private $xCoordinate;
-    /**
-     * @var float
-     */
+    /** @var float */
     private $yCoordinate;
-
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $isEnable;
 
     public function __construct()

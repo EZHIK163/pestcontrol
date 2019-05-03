@@ -6,18 +6,12 @@ use yii\helpers\Html;
 use yii\widgets\LinkPager;
 
 /**
- * Class MyPagination
- * @package app\components
+ * Кастомный виджет пагинации
  */
 class MyPagination extends LinkPager
 {
     /**
-     * @param string $label
-     * @param int $page
-     * @param string $class
-     * @param bool $disabled
-     * @param bool $active
-     * @return string
+     * @inheritDoc
      */
     protected function renderPageButton($label, $page, $class, $disabled, $active)
     {

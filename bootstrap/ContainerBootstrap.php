@@ -29,17 +29,11 @@ use yii\base\Application;
 use yii\base\BootstrapInterface;
 
 /**
- * Class ContainerBootstrap
- *
- * Class contains setup application
- *
- * @author Samarkin Mikhail <m.e.samarkin@gmail.com>
+ * Содержит конфиг приложения на уровне предзагрузки
  */
 class ContainerBootstrap implements BootstrapInterface
 {
     /**
-     * Custom bootstrap application
-     *
      * @param Application $app Экземпляр приложения
      *
      * @return void

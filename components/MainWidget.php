@@ -6,8 +6,7 @@ use stdClass;
 use Yii;
 
 /**
- * Class Widget
- * @package app\components\widget
+ * Виджеты навигации по сайту
  */
 class MainWidget
 {

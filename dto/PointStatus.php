@@ -1,27 +1,19 @@
 <?php
+
 namespace app\dto;
 
 /**
- * Class PointStatus
- * @package app\dto
+ * Модель статуса точки
  */
 class PointStatus
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $id;
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $isActive;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $description;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $code;
 
     public function __construct()

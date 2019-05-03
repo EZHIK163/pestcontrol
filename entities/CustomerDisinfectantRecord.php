@@ -7,8 +7,6 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 
 /**
- * This is the model class for table "customer_disinfectant".
- *
  * @property int $id
  * @property bool $is_active
  * @property int $id_customer

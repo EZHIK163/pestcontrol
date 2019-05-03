@@ -1,35 +1,21 @@
 <?php
+
 namespace app\dto;
 
 /**
- * Class Contact
- * @package app\dto
+ * Модель контактов клиента
  */
 class Contact
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $id;
-
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $isActive;
-
-    /**
-     * @var string
-     */
+    /** @var string */
     private $name;
-
-    /**
-     * @var string
-     */
+    /** @var string */
     private $email;
-
-    /**
-     * @var string
-     */
+    /** @var string */
     private $phone;
 
     public function __construct()

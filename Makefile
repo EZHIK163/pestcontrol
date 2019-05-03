@@ -1,6 +1,5 @@
 # make for windows http://gnuwin32.sourceforge.net/packages/make.htm
 DC = docker-compose
-CERT_DIR = ./docker/nginx/cert
 COMPOSER = $(DC) exec app composer
 
 ##help			Shows this help
@@ -69,3 +68,7 @@ php-cs-fix-dry:
 ##php-cs-fix		Run PHP CS
 php-cs-fix:
 	$(APP)  vendor/bin/php-cs-fixer fix --path-mode=intersection --config .php_cs.dist $(files)
+
+##codecept		Run codecept
+codecept:
+	$(APP) vendor/bin/codecept run

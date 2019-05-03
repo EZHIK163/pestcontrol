@@ -6,15 +6,14 @@ use yii\base\Module;
 use yii\console\Controller;
 
 /**
- * Class ConsoleController
- * @package app\controllers
+ * Содержит консольные команды
  */
 class ConsoleController extends Controller
 {
+    /** @var SynchronizeService */
     private $synchronizeService;
 
     /**
-     * ConsoleController constructor.
      * @param $id
      * @param Module $module
      * @param SynchronizeService $synchronizeService
@@ -27,8 +26,7 @@ class ConsoleController extends Controller
     }
 
     /**
-     * Sync rows from old database
-     * @throws \yii\base\InvalidConfigException
+     * Синхронизировать данные из старой БД в новую
      */
     public function actionSynchronizeDataBase()
     {

@@ -1,27 +1,19 @@
 <?php
+
 namespace app\dto;
 
 /**
- * Class Disinfector
- * @package app\dto
+ * Модель дезинфектора
  */
 class Disinfector
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $id;
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $isActive;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $fullName;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $phone;
 
     public function __construct()

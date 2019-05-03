@@ -1,8 +1,6 @@
 <?php
 namespace app\commands;
 
-use app\entities\ExtensionTypeRecord;
-use app\entities\FileExtensionRecord;
 use yii\console\Controller;
 use yii\helpers\Console;
 

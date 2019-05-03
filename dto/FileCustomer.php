@@ -1,53 +1,33 @@
 <?php
+
 namespace app\dto;
 
 use DateTime;
 
 /**
- * Class File
- * @package app\dto
+ * Модель файла привязанного к клиенту
  */
 class FileCustomer
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $id;
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $isActive;
-    /**
-     * @var Customer
-     */
+    /** @var Customer */
     private $customer;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $typeDescription;
-    /**
-     * @var
-     */
+    /** @var string */
     private $typeCode;
-    /**
-     * @var int
-     */
+    /** @var int */
     private $typeId;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $title;
-    /**
-     * @var File
-     */
+    /** @var File */
     private $file;
-    /**
-     * @var DateTime
-     */
+    /** @var DateTime */
     private $createdAt;
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $isEnable;
 
     public function __construct()

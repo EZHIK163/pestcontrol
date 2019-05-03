@@ -17,8 +17,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 
 /**
- * Class ReportController
- * @package app\controllers
+ * Содержит методы генерирующие отчеты для клиентов
  */
 class ReportController extends Controller
 {
@@ -28,7 +27,6 @@ class ReportController extends Controller
     private $reportService;
 
     /**
-     * ReportController constructor.
      * @param $id
      * @param Module $module
      * @param CustomerService $customerService

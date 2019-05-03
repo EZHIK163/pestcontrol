@@ -4,13 +4,12 @@ namespace app\components;
 use yii\base\Widget;
 
 /**
- * Class SliderWidget
- * @package app\components
+ * Виджет верхнего слайдера
  */
 class SliderWidget extends Widget
 {
     /**
-     * @return string
+     * @inheritDoc
      */
     public function run()
     {

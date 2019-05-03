@@ -1,39 +1,25 @@
 <?php
+
 namespace app\dto;
 
 /**
- * Class File
- * @package app\dto
+ * Модель загруженного файла
  */
 class File
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $id;
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $isActive;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $originalName;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $hash;
-    /**
-     * @var int
-     */
+    /** @var int */
     private $size;
-    /**
-     * @var FileExtension
-     */
+    /** @var FileExtension */
     private $extension;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $mimeType;
 
     /**

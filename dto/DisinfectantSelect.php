@@ -1,19 +1,15 @@
 <?php
+
 namespace app\dto;
 
 /**
- * Class DisinfectantSelect
- * @package app\dto
+ * Модель связывающая форму установки дез. средства с сервисом
  */
 class DisinfectantSelect
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $id;
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $isSelect;
 
     /**
